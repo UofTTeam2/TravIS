@@ -43,7 +43,7 @@ app.use(express.urlencoded({extended: true})); //sets application to process inc
 app.use(express.static(path.join(__dirname, 'public'))); //sets application's default static file path to the 'public' folder
 //app.use(routes); //sets application to use our imported routing settings
 
-// sync sequelize models to the database, then start running the server
+//sync sequelize models to the database, then start running the server
 sequelize.sync({force: false}).then(() => {
     app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
 });
@@ -52,7 +52,7 @@ sequelize.sync({force: false}).then(() => {
 
 app.get('/', async (req, res) => {
     try {
-        res.render('trip-overview');
+        res.render('view-itinerary');
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
