@@ -1,9 +1,10 @@
 // Initiate logout process
 // purpose: to log out the user and redirect to the homepage
-//---------------------------------------------------------------
+//==============================================================
 
 // Creating a function to handle the error message
 // if the user's login/signup is unsuccessful, using a modal
+//==============================================================
 const displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
@@ -40,5 +41,8 @@ const logout = async () => {
         displayErrorModal(errorMessage);
     }
 };
+//==============================================================
 
+// Adding an event listener to the logout button
+//==============================================================
 document.querySelector('#logout').addEventListener('click', logout);
