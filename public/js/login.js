@@ -25,6 +25,7 @@ const displayErrorModal = (errorMessage) => {
 
 const loginHandler = async (event) => {
     event.preventDefault();
+
     const email = document.querySelector('#emailLogin').value.trim();
     const password = document.querySelector('#passwordLogin').value.trim();
 
@@ -45,3 +46,32 @@ const loginHandler = async (event) => {
         }
     }
 };
+
+const signupHandler = async (event) => {
+    event.preventDefault();
+
+    const username = document.querySelector('#usernameSignup').value.trim();
+    const email = document.querySelector('#emailSignup').value.trim();
+    const password = document.querySelector('#passwordSignup').value.trim();
+
+    if (username && email && password) {
+        const response = await fetch('/api/users', {
+            method: 'POST',
+            body: JSON.stringify({ username, email, password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            document.location.replace('/');
+        } else {
+            //adding an error message if the user's signup is unsuccessful
+            const errorData = await response.json();
+            const errorMessage = errorData.errors[0].message;
+            displayErrorModal(errorMessage);
+        }
+    }
+};
+
+// Event listeners
+document.querySelector('.loginForm').addEventListener('submit', loginHandler);
+document.querySelector('.signupForm').addEventListener('submit', signupHandler);
