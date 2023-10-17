@@ -2,7 +2,7 @@
 {{#if accommodationItems}}
   <h2 class = "item-category-title">Accomodation</h2>
   {{#each accommodationItems as |accommodationItem|}}
-    {{> item-details}}
+    {{> view-item-details}}
   {{/each}}
 {{/if}}
 
@@ -10,7 +10,7 @@
 {{#if foodItems}}
   <h2 class = "item-category-title">Food</h2>
   {{#each foodItems as |foodItem|}}
-    {{> item-details}}
+    {{> view-item-details}}
   {{/each}}
 {{/if}}
 
@@ -18,7 +18,7 @@
 {{#if transportItems}}
   <h2 class = "item-category-title">Transport</h2>
   {{#each transportItems as |transportItem|}}
-    {{> item-details}}
+    {{> view-item-details}}
   {{/each}}
 {{/if}}
 
@@ -27,7 +27,7 @@
 {{#if activityItems}}
   <h2 class = "item-category-title">Activities</h2>
   {{#each activityItems as |activityItem|}}
-    {{> item-details}}
+    {{> view-item-details}}
   {{/each}}
 {{/if}}
 
@@ -35,6 +35,6 @@
 {{#if miscItems}}
   <h2 class = "item-category-title">Misc</h2>
   {{#each miscItems as |miscItem|}}
-    {{> item-details}}
+    {{> view-item-details}}
   {{/each}}
 {{/if}}

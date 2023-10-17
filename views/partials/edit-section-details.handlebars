@@ -1,0 +1,40 @@
+<!-- renders a category title & a partial for each item related to accommodation, if any exist -->
+{{#if accommodationItems}}
+  <h2 class = "item-category-title">Accomodation</h2>
+  {{#each accommodationItems as |accommodationItem|}}
+    {{> edit-item-details}}
+  {{/each}}
+{{/if}}
+
+<!-- renders a category title & a partial for each item related to food, if any exist -->
+{{#if foodItems}}
+  <h2 class = "item-category-title">Food</h2>
+  {{#each foodItems as |foodItem|}}
+    {{> edit-item-details}}
+  {{/each}}
+{{/if}}
+
+<!-- renders a category title & a partial for each item related to transport, if any exist -->
+{{#if transportItems}}
+  <h2 class = "item-category-title">Transport</h2>
+  {{#each transportItems as |transportItem|}}
+    {{> edit-item-details}}
+  {{/each}}
+{{/if}}
+
+<!-- renders a category title & a partial for each item relating to activities / things to do
+     (entertainment, shopping, historical sites to visit, etc.) if any exist -->
+{{#if activityItems}}
+  <h2 class = "item-category-title">Activities</h2>
+  {{#each activityItems as |activityItem|}}
+    {{> edit-item-details}}
+  {{/each}}
+{{/if}}
+
+<!-- renders a category title & a partial for any remaining miscellaneous items, if any exist -->
+{{#if miscItems}}
+  <h2 class = "item-category-title">Misc</h2>
+  {{#each miscItems as |miscItem|}}
+    {{> edit-item-details}}
+  {{/each}}
+{{/if}}
