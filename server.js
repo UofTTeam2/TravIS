@@ -50,9 +50,19 @@ sequelize.sync({force: false}).then(() => {
 
 /* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS BELOW, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
 
+const {accommodationItems, foodItems, transportItems, activityItems, miscItems} = require('./seeds/sampleItineraryData.js');
+
+const sections = [{
+    accommodationItems,
+    foodItems,
+    transportItems,
+    activityItems,
+    miscItems
+}];
+
 app.get('/', async (req, res) => {
     try {
-        res.render('view-itinerary');
+        res.render('view-itinerary', {tripTitle: 'test', sections});
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
