@@ -1,58 +1,50 @@
 {
-  "name": "personal-finance-tracker",
-  "version": "1.0.0",
-  "description": "Users can input and track their incomes, expenses, savings, and investments.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "watch": "nodemon server.js"
-  },
-  "keywords": [
-    "personal-finance",
-    "finance-tracker",
-    "expense-tracker",
-    "budget-management",
-    "income-tracker",
-    "savings",
-    "financial-goals",
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "Bootstrap",
-    "Node.js",
-    "Express.js",
-    "Handlebars.js",
-    "MySQL",
-    "Sequelize ORM",
-    "MVC",
-    "express-session",
-    "cookies",
-    "dotenv",
-    "connect-session-sequelize",
-    "express-handlebars",
-    "mysql2",
-    "Passport.js",
-    "authentication",
-    "web-application",
-    "full-stack-development"
-  ],
-  "author": "UofT Team 2",
-  "license": "MIT",
-  "devDependencies": {
-    "eslint": "^8.51.0",
-    "eslint-config-prettier": "^9.0.0",
-    "prettier": "^3.0.3"
-  },
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "connect-session-sequelize": "^7.1.7",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-handlebars": "^7.1.2",
-    "express-session": "^1.17.3",
-    "handlebars": "^4.7.8",
-    "mysql2": "^3.6.1",
-    "sequelize": "^6.33.0"
-  }
+    "name": "trvis",
+    "version": "1.0.0",
+    "description": "Trip Planning and Management Application",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js",
+        "watch": "nodemon server.js",
+        "seed": "node seeds/index.js"
+    },
+    "keywords": [
+        "trip",
+        "planning",
+        "management",
+        "application",
+        "travel",
+        "vacation",
+        "itinerary",
+        "node",
+        "express",
+        "handlebars",
+        "sequelize",
+        "mysql2",
+        "session"
+    ],
+    "author": "UofT Team 2",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "^8.51.0",
+        "eslint-config-prettier": "^9.0.0",
+        "prettier": "^3.0.3"
+    },
+    "dependencies": {
+        "amadeus": "^9.0.0",
+        "chart.js": "^4.4.0",
+        "connect-session-sequelize": "^7.1.7",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "express-handlebars": "^7.1.2",
+        "express-session": "^1.17.3",
+        "fullcalendar": "^6.1.9",
+        "handlebars": "^4.7.8",
+        "multer": "^1.4.5-lts.1",
+        "mysql2": "^3.6.1",
+        "passport": "^0.6.0",
+        "passport-local": "^1.0.0",
+        "sequelize": "^6.33.0"
+    }
 }
