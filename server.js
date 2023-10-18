@@ -17,9 +17,10 @@ const exphbs = require('express-handlebars');
 require('dotenv').config();
 //==============================================================
 
-//importing routes and custom helpers
+//importing routes, Session model and custom helpers
 // =============================================================
 const routes = require('./controllers');
+const Session = require('./models/Session');
 const helpers = require('./utils/helpers');
 //initializes handlebars template engine
 const hbs = exphbs.create({ helpers });
@@ -46,6 +47,7 @@ const sess = {
     saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize,
+        table: 'Session', // Name of the database table to store sessions
     }),
 };
 
