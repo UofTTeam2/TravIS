@@ -1,11 +1,21 @@
 <!-- renders a series of empty input boxes for a trip item, setting any already-existing data as the default values -->
 <input class = "item-title" value = "{{title}}">
 <input class = "item-link" value = "{{link}}">
-<input type = "file" accept = "image/*" class = "uploaded-image">
-<img class = "item-image" src = {{image}}>
-<input class = "item-date-time item-start-date" value = "{{startDate}}">
-<input class = "item-date-time item-start-time" value = "{{startTime}}">
-<input class = "item-date-time item-end-date" value = "{{endDate}}">
-<input class = "item-date-time item-end-time" value = "{{endTime}}">
+<input class = "item-date-time item-start-date datepicker" value = "{{startDate}}">
+<input class = "item-date-time item-start-time timepicker" value = "{{startTime}}">
+<input class = "item-date-time item-end-date datepicker" value = "{{endDate}}">
+<input class = "item-date-time item-end-time timepicker" value = "{{endTime}}">
 <input class = "item-price" value = "{{price}}">
 <input class = "item-notes" value = "{{notes}}">
+<input type = "file" accept = "image/*" class = "uploaded-image" title = "Choose an image (up to 10 MB)">
+
+<div>
+
+  <h3>Preview:</h3>
+  <img class = "preview-image" src = './images/no-image-stock-photo.png'>
+  {{#if image}}
+    <img class = "item-image" src = {{image}}>
+  {{/if}}
+
+</div>
+
