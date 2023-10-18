@@ -1,7 +1,8 @@
 <!-- renders a series of empty input boxes for a trip item, setting any already-existing data as the default values -->
 <input class = "item-title" value = "{{title}}">
 <input class = "item-link" value = "{{link}}">
-<input class = "item-image" value = "{{image}}" placeholder = "THIS WILL BE REPLACED WITH SELECTING A FILE TO UPLOAD VIA MULTER">
+<input type = "file" accept = "image/*" class = "uploaded-image">
+<img class = "item-image" src = {{image}}>
 <input class = "item-date-time item-start-date" value = "{{startDate}}">
 <input class = "item-date-time item-start-time" value = "{{startTime}}">
 <input class = "item-date-time item-end-date" value = "{{endDate}}">
