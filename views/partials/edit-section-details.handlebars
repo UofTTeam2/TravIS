@@ -1,39 +1,52 @@
-<!-- renders a category title & a partial for each item related to accommodation, if any exist -->
+<!-- drop all helpers such that all categories of items are visible & editable -->
+
+<!-- renders a category title for & a button to add new items related to accomodation
+     also renders an editable partial for each item related to accommodation that already exist -->
+<h2 class = "item-category-title">Accommodation</h2>
+<button id = "add-accommodation-button">+</button>
 {{#if accommodationItems}}
-  <h2 class = "item-category-title">Accomodation</h2>
   {{#each accommodationItems as |accommodationItem|}}
     {{> edit-item-details}}
   {{/each}}
 {{/if}}
 
-<!-- renders a category title & a partial for each item related to food, if any exist -->
+<!-- renders a category title for & a button to add new items related to food
+     also renders an editable partial for each item related to food that already exist -->
+<h2 class = "item-category-title">Food</h2>
+<button id = "add-food-button">+</button>
 {{#if foodItems}}
-  <h2 class = "item-category-title">Food</h2>
   {{#each foodItems as |foodItem|}}
     {{> edit-item-details}}
   {{/each}}
 {{/if}}
 
-<!-- renders a category title & a partial for each item related to transport, if any exist -->
+<!-- renders a category title for & a button to add new items related to transport
+     also renders an editable partial for each item related to transport that already exist -->
+<h2 class = "item-category-title">Transport</h2>
+<button id = "add-transport-button">+</button>
 {{#if transportItems}}
-  <h2 class = "item-category-title">Transport</h2>
   {{#each transportItems as |transportItem|}}
     {{> edit-item-details}}
   {{/each}}
 {{/if}}
 
-<!-- renders a category title & a partial for each item relating to activities / things to do
-     (entertainment, shopping, historical sites to visit, etc.) if any exist -->
+
+<!-- renders a category title for & a button to add new items related to activities / things to do
+     (entertainment, shopping, historical sites to visit, etc.), and also renders an editable partial
+     for each item related to activities (et al.) that already exist -->
+<h2 class = "item-category-title">Activities</h2>
+<button id = "add-activity-button">+</button>
 {{#if activityItems}}
-  <h2 class = "item-category-title">Activities</h2>
   {{#each activityItems as |activityItem|}}
     {{> edit-item-details}}
   {{/each}}
 {{/if}}
 
-<!-- renders a category title & a partial for any remaining miscellaneous items, if any exist -->
+<!-- renders a category title for & a button to add new items miscellaneous items
+     also renders an editable partial for each item related to transport that already exist -->
+<h2 class = "item-category-title">Misc</h2>
+<button id = "add-misc-button">+</button>
 {{#if miscItems}}
-  <h2 class = "item-category-title">Misc</h2>
   {{#each miscItems as |miscItem|}}
     {{> edit-item-details}}
   {{/each}}

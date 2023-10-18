@@ -1,42 +1,10 @@
-<!-- if the item has a title attached, render it to the page -->
-{{#if title}}
-  <!-- if the title has a link attached, apply it to the header -->
-  {{#if link}}
-    <h3 class = "item-title"><a href = {{link}}>{{title}}</a></h3>
-  {{else}} <!-- otherwise, simply render the title header -->
-    <h3 class = "item-title">{{title}}</h3>
-  {{/if}}
-{{/if}}
-
-<!-- if the item has an image attached, render it to the page -->
-{{#if image}}
-  <img class = "item-image" src = {{image}}>
-{{/if}}
-
-<!-- if the item has a start date attached, render it to the page -->
-{{#if startDate}}
-  <p class = "item-date-time">{{startDate}}</p>
-  <!-- if the item has a start time attached, render it to the page -->
-  {{#if startTime}}
-    <p class = "item-date-time">{{startTime}}</p>
-  {{/if}}
-{{/if}}
-
-<!-- if the item has an end date attached, render it to the page -->
-{{#if endDate}}
-  <p class = "item-date-time">{{endDate}}</p>
-  <!-- if the item has an end time attached, render it to the page -->
-  {{#if endTime}}
-    <p class = "item-date-time">{{endTime}}</p>
-  {{/if}}
-{{/if}}
-
-<!-- if the item has a price attached, render it to the page -->
-{{#if price}}
-  <p class = "item-price">{{price}}</p>
-{{/if}}
-
-<!-- if the item has any notes attached, render them to the page -->
-{{#if notes}}
-  <p class = "item-price">{{notes}}</p>
-{{/if}}
+<!-- renders a series of empty input boxes for a trip item, setting any already-existing data as the default values -->
+<input class = "item-title" value = "{{title}}">
+<input class = "item-link" value = "{{link}}">
+<input class = "item-image" value = "{{image}}" placeholder = "THIS WILL BE REPLACED WITH SELECTING A FILE TO UPLOAD VIA MULTER">
+<input class = "item-date-time item-start-date" value = "{{startDate}}">
+<input class = "item-date-time item-start-time" value = "{{startTime}}">
+<input class = "item-date-time item-end-date" value = "{{endDate}}">
+<input class = "item-date-time item-end-time" value = "{{endTime}}">
+<input class = "item-price" value = "{{price}}">
+<input class = "item-notes" value = "{{notes}}">
