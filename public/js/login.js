@@ -1,9 +1,10 @@
 // Initiated by: login.handlebars
 // Purpose: This file is used to handle the login and signup forms on the login.handlebars page. It is used to send the user's input to the server to be validated and then redirect the user to the homepage if the login/signup is successful. If the login/signup is unsuccessful, the user will be alerted with a message.
-//-------------------------------------------------------------------
+//==============================================================
 
 // Creating a function to handle the error message
 // if the user's login/signup is unsuccessful, using a modal
+// =========================================================
 const displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
@@ -22,7 +23,10 @@ const displayErrorModal = (errorMessage) => {
         }
     });
 };
+// =========================================================
 
+// Creating functions to handle the login and signup forms
+// =========================================================
 const loginHandler = async (event) => {
     event.preventDefault();
 
@@ -71,7 +75,9 @@ const signupHandler = async (event) => {
         }
     }
 };
+// =========================================================
 
 // Event listeners
+// =========================================================
 document.querySelector('.loginForm').addEventListener('submit', loginHandler);
 document.querySelector('.signupForm').addEventListener('submit', signupHandler);
