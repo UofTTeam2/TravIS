@@ -78,7 +78,7 @@
 
 1. Implement backend development using Node.js and Express.js to handle data management and API functionality.
 2. Develop the frontend with HTML/CSS/Tailwind, JavaScript, and Handlebars.js to provide a responsive and user-friendly interface.
-3. Incorporate user authentication and data security using Passport.js and dotenv.
+3. Incorporate user authentication and data security using bcrypt and dotenv.
 4. Integrate external APIs (e.g., Amadeus, fullcalendar) for real-time data.
 5. Implement the Expense Tracker feature using chart.js.
 6. Enable image uploads using the multer npm package.
