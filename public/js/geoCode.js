@@ -1,5 +1,4 @@
 require('dotenv').config();
-const fetch = require('node-fetch');
 
 //https://api-ninjas.com/api/geocoding
 // city defined for testing purposes
