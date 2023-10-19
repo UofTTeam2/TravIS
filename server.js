@@ -20,9 +20,9 @@ require('dotenv').config();
 //importing routes and custom helpers
 // =============================================================
 const routes = require('./controllers');
-const helpers = require('./utils/helpers');
+// const helpers = require('./utils/helpers');
 //initializes handlebars template engine
-const hbs = exphbs.create({ helpers });
+// const hbs = exphbs.create({ helpers });
 //==============================================================
 
 //defines express application and PORT
@@ -33,28 +33,28 @@ const PORT = process.env.PORT || 3001;
 
 // Access the session secret from the environment variables
 // =============================================================
-const sessionSecret = process.env.SESSION_SECRET;
+// const sessionSecret = process.env.SESSION_SECRET;
 
 //defining express session
-const sess = {
-    secret: sessionSecret,
-    cookie: {
-        // Session will automatically expire after one hour
-        expires: 60 * 60 * 1000,
-    },
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-        db: sequelize,
-    }),
-};
+// const sess = {
+//     secret: sessionSecret,
+//     cookie: {
+//         // Session will automatically expire after one hour
+//         expires: 60 * 60 * 1000,
+//     },
+//     resave: false,
+//     saveUninitialized: true,
+//     store: new SequelizeStore({
+//         db: sequelize,
+//     }),
+// };
 
-app.use(session(sess));
+// app.use(session(sess));
 //==============================================================
 
 // Registering handlebars as the template engine of choice
 // =============================================================
-app.engine('handlebars', hbs.engine);
+// app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 //==============================================================
 
@@ -68,6 +68,6 @@ app.use(routes);
 
 // sync sequelize models to the database, then start running the server
 // =============================================================
-sequelize.sync({ force: false }).then(() => {
+// sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
-});
+// });
