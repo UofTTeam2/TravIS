@@ -21,7 +21,7 @@ async function fetchCityData() {
 
         if (response.ok) {
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
             const lat = result[0].latitude;
             const lon = result[0].longitude;
             console.log('Latitude:', lat, 'Longitude:', lon);

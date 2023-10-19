@@ -61,4 +61,3 @@ thingsToDo();
 //     console.log(error.code); //=> A unique error code to identify the type of error
 //   });
 
-// module.exports = router;
