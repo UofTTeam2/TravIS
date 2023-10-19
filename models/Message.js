@@ -9,24 +9,7 @@ const sequelize = require('../config/connection');
 
 // Initialize Message model (table) by extending off Sequelize's Model class
 // ==========================================================
-class Message extends Model {
-    // defining a method to mark a message as read.
-    // A static method which will be called directly from the Message model
-    // the method will update the is_read column to true for a given message id
-    //This will be used in the message-routes.js file
-    static markAsRead(id) {
-        return this.update(
-            {
-                is_read: true,
-            },
-            {
-                where: {
-                    id,
-                },
-            }
-        );
-    }
-}
+class Message extends Model {}
 // ==========================================================
 
 // Set up fields and rules for Message model
@@ -50,24 +33,10 @@ Message.init(
             allowNull: false,
         },
 
-        is_read: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: false,
-        },
-
         user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
-                key: 'id',
-            },
-        },
-
-        trip_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'trip',
                 key: 'id',
             },
         },
