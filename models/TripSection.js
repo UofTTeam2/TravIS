@@ -1,4 +1,4 @@
-// Desc: Creating a model for the SubTrip table in the database. Representing the trips related to a trip.
+// Desc: Creating a model for the TripSection table in the database. Representing the trips related to a trip.
 // =============================================================
 
 // Dependencies
@@ -7,14 +7,14 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 // =============================================================
 
-// Creating the SubTrip model
+// Creating the TripSection model
 // =============================================================
-class SubTrip extends Model {}
+class TripSection extends Model {}
 // =============================================================
 
-// Creating the SubTrip table
+// Creating the TripSection table
 // =============================================================
-SubTrip.init(
+TripSection.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -26,11 +26,6 @@ SubTrip.init(
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-
-        image: {
-            type: DataTypes.STRING,
-            allowNull: true,
         },
 
         date: {
@@ -52,11 +47,11 @@ SubTrip.init(
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'subtrip',
+        modelName: 'tripsection',
     }
 );
 // =============================================================
 
-// Export the SubTrip model
+// Export the TripSection model
 // =============================================================
-module.exports = SubTrip;
+module.exports = TripSection;
