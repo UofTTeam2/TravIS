@@ -8,35 +8,43 @@
   {{/if}}
 {{/if}}
 
+<!-- if the item has a start date attached, render it to the page -->
+{{#if startDate}}
+  <h3>Start Date:</h3>
+  <p class = "item-date-time">{{startDate}}</p>
+{{/if}}
+
+<!-- if the item has a start time attached, render it to the page -->
+{{#if startTime}}
+  <h3>Start Time:</h3>
+  <p class = "item-date-time">{{startTime}}</p>
+{{/if}}
+
+<!-- if the item has an end date attached, render it to the page -->
+{{#if endDate}}
+  <h3>End Date:</h3>
+  <p class = "item-date-time">{{endDate}}</p>
+{{/if}}
+
+<!-- if the item has an end time attached, render it to the page -->
+{{#if endTime}}
+  <h3>End Time:</h3>
+  <p class = "item-date-time">{{endTime}}</p>
+{{/if}}
+
 <!-- if the item has an image attached, render it to the page -->
 {{#if image}}
   <img class = "item-image" src = {{image}}>
 {{/if}}
 
-<!-- if the item has a start date attached, render it to the page -->
-{{#if startDate}}
-  <p class = "item-date-time">{{startDate}}</p>
-  <!-- if the item has a start time attached, render it to the page -->
-  {{#if startTime}}
-    <p class = "item-date-time">{{startTime}}</p>
-  {{/if}}
-{{/if}}
-
-<!-- if the item has an end date attached, render it to the page -->
-{{#if endDate}}
-  <p class = "item-date-time">{{endDate}}</p>
-  <!-- if the item has an end time attached, render it to the page -->
-  {{#if endTime}}
-    <p class = "item-date-time">{{endTime}}</p>
-  {{/if}}
-{{/if}}
-
 <!-- if the item has a price attached, render it to the page -->
 {{#if price}}
+  <h3>Cost:</h3>
   <p class = "item-price">{{price}}</p>
 {{/if}}
 
 <!-- if the item has any notes attached, render them to the page -->
 {{#if notes}}
+  <h3>Notes:</h3>
   <p class = "item-notes">{{notes}}</p>
 {{/if}}

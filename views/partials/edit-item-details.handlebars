@@ -1,20 +1,47 @@
 <!-- renders a series of empty input boxes for a trip item, setting any already-existing data as the default values -->
+<h3>Title:</h3>
 <input class = "item-title" value = "{{title}}">
+
+<h3>Title Link:</h3>
 <input class = "item-link" value = "{{link}}">
+
+<h3>Start Date:</h3>
 <input class = "item-date-time item-start-date datepicker" value = "{{startDate}}">
+
+<h3>Start Time:</h3>
 <input class = "item-date-time item-start-time timepicker" value = "{{startTime}}">
+
+<h3>End Date:</h3>
 <input class = "item-date-time item-end-date datepicker" value = "{{endDate}}">
+
+<h3>End Time:</h3>
 <input class = "item-date-time item-end-time timepicker" value = "{{endTime}}">
+
+<h3>Cost:</h3>
 <input class = "item-price" value = "{{price}}">
-<input class = "item-notes" value = "{{notes}}">
-<input type = "file" accept = "image/*" class = "uploaded-image" title = "Choose an image (up to 10 MB)">
+
+<h3>Notes:</h3>
+<textarea class = "item-notes" value = "{{notes}}"></textarea>
+
+<h3>Choose an image (up to 10 MB):</h3>
+<input type = "file" accept = "image/*" class = "uploaded-image">
 
 <div>
 
-  <h3>Preview:</h3>
-  <img class = "preview-image" src = './images/no-image-stock-photo.png'>
+  <div class = "edit-page-image-block">
+
+    <h3>Preview:</h3>
+    <img class = "preview-image" src = './images/no-image-stock-photo.png'>
+
+  </div>
+
   {{#if image}}
-    <img class = "item-image" src = {{image}}>
+    <div class = "edit-page-image-block">
+
+      <h3>Current Image:</h3>
+      <img class = "item-image" src = {{image}}>
+    
+    </div>
   {{/if}}
 
 </div>
