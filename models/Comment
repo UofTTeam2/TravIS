@@ -24,7 +24,7 @@ const sequelize = require('../config/connection');
 // =============================================================
 class Comment extends Model {
     // Method to add a like to a comment
-    async addLike(userId, models) {
+    async addLike(userId) {
         // Check if the user has already liked the comment
         if (!this.likes.includes(userId)) {
             // Add the user's ID to the likes array
@@ -36,7 +36,7 @@ class Comment extends Model {
     }
 
     // Method to remove a like from a comment
-    async removeLike(userId, models) {
+    async removeLike(userId) {
         // Check if the user has liked the comment
         const index = this.likes.indexOf(userId);
         if (index !== -1) {
@@ -73,7 +73,7 @@ class Comment extends Model {
     }
 
     // Method to add a dislike to a comment
-    async addDislike(userId, models) {
+    async addDislike(userId) {
         // Check if the user has already disliked the comment
         if (!this.dislikes.includes(userId)) {
             // Add the user's ID to the dislikes array
@@ -85,7 +85,7 @@ class Comment extends Model {
     }
 
     // Method to remove a dislike from a comment
-    async removeDislike(userId, models) {
+    async removeDislike(userId) {
         // Check if the user has disliked the comment
         const index = this.dislikes.indexOf(userId);
         if (index !== -1) {
