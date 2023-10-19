@@ -27,39 +27,14 @@ Trip.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        link: {
-            type: DataTypes.STRING,
-        },
         image: {
             type: DataTypes.STRING,
+            allowNull: true,
         },
-        start_date: {
-            type: DataTypes.DATE,
+        date: {
+            type: DataTypes.DATEONLY,
             allowNull: false,
             defaultValue: DataTypes.NOW,
-        },
-        start_time: {
-            type: DataTypes.TIME,
-            defaultValue: DataTypes.NOW,
-        },
-        end_date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
-        end_time: {
-            type: DataTypes.TIME,
-            defaultValue: DataTypes.NOW,
-        },
-        price: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false,
-            validate: {
-                isDecimal: true,
-            },
-        },
-        notes: {
-            type: DataTypes.STRING,
         },
         user_id: {
             type: DataTypes.INTEGER,
