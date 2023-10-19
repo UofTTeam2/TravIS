@@ -1,5 +1,4 @@
-// Desc: Creating a model for the Trip table in the database.
-//This model will be used to query the database.
+// Desc: Creating a model for the SubTrip table in the database. Representing the trips related to a trip.
 // =============================================================
 
 // Dependencies
@@ -8,14 +7,14 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 // =============================================================
 
-// Creating the Trip model
+// Creating the SubTrip model
 // =============================================================
-class Trip extends Model {}
+class SubTrip extends Model {}
 // =============================================================
 
-// Creating the Trip table
+// Creating the SubTrip table
 // =============================================================
-Trip.init(
+SubTrip.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -23,23 +22,27 @@ Trip.init(
             primaryKey: true,
             autoIncrement: true,
         },
+
         title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
+
         image: {
             type: DataTypes.STRING,
             allowNull: true,
         },
+
         date: {
             type: DataTypes.DATEONLY,
             allowNull: True,
             defaultValue: DataTypes.NOW,
         },
-        user_id: {
+
+        trip_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'user',
+                model: 'trip',
                 key: 'id',
             },
         },
@@ -49,11 +52,11 @@ Trip.init(
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'trip',
+        modelName: 'subtrip',
     }
 );
 // =============================================================
 
-// Export the Trip model
+// Export the SubTrip model
 // =============================================================
-module.exports = Trip;
+module.exports = SubTrip;
