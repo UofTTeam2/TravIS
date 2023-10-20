@@ -12,7 +12,10 @@ const multer = require('multer');
 const storage = multer.diskStorage({
     destination: './public/images/multer-uploads',
     filename: function(req, file, cb) {
-        cb(null, file.originalname);
+        const fileSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const fileName = file.fieldname + '-' + fileSuffix;
+        file.originalname = fileName;
+        cb(null, fileName);
     }
 });
 

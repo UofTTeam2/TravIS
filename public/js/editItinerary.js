@@ -1,7 +1,7 @@
 
 //waits until window is finished loading before running main code
 window.onload = () => {
-    const userChosenImage = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
+    const allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
     const multerSubmissionForm = $('.multer-submission-form');
 
     //function to render a preview image of a file chosen by a user before it is uploaded to the database
@@ -28,8 +28,6 @@ window.onload = () => {
         let allFileUploads = [];
         let formData = new FormData();
 
-        const allFileInputs = $('.user-uploaded-image');
-
         for (fileInput = 0; fileInput < allFileInputs.length; fileInput++)
         {
             allFileUploads.push(allFileInputs[fileInput].files[0]);
@@ -40,21 +38,70 @@ window.onload = () => {
             formData.append('image-upload', fileUpload);
         });
 
-        console.log(formData);
+        let fileNames;
 
         try {
             const response = await fetch('/api/trips/image', {
                 method: 'POST',
                 body: formData
             });
-            const fileNames = await response.json();
-            console.log(fileNames);
+            fileNames = await response.json();
         } catch (err) {
             console.log(err);
         }
 
+        console.log(allFileUploads);
+        console.log(fileNames);
+
+        //if file upload input isn't undefined
+            //retrieve the current file name / path from controller array
+            //set that file path to the 'image' property of current object
+            //increase the variable to track file upload inputs & controller file list by 1
+        //else if the file upload is undefined, check if there is an already-existing image for that object
+            //retrieve the src value of the already-existing image
+            //set that src to to the 'image' property of the current object
+            //increase the variable to track file upload inputs by 1
+        //else (the file is undefined)
+            //set the file path to the 'image' property of the current object to be an empty string
+            //increase the variable to track file upload inputs by 1
+
+        let currentFileInput = 0; //variable to track how many inputs & their file contents have been accounted for
+        let currentFileUpload = 0; //variable to track how many uploaded files have been assigned to an object
+
+        let titleCardImage; //variable to hold title card image file name
+
+        //checks if the title card image input had a file uploaded to it
+        if (allFileUploads[currentFileInput]) {
+            //if a file was uploaded, set the titleCardImage source file to the next unassigned image in the array
+            titleCardImage = fileNames[currentFileUpload]; 
+            currentFileUpload++; //increase the index by 1 to indicate that +1 more image has been assigned to an object
+        }
+        else { //otherwise (i.e the title card image input did not have a file uploaded), run the following;
+            //gets a reference to the container housing the preview image for the current file input,
+            //and the image currently assigned as the title card
+            const imageContainer = $(allFileInputs[currentFileInput]).siblings('.edit-page-image-container')[0];
+            
+            //checks if the above container has two children, i.e. an image is already assigned to the title card,
+            //and an <img> element for it exists
+            if ($(imageContainer).children().length === 2) {
+                //if such an image exists, set the titleCardImage value to the source file of the current image
+                const imageContainerChildren = $(imageContainer).children()[1];
+                titleCardImage = $($(imageContainerChildren).children()[1]).attr('src');
+            }
+            else {
+                //otherwise (i.e. an image was not selected by the user, and there is not an image already assigned),
+                //set the titleCardImage to be an empty string, indicating that there is no image
+                titleCardImage = '';
+            }
+        }
+
+        //increase the file input index by 1, to indicate that +1 more file inputs have been accounted for
+        currentFileInput++; 
+
+        console.log('current input #: ' + currentFileInput);
+        console.log('current file #: ' + currentFileUpload);
+
         const tripTitle = $('.trip-title').val();
-        const titleCardImage = $('.user-uploaded-image');
         const tripID = $('.trip-title-container').attr('data-id');
 
         const titleData = {
@@ -89,8 +136,43 @@ window.onload = () => {
             const end_time = $(itineraryItems[itineraryItem]).children('.item-end-time');
             const expense = $(itineraryItems[itineraryItem]).children('.item-expense');
             const notes = $(itineraryItems[itineraryItem]).children('.item-notes');
-            const image = $(itineraryItems[itineraryItem]).children('.user-uploaded-image');
 
+            let image;
+
+            //checks if the current itinerary image input had a file uploaded to it
+            if (allFileUploads[currentFileInput]) {
+                //if a file was uploaded, set the image source file to the next unassigned image in the array
+                image = fileNames[currentFileUpload]; 
+                currentFileUpload++; //increase the index by 1 to indicate that +1 more image has been assigned to an object
+            }
+            else { //otherwise (i.e the current itinerary image input did not have a file uploaded), run the following;
+                //gets a reference to the container housing the preview image for the current itinerary image input,
+                //and the image assigned to the current itinerary item
+                const imageContainer = $(allFileInputs[currentFileInput]).siblings('.edit-page-image-container')[0];
+                
+                //checks if the above container has two children, i.e. an image is already assigned to the current
+                //itinerary item, and an <img> element for it exists
+                if ($(imageContainer).children().length === 2) {
+                    //if such an image exists, set the image value to the source file of the currently-assigned image
+                    const imageContainerChildren = $(imageContainer).children()[1];
+                    image = $($(imageContainerChildren).children()[1]).attr('src');
+                }
+                else {
+                    //otherwise (i.e. an image was not selected by the user, and there is not an image already assigned),
+                    //set the image to be an empty string, indicating that there is no image
+                    image = '';
+                }
+            }
+
+            console.log('file #' + [itineraryItem] + ' name: ' + image);
+
+            //increase the file input index by 1, to indicate that +1 more file inputs have been accounted for
+            currentFileInput++; 
+
+            console.log('current input #: ' + currentFileInput);
+            console.log('current file #: ' + currentFileUpload);
+
+            //construct a new itinerary item object based on the current itinerary item's data
             const currentItineraryItemData = {
                 id: id,
                 title: title.val(),
@@ -103,9 +185,15 @@ window.onload = () => {
                 notes: notes.val(),
                 image: image
             }
+            //append the new itinerary item object to the array of itinerary item data
             itineraryData.push(currentItineraryItemData);
         }
 
+        console.log(titleData);
+        console.log(sectionData);
+        console.log(itineraryData);
+
+        //send the above title, section, & itinerary item data to the database for processing
         await fetch('/api/trips/edit', {
             method: 'PUT',
             body: JSON.stringify({titleData, sectionData, itineraryData}),
@@ -114,7 +202,7 @@ window.onload = () => {
     }
 
     //event listener for when a change is made using the input a user uses to upload an image file
-    userChosenImage.on('change', renderPreviewImage);
+    allFileInputs.on('change', renderPreviewImage);
 
     //prevents page from redirecting when itinerary data is saved & form is submitted
     multerSubmissionForm.on('submit', (event) => {
