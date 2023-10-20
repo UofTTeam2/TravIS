@@ -8,11 +8,13 @@
 const router = require('express').Router();
 const apiController = require('./api');
 const homeController = require('./home-controller');
+const dashboardController = require('./dashboard-controller');
 //==============================================================
 
 // Routes
 // =============================================================
 router.use('/', homeController);
+router.use('/dashboard', dashboardController);
 router.use('/api', apiController);
 //==============================================================
 
