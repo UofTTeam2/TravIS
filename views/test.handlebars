@@ -3,3 +3,24 @@
 <p>{{poiItem.category}}</p>
 
 {{/each}}
+
+{{!-- activities section: --}}
+<h1>Activities</h1>
+
+{{#each toDoData}}
+  <div class="activity">
+    <h2>{{name}}</h2>
+    <p>Description: {{description}}</p>
+    <p>Price: {{price.amount}} {{price.currencyCode}}</p>
+    <p>Minimum Duration: {{minimumDuration}}</p>
+
+    <h3>Pictures:</h3>
+    <div class="pictures">
+      {{#each pictures}}
+        <img src="{{this}}" alt="Activity Image">
+      {{/each}}
+    </div>
+
+    <a href="{{bookingLink}}" target="_blank">Book Now</a>
+  </div>
+{{/each}}

@@ -16,13 +16,15 @@ router.get('/', async (req, res) => {
         const { lat, lon } = await fetchCityData();
         if (lat && lon) {
             const response = await amadeus.referenceData.locations.pointsOfInterest.get({
+
                 latitude: lat,
                 longitude: lon
             });
             const data = response.result;
             const poiData = data.data;
             // console.log(poiData);
-            res.render('Points of Interest', { poiData: poiData });
+            // res.status(200).send(poiData);
+            res.render('test', { poiData: poiData });
         } else {
             console.log('Error: no latitude/longitude data');
             res.status(400).json({ error: 'No latitude/longitude data' });
