@@ -41,14 +41,6 @@ Trip.hasMany(TripSection, {
     foreignKey: 'trip_id',
     onDelete: 'CASCADE',
 });
-Trip.hasMany(Message, {
-    foreignKey: 'trip_id',
-    onDelete: 'CASCADE',
-});
-Trip.hasMany(Comment, {
-    foreignKey: 'trip_id',
-    onDelete: 'CASCADE',
-});
 //=====================================================
 
 // TripSection associations
@@ -70,11 +62,9 @@ ItineraryItem.belongsTo(TripSection, {
 //=====================================================
 
 // Message associations
+//=====================================================
 Message.belongsTo(User, {
     foreignKey: 'user_id',
-});
-Message.belongsTo(Trip, {
-    foreignKey: 'trip_id',
 });
 //=====================================================
 
@@ -82,9 +72,6 @@ Message.belongsTo(Trip, {
 //=====================================================
 Comment.belongsTo(User, {
     foreignKey: 'user_id',
-});
-Comment.belongsTo(Trip, {
-    foreignKey: 'trip_id',
 });
 Comment.belongsTo(Comment, {
     as: 'parent_comment',
