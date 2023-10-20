@@ -25,12 +25,23 @@ window.onload = () => {
     }
 
     async function saveItineraryData() {
-        const uploadedFiles = $('.user-uploaded-image');
+        let allFileUploads = [];
+        let formData = new FormData();
 
-        console.log(uploadedFiles);
+        const allFileInputs = $('.user-uploaded-image');
 
-        const formData = new FormData(multerSubmissionForm[0]); // Retrieve form data
-        console.log(formData);
+        for (fileInput = 0; fileInput < allFileInputs.length; fileInput++)
+        {
+            allFileUploads.push(allFileInputs[fileInput].files[0]);
+        }
+
+        allFileUploads.forEach(fileUpload =>
+        {
+            formData.append('image-upload', fileUpload);
+        });
+
+        console.log("formData: " + formData);
+
         try {
             const response = await fetch('/api/trips/image', {
                 method: 'POST',

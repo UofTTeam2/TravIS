@@ -20,7 +20,7 @@ const uploadFolder = multer({storage: storage});
 
 // POST route for multer image uploads
 // =============================================================
-router.post('/image', uploadFolder.single('title-card-image'), async (req, res) => {
+router.post('/image', uploadFolder.array('image-upload'), async (req, res) => {
     try {
         console.log('file: ' + req.file);
         res.status(200).json('GOOD!');
