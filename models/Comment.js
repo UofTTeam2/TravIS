@@ -145,14 +145,14 @@ Comment.init(
         // will store an array of user ids associated with the comment for likes
         likes: {
             type: DataTypes.ARRAY(DataTypes.INTEGER),
-            allowNull: false,
+            allowNull: true,
             defaultValue: [],
         },
 
         // will store an array of user ids associated with the comment for dislikes
         dislikes: {
             type: DataTypes.ARRAY(DataTypes.INTEGER),
-            allowNull: false,
+            allowNull: true,
             defaultValue: [],
         },
 
