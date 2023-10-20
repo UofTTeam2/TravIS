@@ -1,7 +1,15 @@
+//Description: this file fetches points of interest for a city
+// =============================================================
+
+// Dependencies
+// =============================================================
 const fetchCityData = require('./geoCode');
 const Amadeus = require('amadeus');
 require('dotenv').config();
+// =============================================================
 
+// Amadeus API call
+// =============================================================
 const amadeus = new Amadeus({
     clientId: 'VQKv0PtyKl6XGnJyaYaHS8UPD9fCeCmb',
     clientSecret: 'TWb8Y2pxxA1Np1UZ',
@@ -10,14 +18,13 @@ const amadeus = new Amadeus({
 
 });
 
-//get name and category of POI
+//get name and category of POI, first get coordinates of query city
 async function getPOI() {
     try {
         const { lat, lon } = await fetchCityData();
         if (lat && lon) {
             const response = await amadeus.referenceData.locations.pointsOfInterest.get({
-                // latitude: 41.397158,
-                // longitude: 2.160873
+
                 latitude: lat,
                 longitude: lon
             });
@@ -32,12 +39,14 @@ async function getPOI() {
         } else {
             console.log('Error: no latitude/longitude data');
         }
-        // response.render()
-    }catch(err) {
-        console.log(err);
+        // response.render('test', { poiData }); //render poiData to test.handlebars
+    }catch(error) {
+        console.log('Error', error.message);
     }
 }
-
+// =============================================================
+// invoke get points of interest function
 getPOI();
-
+// =============================================================
+// export getPOI function
 module.exports = getPOI;
