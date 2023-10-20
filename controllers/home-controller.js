@@ -4,8 +4,22 @@
 // Dependencies, Models, and Middleware
 // =============================================================
 const router = require('express').Router();
-const { User, Trip, Location } = require('../models');
+const { User, Trip } = require('../models');
 const loginAuth = require('../utils/auth');
+//==============================================================
+
+// Get route for the home page
+// =============================================================
+router.get('/', async (req, res) => {
+    try {
+        res.render('homepage', {
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+//==============================================================
 
 //Get route for the signup page
 // =============================================================
