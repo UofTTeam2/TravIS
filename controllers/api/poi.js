@@ -2,6 +2,7 @@
 const router = require('express').Router();
 const Amadeus = require('amadeus');
 require('dotenv').config();
+const fetchCityData = require('../../public/js/geoCode');
 
 const amadeus = new Amadeus({
     clientId: process.env.AMADEUS_CLIENT_ID,
@@ -10,39 +11,26 @@ const amadeus = new Amadeus({
 });
 
 router.get('/', async (req, res) => {
-    //fetchCityData();
-    try{
-        const response = await amadeus.referenceData.locations.pointsOfInterest.get({
-            latitude: 41.397158, //lat
-            longitude: 2.160873 //lon
-            // latitude: 43.6534817,
-            // longitude: -79.3839347
-        });
-        const data = response.result;
-        const poiData = data.data;
-        // console.log(poiData);
-        res.status(200).send(poiData);
-        // res.render('test', poiData);
-    }catch(err) {
-        console.log(err);
-        res.status(500).json(err);
 
+    try{
+        const { lat, lon } = await fetchCityData();
+        if (lat && lon) {
+            const response = await amadeus.referenceData.locations.pointsOfInterest.get({
+                latitude: lat,
+                longitude: lon
+            });
+            const data = response.result;
+            const poiData = data.data;
+            // console.log(poiData);
+            res.render('Points of Interest', { poiData: poiData });
+        } else {
+            console.log('Error: no latitude/longitude data');
+            res.status(400).json({ error: 'No latitude/longitude data' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
-
-// endpoint from npm documentation
-// amadeus.referenceData.locations.pointsOfInterest.get({
-//     latitude : 41.397158,
-//     longitude : 2.160873
-//   }).then(function(response){
-//     console.log(response.body);   //=> The raw body
-//     console.log(response.result); //=> The fully parsed result
-//     console.log(response.data);   //=> The data attribute taken from the result
-//   }).catch(function(error){
-//     console.log(error.response); //=> The response object with (un)parsed data
-//     console.log(error.response.request); //=> The details of the request made
-//     console.log(error.code); //=> A unique error code to identify the type of error
-//   });
-
 
 module.exports = router;

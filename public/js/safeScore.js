@@ -20,18 +20,18 @@ async function safeScore() {
             });
             const data = response.result;
             const safeData = data.data;
-            console.log(safeData);
+            // console.log(safeData);
 
-            safeData.forEach((safeData) => {
-                const areaType = safeData.subType;
-                const areaName = safeData.name;
-                const lgbtqSafety = safeData.safetyScores.lgbtq;
-                const medical = safeData.safetyScores.medical;
-                const safeOverall = safeData.safetyScores.overall;
-                const physicalHarm = safeData.safetyScores.physicalHarm;
-                const politicalFreedom = safeData.safetyScores.politicalFreedom;
-                const theft = safeData.safetyScores.theft;
-                const women = safeData.safetyScores.women;
+            safeData.forEach((safeScore) => {
+                const areaType = safeScore.subType;
+                const areaName = safeScore.name;
+                const lgbtqSafety = safeScore.safetyScores.lgbtq;
+                const medical = safeScore.safetyScores.medical;
+                const safeOverall = safeScore.safetyScores.overall;
+                const physicalHarm = safeScore.safetyScores.physicalHarm;
+                const politicalFreedom = safeScore.safetyScores.politicalFreedom;
+                const theft = safeScore.safetyScores.theft;
+                const women = safeScore.safetyScores.women;
                 console.log(`Safety Scores 0-100 for ${areaName}, ${areaType}:
                 Safety for LBTQ: ${lgbtqSafety},
                 Health and medical: ${medical},
@@ -50,3 +50,5 @@ async function safeScore() {
     }
 }
 safeScore();
+
+module.exports = safeScore;
