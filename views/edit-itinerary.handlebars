@@ -1,39 +1,45 @@
-<div class = "trip-title-container" data-id = "{{id}}">
-  <h3>Title:</h3>
-  <input class = "trip-title" value = "{{tripTitle}}">
+<form action = "/api/trips/image" method = "post" enctype = "multipart/form-data" class = "multer-submission-form">
+  
+  <div class = "trip-title-container" data-id = "{{trip_id}}">
 
-  <h3>Choose a Title Card Image (up to 10 MB):</h3>
-  <input type = "file" accept = "image/*" class = "user-uploaded-image">
+    <h3>Title:</h3>
+    <input class = "trip-title" value = "{{tripTitle}}">
 
-  <div class = "edit-page-image-container">
+    <h3>Choose a Title Card Image (up to 10 MB):</h3>
 
-    <div class = "edit-page-image-block">
+    <input type = "file" accept = "image/*" class = "user-uploaded-image" name = "title-card-image">
 
-      <h3>Preview:</h3>
-      <img class = "title-card-preview-image" src = './images/no-image-stock-photo.png'>
+    <div class = "edit-page-image-container">
 
-    </div>
-
-    {{#if titleImage}}
       <div class = "edit-page-image-block">
 
-        <h3>Current Title Card Image:</h3>
-        <img class = "title-card-image" src = {{titleImage}}>
-      
+        <h3>Preview:</h3>
+        <img class = "title-card-preview-image" src = './images/no-image-stock-photo.png'>
+
       </div>
-    {{/if}}
 
+      {{#if titleImage}}
+        <div class = "edit-page-image-block">
+
+          <h3>Current Title Card Image:</h3>
+          <img class = "title-card-image" src = {{titleImage}}>
+        
+        </div>
+      {{/if}}
+
+    </div>
   </div>
-</div>
 
-<!-- button to switch to save data -->
-<button class = "save-itinerary-button">Save</button>
+  <!-- button to switch to save data -->
+  <button class = "save-itinerary-button" type = "submit">Save</button>
 
-<!-- render a partial for each section of the trip -->
-{{#each sections as |section|}}
-  {{> edit-section-details}}
-{{/each}}
+  <!-- render a partial for each section of the trip -->
+  {{#each sections as |section|}}
+    {{> edit-section-details}}
+  {{/each}}
 
-<button class = "create-new-section-button">Create New Section</button>
+  <button class = "create-new-section-button">Create New Section</button>
+
+</form>
 
 <script src = "./js/editItinerary.js"></script>

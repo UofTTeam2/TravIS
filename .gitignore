@@ -1,3 +1,6 @@
+# Files uploaded via multer
+multer-uploads
+
 # Logs
 logs
 *.log

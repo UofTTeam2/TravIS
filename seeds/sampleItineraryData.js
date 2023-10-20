@@ -1,10 +1,10 @@
 sections = {
     section_1: {
         section_title: 'tokyo',
-        id: 1,
+        section_id: 1,
         accommodationItems: {
             item1: {
-                id: 1,
+                item_id: 1,
                 title: 'test 1',
                 link: 'https://github.com/UofTTeam2/TravIs/tree/dev',
                 image: 'https://i.pinimg.com/736x/b2/32/63/b23263218ede5b69d4e1a7d01660410c.jpg',
@@ -16,7 +16,7 @@ sections = {
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
             item2: {
-                id: 2,
+                item_id: 2,
                 title: 'test 2',
                 link: 'https://drinkarizona.com/collections/hats/products/big-blossom-bucket-hat',
                 image: 'https://cultureofgaming.com/wp-content/uploads/2023/02/the-way-of-the-kings-stormlight-archives.png',
@@ -30,7 +30,7 @@ sections = {
         },
         foodItems: {
             item1: {
-                id: 3,
+                item_id: 3,
                 title: 'peach tea',
                 link: 'https://minimalistbaker.com/perfect-peach-iced-tea/',
                 image: 'https://minimalistbaker.com/wp-content/uploads/2014/06/Perfect-sweet-Peached-Iced-Tea-Perfect-for-summer-and-pool-days..jpg',
@@ -42,7 +42,7 @@ sections = {
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
             item2: {
-                id: 4,
+                item_id: 4,
                 title: 'the way of kings',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
                 image: 'https://i.redd.it/pty7jq8xvsh71.jpg',
@@ -54,7 +54,7 @@ sections = {
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
             item3: {
-                id: 5,
+                item_id: 5,
                 title: '',
                 link: '',
                 image: '',
@@ -68,7 +68,7 @@ sections = {
         },
         transportItems: {
             item1: {
-                id: 6,
+                item_id: 6,
                 title: 'the way of kings',
                 link: '',
                 image: 'https://i.redd.it/pty7jq8xvsh71.jpg',
@@ -82,7 +82,7 @@ sections = {
         activityItems: {},
         miscItems: {
             item1: {
-                id: 7,
+                item_id: 7,
                 title: '',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
                 image: '',
@@ -96,11 +96,11 @@ sections = {
         }
     },
     section_2: {
-        id: 3,
+        section_id: 3,
         section_title: 'osaka',
         accommodationItems: {
             item1: {
-                id: 8,
+                item_id: 8,
                 title: 'test 1',
                 link: 'https://github.com/UofTTeam2/TravIs/tree/dev',
                 image: 'https://i.pinimg.com/736x/b2/32/63/b23263218ede5b69d4e1a7d01660410c.jpg',
@@ -112,7 +112,7 @@ sections = {
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
             item2: {
-                id: 9,
+                item_id: 9,
                 title: 'test 2',
                 link: 'https://drinkarizona.com/collections/hats/products/big-blossom-bucket-hat',
                 image: 'https://cultureofgaming.com/wp-content/uploads/2023/02/the-way-of-the-kings-stormlight-archives.png',
@@ -126,7 +126,7 @@ sections = {
         },
         foodItems: {
             item1: {
-                id: 10,
+                item_id: 10,
                 title: 'peach tea',
                 link: 'https://minimalistbaker.com/perfect-peach-iced-tea/',
                 image: 'https://minimalistbaker.com/wp-content/uploads/2014/06/Perfect-sweet-Peached-Iced-Tea-Perfect-for-summer-and-pool-days..jpg',
@@ -138,7 +138,7 @@ sections = {
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
             item2: {
-                id: 11,
+                item_id: 11,
                 title: 'the way of kings',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
                 image: 'https://i.redd.it/pty7jq8xvsh71.jpg',
@@ -150,7 +150,7 @@ sections = {
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
             item3: {
-                id: 14,
+                item_id: 14,
                 title: '',
                 link: '',
                 image: '',
@@ -164,7 +164,7 @@ sections = {
         },
         transportItems: {
             item1: {
-                id: 29,
+                item_id: 29,
                 title: 'the way of kings',
                 link: '',
                 image: 'https://i.redd.it/pty7jq8xvsh71.jpg',
@@ -178,7 +178,7 @@ sections = {
         activityItems: {},
         miscItems: {
             item1: {
-                id: 45,
+                item_id: 45,
                 title: '',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
                 image: '',

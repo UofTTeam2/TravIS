@@ -18,8 +18,12 @@ function renderPreviewImage() {
     });
 }
 
-function saveItineraryData() {
-    console.log('save button clicked');
+async function saveItineraryData(e) {
+    /*e.preventDefault();
+
+    const uploadedFiles = $('.user-uploaded-image');
+
+    console.log(uploadedFiles);*/
 
     const tripTitle = $('.trip-title').val();
     const titleCardImage = $('.user-uploaded-image');
@@ -74,23 +78,30 @@ function saveItineraryData() {
         itineraryData.push(currentItineraryItemData);
     }
 
-    console.log(titleData);
-    console.log(sectionData);
-    console.log(itineraryData);
+    await fetch('/api/trips/edit', {
+        method: 'PUT',
+        body: JSON.stringify({titleData, sectionData, itineraryData}),
+        headers: {'Content-Type': 'application/json'},
+    });
+}
 
-    //retrieve trip title & trip title card image (has id as data-attribute)
-      //package into object w/ id
-    //retrieve all section titles (has id as data-attribute)
-      //package into object w/ id
-      //append to array
-      //repeat for all sections
-    //retrieve itinerary item containers (has id as data-attribute)
-      //package each itinerary item detail into an object w/id
-      //append to array
-      //repeat for all itinerary items
-    //send to back-end
+//waits until window is finished loading before running main code
+window.onload = () => {
+    const userChosenImage = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
+    const multerSubmissionForm = $('.multer-submission-form');
 
-    //retrieve all SubTrip items
+    //event listener for when a change is made using the input a user uses to upload an image file
+    userChosenImage.on('change', renderPreviewImage);
+
+    //prevents page from redirecting when itinerary data is saved & form is submitted
+    multerSubmissionForm.on('submit', saveItineraryData(e));
+
+    //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
+    $('.timepicker').timepicker();
+    $('.datepicker').datepicker();
+};
+
+ //retrieve all SubTrip items
     //create new, empty array (e.g. ARRAY_1, will hold all trip sections (SubTrip) after data is organized)
     //start a for / forEach loop to run on each SubTrip item
         //create new, empty array (e.g. ARRAY_2, will hold all categories of the current SubTrip)
@@ -113,20 +124,3 @@ function saveItineraryData() {
     //ARRAY_1 (contains all SubTrip objects) should now contain an ARRAY_2 (contains all category objects for one SubTrip) for each SubTrip
         //each ARRAY_2 should now contain five ARRAY_3's (contains all SubCat items, should have exactly five; one for accommodation, activities, transportation, restaurant, and misc)
             //each ARRAY_3 should now contain a series of objects; one for each itinerary item (SubCat) that belongs to the appropriate category (i.e. the first ARRAY_3 contains objects for all Accommodation SubCat items, the second contains objects for all Activity SubCat items, etc.)*/
-}
-
-//waits until window is finished loading before running main code
-window.onload = () => {
-    const userChosenImage = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
-    const saveItineraryButton = $('.save-itinerary-button');
-
-    //event listener for when a change is made using the input a user uses to upload an image file
-    userChosenImage.on('change', renderPreviewImage);
-
-    //event listener
-    saveItineraryButton.on('click', saveItineraryData);
-
-    //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
-    $('.timepicker').timepicker();
-    $('.datepicker').datepicker();
-};
