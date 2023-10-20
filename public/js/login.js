@@ -77,7 +77,44 @@ const signupHandler = async (event) => {
 };
 // =========================================================
 
+// Get request to get response from server to render login/signup page
+// =========================================================
+const getLogin = async () => {
+    const response = await fetch('/login', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+        document.location.replace('/login');
+    } else {
+        //adding an error message if the user's signup is unsuccessful
+        const errorData = await response.json();
+        const errorMessage = errorData.errors[0].message;
+        displayErrorModal(errorMessage);
+    }
+};
+
+const getSignup = async () => {
+    const response = await fetch('/signup', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+        document.location.replace('/signup');
+    } else {
+        //adding an error message if the user's signup is unsuccessful
+        const errorData = await response.json();
+        const errorMessage = errorData.errors[0].message;
+        displayErrorModal(errorMessage);
+    }
+};
+// =========================================================
+
 // Event listeners
 // =========================================================
 document.querySelector('.loginForm').addEventListener('submit', loginHandler);
 document.querySelector('.signupForm').addEventListener('submit', signupHandler);
+document.querySelector('#loginBtn').addEventListener('click', getLogin);
+document.querySelector('#signupBtn').addEventListener('click', getSignup);
