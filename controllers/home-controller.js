@@ -21,6 +21,32 @@ router.get('/', async (req, res) => {
 });
 //==============================================================
 
+// Get route for the dashboard page
+// =============================================================
+router.get('/dashboard', loginAuth, async (req, res) => {
+    try {
+        const tripData = await Trip.findAll({
+            where: {
+                user_id: req.session.user_id,
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+            ],
+            order: [['date', 'DESC']],
+        });
+        const trips = tripData.map((trip) => trip.get({ plain: true }));
+        res.render('dashboard', {
+            trips,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 //Get route for the signup page
 // =============================================================
 router.get('/signup', (req, res) => {
