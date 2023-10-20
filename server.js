@@ -22,7 +22,7 @@ require('dotenv').config();
 const routes = require('./controllers');
 const Session = require('./models/Session');
 const helpers = require('./utils/helpers');
-//initializes handlebars template engine
+// initializes handlebars template engine
 const hbs = exphbs.create({ helpers });
 // import dataParser middleware
 const dataParser = require('./utils/dataParser');
@@ -38,7 +38,7 @@ const PORT = process.env.PORT || 3001;
 // =============================================================
 const sessionSecret = process.env.SESSION_SECRET;
 
-//defining express session
+// defining express session
 const sess = {
     secret: sessionSecret,
     cookie: {
