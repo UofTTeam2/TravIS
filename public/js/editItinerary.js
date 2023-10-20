@@ -1,100 +1,115 @@
-//function to render a preview image of a file chosen by a user before it is uploaded to the database
-function renderPreviewImage() {
-    const fileUpload = this.files[0]; //gets a reference to the file held by the input
-    const uploadConverter = new FileReader(); //creates a new FileReader instance to read the above file
-
-    //gets a reference to the sibling (grand-nephew?) preview image element in the itinerary item that recieved a file upload
-    const previewImageElement = $($(this).siblings('.edit-page-image-container').children()[0]).children('img');
-
-    //if the input contains a file, convert the upload to a usable URL as an 'src' attribute
-    if (fileUpload) {
-        uploadConverter.readAsDataURL(fileUpload);
-    }
-
-    //upon the above conversion completing, set the 'src' attribute of the preview image element to the resulting URL
-    //i.e. renders a preview of the uploaded file to the page
-    uploadConverter.addEventListener('load', () => {
-        previewImageElement.attr('src', uploadConverter.result);
-    });
-}
-
-async function saveItineraryData(e) {
-    /*e.preventDefault();
-
-    const uploadedFiles = $('.user-uploaded-image');
-
-    console.log(uploadedFiles);*/
-
-    const tripTitle = $('.trip-title').val();
-    const titleCardImage = $('.user-uploaded-image');
-    const tripID = $('.trip-title-container').attr('data-id');
-
-    const titleData = {
-        id: tripID,
-        title: tripTitle,
-        image: titleCardImage
-    }
-
-    const sectionTitles = $('.section-title');
-    let sectionData = [];
-
-    for (section = 0; section < sectionTitles.length; section++)
-    {
-        const currentSectionData = {
-            id: $(sectionTitles[section]).attr('data-id'),
-            title: $(sectionTitles[section]).val()
-        }
-        sectionData.push(currentSectionData);
-    }
-
-    const itineraryItems = $('.itinerary-item-container');
-    let itineraryData = [];
-
-    for (itineraryItem = 0; itineraryItem < itineraryItems.length; itineraryItem++)
-    {
-        const id = $(itineraryItems[itineraryItem]).attr('data-id');
-        const title = $(itineraryItems[itineraryItem]).children('.item-title');
-        const link = $(itineraryItems[itineraryItem]).children('.item-link');
-        const start_date = $(itineraryItems[itineraryItem]).children('.item-start-date');
-        const start_time = $(itineraryItems[itineraryItem]).children('.item-start-time');
-        const end_date = $(itineraryItems[itineraryItem]).children('.item-end-date');
-        const end_time = $(itineraryItems[itineraryItem]).children('.item-end-time');
-        const expense = $(itineraryItems[itineraryItem]).children('.item-expense');
-        const notes = $(itineraryItems[itineraryItem]).children('.item-notes');
-        const image = $(itineraryItems[itineraryItem]).children('.user-uploaded-image');
-
-        const currentItineraryItemData = {
-            id: id,
-            title: title.val(),
-            link: link.val(),
-            start_date: start_date.val(),
-            start_time: start_time.val(),
-            end_date: end_date.val(),
-            end_time: end_time.val(),
-            expense: expense.val(),
-            notes: notes.val(),
-            image: image
-        }
-        itineraryData.push(currentItineraryItemData);
-    }
-
-    await fetch('/api/trips/edit', {
-        method: 'PUT',
-        body: JSON.stringify({titleData, sectionData, itineraryData}),
-        headers: {'Content-Type': 'application/json'},
-    });
-}
 
 //waits until window is finished loading before running main code
 window.onload = () => {
     const userChosenImage = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
     const multerSubmissionForm = $('.multer-submission-form');
 
+    //function to render a preview image of a file chosen by a user before it is uploaded to the database
+    function renderPreviewImage() {
+        const fileUpload = this.files[0]; //gets a reference to the file held by the input
+        const uploadConverter = new FileReader(); //creates a new FileReader instance to read the above file
+
+        //gets a reference to the sibling (grand-nephew?) preview image element in the itinerary item that recieved a file upload
+        const previewImageElement = $($(this).siblings('.edit-page-image-container').children()[0]).children('img');
+
+        //if the input contains a file, convert the upload to a usable URL as an 'src' attribute
+        if (fileUpload) {
+            uploadConverter.readAsDataURL(fileUpload);
+        }
+
+        //upon the above conversion completing, set the 'src' attribute of the preview image element to the resulting URL
+        //i.e. renders a preview of the uploaded file to the page
+        uploadConverter.addEventListener('load', () => {
+            previewImageElement.attr('src', uploadConverter.result);
+        });
+    }
+
+    async function saveItineraryData() {
+        const uploadedFiles = $('.user-uploaded-image');
+
+        console.log(uploadedFiles);
+
+        const formData = new FormData(multerSubmissionForm[0]); // Retrieve form data
+        console.log(formData);
+        try {
+            const response = await fetch('/api/trips/image', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            console.log(data);
+        } catch (err) {
+            console.log(err);
+        }
+
+        const tripTitle = $('.trip-title').val();
+        const titleCardImage = $('.user-uploaded-image');
+        const tripID = $('.trip-title-container').attr('data-id');
+
+        const titleData = {
+            id: tripID,
+            title: tripTitle,
+            image: titleCardImage
+        }
+
+        const sectionTitles = $('.section-title');
+        let sectionData = [];
+
+        for (section = 0; section < sectionTitles.length; section++)
+        {
+            const currentSectionData = {
+                id: $(sectionTitles[section]).attr('data-id'),
+                title: $(sectionTitles[section]).val()
+            }
+            sectionData.push(currentSectionData);
+        }
+
+        const itineraryItems = $('.itinerary-item-container');
+        let itineraryData = [];
+
+        for (itineraryItem = 0; itineraryItem < itineraryItems.length; itineraryItem++)
+        {
+            const id = $(itineraryItems[itineraryItem]).attr('data-id');
+            const title = $(itineraryItems[itineraryItem]).children('.item-title');
+            const link = $(itineraryItems[itineraryItem]).children('.item-link');
+            const start_date = $(itineraryItems[itineraryItem]).children('.item-start-date');
+            const start_time = $(itineraryItems[itineraryItem]).children('.item-start-time');
+            const end_date = $(itineraryItems[itineraryItem]).children('.item-end-date');
+            const end_time = $(itineraryItems[itineraryItem]).children('.item-end-time');
+            const expense = $(itineraryItems[itineraryItem]).children('.item-expense');
+            const notes = $(itineraryItems[itineraryItem]).children('.item-notes');
+            const image = $(itineraryItems[itineraryItem]).children('.user-uploaded-image');
+
+            const currentItineraryItemData = {
+                id: id,
+                title: title.val(),
+                link: link.val(),
+                start_date: start_date.val(),
+                start_time: start_time.val(),
+                end_date: end_date.val(),
+                end_time: end_time.val(),
+                expense: expense.val(),
+                notes: notes.val(),
+                image: image
+            }
+            itineraryData.push(currentItineraryItemData);
+        }
+
+        await fetch('/api/trips/edit', {
+            method: 'PUT',
+            body: JSON.stringify({titleData, sectionData, itineraryData}),
+            headers: {'Content-Type': 'application/json'},
+        });
+    }
+
     //event listener for when a change is made using the input a user uses to upload an image file
     userChosenImage.on('change', renderPreviewImage);
 
     //prevents page from redirecting when itinerary data is saved & form is submitted
-    multerSubmissionForm.on('submit', saveItineraryData(e));
+    multerSubmissionForm.on('submit', (event) => {
+        event.preventDefault();
+        saveItineraryData();
+    });
 
     //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
     $('.timepicker').timepicker();
