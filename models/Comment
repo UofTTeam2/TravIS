@@ -1,10 +1,5 @@
 // Desc: This file will represent the Comment model
-// Note: Each comment belongs to a user and a trip,
-//       Each comment has many comments associated with it
-//       Each comment has many likes associated with it
-//       Each comment has many dislikes associated with it
-//       Each comment belongs to a parent comment
-//       Each comment has many child comments
+// ****Note: Likes and Dislikes and be considered as a type of vote
 // ==========================================================
 
 // Dependencies
@@ -144,7 +139,6 @@ Comment.init(
 
         date_created: {
             type: DataTypes.DATEONLY,
-            allowNull: false,
             defaultValue: DataTypes.NOW,
         },
 
@@ -166,14 +160,6 @@ Comment.init(
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
-                key: 'id',
-            },
-        },
-
-        trip_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'trip',
                 key: 'id',
             },
         },

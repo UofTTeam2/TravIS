@@ -33,6 +33,14 @@ Message.init(
             allowNull: false,
         },
 
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                isUrl: true,
+            },
+        },
+
         user_id: {
             type: DataTypes.INTEGER,
             references: {
