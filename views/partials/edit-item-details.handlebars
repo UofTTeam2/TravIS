@@ -1,4 +1,4 @@
-<div class = "itinerary-item-container">
+<div class = "itinerary-item-container" data-id = {{id}}>
   <!-- renders a series of empty input boxes for a trip item, setting any already-existing data as the default values -->
   <h3>Title:</h3>
   <input class = "item-title" value = "{{title}}">
@@ -19,7 +19,7 @@
   <input class = "item-date-time item-end-time timepicker" value = "{{endTime}}">
 
   <h3>Cost:</h3>
-  <input class = "item-price" value = "{{price}}">
+  <input class = "item-expense" value = "{{expense}}">
 
   <h3>Notes:</h3>
   <textarea class = "item-notes" value = "{{notes}}"></textarea>
@@ -47,5 +47,3 @@
 
   </div>
 </div>
-
-<script src = "./js/editItinerary.js"></script>

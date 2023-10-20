@@ -1,33 +1,33 @@
-<!-- placeholder for trip title -->
-{{tripTitle}}
+<div class = "trip-title-container" data-id = "{{id}}">
+  <h3>Title:</h3>
+  <input class = "trip-title" value = "{{tripTitle}}">
 
-<h3>Choose a Title Card Image (up to 10 MB):</h3>
-<input type = "file" accept = "image/*" class = "user-uploaded-image">
+  <h3>Choose a Title Card Image (up to 10 MB):</h3>
+  <input type = "file" accept = "image/*" class = "user-uploaded-image">
 
-<div class = "edit-page-image-container">
+  <div class = "edit-page-image-container">
 
-  <div class = "edit-page-image-block">
-
-    <h3>Preview:</h3>
-    <img class = "title-card-preview-image" src = './images/no-image-stock-photo.png'>
-
-  </div>
-
-  {{#if titleImage}}
     <div class = "edit-page-image-block">
 
-      <h3>Current Title Card Image:</h3>
-      <img class = "title-card-image" src = {{titleImage}}>
-    
-    </div>
-  {{/if}}
+      <h3>Preview:</h3>
+      <img class = "title-card-preview-image" src = './images/no-image-stock-photo.png'>
 
+    </div>
+
+    {{#if titleImage}}
+      <div class = "edit-page-image-block">
+
+        <h3>Current Title Card Image:</h3>
+        <img class = "title-card-image" src = {{titleImage}}>
+      
+      </div>
+    {{/if}}
+
+  </div>
 </div>
 
 <!-- button to switch to save data -->
 <button class = "save-itinerary-button">Save</button>
-
-<button class = "save-and-view-itinerary-button">Save & Return to View</button>
 
 <!-- render a partial for each section of the trip -->
 {{#each sections as |section|}}
@@ -35,3 +35,5 @@
 {{/each}}
 
 <button class = "create-new-section-button">Create New Section</button>
+
+<script src = "./js/editItinerary.js"></script>
