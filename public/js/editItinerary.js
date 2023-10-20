@@ -40,15 +40,15 @@ window.onload = () => {
             formData.append('image-upload', fileUpload);
         });
 
-        console.log("formData: " + formData);
+        console.log(formData);
 
         try {
             const response = await fetch('/api/trips/image', {
                 method: 'POST',
                 body: formData
             });
-            const data = await response.json();
-            console.log(data);
+            const fileNames = await response.json();
+            console.log(fileNames);
         } catch (err) {
             console.log(err);
         }
