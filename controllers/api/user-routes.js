@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
             req.session.loggedIn = true;
             res.status(200).json({
                 user: userData,
-                message: 'You are now logged in!',
+                message: 'Your account has been created!',
             });
         });
     } catch (err) {
@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
             req.session.user_id = userData.id;
             req.session.username = userData.username;
             req.session.loggedIn = true;
-            res.json({
+            res.status(200).json({
                 user: userData,
                 message: 'You are now logged in!',
             });
@@ -87,9 +87,9 @@ router.put('/:id', async (req, res) => {
             req.session.user_id = userData.id;
             req.session.username = userData.username;
             req.session.loggedIn = true;
-            res.json({
+            res.status(200).json({
                 user: userData,
-                message: 'You are now logged in!',
+                message: 'Your account has been updated!',
             });
         });
     } catch (err) {
@@ -110,10 +110,9 @@ router.delete('/:id', async (req, res) => {
             res.status(404).json({ message: 'No user found with this id!' });
             return;
         }
-
-        res.status(200).json({
-            user: userData,
-            message: 'You are now logged in!',
+        //logout the user after deleting their account
+        req.session.destroy(() => {
+            res.status(204).end();
         });
     } catch (err) {
         res.status(500).json(err);
