@@ -17,12 +17,15 @@ const exphbs = require('express-handlebars');
 require('dotenv').config();
 //==============================================================
 
-//importing routes and custom helpers
+//importing routes, Session model and custom middlewares
 // =============================================================
 const routes = require('./controllers');
+const Session = require('./models/Session');
 const helpers = require('./utils/helpers');
 //initializes handlebars template engine
 const hbs = exphbs.create({ helpers });
+// import dataParser middleware
+const dataParser = require('./utils/dataParser');
 //==============================================================
 
 //defines express application and PORT
@@ -46,6 +49,7 @@ const sess = {
     saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize,
+        table: 'Session', // Name of the database table to store sessions
     }),
 };
 
@@ -58,10 +62,9 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 //==============================================================
 
-// Sets up the Express app to handle data parsing
+// Sets up the custom middleware & Express app to handle data parsing
 // =============================================================
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(dataParser);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 //==============================================================
