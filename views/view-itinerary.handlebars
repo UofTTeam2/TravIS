@@ -1,8 +1,10 @@
 <!-- placeholder for trip title -->
-{{tripTitle}}
+<h1 class = "trip-title-header" data-id = "{{id}}">{{title}}</h1>
+
+<h2><a href = "https://pbs.twimg.com/media/FkK0T8cUAAELhOI?format=jpg&name=medium">See Expense Summary Here! (I don't know if we're implementing this by linking to a separate page, or embedding the chart directly here; this is a placeholder)</a></h2>
 
 <!-- button to switch to edit mode -->
-<button>Edit</button>
+<button class = "edit-itinerary-button">Edit</button>
 
 <!-- render a partial for each section of the trip -->
 {{#each sections as |section|}}

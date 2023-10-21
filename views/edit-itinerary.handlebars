@@ -1,11 +1,11 @@
 <form action = "/api/trips/image" method = "post" enctype = "multipart/form-data" class = "multer-submission-form">
   
-  <div class = "trip-title-container" data-id = "{{trip_id}}">
+  <div class = "trip-title-container" data-id = "{{id}}">
 
-    <h3>Title:</h3>
-    <input class = "trip-title" value = "{{tripTitle}}">
+    <h1>Title:</h1>
+    <input class = "trip-title-input" value = "{{title}}">
 
-    <h3>Choose a Title Card Image (up to 10 MB):</h3>
+    <h2>Choose a Title Card Image (up to 10 MB):</h2>
 
     <input type = "file" accept = "image/*" class = "user-uploaded-image">
 
@@ -18,11 +18,11 @@
 
       </div>
 
-      {{#if titleImage}}
+      {{#if image}}
         <div class = "edit-page-image-block">
 
           <h3>Current Title Card Image:</h3>
-          <img class = "title-card-image" src = "./images/multer-uploads/{{titleImage}}">
+          <img class = "title-card-image" src = "./images/multer-uploads/{{image}}">
         
         </div>
       {{/if}}

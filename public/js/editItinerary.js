@@ -98,9 +98,11 @@ window.onload = () => {
             return image; //return the appropriate image reference
         }
 
-        const tripTitle = $('.trip-title').val();
+        const tripTitle = $('.trip-title-input').val();
         const tripID = $('.trip-title-container').attr('data-id');
         const titleCardImage = determineImage();
+
+        console.log('title image name: ' + titleCardImage);
 
         const titleData = {
             id: tripID,
@@ -108,7 +110,7 @@ window.onload = () => {
             image: titleCardImage
         }
 
-        const sectionTitles = $('.section-title');
+        const sectionTitles = $('.section-title-input');
         let sectionData = [];
 
         for (section = 0; section < sectionTitles.length; section++)

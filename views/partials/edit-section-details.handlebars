@@ -1,7 +1,7 @@
 <!-- renders an input for the title of each section -->
 <div class = "section-title-container">
 
-  <input class = "section-title" data-id = {{section_id}} value = "{{section_title}}">
+  <input class = "section-title-input" data-id = {{id}} value = "{{title}}">
 
 </div>
 
@@ -10,7 +10,7 @@
       also renders an editable partial for each item related to accommodation that already exist -->
   <div class = "trip-section-category">
 
-    <h2 class = "item-category-title">Accommodation</h2>
+    <h3 class = "item-category-title">Accommodation</h3>
     <button id = "add-accommodation-button">+</button>
 
     {{#if accommodationItems}}
@@ -25,7 +25,7 @@
       also renders an editable partial for each item related to food that already exist -->
   <div class = "trip-section-category">
 
-    <h2 class = "item-category-title">Food</h2>
+    <h3 class = "item-category-title">Food</h3>
     <button id = "add-food-button">+</button>
 
     {{#if foodItems}}
@@ -40,7 +40,7 @@
       also renders an editable partial for each item related to transport that already exist -->
   <div class = "trip-section-category">
 
-    <h2 class = "item-category-title">Transport</h2>
+    <h3 class = "item-category-title">Transport</h3>
     <button id = "add-transport-button">+</button>
 
     {{#if transportItems}}
@@ -56,7 +56,7 @@
       for each item related to activities (et al.) that already exist -->
   <div class = "trip-section-category">
 
-    <h2 class = "item-category-title">Activities</h2>
+    <h3 class = "item-category-title">Activities</h3>
     <button id = "add-activity-button">+</button>
 
     {{#if activityItems}}
@@ -71,7 +71,7 @@
       also renders an editable partial for each item related to transport that already exist -->
   <div class = "trip-section-category">
 
-    <h2 class = "item-category-title">Misc</h2>
+    <h3 class = "item-category-title">Misc</h3>
     <button id = "add-misc-button">+</button>
 
     {{#if miscItems}}

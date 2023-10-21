@@ -1,50 +1,52 @@
-<!-- if the item has a title attached, render it to the page -->
-{{#if title}}
-  <!-- if the title has a link attached, apply it to the header -->
-  {{#if link}}
-    <h3 class = "item-title"><a href = {{link}}>{{title}}</a></h3>
-  {{else}} <!-- otherwise, simply render the title header -->
-    <h3 class = "item-title">{{title}}</h3>
+<div class = "itinerary-item-container" data-id = {{id}}></div>
+  <!-- if the item has a title attached, render it to the page -->
+  {{#if title}}
+    <!-- if the title has a link attached, apply it to the header -->
+    {{#if link}}
+      <h4 class = "item-title"><a href = {{link}}>{{title}}</a></h4>
+    {{else}} <!-- otherwise, simply render the title header -->
+      <h4 class = "item-title">{{title}}</h4>
+    {{/if}}
   {{/if}}
-{{/if}}
 
-<!-- if the item has a start date attached, render it to the page -->
-{{#if startDate}}
-  <h3>Start Date:</h3>
-  <p class = "item-date-time">{{startDate}}</p>
-{{/if}}
+  <!-- if the item has a start date attached, render it to the page -->
+  {{#if start_date}}
+    <h4>Start Date:</h4>
+    <p class = "item-date-time">{{start_date}}</p>
+  {{/if}}
 
-<!-- if the item has a start time attached, render it to the page -->
-{{#if startTime}}
-  <h3>Start Time:</h3>
-  <p class = "item-date-time">{{startTime}}</p>
-{{/if}}
+  <!-- if the item has a start time attached, render it to the page -->
+  {{#if startTime}}
+    <h3>Start Time:</h3>
+    <p class = "item-date-time">{{startTime}}</p>
+  {{/if}}
 
-<!-- if the item has an end date attached, render it to the page -->
-{{#if endDate}}
-  <h3>End Date:</h3>
-  <p class = "item-date-time">{{endDate}}</p>
-{{/if}}
+  <!-- if the item has an end date attached, render it to the page -->
+  {{#if end_date}}
+    <h4>End Date:</h4>
+    <p class = "item-date-time">{{end_date}}</p>
+  {{/if}}
 
-<!-- if the item has an end time attached, render it to the page -->
-{{#if endTime}}
-  <h3>End Time:</h3>
-  <p class = "item-date-time">{{endTime}}</p>
-{{/if}}
+  <!-- if the item has an end time attached, render it to the page -->
+  {{#if end_time}}
+    <h4>End Time:</h4>
+    <p class = "item-date-time">{{end_time}}</p>
+  {{/if}}
 
-<!-- if the item has an image attached, render it to the page -->
-{{#if image}}
-  <img class = "item-image" src = {{image}}>
-{{/if}}
+  <!-- if the item has an image attached, render it to the page -->
+  {{#if image}}
+    <img class = "item-image" src = "./images/multer-uploads/{{image}}">
+  {{/if}}
 
-<!-- if the item has a price attached, render it to the page -->
-{{#if expense}}
-  <h3>Cost:</h3>
-  <p class = "item-expense">{{expense}}</p>
-{{/if}}
+  <!-- if the item has a price attached, render it to the page -->
+  {{#if expense}}
+    <h4>Cost:</h4>
+    <p class = "item-expense">{{expense}}</p>
+  {{/if}}
 
-<!-- if the item has any notes attached, render them to the page -->
-{{#if notes}}
-  <h3>Notes:</h3>
-  <p class = "item-notes">{{notes}}</p>
-{{/if}}
+  <!-- if the item has any notes attached, render them to the page -->
+  {{#if notes}}
+    <h4>Notes:</h4>
+    <p class = "item-notes">{{notes}}</p>
+  {{/if}}
+</div>

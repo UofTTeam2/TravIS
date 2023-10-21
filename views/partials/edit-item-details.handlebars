@@ -1,37 +1,37 @@
-<div class = "itinerary-item-container" data-id = {{item_id}}>
+<div class = "itinerary-item-container" data-id = {{id}}>
   <!-- renders a series of empty input boxes for a trip item, setting any already-existing data as the default values -->
-  <h3>Title:</h3>
+  <h4>Title:</h4>
   <input class = "item-title" value = "{{title}}">
 
-  <h3>Title Link:</h3>
+  <h4>Title Link:</h4>
   <input class = "item-link" value = "{{link}}">
 
-  <h3>Start Date:</h3>
-  <input class = "item-date-time item-start-date datepicker" value = "{{startDate}}">
+  <h4>Start Date:</h4>
+  <input class = "item-date-time item-start-date datepicker" value = "{{start_date}}">
 
-  <h3>Start Time:</h3>
-  <input class = "item-date-time item-start-time timepicker" value = "{{startTime}}">
+  <h4>Start Time:</h4>
+  <input class = "item-date-time item-start-time timepicker" value = "{{start_time}}">
 
-  <h3>End Date:</h3>
-  <input class = "item-date-time item-end-date datepicker" value = "{{endDate}}">
+  <h4>End Date:</h4>
+  <input class = "item-date-time item-end-date datepicker" value = "{{end_date}}">
 
-  <h3>End Time:</h3>
-  <input class = "item-date-time item-end-time timepicker" value = "{{endTime}}">
+  <h4>End Time:</h4>
+  <input class = "item-date-time item-end-time timepicker" value = "{{end_time}}">
 
-  <h3>Cost:</h3>
-  <input class = "item-expense" value = "{{expense}}">
+  <h4>Cost:</h4>
+  <input type = "number" class = "item-expense" value = "{{expense}}">
 
-  <h3>Notes:</h3>
+  <h4>Notes:</h4>
   <textarea class = "item-notes" value = "{{notes}}"></textarea>
 
-  <h3>Choose an Image (up to 10 MB):</h3>
+  <h4>Choose an Image (up to 10 MB):</h4>
   <input type = "file" accept = "image/*" class = "user-uploaded-image">
 
   <div class = "edit-page-image-container">
 
     <div class = "edit-page-image-block">
 
-      <h3>Preview:</h3>
+      <h4>Preview:</h4>
       <img class = "preview-image" src = './images/no-image-stock-photo.png'>
 
     </div>
@@ -39,7 +39,7 @@
     {{#if image}}
       <div class = "edit-page-image-block">
 
-        <h3>Current Image:</h3>
+        <h4>Current Image:</h4>
         <img class = "item-image" src = "./images/multer-uploads/{{image}}">
       
       </div>
