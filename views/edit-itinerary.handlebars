@@ -5,6 +5,12 @@
     <h1>Title:</h1>
     <input class = "trip-title-input" value = "{{title}}">
 
+    <h2 class = "trip-date-header">Trip Start Date:</h2>
+    <input class = "trip-start-date-input datepicker" value = "{{start_date}}">
+
+    <h2 class = "trip-date-header">Trip End Date:</h2>
+    <input class = "trip-end-date-input datepicker" value = "{{end_date}}">
+
     <h2>Choose a Title Card Image (up to 10 MB):</h2>
 
     <input type = "file" accept = "image/*" class = "user-uploaded-image">
@@ -13,6 +19,7 @@
 
       <div class = "edit-page-image-block">
 
+        <button class = "clear-preview-image-button">Clear Chosen Image</button>
         <h3>Preview:</h3>
         <img class = "title-card-preview-image" src = './images/no-image-stock-photo.png'>
 
@@ -21,6 +28,7 @@
       {{#if image}}
         <div class = "edit-page-image-block">
 
+          <button class = "clear-current-image-button">Clear Current Image</button>
           <h3>Current Title Card Image:</h3>
           <img class = "title-card-image" src = "./images/multer-uploads/{{image}}">
         

@@ -1,5 +1,7 @@
 id = 4;
 title = 'test';
+start_date = '2023-12-26';
+end_date = '2024-01-09';
 image = 'image-upload-1697854437296-125061493';
 sections = [
     {
@@ -196,4 +198,4 @@ sections = [
     }
 ];
 
-module.exports = {id, title, image, sections};
+module.exports = {id, title, start_date, end_date, image, sections};

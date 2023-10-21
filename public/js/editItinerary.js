@@ -78,7 +78,7 @@ window.onload = () => {
                 if ($(imageContainer).children().length === 2) {
                     //if such an image exists, keep the source file the same by setting it to the src of the already-assigned image
                     const imageContainerChildren = $(imageContainer).children()[1];
-                    existingImageSRC = $($(imageContainerChildren).children()[1]).attr('src');
+                    existingImageSRC = $($(imageContainerChildren).children()[2]).attr('src');
 
                     //an already-existing image with have an 'src' like './images/multer-uploads/image-upload-1697848850663-957708811'
                     //the below code splits it and takes the [3] index of the resulting array -> image-upload-1697848850663-957708811
@@ -99,8 +99,10 @@ window.onload = () => {
             return image; //return the appropriate image reference
         }
 
-        const tripTitle = $('.trip-title-input').val();
         const tripID = $('.trip-title-container').attr('data-id');
+        const tripTitle = $('.trip-title-input').val();
+        const tripStartDate = $('.trip-start-date-input').val();
+        const tripEndDate = $('.trip-end-date-input').val();
         const titleCardImage = determineImage();
 
         console.log('title image name: ' + titleCardImage);
@@ -108,6 +110,8 @@ window.onload = () => {
         const titleData = {
             id: tripID,
             title: tripTitle,
+            start_date: tripStartDate,
+            end_date: tripEndDate,
             image: titleCardImage
         }
 

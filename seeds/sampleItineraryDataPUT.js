@@ -3,6 +3,8 @@ data = {
       {
           id: '4',
           title: 'test',
+          start_date: '2023-12-26',
+          end_date: '2024-01-09',
           image: 'image-upload-1697848850657-45899697'
       },
     sectionData: [
