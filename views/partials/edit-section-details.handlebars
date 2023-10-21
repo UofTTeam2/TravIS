@@ -1,11 +1,26 @@
 <div class = "itinerary-section-container">
 
   <button class = "delete-itinerary-section-button">Delete Section</button>
-  
+
   <!-- renders an input for the title of each section -->
   <div class = "section-title-container">
 
     <input class = "section-title-input" data-id = {{id}} value = "{{title}}">
+
+  </div>
+
+  <!-- renders a category title for & a button to add new items related to transport
+       also renders an editable partial for each item related to transport that already exist -->
+  <div class = "trip-section-category">
+
+    <h3 class = "item-category-title">Transport</h3>
+    <button id = "add-transport-button">+</button>
+
+    {{#if transportItems}}
+      {{#each transportItems as |transportItem|}}
+        {{> edit-item-details}}
+      {{/each}}
+    {{/if}}
 
   </div>
 
@@ -34,21 +49,6 @@
 
       {{#if foodItems}}
         {{#each foodItems as |foodItem|}}
-          {{> edit-item-details}}
-        {{/each}}
-      {{/if}}
-
-    </div>
-
-    <!-- renders a category title for & a button to add new items related to transport
-        also renders an editable partial for each item related to transport that already exist -->
-    <div class = "trip-section-category">
-
-      <h3 class = "item-category-title">Transport</h3>
-      <button id = "add-transport-button">+</button>
-
-      {{#if transportItems}}
-        {{#each transportItems as |transportItem|}}
           {{> edit-item-details}}
         {{/each}}
       {{/if}}

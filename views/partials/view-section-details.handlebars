@@ -8,6 +8,18 @@
 
   <div class = "trip-categories-container">
 
+    <!-- renders a category title & a partial for each item related to transport, if any exist -->
+    {{#if transportItems}}
+      <div class = "trip-section-category">
+
+        <h3 class = "item-category-title">Transport</h3>
+        {{#each transportItems as |transportItem|}}
+          {{> view-item-details}}
+        {{/each}}
+
+      </div>
+    {{/if}}
+
     <!-- renders a category title & a partial for each item related to accommodation, if any exist -->
     {{#if accommodationItems}}
       <div class = "trip-section-category">
@@ -27,18 +39,6 @@
 
         <h3 class = "item-category-title">Food</h3>
         {{#each foodItems as |foodItem|}}
-          {{> view-item-details}}
-        {{/each}}
-
-      </div>
-    {{/if}}
-
-    <!-- renders a category title & a partial for each item related to transport, if any exist -->
-    {{#if transportItems}}
-      <div class = "trip-section-category">
-
-        <h3 class = "item-category-title">Transport</h3>
-        {{#each transportItems as |transportItem|}}
           {{> view-item-details}}
         {{/each}}
 
