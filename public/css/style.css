@@ -32,3 +32,8 @@
     cursor: pointer;
 }
 /* <---- Login/Signup Error Modal */
+
+/* <---- poi.handlebars */
+.hide {
+    display: none;
+}
