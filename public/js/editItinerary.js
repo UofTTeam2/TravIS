@@ -3,6 +3,7 @@
 window.onload = () => {
     const allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
     const multerSubmissionForm = $('.multer-submission-form');
+    const saveItineraryButton = $('.save-itinerary-button');
 
     //function to render a preview image of a file chosen by a user before it is uploaded to the database
     function renderPreviewImage() {
@@ -173,10 +174,9 @@ window.onload = () => {
     allFileInputs.on('change', renderPreviewImage);
 
     //prevents page from redirecting when itinerary data is saved & form is submitted
-    multerSubmissionForm.on('submit', (event) => {
-        event.preventDefault();
-        saveItineraryData();
-    });
+    multerSubmissionForm.on('submit', (event) => event.preventDefault());
+
+    saveItineraryButton.on('click', saveItineraryData);
 
     //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
     $('.timepicker').timepicker();
