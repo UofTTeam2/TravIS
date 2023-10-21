@@ -24,7 +24,18 @@ const uploadFolder = multer({storage: storage});
 // =============================================================
 router.post('/image', uploadFolder.array('image-upload'), async (req, res) => {
     try {
-        const fileNames = req.files.map(file => file.originalname);
+        let fileNames = req.files.map(file => file.originalname);
+
+        //if no files were uploaded, set fileNames to an array with one empty string
+        //this will prevent an error when the response attempts to return nothing
+        if (!fileNames)
+        {
+            fileNames = ['']
+        }
+
+        console.log('file names in multer:');
+        console.log(fileNames);
+
         res.status(200).json(fileNames);
     } catch (err) {
         res.status(500).json(err);
