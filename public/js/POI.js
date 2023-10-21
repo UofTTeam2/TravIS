@@ -30,6 +30,7 @@ async function getPOI() {
             });
             const data = response.result;
             const poiData = data.data;
+            console.log(response.data);
 
             poiData.forEach((poi) => {
                 const poiName = poi.name;
