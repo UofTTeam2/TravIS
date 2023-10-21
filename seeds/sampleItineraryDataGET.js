@@ -1,12 +1,12 @@
 id = 4;
 title = 'test';
 image = 'image-upload-1697854437296-125061493';
-sections = {
-    section_1: {
-        title: 'tokyo',
+sections = [
+    {
         id: 1,
-        accommodationItems: {
-            item1: {
+        title: 'tokyo',
+        accommodationItems: [
+            {
                 id: 1,
                 title: 'test 1',
                 link: 'https://github.com/UofTTeam2/TravIs/tree/dev',
@@ -18,7 +18,7 @@ sections = {
                 expense: '$400',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
-            item2: {
+            {
                 id: 2,
                 title: 'test 2',
                 link: 'https://drinkarizona.com/collections/hats/products/big-blossom-bucket-hat',
@@ -30,9 +30,9 @@ sections = {
                 expense: '$400',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             }
-        },
-        foodItems: {
-            item1: {
+        ],
+        foodItems: [
+            {
                 id: 3,
                 title: 'peach tea',
                 link: 'https://minimalistbaker.com/perfect-peach-iced-tea/',
@@ -44,7 +44,7 @@ sections = {
                 expense: '$400',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
-            item2: {
+            {
                 id: 4,
                 title: 'the way of kings',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
@@ -56,7 +56,7 @@ sections = {
                 expense: '$5000',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
-            item3: {
+            {
                 id: 5,
                 title: '',
                 link: '',
@@ -68,9 +68,9 @@ sections = {
                 expense: '',
                 notes: '',
             }
-        },
-        transportItems: {
-            item1: {
+        ],
+        transportItems: [
+            {
                 id: 6,
                 title: 'the way of kings',
                 link: '',
@@ -81,10 +81,10 @@ sections = {
                 end_time: '',
                 expense: '',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
-            }},
-        activityItems: {},
-        miscItems: {
-            item1: {
+            }],
+        activityItems: [],
+        miscItems: [
+            {
                 id: 7,
                 title: '',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
@@ -96,13 +96,13 @@ sections = {
                 expense: '$5000',
                 notes: '',
             }
-        }
+        ]
     },
-    section_2: {
-        section_id: 3,
-        section_title: 'osaka',
-        accommodationItems: {
-            item1: {
+    {
+        id: 3,
+        title: 'osaka',
+        accommodationItems: [
+            {
                 id: 8,
                 title: 'test 1',
                 link: 'https://github.com/UofTTeam2/TravIs/tree/dev',
@@ -114,7 +114,7 @@ sections = {
                 expense: '$400',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
-            item2: {
+            {
                 id: 9,
                 title: 'test 2',
                 link: 'https://drinkarizona.com/collections/hats/products/big-blossom-bucket-hat',
@@ -126,9 +126,9 @@ sections = {
                 expense: '$400',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             }
-        },
-        foodItems: {
-            item1: {
+        ],
+        foodItems: [
+            {
                 id: 10,
                 title: 'peach tea',
                 link: 'https://minimalistbaker.com/perfect-peach-iced-tea/',
@@ -140,7 +140,7 @@ sections = {
                 expense: '$400',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
-            item2: {
+            {
                 id: 11,
                 title: 'the way of kings',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
@@ -152,7 +152,7 @@ sections = {
                 expense: '$5000',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
             },
-            item3: {
+            {
                 id: 14,
                 title: '',
                 link: '',
@@ -164,9 +164,9 @@ sections = {
                 expense: '',
                 notes: '',
             }
-        },
-        transportItems: {
-            item1: {
+        ],
+        transportItems: [
+            {
                 id: 29,
                 title: 'the way of kings',
                 link: '',
@@ -177,10 +177,10 @@ sections = {
                 end_time: '',
                 expense: '',
                 notes: 'AS a frequent traveler, WHEN I travel in VR, I WANT to see Ehsan there as well',
-            }},
-        activityItems: {},
-        miscItems: {
-            item1: {
+            }],
+        activityItems: [],
+        miscItems: [
+            {
                 id: 45,
                 title: '',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
@@ -192,8 +192,8 @@ sections = {
                 expense: '$5000',
                 notes: '',
             }
-        }
+        ]
     }
-};
+];
 
 module.exports = {id, title, image, sections};
