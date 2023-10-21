@@ -4,6 +4,7 @@
 
 // Dependencies
 require('dotenv').config();
+// const city = require('./poiIndex');
 // =============================================================
 
 //https://api-ninjas.com/api/geocoding - API documentation

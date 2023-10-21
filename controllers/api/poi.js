@@ -48,4 +48,9 @@ router.get('/', async (req, res) => {
     }
 });
 
+// app.get('/', (req, res) => {
+//     res.render('poiIndex', { poiData, toDoData, safeData, locationData });
+// });
+
 module.exports = router;
+
