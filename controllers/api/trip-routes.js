@@ -30,7 +30,7 @@ router.post('/image', uploadFolder.array('image-upload'), async (req, res) => {
         //this will prevent an error when the response attempts to return nothing
         if (!fileNames)
         {
-            fileNames = ['']
+            fileNames = [''];
         }
 
         console.log('file names in multer:');
@@ -144,6 +144,11 @@ router.post('/create-item', async (req, res) => {
             //assign trip_section_id foreign key using req.body.section_id
 
         //return the ID of the new item as a JSON response
+
+        //FOR (ETHAN'S) TESTING
+        console.log(req.body.category);
+        console.log(req.body.section_id);
+        res.status(200).json(Math.round(Math.random() * 1E2));
     } catch (err) {
         res.status(500).json(err);
     }

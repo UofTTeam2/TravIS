@@ -1,16 +1,17 @@
 
 //waits until window is finished loading before running main code
 window.onload = () => {
-    const allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
+    let allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
     const multerSubmissionForm = $('.multer-submission-form');
     const saveItineraryButton = $('.save-itinerary-button');
+    const addItineraryItemButtons = $('.add-itinerary-item-button');
 
     //function to render a preview image of a file chosen by a user before it is uploaded to the database
     function renderPreviewImage() {
         const fileUpload = this.files[0]; //gets a reference to the file held by the input
         const uploadConverter = new FileReader(); //creates a new FileReader instance to read the above file
 
-        //gets a reference to the sibling (grand-nephew?) preview image element in the itinerary item that recieved a file upload
+        //gets a reference to the sibling (grand-nephew?) preview image element in the container that recieved a file upload
         const previewImageElement = $($(this).siblings('.edit-page-image-container').children()[0]).children('img');
 
         //if the input contains a file, convert the upload to a usable URL as an 'src' attribute
@@ -174,6 +175,111 @@ window.onload = () => {
         });
     }
 
+    async function addItineraryItem() {
+        //retrieves the name of the category the user is attempting to add an itinerary item to
+        const itineraryCategory = $($(this).siblings('.item-category-title')).text();
+        
+        let category;
+
+        if (itineraryCategory === 'Transport')
+        {
+            category = 'transport';
+        }
+        else if (itineraryCategory === 'Accommodation')
+        {
+            category = 'accommodation';
+        }
+        else if (itineraryCategory === 'Food')
+        {
+            category = 'food';
+        }
+        else if (itineraryCategory === 'Activities')
+        {
+            category = 'activities';
+        }
+        else
+        {
+            category = 'misc';
+        }
+
+        //retrieves the ID of the section the user is attempting to add an itinerary item to
+        const section_id = $(this).parent().parent().siblings('.section-title-container').children().attr('data-id');
+
+        const newItemData = {
+            category: category,
+            section_id: section_id
+        };
+        
+        console.log(newItemData);
+
+        let itemID;
+
+        try {
+            const response = await fetch('/api/trips/create-item', {
+                method: 'POST',
+                body: JSON.stringify(newItemData),
+                headers: {'Content-Type': 'application/json'},
+            });
+            itemID = await response.json();
+        } catch (err) {
+            console.log(err);
+        }
+
+        newItineraryItemHTML = `
+        <div class = "itinerary-item-container" data-id = ${itemID}>
+
+            <button class = "delete-itinerary-item-button">Delete Item</button>
+        
+            <h4>Title:</h4>
+            <input class = "item-title">
+        
+            <h4>Title Link:</h4>
+            <input class = "item-link">
+        
+            <h4>Start Date:</h4>
+            <input class = "item-date-time item-start-date datepicker">
+        
+            <h4>Start Time:</h4>
+            <input class = "item-date-time item-start-time timepicker">
+        
+            <h4>End Date:</h4>
+            <input class = "item-date-time item-end-date datepicker">
+        
+            <h4>End Time:</h4>
+            <input class = "item-date-time item-end-time timepicker">
+        
+            <h4>Cost:</h4>
+            <input type = "number" class = "item-expense">
+        
+            <h4>Notes:</h4>
+            <textarea class = "item-notes"></textarea>
+        
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image">
+        
+            <div class = "edit-page-image-container">
+        
+            <div class = "edit-page-image-block">
+        
+                <button class = "clear-preview-image-button">Clear Chosen Image</button>
+                <h4>Preview:</h4>
+                <img class = "preview-image" src = './images/no-image-stock-photo.png'>
+        
+            </div>
+        
+            </div>
+        </div>`
+
+        //adds new itinerary item to the current category
+        $(this).parent().append(newItineraryItemHTML);
+
+        //updates file inputs reference to add event listener + datepicker & timepicker functionality to new itinerary item
+        allFileInputs = $('.user-uploaded-image');
+        allFileInputs.on('change', renderPreviewImage);
+        $('.timepicker').timepicker();
+        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
+    }
+
     //event listener for when a change is made using the input a user uses to upload an image file
     allFileInputs.on('change', renderPreviewImage);
 
@@ -181,6 +287,8 @@ window.onload = () => {
     multerSubmissionForm.on('submit', (event) => event.preventDefault());
 
     saveItineraryButton.on('click', saveItineraryData);
+
+    addItineraryItemButtons.on('click', addItineraryItem);
 
     //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
     $('.timepicker').timepicker();
