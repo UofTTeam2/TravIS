@@ -4,7 +4,7 @@
 // Dependencies, Models, and Middleware
 // =============================================================
 const router = require('express').Router();
-const { User, Trip } = require('../models');
+const { Trip } = require('../models');
 const loginAuth = require('../utils/auth');
 //==============================================================
 
@@ -23,22 +23,16 @@ router.get('/', async (req, res) => {
 
 // Get route for the dashboard page
 // =============================================================
-router.get('/dashboard', loginAuth, async (req, res) => {
+router.get('/trips', loginAuth, async (req, res) => {
     try {
         const tripData = await Trip.findAll({
             where: {
                 user_id: req.session.user_id,
             },
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-            ],
             order: [['date', 'DESC']],
         });
         const trips = tripData.map((trip) => trip.get({ plain: true }));
-        res.render('dashboard', {
+        res.render('trip', {
             trips,
             loggedIn: req.session.loggedIn,
         });
