@@ -23,10 +23,10 @@ data = {
             title: 'test 1',
             link: 'https://github.com/UofTTeam2/TravIs/tree/dev',
             start_date: '2023-10-27',
-            start_time: '4:00 PM',
+            start_time: '04:00 PM',
             end_date: '2024-01-19',
             end_time: '11:00 AM',
-            expense: '$400',
+            expense: '400',
             notes: 'AS a frequent traveller WHEN I travel in VR THEN I want to see Ehsan there as well',
             image: 'image-upload-1697848850663-957708811'
         },
@@ -35,10 +35,10 @@ data = {
             title: 'test 2',
             link: 'https://drinkarizona.com/collections/hats/products/big-blossom-bucket-hat',
             start_date: '2023-10-17',
-            start_time: '4:00 PM',
+            start_time: '04:00 PM',
             end_date: '2024-04-21',
             end_time: '11:00 AM',
-            expense: '$400',
+            expense: '400',
             notes: '',
             image: 'image-upload-1697848850658-32445591'
         },
@@ -71,10 +71,10 @@ data = {
             title: 'HAHAHAHAHA',
             link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
             start_date: '2023-11-17',
-            start_time: '4:00 PM',
+            start_time: '04:00 PM',
             end_date: '',
             end_time: '11:00 AM',
-            expense: '$5000',
+            expense: '5000',
             notes: 'HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA',
             image: ''
         }

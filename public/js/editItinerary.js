@@ -184,7 +184,7 @@ window.onload = () => {
 
     //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
     $('.timepicker').timepicker();
-    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 };
 
  //retrieve all SubTrip items
