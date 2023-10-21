@@ -1,3 +1,6 @@
+trip_id = 4;
+tripTitle = 'test';
+titleImage = 'image-upload-1697854437296-125061493';
 sections = {
     section_1: {
         section_title: 'tokyo',
@@ -7,7 +10,7 @@ sections = {
                 item_id: 1,
                 title: 'test 1',
                 link: 'https://github.com/UofTTeam2/TravIs/tree/dev',
-                image: 'https://i.pinimg.com/736x/b2/32/63/b23263218ede5b69d4e1a7d01660410c.jpg',
+                image: 'image-upload-1697848850658-32445591',
                 startDate: '2023-10-17',
                 startTime: '4:00 PM',
                 endDate: '2024-01-19',
@@ -19,7 +22,7 @@ sections = {
                 item_id: 2,
                 title: 'test 2',
                 link: 'https://drinkarizona.com/collections/hats/products/big-blossom-bucket-hat',
-                image: 'https://cultureofgaming.com/wp-content/uploads/2023/02/the-way-of-the-kings-stormlight-archives.png',
+                image: 'image-upload-1697848850663-991490123',
                 startDate: '2023-10-17',
                 startTime: '4:00 PM',
                 endDate: '2024-01-19',
@@ -33,7 +36,7 @@ sections = {
                 item_id: 3,
                 title: 'peach tea',
                 link: 'https://minimalistbaker.com/perfect-peach-iced-tea/',
-                image: 'https://minimalistbaker.com/wp-content/uploads/2014/06/Perfect-sweet-Peached-Iced-Tea-Perfect-for-summer-and-pool-days..jpg',
+                image: 'image-upload-1697848850663-991490123',
                 startDate: '2023-10-17',
                 startTime: '4:00 PM',
                 endDate: '2024-01-19',
@@ -45,7 +48,7 @@ sections = {
                 item_id: 4,
                 title: 'the way of kings',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
-                image: 'https://i.redd.it/pty7jq8xvsh71.jpg',
+                image: 'image-upload-1697848850663-991490123',
                 startDate: '2023-10-17',
                 startTime: '4:00 PM',
                 endDate: '2024-01-19',
@@ -71,7 +74,7 @@ sections = {
                 item_id: 6,
                 title: 'the way of kings',
                 link: '',
-                image: 'https://i.redd.it/pty7jq8xvsh71.jpg',
+                image: 'image-upload-1697848850658-32445591',
                 startDate: '2023-10-17',
                 startTime: '',
                 endDate: '2024-01-19',
@@ -103,7 +106,7 @@ sections = {
                 item_id: 8,
                 title: 'test 1',
                 link: 'https://github.com/UofTTeam2/TravIs/tree/dev',
-                image: 'https://i.pinimg.com/736x/b2/32/63/b23263218ede5b69d4e1a7d01660410c.jpg',
+                image: 'image-upload-1697848850658-32445591',
                 startDate: '2023-10-17',
                 startTime: '4:00 PM',
                 endDate: '2024-01-19',
@@ -115,7 +118,7 @@ sections = {
                 item_id: 9,
                 title: 'test 2',
                 link: 'https://drinkarizona.com/collections/hats/products/big-blossom-bucket-hat',
-                image: 'https://cultureofgaming.com/wp-content/uploads/2023/02/the-way-of-the-kings-stormlight-archives.png',
+                image: 'image-upload-1697848850663-957708811',
                 startDate: '2023-10-17',
                 startTime: '4:00 PM',
                 endDate: '2024-01-19',
@@ -129,7 +132,7 @@ sections = {
                 item_id: 10,
                 title: 'peach tea',
                 link: 'https://minimalistbaker.com/perfect-peach-iced-tea/',
-                image: 'https://minimalistbaker.com/wp-content/uploads/2014/06/Perfect-sweet-Peached-Iced-Tea-Perfect-for-summer-and-pool-days..jpg',
+                image: 'image-upload-1697848850663-957708811',
                 startDate: '2023-10-17',
                 startTime: '4:00 PM',
                 endDate: '2024-01-19',
@@ -141,7 +144,7 @@ sections = {
                 item_id: 11,
                 title: 'the way of kings',
                 link: 'https://www.michaelwhelan.com/shop/way-of-kings/',
-                image: 'https://i.redd.it/pty7jq8xvsh71.jpg',
+                image: 'image-upload-1697848850663-957708811',
                 startDate: '2023-10-17',
                 startTime: '4:00 PM',
                 endDate: '2024-01-19',
@@ -167,7 +170,7 @@ sections = {
                 item_id: 29,
                 title: 'the way of kings',
                 link: '',
-                image: 'https://i.redd.it/pty7jq8xvsh71.jpg',
+                image: 'image-upload-1697848850663-991490123',
                 startDate: '2023-10-17',
                 startTime: '',
                 endDate: '2024-01-19',
@@ -193,4 +196,4 @@ sections = {
     }
 };
 
-module.exports = sections;
+module.exports = {trip_id, tripTitle, titleImage, sections};
