@@ -25,12 +25,12 @@ TripSection.init(
 
         title: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
 
         date: {
             type: DataTypes.DATEONLY,
-            allowNull: True,
+            allowNull: true,
             defaultValue: DataTypes.NOW,
         },
 

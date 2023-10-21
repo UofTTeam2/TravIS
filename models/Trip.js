@@ -25,7 +25,7 @@ Trip.init(
         },
         title: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         image: {
             type: DataTypes.STRING,
@@ -33,7 +33,7 @@ Trip.init(
         },
         date: {
             type: DataTypes.DATEONLY,
-            allowNull: True,
+            allowNull: true,
             defaultValue: DataTypes.NOW,
         },
         user_id: {
