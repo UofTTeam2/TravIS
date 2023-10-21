@@ -1,84 +1,89 @@
-<!-- renders an input for the title of each section -->
-<div class = "section-title-container">
+<div class = "itinerary-section-container">
 
-  <input class = "section-title-input" data-id = {{id}} value = "{{title}}">
+  <button class = "delete-itinerary-section-button">Delete Section</button>
+  
+  <!-- renders an input for the title of each section -->
+  <div class = "section-title-container">
 
-</div>
-
-<div class = "trip-categories-container">
-  <!-- renders a category title for & a button to add new items related to accomodation
-      also renders an editable partial for each item related to accommodation that already exist -->
-  <div class = "trip-section-category">
-
-    <h3 class = "item-category-title">Accommodation</h3>
-    <button id = "add-accommodation-button">+</button>
-
-    {{#if accommodationItems}}
-      {{#each accommodationItems as |accommodationItem|}}
-        {{> edit-item-details}}
-      {{/each}}
-    {{/if}}
+    <input class = "section-title-input" data-id = {{id}} value = "{{title}}">
 
   </div>
 
-  <!-- renders a category title for & a button to add new items related to food
-      also renders an editable partial for each item related to food that already exist -->
-  <div class = "trip-section-category">
+  <div class = "trip-categories-container">
+    <!-- renders a category title for & a button to add new items related to accomodation
+        also renders an editable partial for each item related to accommodation that already exist -->
+    <div class = "trip-section-category">
 
-    <h3 class = "item-category-title">Food</h3>
-    <button id = "add-food-button">+</button>
+      <h3 class = "item-category-title">Accommodation</h3>
+      <button id = "add-accommodation-button">+</button>
 
-    {{#if foodItems}}
-      {{#each foodItems as |foodItem|}}
-        {{> edit-item-details}}
-      {{/each}}
-    {{/if}}
+      {{#if accommodationItems}}
+        {{#each accommodationItems as |accommodationItem|}}
+          {{> edit-item-details}}
+        {{/each}}
+      {{/if}}
 
-  </div>
+    </div>
 
-  <!-- renders a category title for & a button to add new items related to transport
-      also renders an editable partial for each item related to transport that already exist -->
-  <div class = "trip-section-category">
+    <!-- renders a category title for & a button to add new items related to food
+        also renders an editable partial for each item related to food that already exist -->
+    <div class = "trip-section-category">
 
-    <h3 class = "item-category-title">Transport</h3>
-    <button id = "add-transport-button">+</button>
+      <h3 class = "item-category-title">Food</h3>
+      <button id = "add-food-button">+</button>
 
-    {{#if transportItems}}
-      {{#each transportItems as |transportItem|}}
-        {{> edit-item-details}}
-      {{/each}}
-    {{/if}}
+      {{#if foodItems}}
+        {{#each foodItems as |foodItem|}}
+          {{> edit-item-details}}
+        {{/each}}
+      {{/if}}
 
-  </div>
+    </div>
 
-  <!-- renders a category title for & a button to add new items related to activities / things to do
-      (entertainment, shopping, historical sites to visit, etc.), and also renders an editable partial
-      for each item related to activities (et al.) that already exist -->
-  <div class = "trip-section-category">
+    <!-- renders a category title for & a button to add new items related to transport
+        also renders an editable partial for each item related to transport that already exist -->
+    <div class = "trip-section-category">
 
-    <h3 class = "item-category-title">Activities</h3>
-    <button id = "add-activity-button">+</button>
+      <h3 class = "item-category-title">Transport</h3>
+      <button id = "add-transport-button">+</button>
 
-    {{#if activityItems}}
-      {{#each activityItems as |activityItem|}}
-        {{> edit-item-details}}
-      {{/each}}
-    {{/if}}
+      {{#if transportItems}}
+        {{#each transportItems as |transportItem|}}
+          {{> edit-item-details}}
+        {{/each}}
+      {{/if}}
 
-  </div>
+    </div>
 
-  <!-- renders a category title for & a button to add new items miscellaneous items
-      also renders an editable partial for each item related to transport that already exist -->
-  <div class = "trip-section-category">
+    <!-- renders a category title for & a button to add new items related to activities / things to do
+        (entertainment, shopping, historical sites to visit, etc.), and also renders an editable partial
+        for each item related to activities (et al.) that already exist -->
+    <div class = "trip-section-category">
 
-    <h3 class = "item-category-title">Misc</h3>
-    <button id = "add-misc-button">+</button>
+      <h3 class = "item-category-title">Activities</h3>
+      <button id = "add-activity-button">+</button>
 
-    {{#if miscItems}}
-      {{#each miscItems as |miscItem|}}
-        {{> edit-item-details}}
-      {{/each}}
-    {{/if}}
+      {{#if activityItems}}
+        {{#each activityItems as |activityItem|}}
+          {{> edit-item-details}}
+        {{/each}}
+      {{/if}}
 
+    </div>
+
+    <!-- renders a category title for & a button to add new items miscellaneous items
+        also renders an editable partial for each item related to transport that already exist -->
+    <div class = "trip-section-category">
+
+      <h3 class = "item-category-title">Misc</h3>
+      <button id = "add-misc-button">+</button>
+
+      {{#if miscItems}}
+        {{#each miscItems as |miscItem|}}
+          {{> edit-item-details}}
+        {{/each}}
+      {{/if}}
+
+    </div>
   </div>
 </div>
