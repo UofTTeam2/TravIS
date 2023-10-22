@@ -255,7 +255,8 @@ router.get('/', async (req, res) => {
                 locationData: locationData
             };
 
-            res.status(200).json(responseData);
+            // res.status(200).json(responseData);
+            res.render('poi', responseData);
         } else {
             console.log('Error: no latitude/longitude data');
             res.status(400).json({ error: 'No latitude/longitude data' });
