@@ -59,7 +59,7 @@ async function safeScore() {
 }
 // =============================================================
 // invoke function to get safety scores
-safeScore();
+// safeScore();
 // =============================================================
 // export safeScore function
 module.exports = safeScore;

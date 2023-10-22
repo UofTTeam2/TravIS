@@ -38,15 +38,15 @@ async function thingsToDo() {
                 //set default values for price and currency, in case they are not available
                 let toDoPrice = 'N/A';
                 let toDoCurrency = 'N/A';
+                let toDoBooking = 'N/A';
 
                 // Check if price object and its properties exist, then assign values
-                if (toDo.price && toDo.price.amount && toDo.price.currencyCode) {
+                if (toDo.price && toDo.price.amount && toDo.price.currencyCode && toDo.bookingLink) {
                     toDoPrice = toDo.price.amount;
                     toDoCurrency = toDo.price.currencyCode;
+                    toDoBooking = toDo.bookingLink;
                 }
-
                 const toDoPics = toDo.pictures;
-                const toDoBooking = toDo.bookingLink;
                 const toDoDuration = toDo.minimumDuration;
                 console.log(`Here are some recommended activities for your location:
                 name: ${toDoName}, 
@@ -66,7 +66,7 @@ async function thingsToDo() {
 }
 // =============================================================
 // invoke function to get tours and activities
-thingsToDo();
+// thingsToDo();
 // =============================================================
 // export thingsToDo function
 module.exports = thingsToDo;

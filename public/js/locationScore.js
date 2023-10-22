@@ -80,7 +80,7 @@ async function locationScore() {
 }
 // =============================================================
 // invoke locationScore function
-locationScore();
+// locationScore();
 // =============================================================
 // export locationScore function
 module.exports = locationScore;

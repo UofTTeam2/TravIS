@@ -47,7 +47,7 @@ async function getPOI() {
 }
 // =============================================================
 // invoke get points of interest function
-getPOI();
+// getPOI();
 // =============================================================
 // export getPOI function
 module.exports = getPOI;

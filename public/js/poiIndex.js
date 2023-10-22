@@ -5,7 +5,7 @@ const locationScore = require('./locationScore');
 const getPOI = require('./poi');
 const safeScore = require('./safeScore');
 const thingsToDo = require('./toDo');
-const template = require('../../views/poi.handlebars');
+// const template = require('../../views/poi.handlebars');
 const city = document.getElementById('cityInput').value;
 
 document.getElementById('searchForm').addEventListener('submit', async function(event) {
@@ -24,7 +24,7 @@ document.getElementById('searchForm').addEventListener('submit', async function(
 
     document.querySelector('.hide').classList.remove('hide');
 
-    const renderHTML = template({ poiData, toDoData, safeData, locationData });
-    document.querySelector('recommendations').innerHTML = renderHTML;
+    // const renderHTML = template({ poiData, toDoData, safeData, locationData });
+    // document.querySelector('recommendations').innerHTML = renderHTML;
 });
 module.exports = city;
