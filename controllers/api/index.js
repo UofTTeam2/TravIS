@@ -6,15 +6,15 @@
 const router = require('express').Router();
 const userRoutes = require('./user-routes');
 const tripRoutes = require('./trip-routes');
-const locationRoutes = require('./location-routes');
-const commentRoutes = require('./comment-routes');
+//const locationRoutes = require('./location-routes');
+//const commentRoutes = require('./comment-routes');
 
 // Routes:
 //==============================================================
 router.use('/users', userRoutes);
 router.use('/trips', tripRoutes);
-router.use('/locations', locationRoutes);
-router.use('/comments', commentRoutes);
+//router.use('/locations', locationRoutes);
+//router.use('/comments', commentRoutes);
 //==============================================================
 
 module.exports = router;

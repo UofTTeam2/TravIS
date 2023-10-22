@@ -31,13 +31,11 @@ window.onload = () => {
         let allFileUploads = [];
         let formData = new FormData();
 
-        for (fileInput = 0; fileInput < allFileInputs.length; fileInput++)
-        {
+        for (fileInput = 0; fileInput < allFileInputs.length; fileInput++) {
             allFileUploads.push(allFileInputs[fileInput].files[0]);
         }
 
-        allFileUploads.forEach(fileUpload =>
-        {
+        allFileUploads.forEach(fileUpload => {
             formData.append('image-upload', fileUpload);
         });
 
@@ -60,21 +58,19 @@ window.onload = () => {
         let currentFileUpload = 0; //variable to track how many uploaded files have been assigned to an object
 
         //function to deterimine what the image property of an object should be
-        function determineImage()
-        {
+        function determineImage() {
             let image; //variable to hold a reference to an image
 
             //checks if the current image input had a file uploaded to it
             if (allFileUploads[currentFileInput]) {
                 //if a file was uploaded, set the source of the current object's image to the next unassigned image in the array
-                image = fileNames[currentFileUpload]; 
+                image = fileNames[currentFileUpload];
                 currentFileUpload++; //increase the index by 1 to indicate that +1 more image has been assigned to an object
-            }
-            else { //otherwise (i.e the current image input did not have a file uploaded), run the following;
+            } else { //otherwise (i.e the current image input did not have a file uploaded), run the following;
                 //gets a reference to the container housing the preview image for the current image input,
                 //and the image already assigned to the current object (if it exists)
                 const imageContainer = $(allFileInputs[currentFileInput]).siblings('.edit-page-image-container')[0];
-                
+
                 //checks if the above container has two children, i.e. an image is already assigned to the current
                 //object item, and an <img> element to display the current image exists
                 if ($(imageContainer).children().length === 2) {
@@ -84,9 +80,8 @@ window.onload = () => {
 
                     //an already-existing image with have an 'src' like './images/multer-uploads/image-upload-1697848850663-957708811'
                     //the below code splits it and takes the [3] index of the resulting array -> image-upload-1697848850663-957708811
-                    image = existingImageSRC.split("/")[3];
-                }
-                else {
+                    image = existingImageSRC.split('/')[3];
+                } else {
                     //otherwise (i.e. an image was not selected by the user, and there is not an image already assigned),
                     //set the image to be an empty string, indicating that there is no image
                     image = '';
@@ -94,10 +89,10 @@ window.onload = () => {
             }
 
             currentFileInput++; //increase the file input index by 1, to indicate that +1 more file inputs have been accounted for
-            
+
             console.log('current input #: ' + currentFileInput);
             console.log('current file #: ' + currentFileUpload);
-            
+
             return image; //return the appropriate image reference
         }
 
@@ -115,25 +110,23 @@ window.onload = () => {
             start_date: tripStartDate,
             end_date: tripEndDate,
             image: titleCardImage
-        }
+        };
 
         const sectionTitles = $('.section-title-input');
         let sectionData = [];
 
-        for (section = 0; section < sectionTitles.length; section++)
-        {
+        for (section = 0; section < sectionTitles.length; section++) {
             const currentSectionData = {
                 id: $(sectionTitles[section]).attr('data-id'),
                 title: $(sectionTitles[section]).val()
-            }
+            };
             sectionData.push(currentSectionData);
         }
 
         const itineraryItems = $('.itinerary-item-container');
         let itineraryData = [];
 
-        for (itineraryItem = 0; itineraryItem < itineraryItems.length; itineraryItem++)
-        {
+        for (itineraryItem = 0; itineraryItem < itineraryItems.length; itineraryItem++) {
             const id = $(itineraryItems[itineraryItem]).attr('data-id');
             const title = $(itineraryItems[itineraryItem]).children('.item-title');
             const link = $(itineraryItems[itineraryItem]).children('.item-link');
@@ -159,7 +152,7 @@ window.onload = () => {
                 expense: expense.val(),
                 notes: notes.val(),
                 image: image
-            }
+            };
             //append the new itinerary item object to the array of itinerary item data
             itineraryData.push(currentItineraryItemData);
         }
@@ -176,9 +169,105 @@ window.onload = () => {
         });
     }
 
+    async function addItineraryItem() {
+        //retrieves the name of the category the user is attempting to add an itinerary item to
+        const itineraryCategory = $(this).siblings('.item-category-title').text();
+
+        let category;
+
+        if (itineraryCategory === 'Transport') {
+            category = 'transport';
+        } else if (itineraryCategory === 'Accommodation') {
+            category = 'accommodation';
+        } else if (itineraryCategory === 'Food') {
+            category = 'food';
+        } else if (itineraryCategory === 'Activities') {
+            category = 'activities';
+        } else {
+            category = 'misc';
+        }
+
+        //retrieves the ID of the section the user is attempting to add an itinerary item to
+        const section_id = $(this).parent().parent().siblings('.section-title-container').children().attr('data-id');
+
+        const newItemData = {
+            category: category,
+            trip_section_id: section_id
+        };
+
+        console.log(newItemData);
+
+        let itemID;
+
+        try {
+            const response = await fetch('/api/trips/create-item', {
+                method: 'POST',
+                body: JSON.stringify(newItemData),
+                headers: {'Content-Type': 'application/json'},
+            });
+            itemID = await response.json();
+        } catch (err) {
+            console.log(err);
+        }
+
+        newItineraryItemHTML = `
+        <div class = "itinerary-item-container" data-id = ${itemID}>
+
+            <button class = "delete-itinerary-item-button">Delete Item</button>
+        
+            <h4>Title:</h4>
+            <input class = "item-title">
+        
+            <h4>Title Link:</h4>
+            <input class = "item-link">
+        
+            <h4>Start Date:</h4>
+            <input class = "item-date-time item-start-date datepicker">
+        
+            <h4>Start Time:</h4>
+            <input class = "item-date-time item-start-time timepicker">
+        
+            <h4>End Date:</h4>
+            <input class = "item-date-time item-end-date datepicker">
+        
+            <h4>End Time:</h4>
+            <input class = "item-date-time item-end-time timepicker">
+        
+            <h4>Cost:</h4>
+            <input type = "number" class = "item-expense">
+        
+            <h4>Notes:</h4>
+            <textarea class = "item-notes"></textarea>
+        
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image">
+        
+            <div class = "edit-page-image-container">
+        
+            <div class = "edit-page-image-block">
+        
+                <button class = "clear-preview-image-button">Clear Chosen Image</button>
+                <h4>Preview:</h4>
+                <img class = "preview-image" src = './images/no-image-stock-photo.png'>
+        
+            </div>
+        
+            </div>
+        </div>`;
+
+        //adds new itinerary item to the current category
+        $(this).parent().append(newItineraryItemHTML);
+
+        //updates file inputs reference to add event listener + datepicker & timepicker functionality to new itinerary item
+        allFileInputs = $('.user-uploaded-image');
+        allFileInputs.on('change', renderPreviewImage);
+        $('.timepicker').timepicker();
+        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
+    }
+
     async function addTripSection() {
         const trip_id = $(this).siblings('.trip-title-container').attr('data-id');
-        console.log("trip ID: " + trip_id);
+        console.log('trip ID: ' + trip_id);
 
         const newSectionData = {
             trip_id: trip_id
@@ -245,7 +334,7 @@ window.onload = () => {
 
                 </div>
             </div>
-        </div>`
+        </div>`;
 
         //adds new itinerary item to the current category
         $(this).siblings('.trip-sections-container').append(newSectionHTML);
@@ -253,111 +342,6 @@ window.onload = () => {
         //updates add itinerary items button reference to add event listener functionality to new section
         let addItineraryItemButtons = $('.add-itinerary-item-button');
         addItineraryItemButtons.on('click', addItineraryItem);
-    }
-
-    async function addItineraryItem() {
-        //retrieves the name of the category the user is attempting to add an itinerary item to
-        const itineraryCategory = $(this).siblings('.item-category-title').text();
-        
-        let category;
-
-        if (itineraryCategory === 'Transport')
-        {
-            category = 'transport';
-        }
-        else if (itineraryCategory === 'Accommodation')
-        {
-            category = 'accommodation';
-        }
-        else if (itineraryCategory === 'Food')
-        {
-            category = 'food';
-        }
-        else if (itineraryCategory === 'Activities')
-        {
-            category = 'activities';
-        }
-        else
-        {
-            category = 'misc';
-        }
-
-        //retrieves the ID of the section the user is attempting to add an itinerary item to
-        const section_id = $(this).parent().parent().siblings('.section-title-container').children().attr('data-id');
-
-        const newItemData = {
-            category: category,
-            trip_section_id: section_id
-        };
-        
-        console.log(newItemData);
-
-        let itemID;
-
-        try {
-            const response = await fetch('/api/trips/create-item', {
-                method: 'POST',
-                body: JSON.stringify(newItemData),
-                headers: {'Content-Type': 'application/json'},
-            });
-            itemID = await response.json();
-        } catch (err) {
-            console.log(err);
-        }
-
-        newItineraryItemHTML = `
-        <div class = "itinerary-item-container" data-id = ${itemID}>
-
-            <button class = "delete-itinerary-item-button">Delete Item</button>
-        
-            <h4>Title:</h4>
-            <input class = "item-title">
-        
-            <h4>Title Link:</h4>
-            <input class = "item-link">
-        
-            <h4>Start Date:</h4>
-            <input class = "item-date-time item-start-date datepicker">
-        
-            <h4>Start Time:</h4>
-            <input class = "item-date-time item-start-time timepicker">
-        
-            <h4>End Date:</h4>
-            <input class = "item-date-time item-end-date datepicker">
-        
-            <h4>End Time:</h4>
-            <input class = "item-date-time item-end-time timepicker">
-        
-            <h4>Cost:</h4>
-            <input type = "number" class = "item-expense">
-        
-            <h4>Notes:</h4>
-            <textarea class = "item-notes"></textarea>
-        
-            <h4>Choose an Image (up to 10 MB):</h4>
-            <input type = "file" accept = "image/*" class = "user-uploaded-image">
-        
-            <div class = "edit-page-image-container">
-        
-            <div class = "edit-page-image-block">
-        
-                <button class = "clear-preview-image-button">Clear Chosen Image</button>
-                <h4>Preview:</h4>
-                <img class = "preview-image" src = './images/no-image-stock-photo.png'>
-        
-            </div>
-        
-            </div>
-        </div>`
-
-        //adds new itinerary item to the current category
-        $(this).parent().append(newItineraryItemHTML);
-
-        //updates file inputs reference to add event listener + datepicker & timepicker functionality to new itinerary item
-        allFileInputs = $('.user-uploaded-image');
-        allFileInputs.on('change', renderPreviewImage);
-        $('.timepicker').timepicker();
-        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
     }
 
     //event listener for when a change is made using the input a user uses to upload an image file

@@ -20,9 +20,9 @@ require('dotenv').config();
 //importing routes and custom helpers
 // =============================================================
 const routes = require('./controllers');
-const helpers = require('./utils/helpers');
+//const helpers = require('./utils/helpers');
 //initializes handlebars template engine
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({ /*helpers*/ });
 //==============================================================
 
 //defines express application and PORT
@@ -74,23 +74,17 @@ sequelize.sync({force: false}).then(() => {
 
 /* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS BELOW, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
 
-const {accommodationItems, foodItems, transportItems, activityItems, miscItems} = require('./seeds/sampleItineraryData.js');
-
-const sections = [{
-    accommodationItems,
-    foodItems,
-    transportItems,
-    activityItems,
-    miscItems
-}];
+/*
+const {id, title, start_date, end_date, image, sections} = require('./seeds/sampleItineraryDataGET.js');
 
 app.get('/', async (req, res) => {
     try {
-        res.render('view-itinerary', {tripTitle: 'test', sections});
+        res.render('view-itinerary', {id, title, start_date, end_date, image, sections});
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
 });
+*/
 
 /* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS ABOVE, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
