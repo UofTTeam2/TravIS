@@ -10,8 +10,7 @@ body{
 }
 
 body .form{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #f4e6bf);
+    background-color: #22252A;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,7 +101,7 @@ body .form{
     transition: all 0.6s ease-in-out;
 }
 
-.sign-in{
+.log-in{
     left: 0;
     width: 50%;
     z-index: 2;
@@ -299,6 +298,31 @@ body .form{
     letter-spacing: 0.5px;
 }
 
+.top-container .info-buttons{
+    display: flex;
+}
+
+.top-container .info-btn{
+    cursor: pointer;
+    padding: 8px 38px;
+    border-radius: 16px;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: -1px;
+    color: #fff;
+}
+
+.top-container .info-btn.nav-btn{
+    margin-left: 20px;
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
+.top-container .info-btn.selected{
+    border: none;
+    background-color: #ffc62c;
+}
+
 .top-container .img-box{
     padding: 16px;
     border: 1px solid #000;
@@ -429,6 +453,16 @@ body .form{
     letter-spacing: 0.05em;
     color: #ccc;
 }
+
+.link a {
+    color: #ccc;
+    text-decoration: none;
+  }
+
+.link a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
 
 .copyright p{
     font-size: 12px;
