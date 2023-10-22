@@ -167,6 +167,15 @@ router.delete('/delete-item', async (req, res) => {
     }
 });
 
+router.delete('/delete-section', async (req, res) => {
+    try {
+        console.log('deleting section with id: ' + req.body.id);
+        res.status(200).json(req.body.id);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 // PUT route for updating trip data in the database
 // this route will be used when a user clicks the 'save' button
 // while on itinerary edit page

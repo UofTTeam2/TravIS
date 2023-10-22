@@ -203,7 +203,33 @@ window.onload = () => {
     }
 
     async function deleteTripSection() {
-        //
+        const sectionID = $(this).siblings('.section-title-container').children().attr('data-id');
+
+        console.log(this);
+        console.log($(this).siblings('.section-title-container'));
+        console.log($(this).siblings('.section-title-container').children());
+        console.log($(this).parent()[0]);
+
+        console.log(sectionID);
+
+        const sectionData = {
+            id: sectionID
+        };
+
+        console.log(sectionData);
+
+        try {
+            await fetch('/api/trips/delete-section', {
+                method: 'DELETE',
+                body: JSON.stringify(sectionData),
+                headers: {'Content-Type': 'application/json'},
+            });
+        } catch (err) {
+            console.log(err);
+        }
+
+        //removes parent section block
+        $(this).parent().remove();
 
         //updates deleteSectionButtons & addItineraryItemButtons references to account for the deleted section
         deleteSectionButtons = $('.delete-itinerary-section-button');
