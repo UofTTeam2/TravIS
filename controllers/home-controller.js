@@ -29,7 +29,7 @@ router.get('/trips', loginAuth, async (req, res) => {
             where: {
                 user_id: req.session.user_id,
             },
-            order: [['date', 'DESC']],
+            order: [['end_date', 'DESC']],
         });
         const trips = tripData.map((trip) => trip.get({ plain: true }));
         res.render('trip', {
