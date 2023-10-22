@@ -25,13 +25,7 @@ TripSection.init(
 
         title: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-
-        date: {
-            type: DataTypes.DATEONLY,
-            allowNull: True,
-            defaultValue: DataTypes.NOW,
+            allowNull: true,
         },
 
         trip_id: {
