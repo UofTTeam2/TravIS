@@ -10,8 +10,8 @@ const template = require('../../views/poi.handlebars');
 const compiledTemplate = Handlebars.compile(template);
 
 
-// const city = document.getElementById('cityInput').value;
-const city = 'Barcelona';
+const city = document.getElementById('cityInput').value;
+// const city = 'Berlin';
 
 document.getElementById('searchForm').addEventListener('submit', async function(event) {
     event.preventDefault();
