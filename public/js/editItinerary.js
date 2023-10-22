@@ -216,25 +216,11 @@ window.onload = () => {
         //retrieves the name of the category the user is attempting to add an itinerary item to
         const itineraryCategory = $(this).siblings('.item-category-title').text();
 
-        let category;
-
-        if (itineraryCategory === 'Transport') {
-            category = 'transport';
-        } else if (itineraryCategory === 'Accommodation') {
-            category = 'accommodation';
-        } else if (itineraryCategory === 'Food') {
-            category = 'food';
-        } else if (itineraryCategory === 'Activities') {
-            category = 'activities';
-        } else {
-            category = 'misc';
-        }
-
         //retrieves the ID of the section the user is attempting to add an itinerary item to
         const section_id = $(this).parent().parent().siblings('.section-title-container').children().attr('data-id');
 
         const newItemData = {
-            category: category,
+            category: itineraryCategory,
             trip_section_id: section_id
         };
 
