@@ -9,10 +9,17 @@
     <div class='nav-links'>
         <span class='item selected'>Home</span>
         <span id='scroll' class='item'>About Us</span>
+        {{#if loggedIn}}
+        <span class="item">Dashboard</span>
+        {{/if}}
     </div>
     <div class='nav-buttons' id='navMenu'>
+        {{#if loggedIn}}
+        <button class="nav-btn selected" id="logOut">LOG OUT</button>
+        {{else}}
         <button class='nav-btn selected' id='loginBtn'>LOGIN</button>
         <button class='nav-btn' id='signupBtn'>SIGN UP</button>
+        {{/if}}
     </div>
 
     <button class='toggler'>
@@ -20,3 +27,5 @@
     </button>
 </div>
 <!-- End of Navbar -->
+<script src="/js/login.js"></script>
+<script src="/js/logout.js"></script>
