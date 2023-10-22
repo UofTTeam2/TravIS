@@ -23,19 +23,29 @@ Trip.init(
             primaryKey: true,
             autoIncrement: true,
         },
+
         title: {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        image: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        date: {
+
+        start_date: {
             type: DataTypes.DATEONLY,
             allowNull: true,
             defaultValue: DataTypes.NOW,
         },
+
+        end_date: {
+            type: DataTypes.DATEONLY,
+            allowNull: true,
+            defaultValue: DataTypes.NOW,
+        },
+
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+
         user_id: {
             type: DataTypes.INTEGER,
             references: {

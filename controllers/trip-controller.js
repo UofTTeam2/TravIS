@@ -1,39 +1,100 @@
-// Desc: This file will handle all the get routes for the dashboard
+/* eslint-disable indent */
+// Desc: This file will handle all the get routes for trips
 // =============================================================
 
 // Dependencies, Models
 // =============================================================
 const router = require('express').Router();
-const { Trip, User, TripSection, Message } = require('../models');
+const { Trip, TripSection, ItineraryItem } = require('../models');
 const loginAuth = require('../utils/auth');
 // =============================================================
 
-// Get one trip
+// Get one trip with all associated trip sections and itinerary items
 // =============================================================
-router.get('/:id', loginAuth, async (req, res) => {
+router.get('/view/:id', loginAuth, async (req, res) => {
     try {
-        const tripData = await Trip.findByPk(req.params.id, {
+        // Retrieve the trip with the specified ID and include its sections and items
+        const trip = await Trip.findByPk(req.params.id, {
             include: [
                 {
                     model: TripSection,
-                    attributes: ['id', 'title', 'date'],
-                },
-                {
-                    model: User,
-                    attributes: ['username'],
+                    as: 'sections',
+                    include: [
+                        {
+                            model: ItineraryItem,
+                            as: 'items',
+                        },
+                    ],
                 },
             ],
         });
 
-        const trip = tripData.get({ plain: true });
+        // Check if the trip exists
+        if (!trip) {
+            return res.status(404).json({ message: 'Trip not found' });
+        }
 
-        res.render('trip', {
-            trip,
-            logged_in: req.session.logged_in,
+        // Initialize the data structure
+        const responseData = {
+            id: trip.id,
+            title: trip.title,
+            start_date: trip.start_date,
+            end_date: trip.end_date,
+            image: trip.image,
+            sections: [],
+        };
+
+        // Iterate through sections and items to categorize them
+        trip.sections.forEach((section) => {
+            const categorizedItems = {
+                accommodationItems: [],
+                foodItems: [],
+                transportItems: [],
+                activityItems: [],
+                miscItems: [],
+            };
+
+            section.items.forEach((item) => {
+                switch (item.category) {
+                    case 'Accommodation':
+                        categorizedItems.accommodationItems.push(item);
+                        break;
+                    case 'Food':
+                        categorizedItems.foodItems.push(item);
+                        break;
+                    case 'Transportation':
+                        categorizedItems.transportItems.push(item);
+                        break;
+                    case 'Activities':
+                        categorizedItems.activityItems.push(item);
+                        break;
+                    default:
+                        categorizedItems.miscItems.push(item);
+                        break;
+                }
+            });
+
+            // Add the categorized items to the response
+            responseData.sections.push({
+                id: section.id,
+                title: section.title,
+                ...categorizedItems,
+            });
         });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+
+        // Send the response
+        res.render('view-itinerary', {
+            layout: 'main',
+            trip: responseData,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 // =============================================================
+
+// Export router
+// =============================================================
+module.exports = router;

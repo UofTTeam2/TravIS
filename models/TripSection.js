@@ -28,12 +28,6 @@ TripSection.init(
             allowNull: true,
         },
 
-        date: {
-            type: DataTypes.DATEONLY,
-            allowNull: true,
-            defaultValue: DataTypes.NOW,
-        },
-
         trip_id: {
             type: DataTypes.INTEGER,
             references: {
