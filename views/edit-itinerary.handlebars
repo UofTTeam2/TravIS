@@ -41,10 +41,12 @@
   <!-- button to switch to save data -->
   <button class = "save-itinerary-button" type = "submit">Save</button>
 
-  <!-- render a partial for each section of the trip -->
-  {{#each sections as |section|}}
-    {{> edit-section-details}}
-  {{/each}}
+  <div class = "trip-sections-container">
+    <!-- render a partial for each section of the trip -->
+    {{#each sections as |section|}}
+      {{> edit-section-details}}
+    {{/each}}
+  </div>
 
   <button class = "create-new-section-button">Create New Section</button>
 

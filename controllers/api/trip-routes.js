@@ -122,6 +122,10 @@ router.post('/create-section', async (req, res) => {
             //assign trip_id foreign key using req.body.trip_id
 
         //return the ID of the new section as a JSON response
+
+        //FOR (ETHAN'S) TESTING
+        console.log(req.body.trip_id);
+        res.status(200).json(Math.round(Math.random() * 1E4));
     } catch (err) {
         res.status(500).json(err);
     }
@@ -147,7 +151,7 @@ router.post('/create-item', async (req, res) => {
 
         //FOR (ETHAN'S) TESTING
         console.log(req.body.category);
-        console.log(req.body.section_id);
+        console.log(req.body.trip_section_id);
         res.status(200).json(Math.round(Math.random() * 1E2));
     } catch (err) {
         res.status(500).json(err);

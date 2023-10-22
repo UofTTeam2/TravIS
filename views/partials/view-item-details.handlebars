@@ -33,11 +33,6 @@
     <p class = "item-date-time">{{end_time}}</p>
   {{/if}}
 
-  <!-- if the item has an image attached, render it to the page -->
-  {{#if image}}
-    <img class = "item-image" src = "./images/multer-uploads/{{image}}">
-  {{/if}}
-
   <!-- if the item has a price attached, render it to the page -->
   {{#if expense}}
     <h4>Cost:</h4>
@@ -48,5 +43,10 @@
   {{#if notes}}
     <h4>Notes:</h4>
     <p class = "item-notes">{{notes}}</p>
+  {{/if}}
+
+  <!-- if the item has an image attached, render it to the page -->
+  {{#if image}}
+    <img class = "item-image" src = "./images/multer-uploads/{{image}}">
   {{/if}}
 </div>

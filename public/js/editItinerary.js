@@ -1,10 +1,11 @@
 
 //waits until window is finished loading before running main code
 window.onload = () => {
-    let allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
     const multerSubmissionForm = $('.multer-submission-form');
     const saveItineraryButton = $('.save-itinerary-button');
-    const addItineraryItemButtons = $('.add-itinerary-item-button');
+    const addTripSectionButton = $('.create-new-section-button');
+    let addItineraryItemButtons = $('.add-itinerary-item-button');
+    let allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
 
     //function to render a preview image of a file chosen by a user before it is uploaded to the database
     function renderPreviewImage() {
@@ -144,7 +145,7 @@ window.onload = () => {
             const notes = $(itineraryItems[itineraryItem]).children('.item-notes');
             const image = determineImage();
 
-            console.log('file #' + [itineraryItem] + ' name: ' + image);
+            console.log('itinerary file #' + [itineraryItem] + ' name: ' + image);
 
             //construct a new itinerary item object based on the current itinerary item's data
             const currentItineraryItemData = {
@@ -175,9 +176,88 @@ window.onload = () => {
         });
     }
 
+    async function addTripSection() {
+        const trip_id = $(this).siblings('.trip-title-container').attr('data-id');
+        console.log("trip ID: " + trip_id);
+
+        const newSectionData = {
+            trip_id: trip_id
+        };
+
+        let sectionID;
+
+        try {
+            const response = await fetch('/api/trips/create-section', {
+                method: 'POST',
+                body: JSON.stringify(newSectionData),
+                headers: {'Content-Type': 'application/json'},
+            });
+            sectionID = await response.json();
+        } catch (err) {
+            console.log(err);
+        }
+
+        const newSectionHTML = `
+        <div class = "itinerary-section-container">
+
+            <button class = "delete-itinerary-section-button">Delete Section</button>
+
+            <div class = "section-title-container">
+
+                <input class = "section-title-input" data-id = ${sectionID}>
+
+            </div>
+
+            <div class = "trip-categories-container">
+            
+                <div class = "trip-section-category">
+
+                    <h3 class = "item-category-title">Transport</h3>
+                    <button class = "add-itinerary-item-button">+</button>
+
+                </div>
+                
+                <div class = "trip-section-category">
+
+                    <h3 class = "item-category-title">Accommodation</h3>
+                    <button class = "add-itinerary-item-button">+</button>
+
+                </div>
+
+                <div class = "trip-section-category">
+
+                    <h3 class = "item-category-title">Food</h3>
+                    <button class = "add-itinerary-item-button">+</button>
+
+                </div>
+
+                <div class = "trip-section-category">
+
+                    <h3 class = "item-category-title">Activities</h3>
+                    <button class = "add-itinerary-item-button">+</button>
+
+                </div>
+
+                <div class = "trip-section-category">
+
+                    <h3 class = "item-category-title">Misc</h3>
+                    <button class = "add-itinerary-item-button">+</button>
+
+                </div>
+            </div>
+        </div>`
+
+        //adds new itinerary item to the current category
+        $(this).siblings('.trip-sections-container').append(newSectionHTML);
+
+        //updates add itinerary items button reference to add event listener functionality to new section
+        let addItineraryItemButtons = $('.add-itinerary-item-button');
+        addItineraryItemButtons.on('click', addItineraryItem);
+    }
+
     async function addItineraryItem() {
         //retrieves the name of the category the user is attempting to add an itinerary item to
-        const itineraryCategory = $($(this).siblings('.item-category-title')).text();
+        const itineraryCategory = $(this).siblings('.item-category-title').text();
         
         let category;
 
@@ -207,7 +287,7 @@ window.onload = () => {
 
         const newItemData = {
             category: category,
-            section_id: section_id
+            trip_section_id: section_id
         };
         
         console.log(newItemData);
@@ -287,34 +367,10 @@ window.onload = () => {
     multerSubmissionForm.on('submit', (event) => event.preventDefault());
 
     saveItineraryButton.on('click', saveItineraryData);
-
     addItineraryItemButtons.on('click', addItineraryItem);
+    addTripSectionButton.on('click', addTripSection);
 
     //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
     $('.timepicker').timepicker();
     $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 };
-
- //retrieve all SubTrip items
-    //create new, empty array (e.g. ARRAY_1, will hold all trip sections (SubTrip) after data is organized)
-    //start a for / forEach loop to run on each SubTrip item
-        //create new, empty array (e.g. ARRAY_2, will hold all categories of the current SubTrip)
-        //start a for loop that runs 5 times total
-            //create a new, empty array (e.g. ARRAY_3, will hold all SubCat items of the current category)
-            //retrieve all SubCat that belong to the 'Accommodation' category, which also belong to the current SubTrip
-            //start a for / forEach loop to run on each SubCat item
-                //constructs a new object based on the properties of the current SubCat item (title, link, image, expense, notes, etc.)
-                //appends new object to ARRAY_3
-                //repeats until an object has been created for each SubCat item in the current category
-            //appends ARRAY_3 to ARRAY_2 (i.e. an array of objects containing all items in the 'Accommodation' category has been added to ARRAY_2)
-            //repeats four more times, creating an ARRAY_3 of objects for all items in the 'Activity', 'Transportation', 'Restaurant', and 'Misc'
-            //categories, and appending them to ARRAY_2
-        //after the above for loop completes, ARRAY_2 should contain five objects; one for each category, each of which contains objects for
-        //each itinerary item (SubCat)
-            //note that several fields / items / categories may have no data; this is intended, as any category / item / field that is missing will
-            //simply not be displayed by handlebars in the view page, and will be displayed as an empty input the user can fill out in the edit page
-        //appends ARRAY_2 to ARRAY_1 (i.e an array of objects containing all categories of the current SubTrip, each of which contains objects for each itinerary item belonging to that category, has been added to ARRAY_1)
-        //repeats until an ARRAY_2 has been created for each SubTrip of the current Trip
-    //ARRAY_1 (contains all SubTrip objects) should now contain an ARRAY_2 (contains all category objects for one SubTrip) for each SubTrip
-        //each ARRAY_2 should now contain five ARRAY_3's (contains all SubCat items, should have exactly five; one for accommodation, activities, transportation, restaurant, and misc)
-            //each ARRAY_3 should now contain a series of objects; one for each itinerary item (SubCat) that belongs to the appropriate category (i.e. the first ARRAY_3 contains objects for all Accommodation SubCat items, the second contains objects for all Activity SubCat items, etc.)*/

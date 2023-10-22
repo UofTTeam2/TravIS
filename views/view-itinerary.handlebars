@@ -1,26 +1,29 @@
 <!-- placeholder for trip title -->
-{{#if title}}
-  <h1 class = "trip-title-header" data-id = "{{id}}">{{title}}</h1>
-{{/if}}
-
-{{#if start_date}}
-  {{#if end_date}}
-    <h2 class = "trip-date-header">{{start_date}} -> {{end_date}}</h2>
-    {{else}}
-      <h2 class = "trip-date-header">Start: {{start_date}}</h2>
+<div class = "trip-title-container" data-id = "{{id}}">
+  {{#if title}}
+    <h1 class = "trip-title-header">{{title}}</h1>
   {{/if}}
-  {{else}}
+
+  {{#if start_date}}
     {{#if end_date}}
-      <h2 class = "trip-date-header">End: {{end_date}}</h2>
+      <h2 class = "trip-date-header">{{start_date}} -> {{end_date}}</h2>
+      {{else}}
+        <h2 class = "trip-date-header">Start: {{start_date}}</h2>
     {{/if}}
-{{/if}}
+    {{else}}
+      {{#if end_date}}
+        <h2 class = "trip-date-header">End: {{end_date}}</h2>
+      {{/if}}
+  {{/if}}
 
-<h2><a href = "https://pbs.twimg.com/media/FkK0T8cUAAELhOI?format=jpg&name=medium">See Expense Summary Here! (I don't know if we're implementing this by linking to a separate page, or embedding the chart directly here; this is a placeholder)</a></h2>
-
+  <h2><a href = "https://pbs.twimg.com/media/FkK0T8cUAAELhOI?format=jpg&name=medium">See Expense Summary Here! (I don't know if we're implementing this by linking to a separate page, or embedding the chart directly here; this is a placeholder)</a></h2>
+</div>
 <!-- button to switch to edit mode -->
 <button class = "edit-itinerary-button">Edit</button>
 
-<!-- render a partial for each section of the trip -->
-{{#each sections as |section|}}
-  {{> view-section-details}}
-{{/each}}
+<div class = "trip-sections-container"></div>
+  <!-- render a partial for each section of the trip -->
+  {{#each sections as |section|}}
+    {{> view-section-details}}
+  {{/each}}
+ </div>
