@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
             //define poiData as the data from the API call (array of objects)
             const poiData = data.data;
             // console.log(poiData);
-            res.status(200).send(poiData); //send data to client
+            res.status(200).render('poi', { poiData}); //render to page using handlebars
             // res.render('poi', { poiData: poiData }); //render to page using handlebars
         } else {
             console.log('Error: no latitude/longitude data');
@@ -53,7 +53,7 @@ router.get('/', async (req, res) => {
 
 //Get tours and activities
 //======================================================================
-router.get('/', async (req, res) => {
+router.get('/activities', async (req, res) => {
 
     try{
         //get latitude and longitude of user's location first before making API call
@@ -68,7 +68,7 @@ router.get('/', async (req, res) => {
             //define toDoData as the data from the API call (array of objects)
             const toDoData = data.data;
             // console.log(toDoData);
-            res.status(200).send(toDoData); //send data to client
+            res.status(200).render('poi', { toDoData }); //render to page using handlebars
             // res.render('poi', { toDoData: toDOData }); //render to page using handlebars
         } else {
             console.log('Error: no latitude/longitude data');
@@ -82,7 +82,7 @@ router.get('/', async (req, res) => {
 
 //Get safety score
 //======================================================================
-router.get('/', async (req, res) => {
+router.get('/safety', async (req, res) => {
 
     try{
         //get latitude and longitude of user's location first before making API call
@@ -97,7 +97,7 @@ router.get('/', async (req, res) => {
             //define safeData as the data from the API call (array of objects)
             const safeData = data.data;
             // console.log(safeData);
-            res.status(200).send(safeData); //send data to client
+            res.status(200).render('poi', { safeData }); //render to page using handlebars
             // res.render('poi', { safeData: safeData }); //render to page using handlebars
         } else {
             console.log('Error: no latitude/longitude data');
@@ -111,7 +111,7 @@ router.get('/', async (req, res) => {
 
 //Get location score
 //======================================================================
-router.get('/', async (req, res) => {
+router.get('/location', async (req, res) => {
 
     try{
         //get latitude and longitude of user's location first before making API call
@@ -126,7 +126,7 @@ router.get('/', async (req, res) => {
             //define locationData as the data from the API call (array of objects)
             const locationData = data.data;
             // console.log(locationData);
-            res.status(200).send(locationData); //send data to client
+            res.status(200).render('poi', { locationData }); //send data to client
             // res.render('poi', { locationData: locagtionData }); //render to page using handlebars
         } else {
             console.log('Error: no latitude/longitude data');
@@ -147,7 +147,7 @@ router.get('/', async (req, res) => {
         const safeData = await safeScore();
         const locationData = await locationScore();
         if (poiData && toDoData && safeData && locationData) {
-            res.render('poi', { poiData, toDoData, safeData, locationData });
+            res.render('poi', { poiData, toDoData, safeData, locationData, city });
         } else {
             console.log('Error: no data received');
             res.status(400).json({ error: 'No data received' });

@@ -10,7 +10,7 @@ const city = document.getElementById('cityInput').value;
 
 document.getElementById('searchForm').addEventListener('submit', async function(event) {
     event.preventDefault();
-    const city = document.getElementById('cityInput').value;
+    // const city = document.getElementById('cityInput').value;
     // console.log(city);
     const poiData = await getPOI(city);
     const toDoData = await thingsToDo(city);
