@@ -88,8 +88,6 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             trip: responseData,
             loggedIn: req.session.loggedIn,
         });
-
-        res.redirect('/trips/view/');
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -176,8 +174,6 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
             trip: responseData,
             loggedIn: req.session.loggedIn,
         });
-
-        res.redirect('/trips/edit/');
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -189,11 +185,32 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
 // =============================================================
 router.get('/create-trip', loginAuth, async (req, res) => {
     try {
+        // create a new trip with empty sections and items
+        const trip = await Trip.create({
+            title: '',
+            start_date: '',
+            end_date: '',
+            image: '',
+        });
+
+        // retrive the id of the newly created trip
+        const tripId = trip.id;
+
+        // Initialize the data structure
+        const responseData = {
+            id: tripId,
+            title: trip.title,
+            start_date: trip.start_date,
+            end_date: trip.end_date,
+            image: trip.image,
+            sections: [],
+        };
+
         res.render('edit-itinerary', {
             layout: 'main',
+            trip: responseData,
             loggedIn: req.session.loggedIn,
         });
-        res.redirect('/trips/edit/');
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });

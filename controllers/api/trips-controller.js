@@ -124,7 +124,7 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
                 sections,
                 loggedIn: req.session.loggedIn,
             });
-            res.redirect(`/trips/view/${req.params.id}`);
+            // res.redirect(`/trips/view/${req.params.id}`);
         });
     } catch (error) {
         console.error(error);
