@@ -201,6 +201,42 @@ router.post('/create-item', loginAuth, async (req, res) => {
 });
 // =============================================================
 
+// Delete a section
+// =============================================================
+router.delete('/delete-section', loginAuth, async (req, res) => {
+    try {
+        const sectionId = req.body.id;
+
+        await TripSection.destroy({
+            where: { id: sectionId },
+        });
+
+        res.status(200).json({ message: 'Section deleted' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// =============================================================
+
+// Delete an itinerary item
+// =============================================================
+router.delete('/delete-item', loginAuth, async (req, res) => {
+    try {
+        const itemId = req.body.id;
+
+        await ItineraryItem.destroy({
+            where: { id: itemId },
+        });
+
+        res.status(200).json({ message: 'Item deleted' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// =============================================================
+
 // Export the router
 // =============================================================
 module.exports = router;
