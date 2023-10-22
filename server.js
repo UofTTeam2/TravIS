@@ -77,7 +77,7 @@ sequelize.sync({force: false}).then(() => {
 
 /* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS BELOW, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
 
-
+/*
 const {id, title, start_date, end_date, image, sections} = require('./seeds/sampleItineraryDataGET.js');
 
 app.get('/', async (req, res) => {
@@ -88,6 +88,6 @@ app.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
+*/
 
 /* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS ABOVE, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
