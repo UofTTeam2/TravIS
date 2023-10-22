@@ -9,20 +9,23 @@
 // =============================================================
 const express = require('express');
 const sequelize = require('./config/connection');
-const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+//const session = require('express-session');
+//const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const path = require('path');
 const exphbs = require('express-handlebars');
 // load env variables
 require('dotenv').config();
 //==============================================================
 
-//importing routes and custom helpers
+//importing routes, Session model and custom middlewares
 // =============================================================
 const routes = require('./controllers');
+//const Session = require('./models/Session');
 //const helpers = require('./utils/helpers');
 //initializes handlebars template engine
 const hbs = exphbs.create({ /*helpers*/ });
+// import dataParser middleware
+const dataParser = require('./utils/dataParser');
 //==============================================================
 
 //defines express application and PORT
@@ -33,7 +36,7 @@ const PORT = process.env.PORT || 3001;
 
 // Access the session secret from the environment variables
 // =============================================================
-const sessionSecret = process.env.SESSION_SECRET;
+/*const sessionSecret = process.env.SESSION_SECRET;
 
 //defining express session
 const sess = {
@@ -46,10 +49,11 @@ const sess = {
     saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize,
+        table: 'Session', // Name of the database table to store sessions
     }),
 };
 
-app.use(session(sess));
+app.use(session(sess));*/
 //==============================================================
 
 // Registering handlebars as the template engine of choice
@@ -58,10 +62,9 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 //==============================================================
 
-// Sets up the Express app to handle data parsing
+// Sets up the custom middleware & Express app to handle data parsing
 // =============================================================
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(dataParser);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 //==============================================================
@@ -74,7 +77,7 @@ sequelize.sync({force: false}).then(() => {
 
 /* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS BELOW, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
 
-/*
+
 const {id, title, start_date, end_date, image, sections} = require('./seeds/sampleItineraryDataGET.js');
 
 app.get('/', async (req, res) => {
@@ -85,6 +88,6 @@ app.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
-*/
+
 
 /* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS ABOVE, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
