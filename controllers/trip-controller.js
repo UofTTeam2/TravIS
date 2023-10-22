@@ -183,6 +183,23 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+// =============================================================
+
+// Get route for edit page when the user clicks on the create new trip button
+// =============================================================
+router.get('/create-trip', loginAuth, async (req, res) => {
+    try {
+        res.render('edit-itinerary', {
+            layout: 'main',
+            loggedIn: req.session.loggedIn,
+        });
+        res.redirect('/trips/edit/');
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// =============================================================
 
 // Export router
 // =============================================================
