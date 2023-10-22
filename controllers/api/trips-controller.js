@@ -8,11 +8,6 @@ const { Trip, TripSection, ItineraryItem } = require('../models');
 const loginAuth = require('../utils/auth');
 // =============================================================
 
-// Create a new trip
-// =============================================================
-router.post('/create-trip', loginAuth, async (req, res) => {});
-// =============================================================
-
 // Update a trip
 // =============================================================
 router.put('/edit/:id', loginAuth, async (req, res) => {
