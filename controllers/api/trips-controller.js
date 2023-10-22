@@ -103,24 +103,46 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
             })),
         };
 
-        // Save the session and render the page
-        req.session.save(() => {
-            // Render the 'edit-itinerary' page with responseData
-            const { id, title, start_date, end_date, image, sections } =
-                responseData;
-            // Redirect to the edit page for the trip
-            res.render('view-itinerary', {
-                layout: 'main',
-                id,
-                title,
-                start_date,
-                end_date,
-                image,
-                sections,
-                loggedIn: req.session.loggedIn,
-            });
-            // res.redirect(`/trips/view/${req.params.id}`);
+        // deconstruct responseData
+        const { id, title, start_date, end_date, image, sections } =
+            responseData;
+        // Render the 'edit-itinerary' page with responseData
+        res.render('view-itinerary', {
+            layout: 'main',
+            id,
+            title,
+            start_date,
+            end_date,
+            image,
+            sections,
+            loggedIn: req.session.loggedIn,
         });
+        // res.redirect(`/trips/view/${req.params.id}`);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// =============================================================
+
+// Create a section for a trip
+// =============================================================
+router.post('/create-section, loginAuth', async (req, res) => {
+    try {
+        const { trip_id, title } = req.body;
+
+        const newSection = await TripSection.create({
+            trip_id: trip_id,
+            title,
+        });
+
+        const responseData = {
+            id: newSection.id,
+            title: newSection.title,
+            items: [],
+        };
+
+        res.status(200).json(responseData);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
