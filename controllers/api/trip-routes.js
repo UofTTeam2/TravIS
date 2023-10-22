@@ -158,12 +158,23 @@ router.post('/create-item', async (req, res) => {
     }
 });
 
+router.delete('/delete-item', async (req, res) => {
+    try {
+        console.log('deleting item with id: ' + req.body.id);
+        res.status(200).json(req.body.id);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 // PUT route for updating trip data in the database
 // this route will be used when a user clicks the 'save' button
 // while on itinerary edit page
 // =============================================================
-router.put('/edit', async (req, res) => {
+router.put('/edit/:id', async (req, res) => {
     try {
+
+        console.log("trip_id: " + req.params.id);
         //included in the request body will be three objects;
         //titleData, sectionData, and itineraryData
         //titleData will include;

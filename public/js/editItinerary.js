@@ -4,6 +4,8 @@ window.onload = () => {
     const multerSubmissionForm = $('.multer-submission-form');
     const saveItineraryButton = $('.save-itinerary-button');
     const addTripSectionButton = $('.create-new-section-button');
+    let deleteSectionButtons = $('.delete-itinerary-section-button');
+    let deleteItineraryItemButtons = $('.delete-itinerary-item-button');
     let addItineraryItemButtons = $('.add-itinerary-item-button');
     let allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
 
@@ -161,12 +163,53 @@ window.onload = () => {
         console.log(sectionData);
         console.log(itineraryData);
 
+        const fetchAddress = `/api/trips/edit/${tripID}`;
+
+        console.log(fetchAddress);
+
         //send the above title, section, & itinerary item data to the database for processing
-        await fetch('/api/trips/edit', {
+        await fetch(fetchAddress, {
             method: 'PUT',
             body: JSON.stringify({titleData, sectionData, itineraryData}),
             headers: {'Content-Type': 'application/json'},
         });
+    }
+
+    async function deleteItineraryItem() {
+        const itemID = $(this).parent().attr('data-id');
+
+        const itemData = {
+            id: itemID
+        };
+
+        try {
+            await fetch('/api/trips/delete-item', {
+                method: 'DELETE',
+                body: JSON.stringify(itemData),
+                headers: {'Content-Type': 'application/json'},
+            });
+        } catch (err) {
+            console.log(err);
+        }
+
+        //removes parent itinerary item
+        $(this).parent().remove();
+
+        //updates deleteItineraryItemButtons & allFileInputs references to account for the deleted itinerary item
+        deleteItineraryItemButtons = $('.delete-itinerary-item-button');
+        allFileInputs = $('.user-uploaded-image');
+
+        console.log(allFileInputs.length);
+    }
+
+    async function deleteTripSection() {
+        //
+
+        //updates deleteSectionButtons & addItineraryItemButtons references to account for the deleted section
+        deleteSectionButtons = $('.delete-itinerary-section-button');
+        addItineraryItemButtons = $('.add-itinerary-item-button');
+
+        console.log(addItineraryItemButtons.length);
     }
 
     async function addItineraryItem() {
@@ -258,9 +301,11 @@ window.onload = () => {
         //adds new itinerary item to the current category
         $(this).parent().append(newItineraryItemHTML);
 
-        //updates file inputs reference to add event listener + datepicker & timepicker functionality to new itinerary item
+        //updates file inputs & delete itinerary item button references to add event listener + datepicker & timepicker functionality to new itinerary item
         allFileInputs = $('.user-uploaded-image');
         allFileInputs.on('change', renderPreviewImage);
+        deleteItineraryItemButtons = $('.delete-itinerary-item-button');
+        deleteItineraryItemButtons.on('click', deleteItineraryItem);
         $('.timepicker').timepicker();
         $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
     }
@@ -339,8 +384,10 @@ window.onload = () => {
         //adds new itinerary item to the current category
         $(this).siblings('.trip-sections-container').append(newSectionHTML);
 
-        //updates add itinerary items button reference to add event listener functionality to new section
-        let addItineraryItemButtons = $('.add-itinerary-item-button');
+        //updates 'add itinerary items' & 'delete trip section' button references to add event listener functionality to new section
+        deleteSectionButtons = $('.delete-itinerary-section-button');
+        deleteSectionButtons.on('click', deleteTripSection);
+        addItineraryItemButtons = $('.add-itinerary-item-button');
         addItineraryItemButtons.on('click', addItineraryItem);
     }
 
@@ -352,7 +399,9 @@ window.onload = () => {
 
     saveItineraryButton.on('click', saveItineraryData);
     addItineraryItemButtons.on('click', addItineraryItem);
+    deleteItineraryItemButtons.on('click', deleteItineraryItem);
     addTripSectionButton.on('click', addTripSection);
+    deleteSectionButtons.on('click', deleteTripSection);
 
     //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
     $('.timepicker').timepicker();
