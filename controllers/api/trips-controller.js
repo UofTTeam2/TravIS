@@ -4,8 +4,35 @@
 // Dependencies, Models
 // =============================================================
 const router = require('express').Router();
+const multer = require('multer');
 const { Trip, TripSection, ItineraryItem } = require('../models');
 const loginAuth = require('../utils/auth');
+// =============================================================
+
+// Setting up folder to receive and format uploads via multer
+// =============================================================
+const storage = multer.diskStorage({
+    destination: './public/images/multer-uploads',
+    filename: function (req, file, cb) {
+        const fileSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+        const fileName = file.fieldname + '-' + fileSuffix;
+        file.originalname = fileName;
+        cb(null, fileName);
+    },
+});
+const uploadFolder = multer({ storage: storage });
+// =============================================================
+
+// POST route for multer image uploads
+// =============================================================
+router.post('/image', uploadFolder.array('image-upload'), async (req, res) => {
+    try {
+        const fileNames = req.files.map((file) => file.originalname);
+        res.status(200).json(fileNames);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 // =============================================================
 
 // Update a trip
@@ -127,7 +154,7 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
 
 // Create a section for a trip
 // =============================================================
-router.post('/create-section, loginAuth', async (req, res) => {
+router.post('/create-section', loginAuth, async (req, res) => {
     try {
         const { trip_id, title } = req.body;
 
@@ -140,6 +167,30 @@ router.post('/create-section, loginAuth', async (req, res) => {
             id: newSection.id,
             title: newSection.title,
             items: [],
+        };
+
+        res.status(200).json(responseData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// =============================================================
+
+// Create an itinerary item
+// =============================================================
+router.post('/create-item', loginAuth, async (req, res) => {
+    try {
+        const { section_id, category } = req.body;
+
+        const newItem = await ItineraryItem.create({
+            section_id,
+            category,
+        });
+
+        const responseData = {
+            section_id: newItem.section_id,
+            category: newItem.category,
         };
 
         res.status(200).json(responseData);
