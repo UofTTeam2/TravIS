@@ -313,19 +313,24 @@ window.onload = () => {
 
         //adds new itinerary item to the current category
         const itemCategory = $(this).parent();
-
         itemCategory.append(newItineraryItemHTML);
-        const newItineraryItem = itemCategory.children().last();
-        console.log('new item:');
-        console.log(newItineraryItem);
 
-        //updates file inputs & delete itinerary item button references to add event listener + datepicker & timepicker functionality to new itinerary item
-        /*allFileInputs = $('.user-uploaded-image');
-        allFileInputs.on('change', renderPreviewImage);
+        //gets reference to the newly-added itinerary item
+        const newItineraryItem = itemCategory.children().last();
+
+        //updates references to file inputs & delete itinerary item buttons to account for new itinerary item
+        allFileInputs = $('.user-uploaded-image');
         deleteItineraryItemButtons = $('.delete-itinerary-item-button');
-        deleteItineraryItemButtons.on('click', deleteItineraryItem);
+
+        //add event listener functionality for previewing uploaded files & deleting itinerary items to newly-created button & input
+        const newFileInput = newItineraryItem.find('.user-uploaded-image');
+        const newDeleteItineraryItemButton = newItineraryItem.find('.delete-itinerary-item-button');
+        newFileInput.on('change', renderPreviewImage);
+        newDeleteItineraryItemButton.on('click', deleteItineraryItem);
+
+        //reapplies datepicker & timepicker functionality such that it applies to newly-created elements
         $('.timepicker').timepicker();
-        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});*/
+        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
     }
 
     async function addTripSection() {
