@@ -236,6 +236,7 @@ window.onload = () => {
         addItineraryItemButtons = $('.add-itinerary-item-button');
 
         console.log(addItineraryItemButtons.length);
+        console.log(deleteSectionButtons.length);
     }
 
     async function addItineraryItem() {
@@ -265,7 +266,7 @@ window.onload = () => {
             console.log(err);
         }
 
-        newItineraryItemHTML = `
+        const newItineraryItemHTML = `
         <div class = "itinerary-item-container" data-id = ${itemID}>
 
             <button class = "delete-itinerary-item-button">Delete Item</button>
@@ -311,15 +312,20 @@ window.onload = () => {
         </div>`;
 
         //adds new itinerary item to the current category
-        $(this).parent().append(newItineraryItemHTML);
+        const itemCategory = $(this).parent();
+
+        itemCategory.append(newItineraryItemHTML);
+        const newItineraryItem = itemCategory.children().last();
+        console.log('new item:');
+        console.log(newItineraryItem);
 
         //updates file inputs & delete itinerary item button references to add event listener + datepicker & timepicker functionality to new itinerary item
-        allFileInputs = $('.user-uploaded-image');
+        /*allFileInputs = $('.user-uploaded-image');
         allFileInputs.on('change', renderPreviewImage);
         deleteItineraryItemButtons = $('.delete-itinerary-item-button');
         deleteItineraryItemButtons.on('click', deleteItineraryItem);
         $('.timepicker').timepicker();
-        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
+        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});*/
     }
 
     async function addTripSection() {
@@ -394,13 +400,21 @@ window.onload = () => {
         </div>`;
 
         //adds new itinerary item to the current category
-        $(this).siblings('.trip-sections-container').append(newSectionHTML);
+        const sectionsContainer = $(this).siblings('.trip-sections-container');
+        sectionsContainer.append(newSectionHTML);
 
-        //updates 'add itinerary items' & 'delete trip section' button references to add event listener functionality to new section
+        //updates 'add itinerary items' & 'delete trip section' button references to include new section
         deleteSectionButtons = $('.delete-itinerary-section-button');
-        deleteSectionButtons.on('click', deleteTripSection);
         addItineraryItemButtons = $('.add-itinerary-item-button');
-        addItineraryItemButtons.on('click', addItineraryItem);
+
+        //gets a reference to the newly-added section
+        const newSection = sectionsContainer.children().last();
+
+        //adds event listener functionality to new section buttons
+        const newAddItineraryItemButtons = newSection.find('.add-itinerary-item-button');
+        const newDeleteSectionButton = newSection.find('.delete-itinerary-section-button');
+        newDeleteSectionButton.on('click', deleteTripSection);
+        newAddItineraryItemButtons.on('click', addItineraryItem);
     }
 
     //event listener for when a change is made using the input a user uses to upload an image file
