@@ -41,11 +41,16 @@ const loginHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/');
+            const responseData = await response.json();
+            const message = responseData.message.value;
+            displayErrorModal(message);
+            setTimeout(() => {
+                document.location.replace('/');
+            }, 3000);
         } else {
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.errors[0].message;
+            const errorMessage = errorData.message.value;
             displayErrorModal(errorMessage);
         }
     }
@@ -66,11 +71,16 @@ const signupHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/');
+            const responseData = await response.json();
+            const message = responseData.message.value;
+            displayErrorModal(message);
+            setTimeout(() => {
+                document.location.replace('/');
+            }, 3000);
         } else {
             //adding an error message if the user's signup is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.errors[0].message;
+            const errorMessage = errorData.message.value;
             displayErrorModal(errorMessage);
         }
     }
@@ -87,11 +97,6 @@ const getLogin = async () => {
 
     if (response.ok) {
         document.location.replace('/login');
-    } else {
-        //adding an error message if the user's signup is unsuccessful
-        const errorData = await response.json();
-        const errorMessage = errorData.errors[0].message;
-        displayErrorModal(errorMessage);
     }
 };
 
@@ -103,11 +108,6 @@ const getSignup = async () => {
 
     if (response.ok) {
         document.location.replace('/signup');
-    } else {
-        //adding an error message if the user's signup is unsuccessful
-        const errorData = await response.json();
-        const errorMessage = errorData.errors[0].message;
-        displayErrorModal(errorMessage);
     }
 };
 // =========================================================
