@@ -8,6 +8,8 @@ window.onload = () => {
     let deleteItineraryItemButtons = $('.delete-itinerary-item-button');
     let addItineraryItemButtons = $('.add-itinerary-item-button');
     let allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
+    let removeChosenImageButton = $('.clear-preview-image-button');
+    let removeCurrentImageButton = $('.clear-current-image-button');
 
     //function to render a preview image of a file chosen by a user before it is uploaded to the database
     function renderPreviewImage() {
@@ -239,6 +241,15 @@ window.onload = () => {
         console.log(deleteSectionButtons.length);
     }
 
+    function removeChosenImage() {
+        $(this).siblings('img').attr('src', './images/no-image-stock-photo.png');
+        $(this).parent().parent().siblings('.user-uploaded-image').val('');
+    }
+
+    function removeCurrentImage() {
+        //
+    }
+
     async function addItineraryItem() {
         //retrieves the name of the category the user is attempting to add an itinerary item to
         const itineraryCategory = $(this).siblings('.item-category-title').text();
@@ -322,10 +333,12 @@ window.onload = () => {
         allFileInputs = $('.user-uploaded-image');
         deleteItineraryItemButtons = $('.delete-itinerary-item-button');
 
-        //add event listener functionality for previewing uploaded files & deleting itinerary items to newly-created button & input
+        //add appropriate event listeners to newly-created itinerary item elements
         const newFileInput = newItineraryItem.find('.user-uploaded-image');
+        const newRemoveChosenImageButton = newItineraryItem.find('.clear-preview-image-button');
         const newDeleteItineraryItemButton = newItineraryItem.find('.delete-itinerary-item-button');
         newFileInput.on('change', renderPreviewImage);
+        newRemoveChosenImageButton.on('click', removeChosenImage);
         newDeleteItineraryItemButton.on('click', deleteItineraryItem);
 
         //reapplies datepicker & timepicker functionality such that it applies to newly-created elements
@@ -433,6 +446,8 @@ window.onload = () => {
     deleteItineraryItemButtons.on('click', deleteItineraryItem);
     addTripSectionButton.on('click', addTripSection);
     deleteSectionButtons.on('click', deleteTripSection);
+    removeChosenImageButton.on('click', removeChosenImage);
+    removeCurrentImageButton.on('click', removeCurrentImage);
 
     //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
     $('.timepicker').timepicker();
