@@ -247,7 +247,7 @@ window.onload = () => {
     }
 
     function removeCurrentImage() {
-        //
+        $(this).parent().remove();
     }
 
     async function addItineraryItem() {
