@@ -31,6 +31,13 @@ window.onload = () => {
         });
     }
 
+    //checks each file input to see if there is already an image attached (i.e. the user attached an image & refreshed the page)
+    allFileInputs.each(function() {
+        if (this.files[0]) {
+            renderPreviewImage.call(this);
+        }
+    });
+
     async function saveItineraryData() {
         let allFileUploads = [];
         let formData = new FormData();
