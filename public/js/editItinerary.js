@@ -3,6 +3,9 @@
 window.onload = () => {
     const multerSubmissionForm = $('.multer-submission-form');
     const saveItineraryButton = $('.save-itinerary-button');
+    const confirmationModal = $('.confirmation-modal');
+    const confirmationYesButton = $('.confirmation-yes-button');
+    const confirmationNoButton = $('.confirmation-no-button');
     const addTripSectionButton = $('.create-new-section-button');
     let deleteSectionButtons = $('.delete-itinerary-section-button');
     let deleteItineraryItemButtons = $('.delete-itinerary-item-button');
@@ -32,6 +35,7 @@ window.onload = () => {
     }
 
     //checks each file input to see if there is already an image attached (i.e. the user attached an image & refreshed the page)
+    //note; this only applies to Firefox & similar browsers; on Chrome & the like, all attached files are automatically cleared
     allFileInputs.each(function() {
         if (this.files[0]) {
             renderPreviewImage.call(this);
@@ -214,8 +218,8 @@ window.onload = () => {
         window.location.pathname = redirectAddress;
     }
 
-    async function deleteItineraryItem() {
-        const itemID = $(this).parent().attr('data-id');
+    async function deleteItineraryItem(item) {
+        const itemID = $(item).parent().attr('data-id');
 
         const itemData = {
             id: itemID
@@ -232,7 +236,10 @@ window.onload = () => {
         }
 
         //removes parent itinerary item
-        $(this).parent().remove();
+        $(item).parent().remove();
+
+        //hides deletion confirmation modal
+        confirmationModal.attr('style', 'display: none');
 
         //updates deleteItineraryItemButtons & allFileInputs references to account for the deleted itinerary item
         deleteItineraryItemButtons = $('.delete-itinerary-item-button');
@@ -241,13 +248,13 @@ window.onload = () => {
         console.log(allFileInputs.length);
     }
 
-    async function deleteTripSection() {
-        const sectionID = $(this).siblings('.section-title-container').children().attr('data-id');
+    async function deleteTripSection(section) {
+        const sectionID = $(section).siblings('.section-title-container').children().attr('data-id');
 
-        console.log(this);
-        console.log($(this).siblings('.section-title-container'));
-        console.log($(this).siblings('.section-title-container').children());
-        console.log($(this).parent()[0]);
+        console.log(section);
+        console.log($(section).siblings('.section-title-container'));
+        console.log($(section).siblings('.section-title-container').children());
+        console.log($(section).parent()[0]);
 
         console.log(sectionID);
 
@@ -268,7 +275,10 @@ window.onload = () => {
         }
 
         //removes parent section block
-        $(this).parent().remove();
+        $(section).parent().remove();
+
+        //hides deletion confirmation modal
+        confirmationModal.attr('style', 'display: none');
 
         //updates deleteSectionButtons & addItineraryItemButtons references to account for the deleted section
         deleteSectionButtons = $('.delete-itinerary-section-button');
@@ -276,6 +286,26 @@ window.onload = () => {
 
         console.log(addItineraryItemButtons.length);
         console.log(deleteSectionButtons.length);
+    }
+
+    function openDeletionModal(objectType, object) {
+        //removes any already-existing event listeners from modal's 'Yes' button
+        confirmationYesButton.off();
+
+        if (objectType === 'item') {
+            confirmationYesButton.on('click', function() {
+                deleteItineraryItem(object);
+            });
+        } else {
+            confirmationYesButton.on('click', function() {
+                deleteTripSection(object);
+            });
+        }
+
+        confirmationModal.attr('style', 'display: block');
+        console.log(objectType);
+        console.log(object);
+        console.log(sessionStorage);
     }
 
     function removeChosenImage() {
@@ -480,11 +510,21 @@ window.onload = () => {
 
     saveItineraryButton.on('click', saveItineraryData);
     addItineraryItemButtons.on('click', addItineraryItem);
-    deleteItineraryItemButtons.on('click', deleteItineraryItem);
     addTripSectionButton.on('click', addTripSection);
-    deleteSectionButtons.on('click', deleteTripSection);
     removeChosenImageButton.on('click', removeChosenImage);
     removeCurrentImageButton.on('click', removeCurrentImage);
+
+    deleteItineraryItemButtons.on('click', function() {
+        openDeletionModal('item', this);
+    });
+    deleteSectionButtons.on('click', function() {
+        openDeletionModal('section', this);
+    });
+
+    //if the user clicks the modal's 'No' button, hides the confirmation modal
+    confirmationNoButton.on('click', function() {
+        confirmationModal.attr('style', 'display: none');
+    });
 
     //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
     $('.timepicker').timepicker();
