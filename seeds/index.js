@@ -4,7 +4,7 @@
 // Importing the seeds files
 // =============================================================
 const sequelize = require('../config/connection');
-const seedComments = require('./comment-seeds');
+//const seedComments = require('./comment-seeds');
 const seedMessages = require('./message-seeds');
 const seedItineraryItems = require('./itineraryitem-seeds');
 const seedTrip = require('./trip-seeds');
@@ -27,8 +27,8 @@ const seedAll = async () => {
     console.log('\n----- ITINERARY ITEMS SEEDED -----\n');
     await seedMessages();
     console.log('\n----- MESSAGES SEEDED -----\n');
-    await seedComments();
-    console.log('\n----- COMMENTS SEEDED -----\n');
+    //await seedComments();
+    //console.log('\n----- COMMENTS SEEDED -----\n');
 
     process.exit(0);
 };
