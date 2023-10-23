@@ -406,7 +406,9 @@ window.onload = () => {
         const newDeleteItineraryItemButton = newItineraryItem.find('.delete-itinerary-item-button');
         newFileInput.on('change', renderPreviewImage);
         newRemoveChosenImageButton.on('click', removeChosenImage);
-        newDeleteItineraryItemButton.on('click', deleteItineraryItem);
+        newDeleteItineraryItemButton.on('click', function() {
+            openDeletionModal('item', this);
+        });
 
         //reapplies datepicker & timepicker functionality such that it applies to newly-created elements
         $('.timepicker').timepicker();
@@ -498,8 +500,10 @@ window.onload = () => {
         //adds event listener functionality to new section buttons
         const newAddItineraryItemButtons = newSection.find('.add-itinerary-item-button');
         const newDeleteSectionButton = newSection.find('.delete-itinerary-section-button');
-        newDeleteSectionButton.on('click', deleteTripSection);
         newAddItineraryItemButtons.on('click', addItineraryItem);
+        newDeleteSectionButton.on('click', function() {
+            openDeletionModal('section', this);
+        });
     }
 
     //event listener for when a change is made using the input a user uses to upload an image file
