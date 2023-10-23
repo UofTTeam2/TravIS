@@ -1,18 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // For Login Page
-    const container = document.getElementById('container');
-    const registerBtn = document.getElementById('registerChange');
-    const logBtn = document.getElementById('loginChange');
-
-    if (container && registerBtn && logBtn) {
-        registerBtn.addEventListener('click', () => {
-            container.classList.add("active");
-        });
-
-        logBtn.addEventListener('click', () => {
-            container.classList.remove("active");
-        });
-    }
+   
 
     // For Index Page
     const toggler = document.querySelector(".toggler");
@@ -35,7 +22,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 if (loginBtn) {
     loginBtn.addEventListener('click', () => {
-        window.location.href = "login.html";
+        window.location.href = "login.handlebars#login";
     });
 }
+const signupBtn = document.getElementById("signupBtn");
+
+if (signupBtn) {
+    signupBtn.addEventListener('click', () => {
+        window.location.href = "login.handlebars#signup"; // Append #signup to the URL to distinguish between login and signup
+    });
+}
+
 });
