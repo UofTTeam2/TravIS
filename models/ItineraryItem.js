@@ -65,7 +65,7 @@ ItineraryItem.init(
         },
 
         expense: {
-            type: DataTypes.STRING,
+            type: DataTypes.DECIMAL(10, 2),
             allowNull: true,
         },
 

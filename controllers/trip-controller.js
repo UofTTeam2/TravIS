@@ -44,6 +44,9 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             sections: [],
         };
 
+        // Initialize the total expenses for the trip
+        let totalExpenses = 0;
+
         // Iterate through sections and items to categorize them
         trip.tripsections.forEach((section) => {
             const categorizedItems = {
@@ -72,9 +75,10 @@ router.get('/view/:id', loginAuth, async (req, res) => {
                         categorizedItems.miscItems.push(item);
                         break;
                 }
+                totalExpenses += parseFloat(item.expense);
             });
 
-            // Add the categorized items to the response
+                // Add the categorized items to the response
             responseData.sections.push({
                 id: section.id,
                 title: section.title,
@@ -82,20 +86,11 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             });
         });
 
-        console.log(trip);
-        console.log(trip.tripsections);
-        console.log(trip.tripsections.itineraryitems);
-
-        /* I'M PUTTING THE TOTAL EXPENSE STUFF IN COMMENTS FOR NOW
-        // getting the expense item from the itinerary items
-        const expenses = trip.tripsections.itineraryitems.map((item) => {
-            return item.expense;
-        });
-        // getting the total expenses for the trip
-        const totalExpenses = expenses.reduce((a, b) => a + b, 0);
+        // Add the total expenses to the response
+        responseData.totalExpenses = totalExpenses;
 
         console.log(responseData);
-        console.log(totalExpenses);*/
+        console.log(totalExpenses);
 
         //destructure response data
         const {id, title, start_date, end_date, image, sections} = responseData;
@@ -109,7 +104,7 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             end_date,
             image,
             sections,
-            //totalExpenses,
+            totalExpenses,
             loggedIn: req.session.loggedIn,
         });
     } catch (error) {

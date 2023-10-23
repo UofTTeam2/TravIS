@@ -148,9 +148,24 @@ window.onload = () => {
             const start_time = $(itineraryItems[itineraryItem]).children('.item-start-time');
             const end_date = $(itineraryItems[itineraryItem]).children('.item-end-date');
             const end_time = $(itineraryItems[itineraryItem]).children('.item-end-time');
-            const expense = $(itineraryItems[itineraryItem]).children('.item-expense');
+            const expenseInput = $(itineraryItems[itineraryItem]).children('.item-expense').val();
             const notes = $(itineraryItems[itineraryItem]).children('.item-notes');
             const image = determineImage();
+
+            console.log(expenseInput);
+
+            const expenseValue = parseFloat(expenseInput);
+
+            console.log(expenseValue);
+            let expense;
+
+            if (isNaN(expenseValue)) {
+                expense = 0;
+            } else {
+                expense = expenseValue;
+            }
+
+            console.log(expense);
 
             console.log('itinerary file #' + [itineraryItem] + ' name: ' + image);
 
@@ -163,7 +178,7 @@ window.onload = () => {
                 start_time: start_time.val(),
                 end_date: end_date.val(),
                 end_time: end_time.val(),
-                expense: expense.val(),
+                expense: expense,
                 notes: notes.val(),
                 image: image
             };
