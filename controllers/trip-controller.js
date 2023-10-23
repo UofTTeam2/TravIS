@@ -82,6 +82,20 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             });
         });
 
+        // getting the expense item from the itinerary items
+        const expenses = trip.sections.items.map((item) => {
+            return item.expense;
+        });
+
+        // getting the total expenses for the trip
+        const totalExpenses = expenses.reduce((a, b) => a + b, 0);
+
+        // adding the total expenses to the response
+        // responseData.totalExpenses = totalExpenses;
+        responseData.sections.push({
+            totalExpenses: totalExpenses,
+        });
+
         // Send the response
         res.render('view-itinerary', {
             layout: 'main',

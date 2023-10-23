@@ -32,7 +32,7 @@ router.get('/trips', loginAuth, async (req, res) => {
             order: [['end_date', 'DESC']],
         });
         const trips = tripData.map((trip) => trip.get({ plain: true }));
-        res.render('trip', {
+        res.render('dashboard', {
             trips,
             loggedIn: req.session.loggedIn,
         });
