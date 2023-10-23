@@ -86,9 +86,6 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             });
         });
 
-        // Add the total expenses to the response
-        responseData.totalExpenses = totalExpenses;
-
         console.log(responseData);
         console.log(totalExpenses);
 
