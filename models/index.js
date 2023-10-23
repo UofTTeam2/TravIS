@@ -10,7 +10,7 @@ const Trip = require('./Trip');
 const TripSection = require('./TripSection');
 const ItineraryItem = require('./ItineraryItem');
 const Message = require('./Message');
-//const Comment = require('./Comment');
+const Comment = require('./Comment');
 // ====================================================
 
 // Create associations
@@ -26,10 +26,10 @@ User.hasMany(Message, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
-/*User.hasMany(Comment, {
+User.hasMany(Comment, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
-});*/
+});
 //=====================================================
 
 // Trip associations
@@ -70,7 +70,7 @@ Message.belongsTo(User, {
 
 // Comment associations
 //=====================================================
-/*Comment.belongsTo(User, {
+Comment.belongsTo(User, {
     foreignKey: 'user_id',
 });
 Comment.belongsTo(Comment, {
@@ -81,7 +81,7 @@ Comment.hasMany(Comment, {
     as: 'child_comments',
     foreignKey: 'parent_comment_id',
     onDelete: 'CASCADE',
-});*/
+});
 //=====================================================
 
 // Export all models as one object
@@ -92,5 +92,5 @@ module.exports = {
     TripSection,
     ItineraryItem,
     Message,
-    //Comment,
+    Comment,
 };

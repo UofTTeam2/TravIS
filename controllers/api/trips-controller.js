@@ -5,29 +5,36 @@
 // =============================================================
 const router = require('express').Router();
 const multer = require('multer');
-const { Trip, TripSection, ItineraryItem } = require('../models');
-const loginAuth = require('../utils/auth');
+const { Trip, TripSection, ItineraryItem } = require('../../models');
+const loginAuth = require('../../utils/auth');
 // =============================================================
 
 // Setting up folder to receive and format uploads via multer
 // =============================================================
 const storage = multer.diskStorage({
     destination: './public/images/multer-uploads',
-    filename: function (req, file, cb) {
-        const fileSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    filename: function(req, file, cb) {
+        const fileSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         const fileName = file.fieldname + '-' + fileSuffix;
         file.originalname = fileName;
         cb(null, fileName);
-    },
+    }
 });
-const uploadFolder = multer({ storage: storage });
-// =============================================================
+
+const uploadFolder = multer({storage: storage});
 
 // POST route for multer image uploads
 // =============================================================
 router.post('/image', uploadFolder.array('image-upload'), async (req, res) => {
     try {
-        const fileNames = req.files.map((file) => file.originalname);
+        let fileNames = req.files.map(file => file.originalname);
+
+        //if no files were uploaded, set fileNames to an array with an empty string
+        //this will prevent an error when the response attempts to return nothing
+        if (!fileNames) {
+            fileNames = [''];
+        }
+
         res.status(200).json(fileNames);
     } catch (err) {
         res.status(500).json(err);
@@ -40,7 +47,9 @@ router.post('/image', uploadFolder.array('image-upload'), async (req, res) => {
 router.put('/edit/:id', loginAuth, async (req, res) => {
     try {
         const tripId = req.params.id;
-        const { titleData, sectionData, itineraryData } = req.body;
+        const {titleData, sectionData, itineraryData} = req.body;
+
+        console.log(tripId);
 
         // Update trip data
         await Trip.update(titleData, {
@@ -53,7 +62,7 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
             sectionMap.set(section.id, section);
         });
 
-        // Loop through sectionData to update each section and associated itinerary items
+        // Loop through sectionData to update each section
         for (const section of sectionData) {
             const sectionId = section.id;
             const sectionToUpdate = sectionMap.get(sectionId);
@@ -63,19 +72,14 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
                 await TripSection.update(sectionToUpdate, {
                     where: { id: sectionId },
                 });
-
-                // Filter itinerary items by section ID
-                const itemsToUpdate = itineraryData.filter(
-                    (item) => item.section_id === sectionId
-                );
-
-                // Loop through itemsToUpdate to update each itinerary item
-                for (const item of itemsToUpdate) {
-                    await ItineraryItem.update(item, {
-                        where: { id: item.id },
-                    });
-                }
             }
+        }
+
+        // Loop through itineraryData to update each itinerary item
+        for (const item of itineraryData) {
+            await ItineraryItem.update(item, {
+                where: {id: item.id},
+            });
         }
 
         // Construct the response data (responseData) based on updated data
@@ -83,11 +87,11 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
             include: [
                 {
                     model: TripSection,
-                    as: 'sections',
+                    as: 'tripsections',
                     include: [
                         {
                             model: ItineraryItem,
-                            as: 'items',
+                            as: 'itineraryitems',
                         },
                     ],
                 },
@@ -101,22 +105,22 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
             start_date: updatedTrip.start_date,
             end_date: updatedTrip.end_date,
             image: updatedTrip.image,
-            sections: updatedTrip.sections.map((section) => ({
+            sections: updatedTrip.tripsections.map((section) => ({
                 id: section.id,
                 title: section.title,
-                accommodationItems: section.items
+                accommodationItems: section.itineraryitems
                     .filter((item) => item.category === 'Accommodation')
                     .map((item) => ({ ...item, category: item.category })),
-                foodItems: section.items
+                foodItems: section.itineraryitems
                     .filter((item) => item.category === 'Food')
                     .map((item) => ({ ...item, category: item.category })),
-                transportItems: section.items
+                transportItems: section.itineraryitems
                     .filter((item) => item.category === 'Transportation')
                     .map((item) => ({ ...item, category: item.category })),
-                activityItems: section.items
+                activityItems: section.itineraryitems
                     .filter((item) => item.category === 'Activities')
                     .map((item) => ({ ...item, category: item.category })),
-                miscItems: section.items
+                miscItems: section.itineraryitems
                     .filter(
                         (item) =>
                             ![
@@ -131,8 +135,7 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
         };
 
         // deconstruct responseData
-        const { id, title, start_date, end_date, image, sections } =
-            responseData;
+        const { id, title, start_date, end_date, image, sections } = responseData;
         // Render the 'edit-itinerary' page with responseData
         res.render('view-itinerary', {
             layout: 'main',
@@ -156,20 +159,16 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
 // =============================================================
 router.post('/create-section', loginAuth, async (req, res) => {
     try {
-        const { trip_id, title } = req.body;
+        const {trip_id, title} = req.body;
 
         const newSection = await TripSection.create({
             trip_id: trip_id,
-            title,
+            title: title,
         });
 
-        const responseData = {
-            id: newSection.id,
-            title: newSection.title,
-            items: [],
-        };
+        const newSectionId = newSection.id;
 
-        res.status(200).json(responseData);
+        res.status(200).json(newSectionId);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -181,19 +180,16 @@ router.post('/create-section', loginAuth, async (req, res) => {
 // =============================================================
 router.post('/create-item', loginAuth, async (req, res) => {
     try {
-        const { section_id, category } = req.body;
+        const {trip_section_id, category} = req.body;
 
         const newItem = await ItineraryItem.create({
-            section_id,
-            category,
+            trip_section_id: trip_section_id,
+            category: category,
         });
 
-        const responseData = {
-            section_id: newItem.section_id,
-            category: newItem.category,
-        };
+        const newItemID = newItem.id;
 
-        res.status(200).json(responseData);
+        res.status(200).json(newItemID);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });

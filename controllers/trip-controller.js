@@ -18,11 +18,11 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             include: [
                 {
                     model: TripSection,
-                    as: 'sections',
+                    as: 'tripsections',
                     include: [
                         {
                             model: ItineraryItem,
-                            as: 'items',
+                            as: 'itineraryitems',
                         },
                     ],
                 },
@@ -45,7 +45,7 @@ router.get('/view/:id', loginAuth, async (req, res) => {
         };
 
         // Iterate through sections and items to categorize them
-        trip.sections.forEach((section) => {
+        trip.tripsections.forEach((section) => {
             const categorizedItems = {
                 accommodationItems: [],
                 foodItems: [],
@@ -54,7 +54,7 @@ router.get('/view/:id', loginAuth, async (req, res) => {
                 miscItems: [],
             };
 
-            section.items.forEach((item) => {
+            section.itineraryitems.forEach((item) => {
                 switch (item.category) {
                     case 'Accommodation':
                         categorizedItems.accommodationItems.push(item);
@@ -82,10 +82,34 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             });
         });
 
+        console.log(trip);
+        console.log(trip.tripsections);
+        console.log(trip.tripsections.itineraryitems);
+
+        /* I'M PUTTING THE TOTAL EXPENSE STUFF IN COMMENTS FOR NOW
+        // getting the expense item from the itinerary items
+        const expenses = trip.tripsections.itineraryitems.map((item) => {
+            return item.expense;
+        });
+        // getting the total expenses for the trip
+        const totalExpenses = expenses.reduce((a, b) => a + b, 0);
+
+        console.log(responseData);
+        console.log(totalExpenses);*/
+
+        //destructure response data
+        const {id, title, start_date, end_date, image, sections} = responseData;
+
         // Send the response
         res.render('view-itinerary', {
             layout: 'main',
-            trip: responseData,
+            id,
+            title,
+            start_date,
+            end_date,
+            image,
+            sections,
+            //totalExpenses,
             loggedIn: req.session.loggedIn,
         });
     } catch (error) {
@@ -104,11 +128,11 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
             include: [
                 {
                     model: TripSection,
-                    as: 'sections',
+                    as: 'tripsections',
                     include: [
                         {
                             model: ItineraryItem,
-                            as: 'items',
+                            as: 'itineraryitems',
                         },
                     ],
                 },
@@ -131,7 +155,7 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
         };
 
         // Iterate through sections and items to categorize them
-        trip.sections.forEach((section) => {
+        trip.tripsections.forEach((section) => {
             const categorizedItems = {
                 accommodationItems: [],
                 foodItems: [],
@@ -140,7 +164,7 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
                 miscItems: [],
             };
 
-            section.items.forEach((item) => {
+            section.itineraryitems.forEach((item) => {
                 switch (item.category) {
                     case 'Accommodation':
                         categorizedItems.accommodationItems.push(item);
@@ -168,10 +192,18 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
             });
         });
 
+        //destructure response data
+        const {id, title, start_date, end_date, image, sections} = responseData;
+
         // Send the response
         res.render('edit-itinerary', {
             layout: 'main',
-            trip: responseData,
+            id,
+            title,
+            start_date,
+            end_date,
+            image,
+            sections,
             loggedIn: req.session.loggedIn,
         });
     } catch (error) {
@@ -185,6 +217,10 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
 // =============================================================
 router.get('/create-trip', loginAuth, async (req, res) => {
     try {
+        //WHEN YOU CONNECT THIS TO CARLOS'S PAGE, YOU'LL NEED TO USE
+        //THE USER_ID IN SESSION STORAGE FOR THE user_id FIELD OF THE
+        //NEWLY-CREATED TRIP
+
         // create a new trip with empty sections and items
         const trip = await Trip.create({
             title: '',
@@ -206,9 +242,17 @@ router.get('/create-trip', loginAuth, async (req, res) => {
             sections: [],
         };
 
+        //destructure response data
+        const {id, title, start_date, end_date, image, sections} = responseData;
+
         res.render('edit-itinerary', {
             layout: 'main',
-            trip: responseData,
+            id,
+            title,
+            start_date,
+            end_date,
+            image,
+            sections,
             loggedIn: req.session.loggedIn,
         });
     } catch (error) {

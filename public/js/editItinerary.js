@@ -42,6 +42,9 @@ window.onload = () => {
         let allFileUploads = [];
         let formData = new FormData();
 
+        console.log('saving itinerary data');
+        console.log(this);
+
         for (fileInput = 0; fileInput < allFileInputs.length; fileInput++) {
             allFileUploads.push(allFileInputs[fileInput].files[0]);
         }
@@ -89,7 +92,7 @@ window.onload = () => {
                     const imageContainerChildren = $(imageContainer).children()[1];
                     existingImageSRC = $($(imageContainerChildren).children()[2]).attr('src');
 
-                    //an already-existing image with have an 'src' like './images/multer-uploads/image-upload-1697848850663-957708811'
+                    //an already-existing image with have an 'src' like '/images/multer-uploads/image-upload-1697848850663-957708811'
                     //the below code splits it and takes the [3] index of the resulting array -> image-upload-1697848850663-957708811
                     image = existingImageSRC.split('/')[3];
                 } else {
@@ -249,7 +252,7 @@ window.onload = () => {
     }
 
     function removeChosenImage() {
-        $(this).siblings('img').attr('src', './images/no-image-stock-photo.png');
+        $(this).siblings('img').attr('src', '/images/no-image-stock-photo.png');
         $(this).parent().parent().siblings('.user-uploaded-image').val('');
     }
 
@@ -322,7 +325,7 @@ window.onload = () => {
         
                 <button class = "clear-preview-image-button">Clear Chosen Image</button>
                 <h4>Preview:</h4>
-                <img class = "preview-image" src = './images/no-image-stock-photo.png'>
+                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
         
             </div>
         

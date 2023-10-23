@@ -183,4 +183,4 @@ Comment.init(
 // =============================================================
 
 // Export the Comment model
-//module.exports = Comment;
+module.exports = Comment;
