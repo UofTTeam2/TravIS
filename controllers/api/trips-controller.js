@@ -82,72 +82,11 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
             });
         }
 
-        // Construct the response data (responseData) based on updated data
-        const updatedTrip = await Trip.findByPk(tripId, {
-            include: [
-                {
-                    model: TripSection,
-                    as: 'tripsections',
-                    include: [
-                        {
-                            model: ItineraryItem,
-                            as: 'itineraryitems',
-                        },
-                    ],
-                },
-            ],
-        });
+        //sets up redirect address for user to see updated trip details in view mode
+        const redirectAddress = `/trips/view/${tripId}`;
 
-        // Construct responseData based on the updatedTrip and related data
-        const responseData = {
-            id: updatedTrip.id,
-            title: updatedTrip.title,
-            start_date: updatedTrip.start_date,
-            end_date: updatedTrip.end_date,
-            image: updatedTrip.image,
-            sections: updatedTrip.tripsections.map((section) => ({
-                id: section.id,
-                title: section.title,
-                accommodationItems: section.itineraryitems
-                    .filter((item) => item.category === 'Accommodation')
-                    .map((item) => ({ ...item, category: item.category })),
-                foodItems: section.itineraryitems
-                    .filter((item) => item.category === 'Food')
-                    .map((item) => ({ ...item, category: item.category })),
-                transportItems: section.itineraryitems
-                    .filter((item) => item.category === 'Transportation')
-                    .map((item) => ({ ...item, category: item.category })),
-                activityItems: section.itineraryitems
-                    .filter((item) => item.category === 'Activities')
-                    .map((item) => ({ ...item, category: item.category })),
-                miscItems: section.itineraryitems
-                    .filter(
-                        (item) =>
-                            ![
-                                'Accommodation',
-                                'Food',
-                                'Transportation',
-                                'Activities',
-                            ].includes(item.category)
-                    )
-                    .map((item) => ({ ...item, category: item.category })),
-            })),
-        };
-
-        // deconstruct responseData
-        const { id, title, start_date, end_date, image, sections } = responseData;
-        // Render the 'edit-itinerary' page with responseData
-        res.render('view-itinerary', {
-            layout: 'main',
-            id,
-            title,
-            start_date,
-            end_date,
-            image,
-            sections,
-            loggedIn: req.session.loggedIn,
-        });
-        // res.redirect(`/trips/view/${req.params.id}`);
+        //returns address to front end for redirection
+        res.status(200).json(redirectAddress);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });

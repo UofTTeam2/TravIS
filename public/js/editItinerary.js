@@ -179,12 +179,24 @@ window.onload = () => {
 
         console.log(fetchAddress);
 
+        let redirectAddress;
+
         //send the above title, section, & itinerary item data to the database for processing
-        await fetch(fetchAddress, {
-            method: 'PUT',
-            body: JSON.stringify({titleData, sectionData, itineraryData}),
-            headers: {'Content-Type': 'application/json'},
-        });
+        //receives an address to redirect to as a response
+        try {
+            const response = await fetch(fetchAddress, {
+                method: 'PUT',
+                body: JSON.stringify({titleData, sectionData, itineraryData}),
+                headers: {'Content-Type': 'application/json'},
+            });
+            redirectAddress = await response.json();
+        } catch (err) {
+            console.log(err);
+        }
+
+        console.log(redirectAddress);
+        //redirects page to the appropriate address
+        window.location.pathname = redirectAddress;
     }
 
     async function deleteItineraryItem() {
