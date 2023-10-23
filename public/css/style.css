@@ -804,3 +804,40 @@ body .form {
         transform: translateX(0px);
     }
 }
+
+/* ---------- Media queries Dashboard ---------- */
+
+@media screen and (max-width: 992px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 0.2fr 3fr;
+      grid-template-areas:
+        "header"
+        "main";
+    }
+  
+    #sidebar {
+      display: none;
+    }
+  
+    .menu-icon {
+      display: inline;
+    }
+  
+    .sidebar-title > span {
+      display: inline;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .main-cards {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 0;
+    }
+  
+    .charts {
+      grid-template-columns: 1fr;
+      margin-top: 30px;
+    }
+  }
