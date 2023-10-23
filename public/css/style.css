@@ -9,6 +9,34 @@ body{
     background-color: #505672;
 }
 
+body .grid-container{
+    background-color: #e6e8ed;
+    color: #ccc;
+  }
+  
+  .material-symbols-outlined {
+    vertical-align: middle;
+    line-height: 1px;
+  }
+  
+  .text-primary {
+    color: #000;
+  }
+  
+  .font-weight-bold {
+    font-weight: 600;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      "sidebar header header header"
+      "sidebar main main main";
+    height: 100vh;
+  }
+
 body .form{
     background-color: #22252A;
     display: flex;
