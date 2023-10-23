@@ -44,6 +44,9 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             sections: [],
         };
 
+        // Initialize the total expenses for the trip
+        let totalExpenses = 0;
+
         // Iterate through sections and items to categorize them
         trip.sections.forEach((section) => {
             const categorizedItems = {
@@ -72,6 +75,8 @@ router.get('/view/:id', loginAuth, async (req, res) => {
                         categorizedItems.miscItems.push(item);
                         break;
                 }
+                // Add the cost of the item to the total expenses
+                totalExpenses += item.expense;
             });
 
             // Add the categorized items to the response
@@ -82,19 +87,8 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             });
         });
 
-        // getting the expense item from the itinerary items
-        const expenses = trip.sections.items.map((item) => {
-            return item.expense;
-        });
-
-        // getting the total expenses for the trip
-        const totalExpenses = expenses.reduce((a, b) => a + b, 0);
-
-        // adding the total expenses to the response
-        // responseData.totalExpenses = totalExpenses;
-        responseData.sections.push({
-            totalExpenses: totalExpenses,
-        });
+        // Add the total expenses to the response
+        responseData.totalExpenses = totalExpenses;
 
         // Send the response
         res.render('view-itinerary', {
