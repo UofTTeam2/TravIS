@@ -1,3 +1,196 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #22252A;
+    margin: 0;
+    padding: 0;
+}
+
+body .container {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+.material-symbols-outlined {
+    vertical-align: middle;
+    line-height: 1px;
+    cursor: pointer;
+    font-size: 36px;
+  }
+
+.container {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    margin: 50px auto;
+}
+
+.trip-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.trip-title-header {
+    font-size: 2em;
+    color: #000;
+    margin-top: 50px;
+}
+
+.trip-date-header {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.trip-title-container a {
+    font-size: 1.25rem;
+    color: #555;
+    text-decoration: none;
+}
+
+.trip-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #FFC62C;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+button:hover {
+    color: #B7990D;
+}
+
+.material-symbols-outlined {
+    margin-right: 5px;
+}
+
+.trip-section-category{
+    margin: 10px;
+}
+
+.trip-sections-container {
+    width: 90%;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.itinerary-section-container {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 25px 100px 25px 25px; 
+    background: linear-gradient(to right, #FFC62C, #B7990D);  
+}
+
+.section-title-container {
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.section-title-header {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.trip-categories-container {
+    margin-top: 20px;
+}
+
+.item-category-title {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.itinerary-item-container {
+    background-color: #f9f9f9;
+    padding: 20px 25px;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-title a {
+    color: #2196f3;
+    text-decoration: none;
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.item-detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.item-detail h4, 
+.item-detail p {
+    margin: 0;
+}
+
+.item-detail h4 {
+    margin-right: 5px;  /* Espacio entre la etiqueta y el valor */
+}
+
+.item-image {
+    max-width: 100%;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.item-detail.notes h4 {
+    margin-right: 5px;
+}
+
+.item-detail.notes p {
+    flex: 1;
+}
+
+/* Estilo inicial para ocultar el contenido */
+.toggle-content {
+    display: none;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+
+/* Estilo para el botón de toggle */
+.toggle-button {
+    cursor: pointer;
+}
+
+/* Cuando el usuario hace clic en el botón de toggle, mostramos el contenido */
+.toggle-content.active {
+    display: block;
+}
+
+
 /* Login/Signup Error Modal ----> */
 .modal {
     display: none;
