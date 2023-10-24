@@ -1,11 +1,15 @@
 
 //waits until window is finished loading before running main code
 window.onload = () => {
+    //gets references to all elements necessary for application functionality
     const multerSubmissionForm = $('.multer-submission-form');
     const saveItineraryButton = $('.save-itinerary-button');
     const confirmationModal = $('.confirmation-modal');
     const confirmationYesButton = $('.confirmation-yes-button');
     const confirmationNoButton = $('.confirmation-no-button');
+    const imageUploadErrorModal = $('.image-upload-error-modal');
+    const imageUploadErrorMessage = $('.upload-error-message');
+    const closeImageErrorModalButton = $('.image-upload-error-close');
     const addTripSectionButton = $('.create-new-section-button');
     let deleteSectionButtons = $('.delete-itinerary-section-button');
     let deleteItineraryItemButtons = $('.delete-itinerary-item-button');
@@ -14,9 +18,47 @@ window.onload = () => {
     let removeChosenImageButton = $('.clear-preview-image-button');
     let removeCurrentImageButton = $('.clear-current-image-button');
 
+    function openDeletionModal(objectType, object) {
+        //removes any already-existing event listeners from modal's 'Yes' button
+        confirmationYesButton.off();
+
+        if (objectType === 'item') {
+            confirmationYesButton.on('click', function() {
+                deleteItineraryItem(object);
+            });
+        } else {
+            confirmationYesButton.on('click', function() {
+                deleteTripSection(object);
+            });
+        }
+
+        confirmationModal.attr('style', 'display: block');
+        console.log(objectType);
+        console.log(object);
+        console.log(sessionStorage);
+    }
+
+    function openImageErrorModal(error) {
+        imageUploadErrorMessage.text(error);
+        imageUploadErrorModal.attr('style', 'display: block');
+    }
+
     //function to render a preview image of a file chosen by a user before it is uploaded to the database
     function renderPreviewImage() {
         const fileUpload = this.files[0]; //gets a reference to the file held by the input
+
+        if (fileUpload.size > 10485760) {
+            openImageErrorModal('File must be smaller than 10 MB');
+            $(this).val('');
+            return;
+        }
+
+        if (!fileUpload.type.match('image.*')) {
+            openImageErrorModal('File must be an image');
+            $(this).val('');
+            return;
+        }
+
         const uploadConverter = new FileReader(); //creates a new FileReader instance to read the above file
 
         //gets a reference to the sibling (grand-nephew?) preview image element in the container that recieved a file upload
@@ -288,26 +330,6 @@ window.onload = () => {
         console.log(deleteSectionButtons.length);
     }
 
-    function openDeletionModal(objectType, object) {
-        //removes any already-existing event listeners from modal's 'Yes' button
-        confirmationYesButton.off();
-
-        if (objectType === 'item') {
-            confirmationYesButton.on('click', function() {
-                deleteItineraryItem(object);
-            });
-        } else {
-            confirmationYesButton.on('click', function() {
-                deleteTripSection(object);
-            });
-        }
-
-        confirmationModal.attr('style', 'display: block');
-        console.log(objectType);
-        console.log(object);
-        console.log(sessionStorage);
-    }
-
     function removeChosenImage() {
         $(this).siblings('img').attr('src', '/images/no-image-stock-photo.png');
         $(this).parent().parent().siblings('.user-uploaded-image').val('');
@@ -530,10 +552,16 @@ window.onload = () => {
         confirmationModal.attr('style', 'display: none');
     });
 
-    //if the user clicks outside the confirmation modal, close the modal
+    //if the user clicks the small 'x' in the top right of the image upload error modal, close the modal
+    closeImageErrorModalButton.on('click', function() {
+        imageUploadErrorModal.attr('style', 'display: none');
+    });
+
+    //if the user clicks outside a modal, close the modal
     window.onclick = function(event) {
-        if (event.target === confirmationModal[0]) {
+        if (event.target === confirmationModal[0] || event.target === imageUploadErrorModal[0]) {
             confirmationModal.attr('style', 'display: none');
+            imageUploadErrorModal.attr('style', 'display: none');
         }
     };
 
