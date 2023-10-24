@@ -14,6 +14,7 @@ const tripData = [
         start_date: '2021-01-01',
         end_date: '2021-01-05',
         image: 'image-upload-1697854437296-125061493',
+        public: true,
         user_id: 1,
     },
     {
