@@ -32,3 +32,75 @@
     cursor: pointer;
 }
 /* <---- Login/Signup Error Modal */
+/* Ethan's Itinerary Modal stuff ----> */
+
+.settings-modal div {
+    position: relative;
+}
+
+.itinerary-settings-close {
+    position: absolute;
+    top: 5px;
+    right: 14px;
+}
+
+/* sets the 'switch' label to be roughly rectangular, and for internal elements to be displayed side-by-side*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* hides the default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* defines the appearance & transition settings for the slider container */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #aaa;
+    transition: .4s;
+}
+
+/* defines the appearance & transition settings of the "circle" within the slider container */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #505672;
+    transition: .4s;
+}
+
+/* sets the background colour of the "checkbox" input & "slider" span to make an itinerary public */
+.public-checkbox:checked + .slider {
+    background-color: #F8B500;
+}
+
+/* moves the white circle within the slider box to the right when the toggle is clicked */
+.public-checkbox:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* rounds the edges of the slider container */
+.slider.round {
+    border-radius: 34px;
+}
+
+/* rounds the edges of the white "shape" within the slider container (it becomes a circle) */
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* <---- Ethan's Itinerary Modal stuff */

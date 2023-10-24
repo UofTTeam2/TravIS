@@ -530,6 +530,13 @@ window.onload = () => {
         confirmationModal.attr('style', 'display: none');
     });
 
+    //if the user clicks outside the confirmation modal, close the modal
+    window.onclick = function(event) {
+        if (event.target === confirmationModal[0]) {
+            confirmationModal.attr('style', 'display: none');
+        }
+    };
+
     //applies datepicker & timepicker widgets to the appropriate input fields once the document is finished loading
     $('.timepicker').timepicker();
     $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});

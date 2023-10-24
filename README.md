@@ -20,5 +20,13 @@ https://www.cleanpng.com/png-paper-computer-icons-pencil-drawing-business-write-
 save icon
 https://www.iconfinder.com/icons/2639912/save_icon
 
+modals
+https://www.w3schools.com/howto/howto_css_modals.asp
+-HTML
+-CSS
+-JAVASCRIPT
+
 toggle switch
 https://www.w3schools.com/howto/howto_css_switch.asp
+-CSS
+-HTML
