@@ -1,3 +1,4 @@
+console.log("logging script")
 // Sidebar Toggle
 
 var sidebarOpen = false;

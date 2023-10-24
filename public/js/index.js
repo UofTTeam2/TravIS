@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (toggler && navMenu) {
         toggler.addEventListener('click', function () {
+            console.log("Toggler clicked!");
             navMenu.classList.toggle("active");
         });
     }
@@ -22,14 +23,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 if (loginBtn) {
     loginBtn.addEventListener('click', () => {
-        window.location.href = "login.handlebars#login";
+        window.location.href = "login#login";
     });
 }
 const signupBtn = document.getElementById("signupBtn");
 
 if (signupBtn) {
     signupBtn.addEventListener('click', () => {
-        window.location.href = "login.handlebars#signup"; // Append #signup to the URL to distinguish between login and signup
+        window.location.href = "login#signup"; // Append #signup to the URL to distinguish between login and signup
     });
 }
 
