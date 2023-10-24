@@ -172,6 +172,23 @@ router.delete('/delete-item', loginAuth, async (req, res) => {
 });
 // =============================================================
 
+// Update public status of a trip itinerary page
+// =============================================================
+router.post('/update-public', loginAuth, async (req, res) => {
+    try {
+        const tripId = req.body.id;
+        const public = req.body.public;
+
+        //update the public field of the trip with the matching tripId
+
+        res.status(200).json({ message: 'Public status updated' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// =============================================================
+
 // Export the router
 // =============================================================
 module.exports = router;

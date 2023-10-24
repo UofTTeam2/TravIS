@@ -83,11 +83,11 @@ sequelize.sync({force: false}).then(() => {
 
 /* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS BELOW, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
 
-const {id, title, start_date, end_date, image, sections} = require('./seeds/sampleItineraryDataGET.js');
+const {id, title, start_date, end_date, image, public, sections} = require('./seeds/sampleItineraryDataGET.js');
 
 app.get('/test', async (req, res) => {
     try {
-        res.render('view-itinerary', {id, title, start_date, end_date, image, sections});
+        res.render('view-itinerary', {id, title, start_date, end_date, image, public, sections});
     } catch (err) {
         console.log(err);
         res.status(500).json(err);

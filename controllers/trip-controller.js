@@ -41,6 +41,7 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             start_date: trip.start_date,
             end_date: trip.end_date,
             image: trip.image,
+            public: trip.public,
             sections: [],
         };
 
@@ -90,7 +91,7 @@ router.get('/view/:id', loginAuth, async (req, res) => {
         console.log(totalExpenses);
 
         //destructure response data
-        const {id, title, start_date, end_date, image, sections} = responseData;
+        const {id, title, start_date, end_date, image, public, sections} = responseData;
 
         // Send the response
         res.render('view-itinerary', {
@@ -100,6 +101,7 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             start_date,
             end_date,
             image,
+            public,
             sections,
             totalExpenses,
             loggedIn: req.session.loggedIn,
