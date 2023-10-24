@@ -1,21 +1,9 @@
-// Dec: The centeral hub for all routing files
-// Notes: This file is used to collect the packaged group of
-// API endpoints and prefix them with the path / api.
-// =============================================================
-
-// Dependencies
-// =============================================================
 const router = require('express').Router();
-const apiController = require('./api');
-const homeController = require('./home-controller');
-const tripController = require('./trip-controller');
-//==============================================================
 
-// Routes
-// =============================================================
-router.use('/', homeController);
-router.use('/trips', tripController);
-router.use('/api', apiController);
-//==============================================================
+const apiRoutes = require('./api');
+const homeRoutes = require('./home-routes.js');
+
+router.use('/', homeRoutes);
+router.use('/api', apiRoutes);
 
 module.exports = router;
