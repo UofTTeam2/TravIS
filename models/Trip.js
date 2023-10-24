@@ -46,7 +46,7 @@ Trip.init(
 
         public: {
             type: DataTypes.BOOLEAN,
-            defaultValue: false
+            defaultValue: false,
         },
 
         user_id: {

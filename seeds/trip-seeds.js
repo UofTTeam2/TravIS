@@ -21,6 +21,7 @@ const tripData = [
         start_date: '2022-05-10',
         end_date: '2022-05-20',
         image: 'image-upload-1697936055130-100310418',
+        public: true,
         user_id: 1,
     },
     {
@@ -28,6 +29,7 @@ const tripData = [
         start_date: '2022-06-15',
         end_date: '2022-06-25',
         image: 'image-upload-1697848850661-806848499',
+        public: false,
         user_id: 2,
     },
     {
@@ -35,6 +37,7 @@ const tripData = [
         start_date: '2022-07-20',
         end_date: '2022-07-30',
         image: 'image-upload-1697848850663-957708811',
+        public: true,
         user_id: 3,
     },
     {
@@ -42,6 +45,7 @@ const tripData = [
         start_date: '2023-08-25',
         end_date: '2023-09-05',
         image: 'image-upload-1697848850657-45899697',
+        public: false,
         user_id: 4,
     },
 ];

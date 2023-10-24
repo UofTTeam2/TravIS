@@ -27,7 +27,7 @@ const uploadFolder = multer({storage: storage});
 // =============================================================
 router.post('/image', uploadFolder.array('image-upload'), async (req, res) => {
     try {
-        let fileNames = req.files.map(file => file.originalname);
+        let fileNames = req.files.map((file) => file.originalname);
 
         //if no files were uploaded, set fileNames to an array with an empty string
         //this will prevent an error when the response attempts to return nothing
@@ -48,6 +48,8 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
     try {
         const tripId = req.params.id;
         const {titleData, sectionData, itineraryData} = req.body;
+
+        console.log(tripId);
 
         console.log(tripId);
 
@@ -136,6 +138,35 @@ router.post('/create-item', loginAuth, async (req, res) => {
 });
 // =============================================================
 
+// Update public status of a trip itinerary page
+// =============================================================
+router.post('/update-public', loginAuth, async (req, res) => {
+    try {
+        const tripId = req.body.id;
+        const public = req.body.public;
+
+        //to the value of the public variable passed in the request body
+        if (public) {
+            public = true;
+        } else {
+            public = false;
+        }
+        //update the public field of the trip with the matching tripId
+        await Trip.update(
+            { public: public },
+            {
+                where: { id: tripId },
+            }
+        );
+
+        res.status(200).json({ message: 'Public status updated' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// =============================================================
+
 // Delete a section
 // =============================================================
 router.delete('/delete-section', loginAuth, async (req, res) => {
@@ -165,23 +196,6 @@ router.delete('/delete-item', loginAuth, async (req, res) => {
         });
 
         res.status(200).json({ message: 'Item deleted' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-});
-// =============================================================
-
-// Update public status of a trip itinerary page
-// =============================================================
-router.post('/update-public', loginAuth, async (req, res) => {
-    try {
-        const tripId = req.body.id;
-        const public = req.body.public;
-
-        //update the public field of the trip with the matching tripId
-
-        res.status(200).json({ message: 'Public status updated' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });

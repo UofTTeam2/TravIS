@@ -96,13 +96,19 @@ router.get('/view/:id', loginAuth, async (req, res) => {
         });
 
         //collect category expenses into a single array
-        expenses = [transportExpenses, accommodationExpenses, foodExpenses, activityExpenses, miscExpenses];
+        expenses = [
+            transportExpenses,
+            accommodationExpenses,
+            foodExpenses,
+            activityExpenses,
+            miscExpenses,
+        ];
 
         console.log(responseData);
-        console.log(expenses);
+        console.log(totalExpenses);
 
-        //destructure response data
-        const {id, title, start_date, end_date, image, public, sections} = responseData;
+        const { id, title, start_date, end_date, image, public, sections } =
+            responseData;
 
         // Send the response
         res.render('view-itinerary', {
@@ -232,10 +238,13 @@ router.get('/create-trip', loginAuth, async (req, res) => {
             start_date: '',
             end_date: '',
             image: '',
+            user_id: req.session.user_id,
         });
 
         // retrive the id of the newly created trip
         const tripId = trip.id;
+
+        // retrive the user_id from the session for the user_id feild of the newly created trip
 
         // Initialize the data structure
         const responseData = {
