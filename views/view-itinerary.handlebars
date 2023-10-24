@@ -16,7 +16,7 @@
       {{/if}}
   {{/if}}
 
-  <h2><a href = "https://pbs.twimg.com/media/FkK0T8cUAAELhOI?format=jpg&name=medium">Total Expenses: ${{{totalExpenses}}}</a></h2>
+  <div style = "width: 600px"><canvas id = "expense-summary"></canvas></div>
 </div>
 <!-- button to switch to edit mode -->
 <button class = "open-menu-button"><img src = "/images/gear-icon.png"></button>
@@ -48,3 +48,26 @@
 </div>
 
 <script src = "/js/viewItinerary.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('expense-summary');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['Transport', 'Accommodation', 'Food', 'Activities', 'Misc'],
+      datasets: [{
+        label: 'Combined Cost ($)',
+        data: [{{expenses}}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>

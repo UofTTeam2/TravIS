@@ -45,8 +45,12 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             sections: [],
         };
 
-        // Initialize the total expenses for the trip
-        let totalExpenses = 0;
+        // category expenese trackers for the trip
+        let transportExpenses = 0;
+        let accommodationExpenses = 0;
+        let foodExpenses = 0;
+        let activityExpenses = 0;
+        let miscExpenses = 0;
 
         // Iterate through sections and items to categorize them
         trip.tripsections.forEach((section) => {
@@ -62,21 +66,25 @@ router.get('/view/:id', loginAuth, async (req, res) => {
                 switch (item.category) {
                     case 'Accommodation':
                         categorizedItems.accommodationItems.push(item);
+                        accommodationExpenses += parseFloat(item.expense);
                         break;
                     case 'Food':
                         categorizedItems.foodItems.push(item);
+                        foodExpenses += parseFloat(item.expense);
                         break;
                     case 'Transportation':
                         categorizedItems.transportItems.push(item);
+                        transportExpenses += parseFloat(item.expense);
                         break;
                     case 'Activities':
                         categorizedItems.activityItems.push(item);
+                        activityExpenses += parseFloat(item.expense);
                         break;
                     default:
                         categorizedItems.miscItems.push(item);
+                        miscExpenses += parseFloat(item.expense);
                         break;
                 }
-                totalExpenses += parseFloat(item.expense);
             });
 
                 // Add the categorized items to the response
@@ -87,8 +95,11 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             });
         });
 
+        //collect category expenses into a single array
+        expenses = [transportExpenses, accommodationExpenses, foodExpenses, activityExpenses, miscExpenses];
+
         console.log(responseData);
-        console.log(totalExpenses);
+        console.log(expenses);
 
         //destructure response data
         const {id, title, start_date, end_date, image, public, sections} = responseData;
@@ -103,7 +114,7 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             image,
             public,
             sections,
-            totalExpenses,
+            expenses,
             loggedIn: req.session.loggedIn,
         });
     } catch (error) {
