@@ -65,9 +65,9 @@ app.set('view engine', 'handlebars');
 
 // Sets up the custom middleware & Express app to handle data parsing
 // =============================================================
+app.use(routes);
 app.use(dataParser);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(routes);
 //==============================================================
 
 // sync sequelize models to the database, then start running the server

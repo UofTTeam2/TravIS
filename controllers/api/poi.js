@@ -60,6 +60,7 @@ router.get('/', async (req, res) => {
         };
         // res.status(200).json(responseData);
         // console.log(responseData);
+        // const htmlContent = responseData;
         res.render('poitestold', responseData); //**** assuming that you are using the same place holder names in the handlebars file
     } catch (error) {
         console.error('Error:', error.message);

@@ -1,13 +1,18 @@
+{{!-- <div class="content">
+    {{{htmlContent}}}
+</div> --}}
 <section id="recommendations">
-    <h1>City Explorer</h1>
-    <p>Welcome to the city explorer page. Here you can find information about top rated points of interest, 
-        tours and activities, safety scores, and location scores for a city. Enter a city name to get started.
-    </p>
-    <form id="searchForm">
-        <label for="cityInput">Enter City:</label>
-        <input type="text" id="cityInput" name="city">
-        <button type="submit">Search</button>
-    </form>
+    <div class="search">
+        <h1>City Explorer</h1>
+        <p>Welcome to the city explorer page. Here you can find information about top rated points of interest, 
+            tours and activities, safety scores, and location scores for a city. Enter a city name to get started.
+        </p>
+        <form id="searchForm">
+            <label for="cityInput">Enter City:</label>
+            <input type="text" id="cityInput" name="city">
+            <button type="submit">Search</button>
+        </form>
+    </div>
 
     <div class="hide">
         <h2>Points of Interest:</h2>
@@ -24,7 +29,7 @@
         </ul>
     </div>
 
-    <div class="hide">
+    <div>
         <h2>Activities:</h2>
         <p>What are the best tours and activities in {{city}}?</p><br>
         <p>Here you will find information about top rated activities such as sightseeing
@@ -34,14 +39,14 @@
             {{#each activityData}}
             <li>
                 {{!-- make sure that all placeholders are as same as the received data, here related to activityData --}}
-                <strong>{{name}}</strong> - {{description}}<br>
+                <strong>{{name}}</strong> <p>{{description}}</p><br>
                 Price: {{price.amount}} {{price.currencyCode}}<br>
                 Minimum Duration: {{minimumDuration}}<br>
         
                 <h3>Pictures:</h3>
                 <div class="poipictures">
                     {{#each pictures}}
-                    <img src="{{this}}" alt="Activity Image">
+                    <img class="poipic" src="{{this}}" alt="Activity Image">
                     {{/each}}
                 </div>
                 <a href="{{bookingLink}}" target="_blank">Click to Book Now</a>
@@ -95,4 +100,4 @@
         </ul>
 
 </section>
-<script src="../public/js/poiTest.js"></script>
+<script src="/js/poiTest.js"></script>

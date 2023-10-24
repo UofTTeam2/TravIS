@@ -50,8 +50,8 @@ router.get('/', async (req, res) => {
                 safeData: safeData,
                 locationData: locationData
             };
-            res.status(200).json(responseData); //keep this for testing in insomnia
-            // res.render('poi', responseData); //render data to page using handlebars
+            // res.status(200).json(responseData); //keep this for testing in insomnia
+            res.render('poitestold', responseData); //render data to page using handlebars
         } else {
             //log error if no latitude/longitude data is returned
             console.log('Error: no latitude/longitude data'); //
