@@ -144,13 +144,7 @@ router.post('/update-public', loginAuth, async (req, res) => {
     try {
         const tripId = req.body.id;
         const public = req.body.public;
-        /*
-        //to the value of the public variable passed in the request body
-        if (public) {
-            public = true;
-        } else {
-            public = false;
-        }*/
+
         //update the public field of the trip with the matching tripId
         await Trip.update(
             { public: public },

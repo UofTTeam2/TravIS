@@ -17,6 +17,8 @@ window.onload = () => {
     let allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
     let removeChosenImageButton = $('.clear-preview-image-button');
     let removeCurrentImageButton = $('.clear-current-image-button');
+    const tripID = $('.trip-title-container').attr('data-id');
+    console.log(tripID);
 
     function openImageErrorModal(error) {
         imageUploadErrorMessage.text(error);
@@ -136,7 +138,6 @@ window.onload = () => {
             return image; //return the appropriate image reference
         }
 
-        const tripID = $('.trip-title-container').attr('data-id');
         const tripTitle = $('.trip-title-input').val();
         const tripStartDate = $('.trip-start-date-input').val();
         const tripEndDate = $('.trip-end-date-input').val();
@@ -400,13 +401,13 @@ window.onload = () => {
         
             <div class = "edit-page-image-container">
         
-            <div class = "edit-page-image-block">
-        
-                <button class = "clear-preview-image-button">Clear Chosen Image</button>
-                <h4>Preview:</h4>
-                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
-        
-            </div>
+                <div class = "edit-page-image-block">
+            
+                    <button class = "clear-preview-image-button">Clear Chosen Image</button>
+                    <h4>Preview:</h4>
+                    <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+            
+                </div>
         
             </div>
         </div>`;
@@ -438,11 +439,10 @@ window.onload = () => {
     }
 
     async function addTripSection() {
-        const trip_id = $(this).siblings('.trip-title-container').attr('data-id');
-        console.log('trip ID: ' + trip_id);
+        console.log('trip ID: ' + tripID);
 
         const newSectionData = {
-            trip_id: trip_id
+            trip_id: tripID
         };
 
         let sectionID;
