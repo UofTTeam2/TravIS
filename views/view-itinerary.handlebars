@@ -1,4 +1,5 @@
-<!-- placeholder for trip title -->
+<div class="container">
+  <!-- placeholder for trip title -->
 <div class = "trip-title-container" data-id = "{{id}}">
   {{#if title}}
     <h1 class = "trip-title-header">{{title}}</h1>
@@ -16,18 +17,26 @@
       {{/if}}
   {{/if}}
 
-  <div style = "width: 600px"><canvas id = "expense-summary"></canvas></div>
 </div>
+<div class="trip-btn">
 <!-- button to switch to edit mode -->
-<button class = "open-menu-button"><img src = "/images/gear-icon.png"></button>
+<button class = "open-menu-button"><span class="material-symbols-outlined"> settings </span></button>
 <!-- button to switch to edit mode -->
-<button class = "edit-itinerary-button"><img src = "/images/pencil-paper-icon.png"></button>
+<button class = "edit-itinerary-button"><span class="material-symbols-outlined"> edit </span></button>
+</div>
 
-<div class = "trip-sections-container"></div>
+<div style = "width: 600px"><canvas id = "expense-summary"></canvas></div>
+
+
   <!-- render a partial for each section of the trip -->
-  {{#each sections as |section|}}
+  <div class="trip-categories-container">
+    {{#each sections as |section|}}
     {{> view-section-details}}
   {{/each}}
+  </div>
+
+
+
 </div>
 
 <div class = "settings-modal modal">

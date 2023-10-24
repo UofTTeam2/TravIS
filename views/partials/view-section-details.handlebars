@@ -6,13 +6,13 @@
 
   </div>
 
-  <div class = "trip-categories-container">
-
     <!-- renders a category title & a partial for each item related to transport, if any exist -->
     {{#if transportItems}}
       <div class = "trip-section-category">
 
-        <h3 class = "item-category-title">Transportation</h3>
+        <h4 class = "item-category-title toggle-button">Transportation <span class="material-symbols-outlined">
+                    expand_more
+                    </span></h4>
         {{#each transportItems as |transportItem|}}
           {{> view-item-details}}
         {{/each}}
@@ -24,7 +24,9 @@
     {{#if accommodationItems}}
       <div class = "trip-section-category">
         
-        <h3 class = "item-category-title">Accommodation</h3>
+        <h4 class = "item-category-title toggle-button">Accommodation <span class="material-symbols-outlined">
+                    expand_more
+                    </span></h4>
         {{#each accommodationItems as |accommodationItem|}}
           {{> view-item-details}}
         {{/each}}
@@ -37,7 +39,9 @@
     {{#if foodItems}}
       <div class = "trip-section-category">
 
-        <h3 class = "item-category-title">Food</h3>
+        <h4 class = "item-category-title toggle-button">Food <span class="material-symbols-outlined">
+                    expand_more
+                    </span></h4>
         {{#each foodItems as |foodItem|}}
           {{> view-item-details}}
         {{/each}}
@@ -50,7 +54,9 @@
     {{#if activityItems}}
       <div class = "trip-section-category">
 
-        <h3 class = "item-category-title">Activities</h3>
+        <h4 class = "item-category-title toggle-button">Activities <span class="material-symbols-outlined">
+                    expand_more
+                    </span></h4>
         {{#each activityItems as |activityItem|}}
           {{> view-item-details}}
         {{/each}}
@@ -62,7 +68,9 @@
     {{#if miscItems}}
       <div class = "trip-section-category">
 
-        <h3 class = "item-category-title">Misc</h3>
+        <h4 class = "item-category-title toggle-button">Misc <span class="material-symbols-outlined">
+                    expand_more
+                    </span></h4>
         {{#each miscItems as |miscItem|}}
           {{> view-item-details}}
         {{/each}}
@@ -70,5 +78,5 @@
       </div>
     {{/if}}
 
-  </div>
 </div>
+
