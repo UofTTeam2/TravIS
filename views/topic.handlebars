@@ -1,0 +1,31 @@
+      <div class="grid-container">
+{{> dashHeader}}
+{{> dashSide}}
+<main class="main-container">
+<div class="main-title">
+  <p class="font-weight-bold all-capitals bottom-space">{{topic.title}}</p>
+</div>
+      <section class="forum-main">
+        <div class="forum-labels forum-box-animation">
+          {{#if loggedIn}}
+          <button id="forum-newpost-button">New Post</button>
+          {{else}}
+          <div id="forum-absent-button">New Post</div>
+          {{/if}}
+          <p class="forum-label post-title">Subject</p>
+          <p class="single-post-info">Author</p>
+          <p class="double-post-info">Replies</p>
+          <p class="double-post-info">Last Post</p>
+        </div>
+        {{#each topic.posts}}
+        {{> topic-details}}
+        {{/each}}
+        <script>
+          const newPostButton = document.getElementById('forum-newpost-button');
+          newPostButton.addEventListener('click', function() {
+            window.location.href = '/api/forum/newpost';
+          });
+        </script>
+      </section>
+    </main>
+  </div>

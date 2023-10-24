@@ -1,0 +1,116 @@
+<div class="grid-container">
+{{> dashHeader}}
+{{> dashSide}}
+<main class="main-container">
+<div class="main-title">
+  <h1 class="forum-title">{{post.subject}}</h1>
+</div>
+      <section class="forum-main">
+        <div id="error-modal" class="modal">
+          <div class="error-modal-content">
+            <p id="error-modal-text"></p>
+            <button id="error-modal-close">Close</button>
+          </div>
+        </div>
+        {{#each commentsWithImages}}
+          {{> post-details}}
+        {{/each}}
+        {{#if loggedIn}}
+        <p class="forum-end-message">Post a new comment:</p>
+        <form  id="newpost-form" action="/api/forum/comment" enctype="multipart/form-data" method="post">
+          <div class="form-group">
+            <textarea type="text" id="forum-newpost-textarea" class="form-control" placeholder="Your post text" rows="15" name="posttext"></textarea>
+            <div class="forum-new-post-button-box">
+              <div class="forum-upload-area">
+                <label for="form-upload-input" class="forum-newpost-upload">
+                  Upload Photo
+                </label>
+                <input type="file" id="form-upload-input" class="form-control-file" name="forum-user-image" />
+                <p id="file-upload-label"></p>
+              </div>
+              <button id="newpost-submit-button">Submit</button>
+            </div>
+          </div>
+        </form>
+        {{else}}
+          <p class="forum-end-message">Please log in to post a comment.</p>
+        {{/if}}
+        <script>
+          const bodyTextBox = document.getElementById('forum-newpost-textarea');
+          const fileInput = document.getElementById('form-upload-input');
+          let label = document.getElementById('file-upload-label');
+          const newpostForm = document.getElementById('newpost-form');
+          const errorModal = document.getElementById('error-modal');
+          let errorModalText = document.getElementById('error-modal-text');
+          const closeModalButton = document.getElementById('error-modal-close');
+
+          fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+              const file = this.files[0];
+              if (!file.type.startsWith('image/')) {
+                errorModal.style.display = 'block';
+                errorModalText.innerHTML = 'Warning: Only image files are allowed.';
+                this.value = '';
+              } else {
+                label.textContent = file.name;
+              }
+            }
+          });
+
+          newpostForm.addEventListener('submit', function (event) {
+            if (!bodyTextBox.value) {
+              event.preventDefault();
+              errorModalText.innerHTML = 'Warning: Please fill out all fields.';
+              errorModal.style.display = 'block';
+            }
+          });
+
+          closeModalButton.addEventListener('click', function () {
+            errorModal.style.display = 'none';
+          });
+          
+          /*
+          document.addEventListener('click', async (event) => {
+            if (event.target && event.target.id === 'like-button') {
+              const commentId = event.target.getAttribute('data-comment-id');
+              const isLiked = event.target.getAttribute('data-liked') === 'true';
+
+              // Send an AJAX request to update the like status
+              try {
+                const response = await fetch('/api/forum/like', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ commentId, isLiked }),
+                });
+
+                if (response.ok) {
+                  // Update the UI based on the response
+                  const data = await response.json();
+                  const likesBox = document.getElementById(`comment-likes-${commentId}`);
+                  likesBox.innerHTML = `
+                    <img src="/images/topic-images/thumbs_up_nofill.png" alt="thumbs up" class="like-image-bottom">
+                    <p class="like-usernames">${data.likes.length}</p>
+                 `;
+
+                 // Toggle the liked attribute
+                 event.target.setAttribute('data-liked', !isLiked);
+                 // Update the like button image
+                 event.target.innerHTML = `
+                   <img src="/images/topic-images/thumbs_up_${isLiked ? 'nofill' : 'greyedout'}.png" alt="thumbs up" class="like-image">
+                 `;
+               } else {
+                 // Handle the error
+                 console.error('Failed to update like status');
+               }
+             } catch (error) {
+               console.error('Failed to update like status:', error);
+             }
+           }
+         });
+         */
+        </script>
+      </section>
+    </main>
+  </div>

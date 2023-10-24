@@ -1,0 +1,68 @@
+{{#extend 'layouts/main'}}
+    {{#content 'headExtra'}}{{/content}}
+
+    {{#content 'bodyContent'}}
+        <section class='form'>
+            <div class='container' id='container'>
+                <div class='form-container sign-up'>
+                    <form class='signupForm'>
+                        <h1>Create Account</h1>
+                        <p>Use your email for registration</p>
+                        <input
+                            type='text'
+                            placeholder='Username'
+                            id='usernameSignup'
+                        />
+                        <input
+                            type='email'
+                            placeholder='Email'
+                            id='emailSignup'
+                        />
+                        <input
+                            type='password'
+                            placeholder='Password'
+                            id='passwordSignup'
+                        />
+                        <button id="signUp">Sign Up</button>
+                    </form>
+                </div>
+                <div class='form-container log-in'>
+                    <form class='loginForm'>
+                        <h1>Log In</h1>
+                        <p>Use your email and password</p>
+                        <input
+                            type='email'
+                            placeholder='Email'
+                            id='emailLogin'
+                        />
+                        <input
+                            type='password'
+                            placeholder='Password'
+                            id='passwordLogin'
+                        />
+                        <a href='#'>Forgot Your Password?</a>
+                        <button id="logIn">Log In</button>
+                    </form>
+                </div>
+                <div class='toggle-container'>
+                    <div class='toggle'>
+                        <div class='toggle-panel toggle-left'>
+                            <h1>Welcome Back!</h1>
+                            <p>Enter your personal details to use all features</p>
+                            <button class='hidden' id='loginChange'>Log In</button>
+                        </div>
+                        <div class='toggle-panel toggle-right'>
+                            <h1>Hello, Friend!</h1>
+                            <p>Register with your personal details to use all
+                                features</p>
+                            <button class='hidden' id='registerChange'>Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="./public/js/login.js"></script>
+        <script src="./public/js/index.js"></script>
+    {{/content}}
+{{/extend}}
