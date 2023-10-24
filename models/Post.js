@@ -1,4 +1,4 @@
-// Desc: Creating a model for the Topic table in the database.
+// Desc: Creating a model for the Post table in the database.
 // Author: Cristiano Barboza Godinho
 // =============================================================
 
@@ -8,14 +8,14 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 // =============================================================
 
-// Creating the Topic model
+// Creating the Post model
 // =============================================================
-class Topic extends Model {}
+class Post extends Model {}
 // =============================================================
 
-// Creating the Topic table
+// Creating the Post table
 // =============================================================
-Topic.init(
+Post.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -24,38 +24,30 @@ Topic.init(
             autoIncrement: true,
         },
 
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-
-        description: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-
-        iconalt: {
+        subject: {
             type: DataTypes.STRING,
             allowNull: false,
         },
 
         user_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id',
-            },
+            allowNull: false,
+        },
+
+        topic_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'topic',
+        modelName: 'post',
     }
 );
 // =============================================================
 
-// Exporting the Topic model
+// Exporting the Post model
 // =============================================================
-module.exports = Topic;
+module.exports = Post;
