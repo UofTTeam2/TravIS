@@ -104,6 +104,8 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             miscExpenses,
         ];
 
+        const totalExpenses = expenses.reduce((currentSum, currentValue) => currentSum + currentValue, 0);
+
         console.log(responseData);
         console.log(totalExpenses);
 
@@ -121,6 +123,7 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             public,
             sections,
             expenses,
+            totalExpenses,
             loggedIn: req.session.loggedIn,
         });
     } catch (error) {
