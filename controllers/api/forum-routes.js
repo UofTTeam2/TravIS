@@ -16,7 +16,6 @@ const { User } = require('../../models');
 const { Topic } = require('../../models');
 const { Post } = require('../../models');
 const { Comment } = require('../../models');
-const { Likes } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
@@ -77,14 +76,7 @@ router.get('/post/:id', async (req, res) => {
   try {
     const dbPost = await Post.findByPk(req.params.id, {
       include: [
-        {
-          model: User,
-          /*
-          include: [
-            Likes,
-          ],
-          */
-        },
+        User,
         {
           model: Comment,
           include: [
@@ -96,7 +88,6 @@ router.get('/post/:id', async (req, res) => {
                 },
               ],
             },
-            // Likes,
           ],
           order: [['timestamp', 'ASC']],
         },
@@ -195,98 +186,7 @@ router.post('/comment', upload.single('forum-user-image'), async (req, res) => {
   }
 });
 
-router.get('/like/:commentId', async (req, res) => {
-  try {
-    /*
-    const dbComment = await Comment.findByPk(req.params.id, {
-      include: [
-        Likes,
-        User,
-      ],
-    });
-    */
-
-    const dbLikes = await Likes.findAll({
-      where: {
-        comment_id: req.params.commentId,
-      },
-    });
-
-    // const comment = dbComment.get({ plain: true }); 
-    const likes = dbLikes.map((like) =>
-      like.get({ plain: true })
-    );
-
-    console.info(likes);
-
-    res.status(200).json({ likes });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-/*
-router.post('/like', async (req, res) => {
-  try {
-    const commentId = req.body.commentId;
-    const isLiked = req.body.isLiked;
-
-    const comment = await Comment.findByPk(commentId);
-
-    if (!comment) {
-      return res.status(404).json({ error: 'Comment not found' });
-    }
-
-    const userId = req.session.user_id;
-
-    if (!userId) {
-      return res.status(403).json({ error: 'User not authenticated' });
-    }
-
-    const existingLike = await Likes.findOne({
-      where: {
-        comment_id: commentId,
-        user_id: userId,
-      },
-    });
-
-    if (isLiked) {
-      // If the user has already liked the comment, return a 400 Bad Request
-      if (existingLike) {
-        return res.status(400).json({ error: 'You have already liked this comment' });
-      }
-
-      // Create a new Like entry
-      await Likes.create({
-        comment_id: commentId,
-        user_id: userId,
-      });
-    } else {
-      // If the user has not liked the comment, return a 400 Bad Request
-      if (!existingLike) {
-        return res.status(400).json({ error: 'You have not liked this comment yet' });
-      }
-
-      // Delete the Like entry
-      await existingLike.destroy();
-    }
-
-    // Retrieve the list of users who liked the comment
-    const likedUsers = await Likes.findAll({
-      where: { comment_id: commentId },
-      include: User, // Include the User model to get user details
-    });
-
-    res.status(200).json({ likes: updatedLikesList });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-*/
-
-// Start of Fake Login/Logout Code
+// Start of Fake Login/Logout Code ** TO BE DELETED **
 router.post('/fakelogin', async (req, res) => {
   console.info("req.session.loggedIn = " + req.session.loggedIn);
   if (!req.session.loggedIn) {
