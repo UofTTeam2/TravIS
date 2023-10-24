@@ -23,8 +23,8 @@
     <!-- button to switch to edit mode -->
     <button class = "edit-itinerary-button"><span class="material-symbols-outlined"> edit </span></button>
   </div>
-  <h2>Total Expenses: ${{{totalExpenses}}}</h2>
-  <div style = "width: 400px"><canvas id = "expense-summary"></canvas></div>
+  <h2 class = "total-expenses">Total Expenses: ${{{totalExpenses}}}</h2>
+  <div style = "width: 450px"><canvas id = "expense-summary"></canvas></div>
 
   <!-- render a partial for each section of the trip -->
   <div class="trip-sections-container">
@@ -39,7 +39,7 @@
     <div class = "modal-content">
 
       <span class = "close itinerary-settings-close">&times;</span>
-      <h3>Make this itinerary publically visible?</h3>
+      <h3>Make this itinerary publicly visible?</h3>
       <p>Only you will have edit privileges</p>
       <label class = "switch">
 
