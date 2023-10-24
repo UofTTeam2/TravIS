@@ -2,73 +2,81 @@
   
   <div class = "section-title-container">
 
-    <h2 class = "section-title-header" data-id = {{id}} value = "{{title}}">
+    <h2 class = "section-title-header" data-id = {{id}}>{{title}}</h2>
 
   </div>
 
-  <div class = "trip-categories-container">
+  <!-- renders a category title & a partial for each item related to transport, if any exist -->
+  {{#if transportItems}}
+    <div class = "trip-section-category">
 
-    <!-- renders a category title & a partial for each item related to transport, if any exist -->
-    {{#if transportItems}}
-      <div class = "trip-section-category">
+      <h4 class = "item-category-title toggle-button">Transportation <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      {{#each transportItems as |transportItem|}}
+        {{> view-item-details}}
+      {{/each}}
 
-        <h3 class = "item-category-title">Transportation</h3>
-        {{#each transportItems as |transportItem|}}
-          {{> view-item-details}}
-        {{/each}}
+    </div>
+  {{/if}}
 
-      </div>
-    {{/if}}
+  <!-- renders a category title & a partial for each item related to accommodation, if any exist -->
+  {{#if accommodationItems}}
+    <div class = "trip-section-category">
+      
+      <h4 class = "item-category-title toggle-button">Accommodation <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      {{#each accommodationItems as |accommodationItem|}}
+        {{> view-item-details}}
+      {{/each}}
 
-    <!-- renders a category title & a partial for each item related to accommodation, if any exist -->
-    {{#if accommodationItems}}
-      <div class = "trip-section-category">
-        
-        <h3 class = "item-category-title">Accommodation</h3>
-        {{#each accommodationItems as |accommodationItem|}}
-          {{> view-item-details}}
-        {{/each}}
-
-      </div>
-    {{/if}}
+    </div>
+  {{/if}}
 
 
-    <!-- renders a category title & a partial for each item related to food, if any exist -->
-    {{#if foodItems}}
-      <div class = "trip-section-category">
+  <!-- renders a category title & a partial for each item related to food, if any exist -->
+  {{#if foodItems}}
+    <div class = "trip-section-category">
 
-        <h3 class = "item-category-title">Food</h3>
-        {{#each foodItems as |foodItem|}}
-          {{> view-item-details}}
-        {{/each}}
+      <h4 class = "item-category-title toggle-button">Food <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      {{#each foodItems as |foodItem|}}
+        {{> view-item-details}}
+      {{/each}}
 
-      </div>
-    {{/if}}
+    </div>
+  {{/if}}
 
-    <!-- renders a category title & a partial for each item relating to activities / things to do
-        (entertainment, shopping, historical sites to visit, etc.) if any exist -->
-    {{#if activityItems}}
-      <div class = "trip-section-category">
+  <!-- renders a category title & a partial for each item relating to activities / things to do
+      (entertainment, shopping, historical sites to visit, etc.) if any exist -->
+  {{#if activityItems}}
+    <div class = "trip-section-category">
 
-        <h3 class = "item-category-title">Activities</h3>
-        {{#each activityItems as |activityItem|}}
-          {{> view-item-details}}
-        {{/each}}
+      <h4 class = "item-category-title toggle-button">Activities <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      {{#each activityItems as |activityItem|}}
+        {{> view-item-details}}
+      {{/each}}
 
-      </div>
-    {{/if}}
+    </div>
+  {{/if}}
 
-    <!-- renders a category title & a partial for any remaining miscellaneous items, if any exist -->
-    {{#if miscItems}}
-      <div class = "trip-section-category">
+  <!-- renders a category title & a partial for any remaining miscellaneous items, if any exist -->
+  {{#if miscItems}}
+    <div class = "trip-section-category">
 
-        <h3 class = "item-category-title">Misc</h3>
-        {{#each miscItems as |miscItem|}}
-          {{> view-item-details}}
-        {{/each}}
+      <h4 class = "item-category-title toggle-button">Misc <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      {{#each miscItems as |miscItem|}}
+        {{> view-item-details}}
+      {{/each}}
 
-      </div>
-    {{/if}}
+    </div>
+  {{/if}}
 
-  </div>
 </div>
+
