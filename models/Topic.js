@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class User extends Model {}
+class Topic extends Model {}
 
-User.init(
+Topic.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,29 +11,25 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    username: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
+    description: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    password: {
+    iconalt: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    location: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
+    }
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
+    modelName: 'topic',
   }
 );
 
-module.exports = User;
+module.exports = Topic;

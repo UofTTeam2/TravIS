@@ -10,6 +10,11 @@ const seedItineraryItems = require('./itineraryitem-seeds');
 const seedTrip = require('./trip-seeds');
 const seedUsers = require('./user-seeds');
 const seedTripSections = require('./tripsection-seeds');
+const seedTopic = require('./topicData');
+const seedPost = require('./postData');
+const seedComment = require('./commentData');
+const seedUser = require('./userData');
+const seedLikes = require('./likesData');
 // =============================================================
 
 // Syncing the seeds files
@@ -29,7 +34,15 @@ const seedAll = async () => {
     console.log('\n----- MESSAGES SEEDED -----\n');
     await seedComments();
     console.log('\n----- COMMENTS SEEDED -----\n');
+    await seedUser();
 
+    await seedTopic();
+  
+    await seedPost();
+  
+    await seedComment();
+  
+    await seedLikes();
     process.exit(0);
 };
 
