@@ -13,9 +13,11 @@
       <h4 class = "item-category-title toggle-button">Transportation <span class="material-symbols-outlined">
                   expand_more
                   </span></h4>
-      {{#each transportItems as |transportItem|}}
-        {{> view-item-details}}
-      {{/each}}
+      <div class="toggle-content">
+        {{#each transportItems as |transportItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
 
     </div>
   {{/if}}
@@ -27,9 +29,11 @@
       <h4 class = "item-category-title toggle-button">Accommodation <span class="material-symbols-outlined">
                   expand_more
                   </span></h4>
-      {{#each accommodationItems as |accommodationItem|}}
-        {{> view-item-details}}
-      {{/each}}
+      <div class="toggle-content">
+        {{#each accommodationItems as |accommodationItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
 
     </div>
   {{/if}}
@@ -42,9 +46,11 @@
       <h4 class = "item-category-title toggle-button">Food <span class="material-symbols-outlined">
                   expand_more
                   </span></h4>
-      {{#each foodItems as |foodItem|}}
-        {{> view-item-details}}
-      {{/each}}
+      <div class="toggle-content">
+        {{#each foodItems as |foodItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
 
     </div>
   {{/if}}
@@ -57,9 +63,11 @@
       <h4 class = "item-category-title toggle-button">Activities <span class="material-symbols-outlined">
                   expand_more
                   </span></h4>
-      {{#each activityItems as |activityItem|}}
-        {{> view-item-details}}
-      {{/each}}
+      <div class="toggle-content">
+        {{#each activityItems as |activityItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
 
     </div>
   {{/if}}
@@ -71,9 +79,11 @@
       <h4 class = "item-category-title toggle-button">Misc <span class="material-symbols-outlined">
                   expand_more
                   </span></h4>
-      {{#each miscItems as |miscItem|}}
-        {{> view-item-details}}
-      {{/each}}
+      <div class="toggle-content">
+        {{#each miscItems as |miscItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
 
     </div>
   {{/if}}
