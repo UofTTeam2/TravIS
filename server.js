@@ -21,9 +21,9 @@ require('dotenv').config();
 // =============================================================
 const routes = require('./controllers');
 const Session = require('./models/Session');
-const helpers = require('./utils/helpers');
+//const helpers = require('./utils/helpers');
 //initializes handlebars template engine
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create();
 // import dataParser middleware
 const dataParser = require('./utils/dataParser');
 //==============================================================
@@ -31,7 +31,7 @@ const dataParser = require('./utils/dataParser');
 //defines express application and PORT
 // =============================================================
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 //==============================================================
 
 // Access the session secret from the environment variables
@@ -49,7 +49,7 @@ const sess = {
     saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize,
-        table: 'Session', // Name of the database table to store sessions
+        model: 'session', // Name of the database table to store sessions
     }),
 };
 

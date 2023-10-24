@@ -33,7 +33,7 @@ Trip.init(
         },
         date: {
             type: DataTypes.DATEONLY,
-            allowNull: True,
+            allowNull: true,
             defaultValue: DataTypes.NOW,
         },
         user_id: {

@@ -7,12 +7,19 @@
 // =============================================================
 const router = require('express').Router();
 const apiController = require('./api');
-const homeController = require('./home-controller');
+//const homeController = require('./home-controller');
+const homeRoutes = require('./homeRoutes');
+const loginRoutes = require('./loginRoutes');
+const dashboardRoutes = require('./dashboardRoutes');
+
 //==============================================================
 
 // Routes
 // =============================================================
-router.use('/', homeController);
+//router.use('/', homeController);
+router.use('/', dashboardRoutes);
+router.use('/', homeRoutes);
+router.use('/', loginRoutes);
 router.use('/api', apiController);
 //==============================================================
 
