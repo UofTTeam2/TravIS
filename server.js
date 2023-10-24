@@ -49,7 +49,7 @@ const sess = {
     saveUninitialized: true,
     store: new SequelizeStore({
         db: sequelize,
-        table: 'Session', // Name of the database table to store sessions
+        table: 'sessions', // Name of the database table to store sessions
     }),
 };
 
