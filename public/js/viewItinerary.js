@@ -13,7 +13,7 @@ window.onload = () => {
     }
 
     function switchToEditMode() {
-        const tripID = $(this).siblings('.trip-title-container').attr('data-id');
+        const tripID = $(this).parent().siblings('.trip-title-container').attr('data-id');
         console.log(tripID);
 
         const redirectAddress = `/trips/edit/${tripID}`;
