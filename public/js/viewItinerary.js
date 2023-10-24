@@ -29,6 +29,10 @@ window.onload = () => {
         settingsModal.attr('style', 'display: none');
     });
 
+    publicToggleSwitch.on('click', function() {
+        console.log(publicToggleSwitch[0].checked);
+    });
+
     //if the user clicks outside the settings modal, close the modal
     window.onclick = function(event) {
         if (event.target === settingsModal[0]) {
