@@ -133,6 +133,130 @@ router.get('/view/:id', loginAuth, async (req, res) => {
 });
 // =============================================================
 
+// Get one trip with all associated trip sections and itinerary items
+// Renders to an alternate, public version of the itinerary's view page
+// =============================================================
+router.get('/public-view/:id', loginAuth, async (req, res) => {
+    try {
+        // Retrieve the trip with the specified ID and include its sections and items
+        const trip = await Trip.findByPk(req.params.id, {
+            include: [
+                {
+                    model: TripSection,
+                    as: 'tripsections',
+                    include: [
+                        {
+                            model: ItineraryItem,
+                            as: 'itineraryitems',
+                        },
+                    ],
+                },
+            ],
+        });
+
+        // Check if the trip exists
+        if (!trip) {
+            return res.status(404).json({ message: 'Trip not found' });
+        }
+
+        // Initialize the data structure
+        const responseData = {
+            id: trip.id,
+            title: trip.title,
+            start_date: trip.start_date,
+            end_date: trip.end_date,
+            image: trip.image,
+            public: trip.public,
+            sections: [],
+        };
+
+        // category expenese trackers for the trip
+        let transportExpenses = 0;
+        let accommodationExpenses = 0;
+        let foodExpenses = 0;
+        let activityExpenses = 0;
+        let miscExpenses = 0;
+
+        // Iterate through sections and items to categorize them
+        trip.tripsections.forEach((section) => {
+            const categorizedItems = {
+                accommodationItems: [],
+                foodItems: [],
+                transportItems: [],
+                activityItems: [],
+                miscItems: [],
+            };
+
+            section.itineraryitems.forEach((item) => {
+                switch (item.category) {
+                    case 'Accommodation':
+                        categorizedItems.accommodationItems.push(item);
+                        accommodationExpenses += parseFloat(item.expense);
+                        break;
+                    case 'Food':
+                        categorizedItems.foodItems.push(item);
+                        foodExpenses += parseFloat(item.expense);
+                        break;
+                    case 'Transportation':
+                        categorizedItems.transportItems.push(item);
+                        transportExpenses += parseFloat(item.expense);
+                        break;
+                    case 'Activities':
+                        categorizedItems.activityItems.push(item);
+                        activityExpenses += parseFloat(item.expense);
+                        break;
+                    default:
+                        categorizedItems.miscItems.push(item);
+                        miscExpenses += parseFloat(item.expense);
+                        break;
+                }
+            });
+
+                // Add the categorized items to the response
+            responseData.sections.push({
+                id: section.id,
+                title: section.title,
+                ...categorizedItems,
+            });
+        });
+
+        //collect category expenses into a single array
+        expenses = [
+            transportExpenses,
+            accommodationExpenses,
+            foodExpenses,
+            activityExpenses,
+            miscExpenses,
+        ];
+
+        const totalExpenses = expenses.reduce((currentSum, currentValue) => currentSum + currentValue, 0);
+
+        console.log(responseData);
+        console.log(totalExpenses);
+
+        const { id, title, start_date, end_date, image, public, sections } = responseData;
+
+        // Send the response
+        res.render('public-view-itinerary', {
+            layout: 'main',
+            id,
+            title,
+            start_date,
+            end_date,
+            image,
+            public,
+            sections,
+            expenses,
+            totalExpenses,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// =============================================================
+
 // Get edit page for a trip
 // =============================================================
 router.get('/edit/:id', loginAuth, async (req, res) => {
