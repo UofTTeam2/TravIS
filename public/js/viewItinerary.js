@@ -5,6 +5,8 @@ window.onload = () => {
     const closeSettingsButton = $('.itinerary-settings-close');
     const switchToEditModeButton = $('.edit-itinerary-button');
     const publicToggleSwitch = $('.public-checkbox');
+    const tripID = $('.trip-title-container').attr('data-id');
+    console.log(tripID);
 
     function openMenu() {
         //modal moment!
@@ -13,13 +15,34 @@ window.onload = () => {
     }
 
     function switchToEditMode() {
-        const tripID = $(this).parent().siblings('.trip-title-container').attr('data-id');
         console.log(tripID);
 
         const redirectAddress = `/trips/edit/${tripID}`;
         console.log(redirectAddress);
 
         window.location.pathname = redirectAddress;
+    }
+
+    async function updatePublicStatus() {
+        const public = publicToggleSwitch[0].checked;
+        console.log(public);
+
+        const newPublicData = {
+            id: tripID,
+            public: public
+        };
+
+        console.log(newPublicData);
+
+        try {
+            await fetch('/api/trips/update-public', {
+                method: 'POST',
+                body: JSON.stringify(newPublicData),
+                headers: {'Content-Type': 'application/json'},
+            });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     openSettingsButton.on('click', openMenu);
@@ -29,9 +52,7 @@ window.onload = () => {
         settingsModal.attr('style', 'display: none');
     });
 
-    publicToggleSwitch.on('click', function() {
-        console.log(publicToggleSwitch[0].checked);
-    });
+    publicToggleSwitch.on('click', updatePublicStatus);
 
     //if the user clicks outside the settings modal, close the modal
     window.onclick = function(event) {
