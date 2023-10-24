@@ -1,43 +1,62 @@
+
+// require('dotenv').config();
+// const Handlebars = require('handlebars');
+
+// document.getElementById('searchForm').addEventListener('submit', async function(event) {
+//     event.preventDefault();
+//     const city = document.getElementById('cityInput').value;
+
+//     try {
+//         const response = await fetch(`/poi?city=${city}`);
+//         const responseData = await response.json();
+
+//         // Compile Handlebars template
+//         const template = require('../../views/poi.handlebars');
+//         const compiledTemplate = Handlebars.compile(template);
+
+//         // Compile template with received data
+//         const renderHTML = compiledTemplate(responseData);
+
+//         // Update HTML with compiled template
+//         document.querySelector('#recommendations').innerHTML = renderHTML;
+
+//         // Show hidden elements with data
+//         document.querySelector('.hide').classList.remove('hide');
+//     } catch (error) {
+//         console.error(error);
+//     }
+// });
 require('dotenv').config();
 const Handlebars = require('handlebars');
-const fetchCityData = require('./geoCode');
-const Amadeus = require('amadeus');
-const locationScore = require('./locationScore');
-const getPOI = require('./poi');
-const safeScore = require('./safeScore');
-const thingsToDo = require('./toDo');
-const template = require('../../views/poi.handlebars'); // Handlebars template
-const compiledTemplate = Handlebars.compile(template); // compiles template
+console.log('hello');
 
-// event listener for city search button
+// Event listener for the form submission
 document.getElementById('searchForm').addEventListener('submit', async function(event) {
     event.preventDefault();
-    // get city name from user input to be used elsewhere
-    const city = document.getElementById('cityInput').value;
-    console.log(city);
+    // const city = document.getElementById('cityInput').value;
+    const city = 'Berlin';
 
     try {
-        const { lat, lon } = await fetchCityData(city);
+        const response = await fetch(`api/poi?city=${city}`);
+        const responseData = await response.json();
 
-        // api calls to get data
-        // const [poiData, toDoData, safeData, locationData] = await Promise.all([
+        // Get the template from the HTML using its ID
+        const template = document.getElementById('poi-template').innerHTML;
 
-        // functions here to get data
-        
-    // ]);
+        // Compile the template with Handlebars
+        const compiledTemplate = Handlebars.compile(template);
+        console.log(template);
 
+        // Compile template with received data
+        const renderHTML = compiledTemplate(responseData);
+        console.log(responseData);
 
-        //compile template with received data
-        const renderHTML = compiledTemplate({ poiData, toDoData, safeData, locationData, city });
-        
-        //update HTML with compiled template
+        // Update HTML with compiled template
         document.querySelector('#recommendations').innerHTML = renderHTML;
 
-        // show hidden elements with data
+        // Show hidden elements with data
         document.querySelector('.hide').classList.remove('hide');
     } catch (error) {
         console.error(error);
     }
 });
-
-module.exports = city;

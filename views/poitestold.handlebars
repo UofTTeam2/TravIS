@@ -1,0 +1,98 @@
+<section id="recommendations">
+    <h1>City Explorer</h1>
+    <p>Welcome to the city explorer page. Here you can find information about top rated points of interest, 
+        tours and activities, safety scores, and location scores for a city. Enter a city name to get started.
+    </p>
+    <form id="searchForm">
+        <label for="cityInput">Enter City:</label>
+        <input type="text" id="cityInput" name="city">
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="hide">
+        <h2>Points of Interest:</h2>
+        <p>What are the best places to visit in {{city}}?</p><br>
+        <p>Here you will find a list of top ranked attractions, as voted by travellers. The categories include sights, beach/park, 
+            historical, nightlife, restaurant and shopping. Note that these may not be the most visited places, but are the highest
+            rated among those visited. These can include local hang outs and tourist attractions.</p>
+        <ul id="poiList">
+            {{#each poiData}}
+            <li>
+                <strong>{{name}}</strong> - {{category}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div class="hide">
+        <h2>Activities:</h2>
+        <p>What are the best tours and activities in {{city}}?</p><br>
+        <p>Here you will find information about top rated activities such as sightseeing
+            tours, day trips, museum tickets, and more. If available, you can also find a link to book the activity.
+        </p>
+        <ul id="activitiesList">
+            {{#each activityData}}
+            <li>
+                {{!-- make sure that all placeholders are as same as the received data, here related to activityData --}}
+                <strong>{{name}}</strong> - {{description}}<br>
+                Price: {{price.amount}} {{price.currencyCode}}<br>
+                Minimum Duration: {{minimumDuration}}<br>
+        
+                <h3>Pictures:</h3>
+                <div class="poipictures">
+                    {{#each pictures}}
+                    <img src="{{this}}" alt="Activity Image">
+                    {{/each}}
+                </div>
+                <a href="{{bookingLink}}" target="_blank">Click to Book Now</a>
+            </li>            
+            {{/each}}
+        </ul>
+    </div>
+    
+    <div class="hide">
+        <h2>Safety Scores:</h2>
+        <p>How safe is {{city}}, and surrounding districts? See the overall safety score, 0-100, for six categories:
+            women's safety, health, physical threats, theft, political freedom and LGBTQ safety. The higher the score, the safer the area.
+            It's important to be aware of the safety of your destination, especially if you are travelling alone or with children.
+        </p>
+        <ul id="safetyList">
+            {{#each safetyData}}
+            <li>
+                <strong>{{name}}</strong>,{{subType}} - Overall Safety Score: {{safetyScores.overall}}
+                Safety for Women: {{safetyScores.women}}
+                Health and Medical: {{safetyScores.medical}}
+                Physical Threats: {{safetyScores.physicalHarm}}
+                Theft: {{safetyScores.theft}}
+                Political Freedom: {{safetyScores.politicalFreedom}}
+                LGBTQ Safety: {{safetyScores.lgbtq}}
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div class="hide">
+        <h2>Location Scores:</h2>
+        <ul id="locationScoresList">
+            <p>What are the popular features of {{city}}? Here you can find the popularity score of the surrounding area for different categories,
+                based on a radius of 200m, 500m, and 1500m. The categories include sights, restaurants, shopping, and nightlife. This list
+                helps you find what features are within a walking distance of your location and ones that may require a short drive or public
+                transportation.
+            </p>
+            {{#each locationData}}
+            <li>
+                Radius: {{radius}}m 
+                Overall Sights: {{categoryScores.sight.overall}},
+                Historical Sights: {{categoryScores.sight.historical}},
+                Beach and/or Park: {{categoryScores.sight.beachAndPark}},
+                Restaurants: {{categoryScores.restaurant.overall}},
+                Vegetarian Options: {{categoryScores.restaurant.vegetarian}}, 
+                Shopping: {{categoryScores.shopping.overall}}, 
+                Luxury Shopping: {{categoryScores.shopping.luxury}},
+                Nightlife: {{categoryScores.nightLife.overall}}
+            </li>
+            {{/each}}
+        </ul>
+
+</section>
+<script src="../public/js/poiTest.js"></script>

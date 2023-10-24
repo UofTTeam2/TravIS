@@ -1,66 +1,69 @@
 // Desc: This file gets the coordinates of the user's location and then uses those coordinates
 //to get a list of points of interest, activities, and safety and location scores from the Amadeus APIs.
 //The list of points of interest is then rendered to the page using handlebars.
-//======================================================================
 
-// Dependencies
-// =====================================================================
 const router = require('express').Router();
 const Amadeus = require('amadeus');
 require('dotenv').config();
 
-// gets longitude and latitude of user's location, imported from geoCode.js
-const fetchCityData = require('../../public/js/geoCode');
-//======================================================================
-
-// Amadeus API call
-//======================================================================
-// Amadeus API credentials
 const amadeus = new Amadeus({
-    clientId: process.env.AMADEUS_CLIENT_ID,
+    clientId: process.env.AMADEUS_CLIENT_ID, // assuming that based on the documentation you just need these and nothing else and they are in the .env file
     clientSecret: process.env.AMADEUS_CLIENT_SECRET,
     // hostname: 'production' //use this to switch to production server, switch keys in .env file
 });
-//======================================================================
-// Amadeus API call, gets points of interest, activities, and safety and location scores
-// then combines them into one object and renders them to the page using handlebars
-// reference for promise.all(): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
-router.get('/', async (req, res) => {
-    try {
-        // gets latitude and longitude of user's location using geoCode.js
-        const { lat, lon } = await fetchCityData();
-        if (lat && lon) {
-            // gets points of interest, activities, and safety and location scores
-            const [poiResponse, activityResponse, safetyResponse, locationResponse] = await Promise.all([
-                amadeus.referenceData.locations.pointsOfInterest.get({ latitude: lat, longitude: lon }),
-                amadeus.shopping.activities.get({ latitude: lat, longitude: lon }),
-                amadeus.safety.safetyRatedLocations.get({ latitude: lat, longitude: lon }),
-                amadeus.location.analytics.categoryRatedAreas.get({ latitude: lat, longitude: lon })
-            ]);
-            //define variables for each response
-            const poiData = poiResponse.result.data;
-            const toDoData = activityResponse.result.data;
-            const safeData = safetyResponse.result.data;
-            const locationData = locationResponse.result.data;
 
-            //define object to be rendered to page, combining all data
-            const responseData = {
-                poiData: poiData,
-                toDoData: toDoData,
-                safeData: safeData,
-                locationData: locationData
-            };
-            // res.status(200).json(responseData); //keep this for testing in insomnia
-            res.render('poi', responseData); //render data to page using handlebars
-        } else {
-            //log error if no latitude/longitude data is returned
-            console.log('Error: no latitude/longitude data'); //
-            res.status(400).json({ error: 'No latitude/longitude data' });
+// Route to get the points of interest, activities, and safety and location scores
+// router.get('/:lat/:lon', async (req, res) => {
+router.get('/', async (req, res) => {
+
+
+    // const lat = req.query.lat;
+    // const lon = req.query.lon;
+    // console.log(lat, lon);
+    try {
+        const lat = 52.5200;
+        const lon = 13.4050;
+        if (!lat || !lon) {
+            return res
+                .status(400)
+                .json({ message: 'Latitude and Longitude are required' });
         }
-    } catch (err) {
-        //log error if any other error occurs
-        console.error(err);
-        res.status(500).json({ error: 'Internal server error' });
+        const poiResponse =
+      await amadeus.referenceData.locations.pointsOfInterest.get({
+          latitude: lat,
+          longitude: lon,
+      });
+        const activityResponse = await amadeus.shopping.activities.get({
+            latitude: lat,
+            longitude: lon,
+        });
+        const safetyResponse = await amadeus.safety.safetyRatedLocations.get({
+            latitude: lat,
+            longitude: lon,
+        });
+        const locationResponse =
+      await amadeus.location.analytics.categoryRatedAreas.get({
+          latitude: lat,
+          longitude: lon,
+      });
+        const poiData = await poiResponse.result.data;
+        // console.log(poiData); If the whole data with all related properties are there, then it should be fine. If not, then maybe you have to destructure the data to get the properties you need
+        const activityData = await activityResponse.result.data;
+        const safetyData = await safetyResponse.result.data;
+        const locationData = await locationResponse.result.data;
+        // maybe after that we have to create a function like the one in locationScore.js to destructure the data. thend send back those as response, like this: e.g  poiData: relatedFunction(poidata) ===> which will act as method to destructure the data. then on the client side we do sth like this: const = receivedPoiData = response.poiData.text() ===> which will convert the data to text and then we can use it in the handlebars file. **** in this case instead of res.render we will use res.json
+        const responseData = {
+            poiData,
+            activityData,
+            safetyData,
+            locationData,
+        };
+        // res.status(200).json(responseData);
+        // console.log(responseData);
+        res.render('poitestold', responseData); //**** assuming that you are using the same place holder names in the handlebars file
+    } catch (error) {
+        console.error('Error:', error.message);
+        res.status(500).json({ message: 'Failed to get points of interest' });
     }
 });
 
