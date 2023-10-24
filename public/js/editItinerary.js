@@ -18,26 +18,6 @@ window.onload = () => {
     let removeChosenImageButton = $('.clear-preview-image-button');
     let removeCurrentImageButton = $('.clear-current-image-button');
 
-    function openDeletionModal(objectType, object) {
-        //removes any already-existing event listeners from modal's 'Yes' button
-        confirmationYesButton.off();
-
-        if (objectType === 'item') {
-            confirmationYesButton.on('click', function() {
-                deleteItineraryItem(object);
-            });
-        } else {
-            confirmationYesButton.on('click', function() {
-                deleteTripSection(object);
-            });
-        }
-
-        confirmationModal.attr('style', 'display: block');
-        console.log(objectType);
-        console.log(object);
-        console.log(sessionStorage);
-    }
-
     function openImageErrorModal(error) {
         imageUploadErrorMessage.text(error);
         imageUploadErrorModal.attr('style', 'display: block');
@@ -328,6 +308,26 @@ window.onload = () => {
 
         console.log(addItineraryItemButtons.length);
         console.log(deleteSectionButtons.length);
+    }
+
+    function openDeletionModal(objectType, object) {
+        //removes any already-existing event listeners from modal's 'Yes' button
+        confirmationYesButton.off();
+
+        if (objectType === 'item') {
+            confirmationYesButton.on('click', function() {
+                deleteItineraryItem(object);
+            });
+        } else {
+            confirmationYesButton.on('click', function() {
+                deleteTripSection(object);
+            });
+        }
+
+        confirmationModal.attr('style', 'display: block');
+        console.log(objectType);
+        console.log(object);
+        console.log(sessionStorage);
     }
 
     function removeChosenImage() {
