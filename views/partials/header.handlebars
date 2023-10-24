@@ -1,71 +1,28 @@
 <!-- Navbar -->
-<div class='navbar'>
-    <img
-        class='logo'
-        href='#'
-        src='images/TravIs-Logos/android-chrome-512x512.png'
-        alt='TravIs Logo'
-    /><div class='main'>
-        <!-- Navbar -->
-        <div class='navbar'>
-            <img
-                class='logo'
-                href='#'
-                src='images/TravIs-Logos/android-chrome-512x512.png'
-                alt='TravIs Logo'
-            />
-            <div class='nav-links'>
-                <a href='/homepage' class='item'>Home</a>
-                {{#if isDashboard}}
-                    <a href='#' class='item' id='scroll'>About Us</a>
-                {{/if}}
-                {{#if loggedIn}}
-                    <a href='/dashboard' class='item'>Dashboard</a>
-                {{/if}}
-            </div>
-            <div class='nav-buttons' id='navMenu'>
-                {{#unless isDashboard}}
-                    {{#if loggedIn}}
-                        <button class='nav-btn selected' id='logOut'>LOG OUT</button>
-                    {{else}}
-                        <button
-                            class='nav-btn selected'
-                            id='loginBtn'
-                        >LOGIN</button>
-                        <button class='nav-btn' id='signupBtn'>SIGN UP</button>
-                    {{/if}}
-                {{/unless}}
-            </div>
-
-            <button class='toggler'>
-                <i class='bx bx-menu'></i>
-            </button>
+<div class='main'>
+    <div class='navbar'>
+        <img
+            class='logo'
+            href='#'
+            src='images/TravIs-Logos/android-chrome-512x512.png'
+            alt='TravIs Logo'
+        />
+        <div class='nav-links'>
+            <a href='/homepage' class='item'>Home</a>
+            <a href='#' class='item' id='scroll'>About Us</a>
+            <a href='/dashboard' class='item'>Dashboard</a>
         </div>
-        <!-- End of Navbar -->
-    </div>
 
-    <script src='/js/login.js'></script>
-    <script src='/js/logout.js'></script>
-    <div class='nav-links'>
-        <span class='item selected'>Home</span>
-        <span id='scroll' class='item'>About Us</span>
-        {{#if loggedIn}}
-            <span class='item'>Dashboard</span>
-        {{/if}}
-    </div>
-    <div class='nav-buttons' id='navMenu'>
-        {{#if loggedIn}}
-            <button class='nav-btn selected' id='logOut'>LOG OUT</button>
-        {{else}}
+        <div class='nav-buttons' id='navMenu'>
             <button class='nav-btn selected' id='loginBtn'>LOGIN</button>
             <button class='nav-btn' id='signupBtn'>SIGN UP</button>
-        {{/if}}
-    </div>
+            <button class='nav-btn selected' id='logOut'>LOG OUT</button>
+        </div>
 
-    <button class='toggler'>
-        <i class='bx bx-menu'></i>
-    </button>
+        <button class='toggler'>
+            <i class='bx bx-menu'></i>
+        </button>
+    </div>
 </div>
+
 <!-- End of Navbar -->
-<script src='/js/login.js'></script>
-<script src='/js/logout.js'></script>
