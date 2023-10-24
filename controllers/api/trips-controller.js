@@ -27,7 +27,14 @@ const uploadFolder = multer({ storage: storage });
 // =============================================================
 router.post('/image', uploadFolder.array('image-upload'), async (req, res) => {
     try {
-        const fileNames = req.files.map((file) => file.originalname);
+        let fileNames = req.files.map((file) => file.originalname);
+
+        //if no files were uploaded, set fileNames to an array with an empty string
+        //this will prevent an error when the response attempts to return nothing
+        if (!fileNames) {
+            fileNames = [''];
+        }
+
         res.status(200).json(fileNames);
     } catch (err) {
         res.status(500).json(err);
@@ -41,6 +48,8 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
     try {
         const tripId = req.params.id;
         const { titleData, sectionData, itineraryData } = req.body;
+
+        console.log(tripId);
 
         // Update trip data
         await Trip.update(titleData, {
@@ -63,88 +72,21 @@ router.put('/edit/:id', loginAuth, async (req, res) => {
                 await TripSection.update(sectionToUpdate, {
                     where: { id: sectionId },
                 });
-
-                // Filter itinerary items by section ID
-                const itemsToUpdate = itineraryData.filter(
-                    (item) => item.section_id === sectionId
-                );
-
-                // Loop through itemsToUpdate to update each itinerary item
-                for (const item of itemsToUpdate) {
-                    await ItineraryItem.update(item, {
-                        where: { id: item.id },
-                    });
-                }
             }
         }
 
-        // Construct the response data (responseData) based on updated data
-        const updatedTrip = await Trip.findByPk(tripId, {
-            include: [
-                {
-                    model: TripSection,
-                    as: 'sections',
-                    include: [
-                        {
-                            model: ItineraryItem,
-                            as: 'items',
-                        },
-                    ],
-                },
-            ],
-        });
+        // Loop through itineraryData to update each itinerary item
+        for (const item of itineraryData) {
+            await ItineraryItem.update(item, {
+                where: { id: item.id },
+            });
+        }
 
-        // Construct responseData based on the updatedTrip and related data
-        const responseData = {
-            id: updatedTrip.id,
-            title: updatedTrip.title,
-            start_date: updatedTrip.start_date,
-            end_date: updatedTrip.end_date,
-            image: updatedTrip.image,
-            sections: updatedTrip.sections.map((section) => ({
-                id: section.id,
-                title: section.title,
-                accommodationItems: section.items
-                    .filter((item) => item.category === 'Accommodation')
-                    .map((item) => ({ ...item, category: item.category })),
-                foodItems: section.items
-                    .filter((item) => item.category === 'Food')
-                    .map((item) => ({ ...item, category: item.category })),
-                transportItems: section.items
-                    .filter((item) => item.category === 'Transportation')
-                    .map((item) => ({ ...item, category: item.category })),
-                activityItems: section.items
-                    .filter((item) => item.category === 'Activities')
-                    .map((item) => ({ ...item, category: item.category })),
-                miscItems: section.items
-                    .filter(
-                        (item) =>
-                            ![
-                                'Accommodation',
-                                'Food',
-                                'Transportation',
-                                'Activities',
-                            ].includes(item.category)
-                    )
-                    .map((item) => ({ ...item, category: item.category })),
-            })),
-        };
+        //sets up redirect address for user to see updated trip details in view mode
+        const redirectAddress = `/trips/view/${tripId}`;
 
-        // deconstruct responseData
-        const { id, title, start_date, end_date, image, sections } =
-            responseData;
-        // Render the 'edit-itinerary' page with responseData
-        res.render('view-itinerary', {
-            layout: 'main',
-            id,
-            title,
-            start_date,
-            end_date,
-            image,
-            sections,
-            loggedIn: req.session.loggedIn,
-        });
-        // res.redirect(`/trips/view/${req.params.id}`);
+        //returns address to front end for redirection
+        res.status(200).json(redirectAddress);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -160,16 +102,12 @@ router.post('/create-section', loginAuth, async (req, res) => {
 
         const newSection = await TripSection.create({
             trip_id: trip_id,
-            title,
+            title: title,
         });
 
-        const responseData = {
-            id: newSection.id,
-            title: newSection.title,
-            items: [],
-        };
+        const newSectionId = newSection.id;
 
-        res.status(200).json(responseData);
+        res.status(200).json(newSectionId);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -181,19 +119,45 @@ router.post('/create-section', loginAuth, async (req, res) => {
 // =============================================================
 router.post('/create-item', loginAuth, async (req, res) => {
     try {
-        const { section_id, category } = req.body;
+        const { trip_section_id, category } = req.body;
 
         const newItem = await ItineraryItem.create({
-            section_id,
-            category,
+            trip_section_id: trip_section_id,
+            category: category,
         });
 
-        const responseData = {
-            section_id: newItem.section_id,
-            category: newItem.category,
-        };
+        const newItemID = newItem.id;
 
-        res.status(200).json(responseData);
+        res.status(200).json(newItemID);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+// =============================================================
+
+// Update public status of a trip itinerary page
+// =============================================================
+router.post('/update-public', loginAuth, async (req, res) => {
+    try {
+        const tripId = req.body.id;
+        const public = req.body.public;
+
+        //to the value of the public variable passed in the request body
+        if (public) {
+            public = true;
+        } else {
+            public = false;
+        }
+        //update the public field of the trip with the matching tripId
+        await Trip.update(
+            { public: public },
+            {
+                where: { id: tripId },
+            }
+        );
+
+        res.status(200).json({ message: 'Public status updated' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
