@@ -14,6 +14,7 @@ const tripData = [
         start_date: '2021-01-01',
         end_date: '2021-01-05',
         image: 'https://i.imgur.com/2nCt3Sbl.jpg',
+        public: true,
         user_id: 1,
     },
     {
@@ -21,6 +22,7 @@ const tripData = [
         start_date: '2022-05-10',
         end_date: '2022-05-20',
         image: 'https://i.imgur.com/8nCt3Sbl.jpg',
+        public: true,
         user_id: 1,
     },
     {
@@ -28,6 +30,7 @@ const tripData = [
         start_date: '2022-06-15',
         end_date: '2022-06-25',
         image: 'https://i.imgur.com/5nCt3Sbl.jpg',
+        public: false,
         user_id: 2,
     },
     {
@@ -35,6 +38,7 @@ const tripData = [
         start_date: '2022-07-20',
         end_date: '2022-07-30',
         image: 'https://i.imgur.com/4nCt3Sbl.jpg',
+        public: true,
         user_id: 3,
     },
     {
@@ -42,6 +46,7 @@ const tripData = [
         start_date: '2023-08-25',
         end_date: '2023-09-05',
         image: 'https://i.imgur.com/3nCt3Sbl.jpg',
+        public: false,
         user_id: 4,
     },
 ];
