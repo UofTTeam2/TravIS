@@ -1,8 +1,8 @@
-        <div class="card forum-card">
-        <div class="forum-topic" style="animation: forumToLeft {{css_counter @index}}s" >
+        <div class="card forum-card" style="animation: forumToLeft {{css_counter @index}}s">
+        <div class="forum-topic">
           <img src="/images/topic-images/topic_{{id}}_logo.png" alt={{iconalt}} class="forum-topic-img" />
           <div class="forum-text-box">
-            <a href="/api/forum/topic/{{id}}" class="text-primary font-weight-bold">{{title}}</a>
+            <a href="/forum/topic/{{id}}" class="topic-title text-primary font-weight-bold">{{title}}</a>
             <p class="text-secondary forum-text-secondary">{{description}}</p>
           </div>
           <p class="forum-post-count">{{posts.length}} Post{{plural_check posts.length}}</p>

@@ -5,8 +5,8 @@
 // =============================================================
 const router = require('express').Router();
 const multer = require('multer');
-const { Trip, TripSection, ItineraryItem } = require('../models');
-const loginAuth = require('../utils/auth');
+const { Trip, TripSection, ItineraryItem } = require('../../models');
+const loginAuth = require('../../utils/auth');
 // =============================================================
 
 // Setting up folder to receive and format uploads via multer
