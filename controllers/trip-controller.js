@@ -18,11 +18,11 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             include: [
                 {
                     model: TripSection,
-                    as: 'sections',
+                    as: 'tripsections',
                     include: [
                         {
                             model: ItineraryItem,
-                            as: 'items',
+                            as: 'itineraryitems',
                         },
                     ],
                 },
@@ -41,14 +41,19 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             start_date: trip.start_date,
             end_date: trip.end_date,
             image: trip.image,
+            public: trip.public,
             sections: [],
         };
 
-        // Initialize the total expenses for the trip
-        let totalExpenses = 0;
+        // category expenese trackers for the trip
+        let transportExpenses = 0;
+        let accommodationExpenses = 0;
+        let foodExpenses = 0;
+        let activityExpenses = 0;
+        let miscExpenses = 0;
 
         // Iterate through sections and items to categorize them
-        trip.sections.forEach((section) => {
+        trip.tripsections.forEach((section) => {
             const categorizedItems = {
                 accommodationItems: [],
                 foodItems: [],
@@ -57,26 +62,29 @@ router.get('/view/:id', loginAuth, async (req, res) => {
                 miscItems: [],
             };
 
-            section.items.forEach((item) => {
+            section.itineraryitems.forEach((item) => {
                 switch (item.category) {
                     case 'Accommodation':
                         categorizedItems.accommodationItems.push(item);
+                        accommodationExpenses += parseFloat(item.expense);
                         break;
                     case 'Food':
                         categorizedItems.foodItems.push(item);
+                        foodExpenses += parseFloat(item.expense);
                         break;
                     case 'Transportation':
                         categorizedItems.transportItems.push(item);
+                        transportExpenses += parseFloat(item.expense);
                         break;
                     case 'Activities':
                         categorizedItems.activityItems.push(item);
+                        activityExpenses += parseFloat(item.expense);
                         break;
                     default:
                         categorizedItems.miscItems.push(item);
+                        miscExpenses += parseFloat(item.expense);
                         break;
                 }
-                // Add the cost of the item to the total expenses
-                totalExpenses += item.expense;
             });
 
             // Add the categorized items to the response
@@ -87,13 +95,32 @@ router.get('/view/:id', loginAuth, async (req, res) => {
             });
         });
 
-        // Add the total expenses to the response
-        responseData.totalExpenses = totalExpenses;
+        //collect category expenses into a single array
+        expenses = [
+            transportExpenses,
+            accommodationExpenses,
+            foodExpenses,
+            activityExpenses,
+            miscExpenses,
+        ];
+
+        console.log(responseData);
+        console.log(totalExpenses);
+
+        const { id, title, start_date, end_date, image, public, sections } =
+            responseData;
 
         // Send the response
         res.render('view-itinerary', {
             layout: 'main',
-            trip: responseData,
+            id,
+            title,
+            start_date,
+            end_date,
+            image,
+            public,
+            sections,
+            expenses,
             loggedIn: req.session.loggedIn,
         });
     } catch (error) {
@@ -112,11 +139,11 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
             include: [
                 {
                     model: TripSection,
-                    as: 'sections',
+                    as: 'tripsections',
                     include: [
                         {
                             model: ItineraryItem,
-                            as: 'items',
+                            as: 'itineraryitems',
                         },
                     ],
                 },
@@ -139,7 +166,7 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
         };
 
         // Iterate through sections and items to categorize them
-        trip.sections.forEach((section) => {
+        trip.tripsections.forEach((section) => {
             const categorizedItems = {
                 accommodationItems: [],
                 foodItems: [],
@@ -148,7 +175,7 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
                 miscItems: [],
             };
 
-            section.items.forEach((item) => {
+            section.itineraryitems.forEach((item) => {
                 switch (item.category) {
                     case 'Accommodation':
                         categorizedItems.accommodationItems.push(item);
@@ -176,10 +203,18 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
             });
         });
 
+        // destructuring the response data
+        const { id, title, start_date, end_date, image, sections } =
+            responseData;
         // Send the response
         res.render('edit-itinerary', {
             layout: 'main',
-            trip: responseData,
+            id,
+            title,
+            start_date,
+            end_date,
+            image,
+            sections,
             loggedIn: req.session.loggedIn,
         });
     } catch (error) {
@@ -199,10 +234,13 @@ router.get('/create-trip', loginAuth, async (req, res) => {
             start_date: '',
             end_date: '',
             image: '',
+            user_id: req.session.user_id,
         });
 
         // retrive the id of the newly created trip
         const tripId = trip.id;
+
+        // retrive the user_id from the session for the user_id feild of the newly created trip
 
         // Initialize the data structure
         const responseData = {
@@ -214,9 +252,19 @@ router.get('/create-trip', loginAuth, async (req, res) => {
             sections: [],
         };
 
+        // destructuring the response data
+        const { id, title, start_date, end_date, image, sections } =
+            responseData;
+
+        // Send the response
         res.render('edit-itinerary', {
             layout: 'main',
-            trip: responseData,
+            id,
+            title,
+            start_date,
+            end_date,
+            image,
+            sections,
             loggedIn: req.session.loggedIn,
         });
     } catch (error) {
