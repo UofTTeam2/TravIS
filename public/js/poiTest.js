@@ -37,20 +37,44 @@ const getCityData = async (event) => {
         const city = await fetchCityData(cityInput);
         console.log(city);
 
-        const response = await fetch('/api/poi/search-city', {
-            method: 'POST',
-            body: JSON.stringify(city),
-            headers: { 'Content-Type': 'application/json' },
-        });
-        const responseData = await response.json();
-        console.log(responseData);
-        if (response.ok) {
-            const resultHTML = await response.text(); // This is the part that I'm not sure about.
-            document.getElementById('recommendations').innerHTML = resultHTML;
-        } else {
-            console.error('Error:', response.statusText);
-            return null;
-        }
+        window.location.pathname = `/poi/${city.lat}/${city.lon}`;
+
+        // const sanityData = {
+        //     sanity: false
+        // };
+
+        // await fetch('/api/poi/search-city', {
+        //     method: 'POST',
+        //     body: JSON.stringify(sanityData),
+        //     headers: { 'Content-Type': 'application/json' },
+        // });
+
+        // const response = await fetch('/poi/search-city', {
+        //     method: 'POST',
+        //     body: JSON.stringify(city),
+        //     headers: { 'Content-Type': 'application/json' },
+        // });
+
+        // const response = await fetch('/api/poi/search-city', {
+        //     method: 'POST',
+        //     body: {},
+        //     headers: { 'Content-Type': 'application/json' },
+        // });
+        // const responseData = await response.json();
+
+        // await fetch('/poi', {
+        //     method: 'POST',
+        //     body: JSON.stringify(city),
+        //     headers: { 'Content-Type': 'application/json' },
+        // });
+
+        // if (response.ok) {
+        //     const resultHTML = await response.text(); // This is the part that I'm not sure about.
+        //     document.getElementById('recommendations').innerHTML = resultHTML;
+        // } else {
+        //     console.error('Error:', response.statusText);
+        //     return null;
+        // }
     } catch (error) {
         console.error('Error:', error.message);
         return null;
