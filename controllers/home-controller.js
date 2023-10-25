@@ -41,6 +41,17 @@ router.get('/trips', loginAuth, async (req, res) => {
     }
 });
 
+// Start of Dashboard Demo
+router.get('/dashboard', async (req, res) => {
+    try {
+      res.render('dashboard');
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
+  // End of Dashboard Demo
+
 //Get route for the signup page
 // =============================================================
 router.get('/signup', (req, res) => {

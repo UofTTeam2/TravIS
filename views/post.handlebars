@@ -1,9 +1,8 @@
 <div class="grid-container">
-{{> dashHeader}}
 {{> dashSide}}
 <main class="main-container">
 <div class="main-title">
-  <h1 class="forum-title">{{post.subject}}</h1>
+  <p class="font-weight-bold all-capitals extra-space">{{post.subject}}</p>
 </div>
       <section class="forum-main">
         <div id="error-modal" class="modal">
@@ -68,48 +67,6 @@
           closeModalButton.addEventListener('click', function () {
             errorModal.style.display = 'none';
           });
-          
-          /*
-          document.addEventListener('click', async (event) => {
-            if (event.target && event.target.id === 'like-button') {
-              const commentId = event.target.getAttribute('data-comment-id');
-              const isLiked = event.target.getAttribute('data-liked') === 'true';
-
-              // Send an AJAX request to update the like status
-              try {
-                const response = await fetch('/api/forum/like', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({ commentId, isLiked }),
-                });
-
-                if (response.ok) {
-                  // Update the UI based on the response
-                  const data = await response.json();
-                  const likesBox = document.getElementById(`comment-likes-${commentId}`);
-                  likesBox.innerHTML = `
-                    <img src="/images/topic-images/thumbs_up_nofill.png" alt="thumbs up" class="like-image-bottom">
-                    <p class="like-usernames">${data.likes.length}</p>
-                 `;
-
-                 // Toggle the liked attribute
-                 event.target.setAttribute('data-liked', !isLiked);
-                 // Update the like button image
-                 event.target.innerHTML = `
-                   <img src="/images/topic-images/thumbs_up_${isLiked ? 'nofill' : 'greyedout'}.png" alt="thumbs up" class="like-image">
-                 `;
-               } else {
-                 // Handle the error
-                 console.error('Failed to update like status');
-               }
-             } catch (error) {
-               console.error('Failed to update like status:', error);
-             }
-           }
-         });
-         */
         </script>
       </section>
     </main>

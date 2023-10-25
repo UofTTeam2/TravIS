@@ -1,7 +1,7 @@
         <div class="card forum-card">
         <div class="forum-post" style="animation: forumToLeft {{css_counter @index}}s" >
           <img src="/images/topic-images/topic_{{topic_id}}_logo.png" alt="{{topic.iconalt}}" class="forum-post-img" />
-          <a href="/api/forum/post/{{id}}" class="text-primary font-weight-bold post-title">{{subject}}</a>
+          <a href="/forum/post/{{id}}" class="text-primary font-weight-bold post-title">{{subject}}</a>
           <p class="single-post-info">{{user.username}}</p>
           <p class="double-post-info">{{calc_replies comments.length}}</p>
           <p class="double-post-info">{{render_latest_comment comments}}</p>

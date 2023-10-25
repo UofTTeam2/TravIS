@@ -26,11 +26,15 @@
                     {{#if loggedIn}}
                         <button class='nav-btn selected' id='logOut logoff-button'>LOG OUT</button>
                     {{else}}
+                        <a href="/login">
                         <button
                             class='nav-btn selected'
                             id='loginBtn login-button'
                         >LOGIN</button>
+                        </a>
+                        <a href="/signup">
                         <button class='nav-btn' id='signupBtn'>SIGN UP</button>
+                        </a>
                     {{/if}}
                 <!-- {{/unless}} -->
             </div>

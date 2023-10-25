@@ -1,8 +1,6 @@
 <div class="comment-box" style="animation: forumToLeft {{css_counter @index}}s">
   <div class="comment-post-id">
     <p class="comment-post-username">{{comment.user.username}}</p>
-    <p class="comment-post-location">{{comment.user.location}}</p>
-    <!-- TODO: Dynamically add user post count -->
     <p class="comment-post-count">{{comment.user.comments.length}} Post{{plural_check comment.user.comments.length}}</p>
   </div>
   <div class="comment-body">
@@ -10,15 +8,6 @@
     <p class="comment-timestamp-header">
       {{forum_format_date comment.timestamp}}
     </p>
-    <!-- {{#if loggedIn}} -->
-    <button id="like-button" class="like-button" data-comment-id="{{comment.id}}" data-liked="{{isLiked}}">
-      <!-- {{#if isLiked}} -->
-      <img src="/images/topic-images/thumbs_up_greyedout.png" alt="thumbs up" class="like-image">
-      <!-- {{else}}
-      <img src="/images/topic-images/thumbs_up_nofill.png" alt="thumbs up" class="like-image">
-      {{/if}} -->
-    </button>
-    <!-- {{/if}} -->
     </div>
     <hr>
     <p class="comment-text">
@@ -28,14 +17,6 @@
       <div class="comment-image-container">
         <img src="{{imagePath}}" alt="Comment Image" class="comment-image">
       </div>
-    {{/if}}
-    <!-- TODO: Show this element only if there are likes -->
-    {{#if isLiked}}
-    <div class="comment-likes-box" id="comment-likes-{{comment.id}}">
-      <img src="/images/topic-images/thumbs_up_nofill.png" alt="thumbs up" class="like-image-bottom">
-      <!-- TODO: Dynamically add user likes -->
-      <p class="like-usernames">{{comment.likes.length}}</p>
-    </div>
     {{/if}}
   </div>
 </div>

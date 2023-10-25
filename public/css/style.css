@@ -9,7 +9,7 @@
 
 body {
     background-color: #22252a;
-    height: 75vh;
+    height: 100%;
 }
 
 body .grid-container {
@@ -24,7 +24,7 @@ body .grid-container {
 }
 
 .text-primary {
-    color: #000;
+    color: #afafaf;
 }
 
 .font-weight-bold {
@@ -38,6 +38,7 @@ body .grid-container {
     grid-template-areas:
         'sidebar header header header'
         'sidebar main main main';
+        min-height: 70vh;
     height: 100%;
 }
 
@@ -65,6 +66,7 @@ body .grid-container {
     position: fixed;
     grid-area: sidebar;
     height: 100%;
+    min-width: 15%;
     background-color: #22252a;
     color: #fff;
     overflow-y: auto;
@@ -152,15 +154,15 @@ body .grid-container {
     display: inline;
 }
 
-.sidebar-final-item {
-    flex-grow: 1;
+.sidebar-spacer {
+    height: 10vh;
 }
 
 /* ---------- Main Dashboard---------- */
 
 .main-container {
     grid-area: main;
-    overflow-y: auto;
+    
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 30px;
@@ -743,10 +745,6 @@ body .form {
     text-decoration: none;
 }
 
-.topic-title {
-    font-size: 20px;
-}
-
 .forum-main input, textarea {
     background-color: #eee;
     border: none;
@@ -796,12 +794,13 @@ body .form {
     text-transform: uppercase;
 }
 
-.bottom-space {
+.extra-space {
+    padding-top: 20px;
     padding-bottom: 20px;
 }
 
 .topic-title {
-    color: #fff;
+    font-size: 20px;
     padding-bottom: 5px;
     text-overflow: ellipsis;
 }
@@ -967,10 +966,7 @@ body .form {
 .comment-post-username {
     font-weight: bold;
     font-size: 15px;
-}
-
-.comment-post-location {
-    flex-grow: 1;
+    flex-grow: 1
 }
 
 .comment-body {
