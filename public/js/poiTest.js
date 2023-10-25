@@ -34,7 +34,8 @@ const getCityData = async (event) => {
     try {
         const cityInput = document.getElementById('cityInput').value;
         const city = await fetchCityData(cityInput);
-        const response = await fetch(`/api/poi?lat=${city.lat}&lon=${city.lon}`, {
+        // const response = await fetch(`/api/poi?lat=${city.lat}&lon=${city.lon}`, {
+        const response = await fetch(`/api/poi/:${city.lat}/:${city.lon}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         });

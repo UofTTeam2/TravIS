@@ -1,0 +1,66 @@
+<section id="searchsection">
+    <div class="search">
+        <h1>City Explorer</h1>
+        <p>Welcome to the city explorer page. Here you can find information about top rated points of interest, 
+            tours and activities, safety scores, and location scores for a city. Enter a city name to get started.
+        </p>
+        <form id="searchForm">
+            <label for="cityInput">Enter City:</label>
+            <input type="text" id="cityInput" name="city">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</section>
+<section id="toursection">
+    <div class="tours">
+        <h2>Tours and Activities</h2>
+        <p>What are the best tours and activities in <span class="city"></span>?<br>
+            Here you will find information about top rated activities such as sightseeing
+            tours, day trips, museum tickets, and more. If available, you can also find a link to book the activity.
+        </p>
+        <div id="tourResults"></div>
+        <div class="poipictures"></div>
+
+    </div>
+</section>
+
+<section id="safetysection">
+    <div class="safety">
+        <h2>Safety Score</h2>
+        <p>How safe is <span class="city"></span>, and surrounding districts? <br>
+            See the overall safety score, 0-100, for six categories:
+            women's safety, health, physical threats, theft, political freedom and LGBTQ safety. The higher the score, the safer the area.
+            It's important to be aware of the safety of your destination, especially if you are travelling alone or with children.
+        </p>
+        <div id="safetyResults"></div>
+    </div>
+</section>
+
+<section id="locsection">
+    <div class="loc">
+        <h2>Location Score</h2>
+        <p>What are the popular features of <span class="city"></span>?<br>
+            Here you can find the popularity score of the surrounding area for different categories,
+            based on a radius of 200m, 500m, and 1500m. The categories include sights, restaurants, shopping, and nightlife. This list
+            helps you find what features are within a walking distance of your location and ones that may require a short drive or public
+            transportation.
+        </p>
+        <div id="locResults"></div>
+    </div>
+</section>
+
+<section id="poisection">
+    <div class="poi">
+        <h2>Points of Interest</h2>
+        <p>What are the best places to visit in <span class="city"></span>?<br>
+            Here you will find a list of top ranked attractions, as voted by travellers. The categories include sights, beach/park, 
+            historical, nightlife, restaurant and shopping. Note that these may not be the most visited places, but are the highest
+            rated among those visited. These can include local hang outs and tourist attractions.
+            </p>
+        <div id="poiResults"></div>
+    </div>
+</section>
+
+
+
+<script src="js/explore.js"></script>

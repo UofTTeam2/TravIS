@@ -13,8 +13,8 @@ const amadeus = new Amadeus({
 });
 
 // Route to get the points of interest, activities, and safety and location scores
-// router.get('/:lat/:lon', async (req, res) => {
-router.get('/', async (req, res) => {
+router.get('/:lat/:lon', async (req, res) => {
+// router.get('/', async (req, res) => {
 
 
     const lat = req.params.lat;
