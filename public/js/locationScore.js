@@ -2,7 +2,7 @@
 //location score of a city based on the latitude and longitude of
 //the city.
 // =============================================================
-
+// const tester = document.getElementById('tester');
 // Dependencies
 // =============================================================
 const Amadeus = require('amadeus');
@@ -54,6 +54,10 @@ async function locationScore() {
                     const shoppingOverall = categoryScores.shopping.overall;
                     const shoppingLuxury = categoryScores.shopping.luxury;
                     const nightLife = categoryScores.nightLife.overall;
+
+                    // const restaurantEl = document.createElement('li');
+                    // restaurantEl.textContent = restaurants;
+                    // tester.appendChild(restaurantEl);
 
                     console.log(`Location score 0-100 within ${radius}m radius:
                         Overall sights: ${overallSightsScore},

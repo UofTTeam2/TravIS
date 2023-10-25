@@ -39,19 +39,19 @@ router.get('/', async (req, res) => {
             ]);
             //define variables for each response
             const poiData = poiResponse.result.data;
-            const toDoData = activityResponse.result.data;
-            const safeData = safetyResponse.result.data;
+            const activityData = activityResponse.result.data;
+            const safetyData = safetyResponse.result.data;
             const locationData = locationResponse.result.data;
 
             //define object to be rendered to page, combining all data
-            const responseData = {
-                poiData: poiData,
-                toDoData: toDoData,
-                safeData: safeData,
-                locationData: locationData
-            };
+            // const responseData = {
+            //     poiData: poiData,
+            //     toDoData: toDoData,
+            //     safeData: safeData,
+            //     locationData: locationData
+            // };
             // res.status(200).json(responseData); //keep this for testing in insomnia
-            res.render('poitestold', responseData); //render data to page using handlebars
+            res.render('poitestold', { poiData, activityData, safetyData, locationData }); //render data to page using handlebars
         } else {
             //log error if no latitude/longitude data is returned
             console.log('Error: no latitude/longitude data'); //

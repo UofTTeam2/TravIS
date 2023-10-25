@@ -15,7 +15,7 @@ const fetchCityData = async (city) => {
             const result = await response.json();
             const lat = result[0].latitude;
             const lon = result[0].longitude;
-            console.log('The Coordinates of', city, 'are:','Latitude:', lat, 'Longitude:', lon);
+            // console.log('The Coordinates of', city, 'are:','Latitude:', lat, 'Longitude:', lon);
             return { lat, lon };
         } else {
             //handle api errors
@@ -29,47 +29,74 @@ const fetchCityData = async (city) => {
     }
 };
 
-// Function to get the city data and render it to page
 const getCityData = async (event) => {
     event.preventDefault();
-
     try {
-        //extract city name from the form
         const cityInput = document.getElementById('cityInput').value;
         const city = await fetchCityData(cityInput);
-
-        //check if city data is available
-        if (city) {
-            try {
-                //fetch city data from server using obtained city coordinates
-                const response = await fetch(`/api/poi?lat=${city.lat}&lon=${city.lon}`, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'text/html' },
-                });
-                if (response.ok) {
-                    //render received html data to recommendations section
-                    const resultHTML = await response.text();
-                    document.getElementById('recommendations').innerHTML = resultHTML;
-                } else {
-                    //handle server error responses
-                    console.error('Error:', response.statusText);
-                    return null;
-                }
-            } catch (error) {
-                //handle network or parsing errors from server response
-                console.error('Error:', error.message);
-                return null;
-            }
+        const response = await fetch(`/api/poi?lat=${city.lat}&lon=${city.lon}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+        if (response.ok) {
+            const resultHTML = await response.text(); // This is the part that I'm not sure about.
+            document.getElementById('recommendations').innerHTML = resultHTML;
         } else {
-            //handle invalid city data
-            console.error('Invalid city data');
+            console.error('Error:', response.statusText);
+            return null;
         }
-    }catch (error) {
-        //handle form validation errors or other issues
+    } catch (error) {
         console.error('Error:', error.message);
         return null;
     }
 };
+
+
+// Function to get the city data and render it to page
+// const getCityData = async (event) => {
+//     event.preventDefault();
+
+//     try {
+//         //extract city name from the form
+//         const cityInput = document.getElementById('cityInput').value;
+//         const city = await fetchCityData(cityInput);
+
+//         //check if city data is available
+//         if (city) {
+//             try {
+//                 //fetch city data from server using obtained city coordinates
+//                 const response = await fetch(`/api/poi?lat=${city.lat}&lon=${city.lon}`, {
+//                     method: 'GET',
+//                     headers: { 'Content-Type': 'text/html' },
+//                 });
+//                 if (response.ok) {
+//                     //render received html data to recommendations section
+//                     const resultHTML = await response.text();
+//                     // console.log('received html:', resultHTML);
+
+
+//                     document.getElementById('recommendations').innerHTML = resultHTML;
+//                 } else {
+//                     //handle server error responses
+//                     console.error('Error:', response.statusText);
+//                     return null;
+//                 }
+//             } catch (error) {
+//                 //handle network or parsing errors from server response
+//                 console.error('Error:', error.message);
+//                 return null;
+//             }
+//         } else {
+//             //handle invalid city data
+//             console.error('Invalid city data');
+//         }
+//     }catch (error) {
+//         //handle form validation errors or other issues
+//         console.error('Error:', error.message);
+//         return null;
+//     }
+// };
+
 
 // Event listener for the search button
 document.getElementById('searchForm').addEventListener('submit', getCityData);
