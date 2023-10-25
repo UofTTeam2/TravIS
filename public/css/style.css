@@ -254,6 +254,15 @@ button:hover {
     right: 14px;
 }
 
+.itinerary-modal-content {
+    width: 35%;
+    text-align: center;
+}
+
+.itinerary-modal-content h3, p, label {
+    margin-bottom: 3px;
+}
+
 /* sets the 'switch' label to be roughly rectangular, and for internal elements to be displayed side-by-side*/
 .switch {
     position: relative;
@@ -311,6 +320,10 @@ button:hover {
 /* rounds the edges of the white "shape" within the slider container (it becomes a circle) */
 .slider.round:before {
     border-radius: 50%;
+}
+
+.public-address-container {
+    display: none;
 }
 
 /* <---- Ethan's Itinerary Modal stuff */

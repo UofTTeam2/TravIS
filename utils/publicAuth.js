@@ -12,7 +12,7 @@ const publicAuth = async (req, res, next) => {
             next();
         } else {
             //
-            res.redirect('/bad-request');
+            res.status(400).redirect('/bad-request');
         }
     } catch (err) {
         console.log(err);

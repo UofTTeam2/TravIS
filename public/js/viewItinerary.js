@@ -5,8 +5,15 @@ window.onload = () => {
     const closeSettingsButton = $('.itinerary-settings-close');
     const switchToEditModeButton = $('.edit-itinerary-button');
     const publicToggleSwitch = $('.public-checkbox');
+    const publicAddressContainer = $('.public-address-container');
+    const publicAddressLink = $('.public-address');
     const tripID = $('.trip-title-container').attr('data-id');
-    console.log(tripID);
+
+    if (publicToggleSwitch[0].checked) {
+        publicAddressLink.text(window.location.hostname + `/trips/public-view/${tripID}`);
+        publicAddressLink.attr('href', `/trips/public-view/${tripID}`);
+        publicAddressContainer.attr('style', 'display: block');
+    }
 
     function openMenu() {
         //modal moment!
@@ -26,6 +33,14 @@ window.onload = () => {
     async function updatePublicStatus() {
         const public = publicToggleSwitch[0].checked;
         console.log(public);
+
+        if (public) {
+            publicAddressLink.text(window.location.hostname + `/trips/public-view/${tripID}`);
+            publicAddressLink.attr('href', `/trips/public-view/${tripID}`);
+            publicAddressContainer.attr('style', 'display: block');
+        } else {
+            publicAddressContainer.attr('style', 'display: none');
+        }
 
         const newPublicData = {
             id: tripID,
