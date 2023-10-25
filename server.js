@@ -89,7 +89,7 @@ const expenses = [1200, 500, 200, 1000, 200];
 
 app.get('/test', async (req, res) => {
     try {
-        res.render('view-itinerary', {id, title, start_date, end_date, image, public, expenses, sections});
+        res.render('bad-request', {id, title, start_date, end_date, image, public, expenses, sections});
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
