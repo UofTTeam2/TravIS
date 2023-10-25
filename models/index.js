@@ -23,10 +23,6 @@ User.hasMany(Trip, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
-User.hasMany(Topic, {
-    foreignKey: 'user_id',
-    onDelete: 'CASCADE',
-});
 User.hasMany(Post, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
@@ -68,9 +64,6 @@ ItineraryItem.belongsTo(TripSection, {
 
 // Topic associations
 //=====================================================
-Topic.belongsTo(User, {
-    foreignKey: 'user_id',
-});
 Topic.hasMany(Post, {
     foreignKey: 'topic_id',
     onDelete: 'CASCADE',
