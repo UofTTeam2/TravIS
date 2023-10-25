@@ -8,7 +8,7 @@ const router = require('express').Router();
 // const tripRoutes = require('./trip-routes');
 // const locationRoutes = require('./location-routes');
 // const commentRoutes = require('./comment-routes');
-const poi = require('./poi');
+
 
 // Routes:
 //==============================================================
@@ -16,7 +16,7 @@ const poi = require('./poi');
 // router.use('/trips', tripRoutes);
 // router.use('/locations', locationRoutes);
 // router.use('/comments', commentRoutes);
-router.use('/poi', poi);
+
 
 //==============================================================
 
