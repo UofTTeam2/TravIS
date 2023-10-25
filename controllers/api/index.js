@@ -4,17 +4,18 @@
 // Dependencies:
 //==============================================================
 const router = require('express').Router();
-const userRoutes = require('./user-routes');
-//const tripRoutes = require('./trip-routes');
-//const locationRoutes = require('./location-routes');
-//const commentRoutes = require('./comment-routes');
+const userRoutes = require('./user-controller');
+const tripsRoutes = require('./trips-controller');
+const forumRoutes = require('./forumApi-controller');
+//==============================================================
 
 // Routes:
 //==============================================================
 router.use('/users', userRoutes);
-//router.use('/trips', tripRoutes);
-//router.use('/locations', locationRoutes);
-//router.use('/comments', commentRoutes);
+router.use('/trips', tripsRoutes);
+router.use('/forum', forumRoutes);
 //==============================================================
 
+// Export:
+//==============================================================
 module.exports = router;

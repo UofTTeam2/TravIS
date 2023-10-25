@@ -42,11 +42,16 @@ const loginHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/');
+            const responseData = await response.json();
+            const message = responseData.message.value;
+            displayErrorModal(message);
+            setTimeout(() => {
+                document.location.replace('/');
+            }, 3000);
         } else {
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.errors[0].message;
+            const errorMessage = errorData.message.value;
             displayErrorModal(errorMessage);
         }
     }
@@ -67,13 +72,55 @@ const signupHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/');
+            const responseData = await response.json();
+            const message = responseData.message.value;
+            displayErrorModal(message);
+            setTimeout(() => {
+                document.location.replace('/');
+            }, 3000);
         } else {
             //adding an error message if the user's signup is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.errors[0].message;
+            const errorMessage = errorData.message.value;
             displayErrorModal(errorMessage);
         }
+    }
+};
+// =========================================================
+
+// Get request to get response from server to render login/signup page
+// =========================================================
+const getLogin = async () => {
+    try {
+        const response = await fetch('/login', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            document.location.replace('/login');
+        } else {
+            console.log(response.statusText);
+        }
+    } catch (err) {
+        console.error('An error occurred:', err);
+    }
+};
+
+const getSignup = async () => {
+    try {
+        const response = await fetch('/signup', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            document.location.replace('/signup');
+        } else {
+            console.log(response.statusText);
+        }
+    } catch (err) {
+        console.error('An error occurred:', err);
     }
 };
 // =========================================================
@@ -82,3 +129,5 @@ const signupHandler = async (event) => {
 // =========================================================
 document.querySelector('.loginForm').addEventListener('submit', loginHandler);
 document.querySelector('.signupForm').addEventListener('submit', signupHandler);
+document.querySelector('#loginBtn').addEventListener('click', getLogin);
+document.querySelector('#signupBtn').addEventListener('click', getSignup);

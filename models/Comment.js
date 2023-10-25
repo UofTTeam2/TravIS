@@ -6,11 +6,13 @@
 // =============================================================
 // Import model, datatypes, and Op from sequelize
 // Op is used to perform operations other than standard equals comparisons
-const { Model, DataTypes, Op } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 // =============================================================
 
 // Create the Comment model, with methods
+// =============================================================
+// This Section will be used in further development
 //to add and remove likes and dislikes
 //to find comments with a minimum number of likes
 //to find comments with a minimum number of dislikes
@@ -18,32 +20,28 @@ const sequelize = require('../config/connection');
 //to find comments with a maximum number of dislikes
 // =============================================================
 class Comment extends Model {
-    // Method to add a like to a comment
+    // // Method to add a like to a comment
     // async addLike(userId) {
     //     // Check if the user has already liked the comment
     //     if (!this.likes.includes(userId)) {
     //         // Add the user's ID to the likes array
     //         this.likes.push(userId);
-
     //         // Update the likes count in the database
     //         await this.save();
     //     }
     // }
-
-    // Method to remove a like from a comment
+    // // Method to remove a like from a comment
     // async removeLike(userId) {
     //     // Check if the user has liked the comment
     //     const index = this.likes.indexOf(userId);
     //     if (index !== -1) {
     //         // Remove the user's ID from the likes array
     //         this.likes.splice(index, 1);
-
     //         // Update the likes count in the database
     //         await this.save();
     //     }
     // }
-
-    // Class method to find comments with a minimum number of likes
+    // // Class method to find comments with a minimum number of likes
     // static async findByMinLikes(minLikes) {
     //     const comments = await Comment.findAll({
     //         where: {
@@ -54,8 +52,7 @@ class Comment extends Model {
     //     });
     //     return comments;
     // }
-
-    // Method to find comments with the maximum number of likes
+    // // Method to find comments with the maximum number of likes
     // static async findByMaxLikes(maxLikes) {
     //     const comments = await Comment.findAll({
     //         where: {
@@ -66,33 +63,28 @@ class Comment extends Model {
     //     });
     //     return comments;
     // }
-
-    // Method to add a dislike to a comment
+    // // Method to add a dislike to a comment
     // async addDislike(userId) {
     //     // Check if the user has already disliked the comment
     //     if (!this.dislikes.includes(userId)) {
     //         // Add the user's ID to the dislikes array
     //         this.dislikes.push(userId);
-
     //         // Update the dislikes count in the database
     //         await this.save();
     //     }
     // }
-
-    // Method to remove a dislike from a comment
+    // // Method to remove a dislike from a comment
     // async removeDislike(userId) {
     //     // Check if the user has disliked the comment
     //     const index = this.dislikes.indexOf(userId);
     //     if (index !== -1) {
     //         // Remove the user's ID from the dislikes array
     //         this.dislikes.splice(index, 1);
-
     //         // Update the dislikes count in the database
     //         await this.save();
     //     }
     // }
-
-    // Class method to find comments with a minimum number of dislikes
+    // // Class method to find comments with a minimum number of dislikes
     // static async findByMinDislikes(minDislikes) {
     //     const comments = await Comment.findAll({
     //         where: {
@@ -103,8 +95,7 @@ class Comment extends Model {
     //     });
     //     return comments;
     // }
-
-    // Method to find comments with the maximum number of likes
+    // // Method to find comments with the maximum number of likes
     // static async findByMaxLikes(maxLikes) {
     //     const comments = await Comment.findAll({
     //         where: {
@@ -129,35 +120,32 @@ Comment.init(
             autoIncrement: true,
         },
 
-        comment: {
+        text: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [4],
+                len: [1, 1000],
             },
         },
 
-        date_created: {
-            type: DataTypes.DATEONLY,
+        timestamp: {
+            type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,
+            allowNull: false,
         },
-
-        // likes: {
-        //     type: DataTypes.ARRAY(DataTypes.INTEGER),
-        //     allowNull: true,
-        //     defaultValue: [],
-        // },
-
-        // dislikes: {
-        //     type: DataTypes.ARRAY(DataTypes.INTEGER),
-        //     allowNull: true,
-        //     defaultValue: [],
-        // },
 
         user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
+                key: 'id',
+            },
+        },
+
+        post_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'post',
                 key: 'id',
             },
         },
