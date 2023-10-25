@@ -90,6 +90,16 @@ body .grid-container {
     font-weight: 700;
 }
 
+.sidebar-icon a{
+    padding-top: 10px;
+    color: #FFC62C;
+}
+
+.sidebar-icon a:hover{
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
 .sidebar-list {
     padding: 0;
     margin-top: 15px;
@@ -232,6 +242,101 @@ body .form {
     background-color: #22252a;
 }
 
+/*------------ Update Cards ------------*/
+
+.update {
+    background-color: #22252a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+.update-card{
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin: 0 20px;
+    padding: 70px 30px 44px;
+    border-radius: 30px;
+    background: #fff;
+    text-align: center;
+}
+
+.update-card h2{
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+
+.update-card h3{
+    color: rgba(0, 0, 0, 0.38);
+    margin: 0 0 30px;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.update-form{
+    width: 100%;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+}
+
+.update-form input, .update-form button{
+    width: 50%;
+    height: 50px;
+    margin: 5px auto;
+}
+
+.update-form input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.update-form button{
+    background-color: #F8B500;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#deleteUser {
+    background-color: #f82100da;
+}
+
+.update-form button:hover{
+    transition: all 0.3s ease;
+    transform: scale(1.05);
+}
+
+
+
+@media (width >= 500px){
+    body{
+        padding: 0;
+    }
+    .update-card{
+        margin: 0;
+        width: 400px;
+    }
+}
+
+/*------------ End Update Cards ------------*/
 .container {
     background-color: #fff;
     border-radius: 30px;
