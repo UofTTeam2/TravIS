@@ -11,6 +11,7 @@ const apiController = require('./api');
 const homeRoutes = require('./homeRoutes');
 const loginRoutes = require('./loginRoutes');
 const dashboardRoutes = require('./dashboardRoutes');
+const updateRoutes = require('./updateRoutes');
 
 //==============================================================
 
@@ -20,6 +21,7 @@ const dashboardRoutes = require('./dashboardRoutes');
 router.use('/', dashboardRoutes);
 router.use('/', homeRoutes);
 router.use('/', loginRoutes);
+router.use('/', updateRoutes);
 router.use('/api', apiController);
 //==============================================================
 
