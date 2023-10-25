@@ -14,7 +14,7 @@ const userIdAuth = async (req, res, next) => {
             next();
         } else {
             //
-            res.redirect('/');
+            res.redirect('/bad-request');
         }
     } catch (err) {
         console.log(err);
