@@ -33,11 +33,17 @@ const getCityData = async (event) => {
     event.preventDefault();
     try {
         const cityInput = document.getElementById('cityInput').value;
+        console.log(cityInput);
         const city = await fetchCityData(cityInput);
-        const response = await fetch(`/api/poi?lat=${city.lat}&lon=${city.lon}`, {
-            method: 'GET',
+        console.log(city);
+
+        const response = await fetch('/api/poi/search-city', {
+            method: 'POST',
+            body: JSON.stringify(city),
             headers: { 'Content-Type': 'application/json' },
         });
+        const responseData = await response.json();
+        console.log(responseData);
         if (response.ok) {
             const resultHTML = await response.text(); // This is the part that I'm not sure about.
             document.getElementById('recommendations').innerHTML = resultHTML;

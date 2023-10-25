@@ -14,15 +14,15 @@ const amadeus = new Amadeus({
 
 // Route to get the points of interest, activities, and safety and location scores
 // router.get('/:lat/:lon', async (req, res) => {
-router.get('/', async (req, res) => {
-
-
-    const lat = req.params.lat;
-    const lon = req.params.lon;
+router.post('/search-city', async (req, res) => {
+//router.get('/', async (req, res) => {
+    console.log(req.body);
+    const lat = parseFloat(req.body.lat).toFixed(4);
+    const lon = parseFloat(req.body.lon).toFixed(4);
     console.log(lat, lon);
+    console.log(typeof lat);
+
     try {
-        // const lat = 52.5200;
-        // const lon = 13.4050;
         if (!lat || !lon) {
             return res
                 .status(400)
@@ -49,6 +49,10 @@ router.get('/', async (req, res) => {
         const activityData = await activityResponse.result.data;
         const safetyData = await safetyResponse.result.data;
         const locationData = await locationResponse.result.data;
+        console.log(poiData);
+        console.log(activityData);
+        console.log(safetyData);
+        console.log(locationData);
         // maybe after that we have to create a function like the one in locationScore.js to destructure the data. thend send back those as response, like this: e.g  poiData: relatedFunction(poidata) ===> which will act as method to destructure the data. then on the client side we do sth like this: const = receivedPoiData = response.poiData.text() ===> which will convert the data to text and then we can use it in the handlebars file. **** in this case instead of res.render we will use res.json
         // const responseData = {
         //     poiData,
@@ -61,7 +65,8 @@ router.get('/', async (req, res) => {
         // const htmlContent = responseData;
         // res.header('Content-Type', 'text/html');//trying to get the html content to the client side, so it displays as html and not show the html tags
         // res.render('poitestold', responseData); //**** assuming that you are using the same place holder names in the handlebars file
-        res.render('poitestold', { poiData, activityData, safetyData, locationData });
+        // res.render('poitestold', { poiData, activityData, safetyData, locationData });
+        res.status(200).json({ poiData, activityData, safetyData, locationData });
     } catch (error) {
         console.error('Error:', error.message);
         res.status(500).json({ message: 'Failed to get points of interest' });
