@@ -41,9 +41,10 @@ router.get('/search', (req, res) => {
     res.render('search');
 });
 
-router.get('/poi/:lat/:lon', async (req, res) => {
+router.get('/poi/:lat/:lon/:city', async (req, res) => {
     const lat = req.params.lat;
     const lon = req.params.lon;
+    const city = req.params.city;
 
     try {
         if (!lat || !lon) {
@@ -71,17 +72,12 @@ router.get('/poi/:lat/:lon', async (req, res) => {
         const activityData = await activityResponse.result.data;
         const safetyData = await safetyResponse.result.data;
         const locationData = await locationResponse.result.data;
-        console.log(poiData);
-        console.log(activityData);
-        console.log(safetyData);
-        console.log(locationData);
 
-        res.status(200).render('cityResults', {poiData, activityData, safetyData, locationData});
+        res.status(200).render('cityResults', {poiData, activityData, safetyData, locationData, city});
     } catch (error) {
         console.error('Error:', error.message);
-        // res.status(500).redirect(`/poi/${lat}/${lon}`);
-        res.status(500).json(error);
-        console.error('Error: Our server is slow, please try again', error.message);
+        res.status(500).json({ error: 'Our server is on vacation mode, please try again' });
+        console.error('Error: server error, try again', error.message);
     }
 });
 

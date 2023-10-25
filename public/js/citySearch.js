@@ -1,5 +1,3 @@
-// require('dotenv').config();
-
 // Function to fetch the coordinates of a city
 const fetchCityData = async (city) => {
     // const apiKey = process.env.GEOCODE_API_KEY;
@@ -40,7 +38,7 @@ const getCityData = async (event) => {
         const city = await fetchCityData(cityInput);
         console.log(city);
 
-        window.location.pathname = `/poi/${city.lat}/${city.lon}`;
+        window.location.pathname = `/poi/${city.lat}/${city.lon}/${cityInput}`;
 
     } catch (error) {
         console.error('Error:', error.message);
