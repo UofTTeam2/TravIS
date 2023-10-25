@@ -74,4 +74,8 @@ router.get('/login', (req, res) => {
 });
 //==============================================================
 
+router.get('/update', (req, res) => {
+    res.render('update');
+});
+
 module.exports = router;
