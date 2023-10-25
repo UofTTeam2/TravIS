@@ -106,7 +106,7 @@ router.get('/view/:id', [loginAuth, userIdAuth], async (req, res) => {
         ];
 
         console.log(responseData);
-        console.log(totalExpenses);
+        console.log(expenses);
 
         const { id, title, start_date, end_date, image, public, sections } =
             responseData;

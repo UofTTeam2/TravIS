@@ -1,0 +1,14 @@
+<a href="/trips/view/{{id}}" class="card-link">
+  <div class="card">
+    <div class="card-inner">
+    {{#if title}}
+      <p class="text-primary font-weight-bold">{{title}}</p>
+      {{else}}
+      <p class="text-primary font-weight-bold">Untitled Trip</p>
+    {{/if}}
+    </div>
+    {{#if start_date}}
+      <p class="text-secondary">{{start_date}}</p>
+    {{/if}}
+  </div>
+</a>
