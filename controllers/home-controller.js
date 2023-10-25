@@ -101,4 +101,8 @@ router.get('/', (req, res) => {
     res.render('homepage');
 });
 
+router.get('/explore', (req, res) => {
+    res.render('explore');
+});
+
 module.exports = router;
