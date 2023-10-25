@@ -1,6 +1,9 @@
+// require('dotenv').config();
+
 // Function to fetch the coordinates of a city
 const fetchCityData = async (city) => {
-    const apiKey = process.env.GEOCODE_API_KEY;
+    // const apiKey = process.env.GEOCODE_API_KEY;
+    const apiKey = 'ZqSCB/0BSxQD4+VQ8BG+cA==Exh8YYVi9hdMvbfb';
     const apiUrl = `https://api.api-ninjas.com/v1/geocoding?city=${city}`;
     try {
         const response = await fetch(apiUrl, {

@@ -76,7 +76,7 @@ router.get('/poi/:lat/:lon', async (req, res) => {
         console.log(safetyData);
         console.log(locationData);
 
-        res.status(200).render('poitestold', {poiData, activityData, safetyData, locationData});
+        res.status(200).render('cityResults', {poiData, activityData, safetyData, locationData});
     } catch (error) {
         console.error('Error:', error.message);
         res.status(500).redirect(`/poi/${lat}/${lon}`);
@@ -85,10 +85,6 @@ router.get('/poi/:lat/:lon', async (req, res) => {
 
 router.get('/', (req, res) => {
     res.render('homepage');
-});
-
-router.get('/explore', (req, res) => {
-    res.render('explore');
 });
 
 module.exports = router;
