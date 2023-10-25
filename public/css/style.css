@@ -216,14 +216,21 @@ body .grid-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .card-inner > p {
     font-size: 18px;
+    padding: 2px 0px;
 }
 
 .card-inner > span {
     font-size: 35px;
+}
+
+.text-secondary {
+    display: inline-block;
+    padding: 2px 0px;
 }
 
 body .form {
