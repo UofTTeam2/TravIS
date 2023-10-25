@@ -43,7 +43,7 @@ const delUserHandler = async (event) => {
     } else {
         //adding an error message if the user's signup is unsuccessful
         const errorData = await response.json();
-        const errorMessage = errorData.message.value;
+        const errorMessage = errorData.errors[0].message;
         displayErrorModal(errorMessage);
     }
 };
@@ -74,16 +74,11 @@ const updateUserHandler = async (event) => {
     });
 
     if (response.ok) {
-        const responseData = await response.json();
-        const message = responseData.message.value;
-        displayErrorModal(message);
-        setTimeout(() => {
-            document.location.replace('/logout');
-        }, 3000);
+        document.location.replace('/logout');
     } else {
         //adding an error message if the user's signup is unsuccessful
         const errorData = await response.json();
-        const errorMessage = errorData.message.value;
+        const errorMessage = errorData.errors[0].message;
         displayErrorModal(errorMessage);
     }
 };

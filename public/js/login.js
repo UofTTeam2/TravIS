@@ -1,3 +1,4 @@
+console.log("Login script loaded!");
 // Initiated by: login.handlebars
 // Purpose: This file is used to handle the login and signup forms on the login.handlebars page. It is used to send the user's input to the server to be validated and then redirect the user to the homepage if the login/signup is successful. If the login/signup is unsuccessful, the user will be alerted with a message.
 //==============================================================
@@ -41,16 +42,11 @@ const loginHandler = async (event) => {
         });
 
         if (response.ok) {
-            const responseData = await response.json();
-            const message = responseData.message.value;
-            displayErrorModal(message);
-            setTimeout(() => {
-                document.location.replace('/');
-            }, 3000);
+            document.location.replace('/');
         } else {
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.message.value;
+            const errorMessage = errorData.errors[0].message;
             displayErrorModal(errorMessage);
         }
     }
@@ -71,43 +67,13 @@ const signupHandler = async (event) => {
         });
 
         if (response.ok) {
-            const responseData = await response.json();
-            const message = responseData.message.value;
-            displayErrorModal(message);
-            setTimeout(() => {
-                document.location.replace('/');
-            }, 3000);
+            document.location.replace('/');
         } else {
             //adding an error message if the user's signup is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.message.value;
+            const errorMessage = errorData.errors[0].message;
             displayErrorModal(errorMessage);
         }
-    }
-};
-// =========================================================
-
-// Get request to get response from server to render login/signup page
-// =========================================================
-const getLogin = async () => {
-    const response = await fetch('/login', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-        document.location.replace('/login');
-    }
-};
-
-const getSignup = async () => {
-    const response = await fetch('/signup', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-        document.location.replace('/signup');
     }
 };
 // =========================================================
@@ -116,5 +82,3 @@ const getSignup = async () => {
 // =========================================================
 document.querySelector('.loginForm').addEventListener('submit', loginHandler);
 document.querySelector('.signupForm').addEventListener('submit', signupHandler);
-document.querySelector('#loginBtn').addEventListener('click', getLogin);
-document.querySelector('#signupBtn').addEventListener('click', getSignup);
