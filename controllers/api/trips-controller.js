@@ -5,8 +5,9 @@
 // =============================================================
 const router = require('express').Router();
 const multer = require('multer');
-const { Trip, TripSection, ItineraryItem } = require('../../models');
-const loginAuth = require('../../utils/auth');
+const { Trip, TripSection, ItineraryItem } = require('../models');
+const loginAuth = require('../utils/auth');
+const userIdAuth = require('../utils/userIdAuth');
 // =============================================================
 
 // Setting up folder to receive and format uploads via multer
@@ -44,7 +45,7 @@ router.post('/image', uploadFolder.array('image-upload'), async (req, res) => {
 
 // Update a trip
 // =============================================================
-router.put('/edit/:id', loginAuth, async (req, res) => {
+router.put('/edit/:id', [loginAuth, userIdAuth], async (req, res) => {
     try {
         const tripId = req.params.id;
         const { titleData, sectionData, itineraryData } = req.body;

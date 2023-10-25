@@ -90,24 +90,36 @@ const signupHandler = async (event) => {
 // Get request to get response from server to render login/signup page
 // =========================================================
 const getLogin = async () => {
-    const response = await fetch('/login', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
+    try {
+        const response = await fetch('/login', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
 
-    if (response.ok) {
-        document.location.replace('/login');
+        if (response.ok) {
+            document.location.replace('/login');
+        } else {
+            console.log(response.statusText);
+        }
+    } catch (err) {
+        console.error('An error occurred:', err);
     }
 };
 
 const getSignup = async () => {
-    const response = await fetch('/signup', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
+    try {
+        const response = await fetch('/signup', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
 
-    if (response.ok) {
-        document.location.replace('/signup');
+        if (response.ok) {
+            document.location.replace('/signup');
+        } else {
+            console.log(response.statusText);
+        }
+    } catch (err) {
+        console.error('An error occurred:', err);
     }
 };
 // =========================================================
