@@ -93,7 +93,7 @@ router.get('/poi/:lat/:lon', async (req, res) => {
         res.status(200).render('poitestold', {poiData, activityData, safetyData, locationData});
     } catch (error) {
         console.error('Error:', error.message);
-        res.status(500).json({ message: 'Failed to get points of interest' });
+        res.status(500).redirect(`/poi/${lat}/${lon}`);
     }
 });
 
