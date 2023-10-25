@@ -1,6 +1,6 @@
 // Function to fetch the coordinates of a city
 const fetchCityData = async (city) => {
-    const apiKey = 'ZqSCB/0BSxQD4+VQ8BG+cA==Exh8YYVi9hdMvbfb'; //comment out for production// replace this with the process.env.AMADEUS_API_KEY
+    const apiKey = process.env.GEOCODE_API_KEY;
     const apiUrl = `https://api.api-ninjas.com/v1/geocoding?city=${city}`;
     try {
         const response = await fetch(apiUrl, {

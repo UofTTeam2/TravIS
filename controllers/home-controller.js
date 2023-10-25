@@ -11,7 +11,7 @@ const Amadeus = require('amadeus');
 require('dotenv').config();
 
 const amadeus = new Amadeus({
-    clientId: process.env.AMADEUS_CLIENT_ID, // assuming that based on the documentation you just need these and nothing else and they are in the .env file
+    clientId: process.env.AMADEUS_CLIENT_ID,
     clientSecret: process.env.AMADEUS_CLIENT_SECRET,
     // hostname: 'production' //use this to switch to production server, switch keys in .env file
 });
@@ -68,7 +68,6 @@ router.get('/poi/:lat/:lon', async (req, res) => {
             longitude: lon,
         });
         const poiData = await poiResponse.result.data;
-        // console.log(poiData); If the whole data with all related properties are there, then it should be fine. If not, then maybe you have to destructure the data to get the properties you need
         const activityData = await activityResponse.result.data;
         const safetyData = await safetyResponse.result.data;
         const locationData = await locationResponse.result.data;
@@ -76,20 +75,7 @@ router.get('/poi/:lat/:lon', async (req, res) => {
         console.log(activityData);
         console.log(safetyData);
         console.log(locationData);
-        // // maybe after that we have to create a function like the one in locationScore.js to destructure the data. thend send back those as response, like this: e.g  poiData: relatedFunction(poidata) ===> which will act as method to destructure the data. then on the client side we do sth like this: const = receivedPoiData = response.poiData.text() ===> which will convert the data to text and then we can use it in the handlebars file. **** in this case instead of res.render we will use res.json
-        // responseData = {
-        //     poiData,
-        //     activityData,
-        //     safetyData,
-        //     locationData,
-        // };
-        // // res.status(200).json(responseData);
-        // // console.log(responseData);
-        // // const htmlContent = responseData;
-        // // res.header('Content-Type', 'text/html');//trying to get the html content to the client side, so it displays as html and not show the html tags
-        // // res.render('poitestold', responseData); //**** assuming that you are using the same place holder names in the handlebars file
-        // // res.render('poitestold', { poiData, activityData, safetyData, locationData });
-        // res.render('poitestold', { poiData, activityData, safetyData, locationData });
+
         res.status(200).render('poitestold', {poiData, activityData, safetyData, locationData});
     } catch (error) {
         console.error('Error:', error.message);
