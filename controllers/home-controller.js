@@ -13,7 +13,7 @@ require('dotenv').config();
 const amadeus = new Amadeus({
     clientId: process.env.AMADEUS_CLIENT_ID,
     clientSecret: process.env.AMADEUS_CLIENT_SECRET,
-    // hostname: 'production' //use this to switch to production server, switch keys in .env file
+    hostname: 'production' //use this to switch to production server, switch keys in .env file
 });
 
 //Get route for the signup page
@@ -79,7 +79,9 @@ router.get('/poi/:lat/:lon', async (req, res) => {
         res.status(200).render('cityResults', {poiData, activityData, safetyData, locationData});
     } catch (error) {
         console.error('Error:', error.message);
-        res.status(500).redirect(`/poi/${lat}/${lon}`);
+        // res.status(500).redirect(`/poi/${lat}/${lon}`);
+        res.status(500).json(error);
+        console.error('Error: Our server is slow, please try again', error.message);
     }
 });
 
