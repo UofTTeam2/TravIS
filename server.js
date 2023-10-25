@@ -65,8 +65,8 @@ app.set('view engine', 'handlebars');
 
 // Sets up the custom middleware & Express app to handle data parsing
 // =============================================================
-app.use(routes);
 app.use(dataParser);
+app.use(routes);
 app.use(express.static(path.join(__dirname, 'public')));
 //==============================================================
 
