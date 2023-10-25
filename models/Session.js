@@ -10,7 +10,7 @@ const sequelize = require('../config/connection');
 // Creating the Session model
 // =============================================================
 
-const Session = sequelize.define('Session', {
+const Session = sequelize.define('sessions', {
     sid: {
         type: DataTypes.STRING,
         primaryKey: true,
