@@ -6,7 +6,7 @@ console.log("Login script loaded!");
 // Creating a function to handle the error message
 // if the user's login/signup is unsuccessful, using a modal
 // =========================================================
-const displayErrorModal = (errorMessage) => {
+displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
     const closeModalButton = document.querySelector('#closeModal');
@@ -42,16 +42,12 @@ const loginHandler = async (event) => {
         });
 
         if (response.ok) {
-            const responseData = await response.json();
-            const message = responseData.message.value;
-            displayErrorModal(message);
-            setTimeout(() => {
-                document.location.replace('/');
-            }, 3000);
+            document.location.replace('/');
         } else {
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.message.value;
+            console.log(errorData);
+            const errorMessage = errorData.name;
             displayErrorModal(errorMessage);
         }
     }
@@ -72,16 +68,11 @@ const signupHandler = async (event) => {
         });
 
         if (response.ok) {
-            const responseData = await response.json();
-            const message = responseData.message.value;
-            displayErrorModal(message);
-            setTimeout(() => {
-                document.location.replace('/');
-            }, 3000);
+            document.location.replace('/');
         } else {
             //adding an error message if the user's signup is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.message.value;
+            const errorMessage = errorData.name;
             displayErrorModal(errorMessage);
         }
     }

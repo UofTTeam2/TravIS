@@ -5,7 +5,7 @@
 // Creating a function to handle the error message
 // if the user's login/signup is unsuccessful, using a modal
 //==============================================================
-const displayErrorModal = (errorMessage) => {
+displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
     const closeModalButton = document.querySelector('#closeModal');
@@ -25,6 +25,7 @@ const displayErrorModal = (errorMessage) => {
 };
 
 const logout = async () => {
+    console.log('attempting to log out');
     const response = await fetch('/api/users/logout', {
         method: 'POST',
         headers: {
