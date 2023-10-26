@@ -59,7 +59,7 @@ const seedComment = async () => {
                 Math.floor(Math.random() * loremIpsumStrings.length)
             ];
         const timestamp = generateRandomTimestamp();
-        const user_id = generateRandomInt(1, 5);
+        const user_id = generateRandomInt(1, 20);
 
         commentData.push({
             post_id,
@@ -83,7 +83,7 @@ const seedComment = async () => {
                     Math.floor(Math.random() * loremIpsumStrings.length)
                 ];
             const timestamp = generateRandomTimestamp();
-            const user_id = generateRandomInt(1, 29);
+            const user_id = generateRandomInt(1, 20);
 
             commentData.push({
                 post_id,

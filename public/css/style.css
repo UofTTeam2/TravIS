@@ -38,7 +38,7 @@ body .grid-container {
     grid-template-areas:
         'sidebar header header header'
         'sidebar main main main';
-        min-height: 70vh;
+    min-height: 70vh;
     height: 100%;
 }
 
@@ -70,8 +70,8 @@ body .grid-container {
     background-color: #22252a;
     color: #fff;
     overflow-y: auto;
-    transition: all 0.5s;
     -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
 #sidebar a {
@@ -88,7 +88,6 @@ body .grid-container {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-
 }
 
 .sidebar-title > span {
@@ -162,7 +161,7 @@ body .grid-container {
 
 .main-container {
     grid-area: main;
-    
+
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 30px;
@@ -195,9 +194,9 @@ body .grid-container {
     flex-direction: column;
     justify-content: space-around;
     padding: 15px;
-    background-color: #22252A;
+    background-color: #22252a;
     box-sizing: border-box;
-    border: 1px solid #90A9B7;
+    border: 1px solid #90a9b7;
     border-radius: 25px;
     box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
     border-left: 7px solid #ffc62c;
@@ -262,7 +261,7 @@ body .form {
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-  }
+}
 
 .update-card {
     position: relative;
@@ -271,7 +270,7 @@ body .form {
     margin: 0 20px;
     padding: 70px 30px 44px;
     border-radius: 30px;
-    background: #F8B500;
+    background: #f8b500;
     text-align: center;
 }
 
@@ -288,14 +287,15 @@ body .form {
     font-size: 1rem;
 }
 
-.update-form{
+.update-form {
     width: 100%;
     margin: 0;
     display: grid;
     gap: 16px;
 }
 
-.update-form input, .update-form button{
+.update-form input,
+.update-form button {
     width: 50%;
     height: 50px;
     margin: 5px auto;
@@ -312,7 +312,7 @@ body .form {
     outline: none;
 }
 
-.update-form button{
+.update-form button {
     background-color: #12a128;
     color: #fff;
     font-size: 12px;
@@ -330,18 +330,16 @@ body .form {
     background-color: #cf280eda;
 }
 
-.update-form button:hover{
+.update-form button:hover {
     transition: all 0.3s ease;
     transform: scale(1.05);
 }
 
-
-
-@media (width >= 500px){
-    body{
+@media (width >= 500px) {
+    body {
         padding: 0;
     }
-    .update-card{
+    .update-card {
         margin: 0;
         width: 400px;
     }
@@ -587,8 +585,8 @@ body .form {
 
 .navbar .logo {
     background: linear-gradient(95deg, #ffc62c 3.2%, #ffff 99.5%);
-    background-clip: text;
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
     font-size: 32px;
@@ -602,8 +600,8 @@ body .form {
 
 .navbar .item.selected {
     background: white;
-    background-clip: text;
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     border-bottom: 1px solid #ffc62c;
 }
@@ -844,7 +842,7 @@ body .form {
     margin: 0 20px;
     padding: 70px 30px 44px;
     border-radius: 30px;
-    background: #F8B500;
+    background: #f8b500;
     text-align: center;
 }
 
@@ -868,21 +866,21 @@ body .form {
     height: 20px;
     border-radius: 10px;
     overflow: hidden;
-  }
-  
+}
+
 .progress-fill {
     width: 0; /* Initial width is 0 */
     height: 100%;
-    background-color: #FFC62C; /* Change this to your desired fill color */
+    background-color: #ffc62c; /* Change this to your desired fill color */
     animation: fillAnimation 5s ease-in-out forwards; /* Adjust the duration (5s) as needed */
 }
-  
+
 @keyframes fillAnimation {
     from {
-      width: 0;
+        width: 0;
     }
     to {
-      width: 100%; /* Adjust the width to represent your value */
+        width: 100%; /* Adjust the width to represent your value */
     }
 }
 /* End of progress Bar demo */
@@ -898,21 +896,22 @@ body .form {
 }
 
 .explorer-text {
-    color: #22252A;
+    color: #22252a;
 }
 
 .explorer-paragraph {
     padding-top: 20px;
 }
 
-.explorer-form{
+.explorer-form {
     width: 100%;
     margin: 0;
     display: grid;
     gap: 16px;
 }
 
-.explorer-form input, .explorer-form button{
+.explorer-form input,
+.explorer-form button {
     width: 50%;
     height: 50px;
     margin: 5px auto;
@@ -932,7 +931,7 @@ body .form {
 #explorer-submit-button {
     margin-top: 30px;
     margin-bottom: 30px;
-    background-color: #22252A;
+    background-color: #22252a;
     color: #fff;
     font-size: 12px;
     padding: 10px 15px;
@@ -947,7 +946,7 @@ body .form {
 #cityresult-submit-button {
     margin-top: 30px;
     margin-bottom: 30px;
-    background-color: #F8B500;
+    background-color: #f8b500;
     color: #fff;
     font-size: 12px;
     padding: 10px 15px;
@@ -998,7 +997,8 @@ body .form {
     text-decoration: none;
 }
 
-.forum-main input, textarea {
+.forum-main input,
+textarea {
     background-color: #eee;
     border: none;
     margin: 8px 0;
@@ -1077,7 +1077,7 @@ body .form {
 }
 
 .forum-labels {
-    padding-right: 20px; 
+    padding-right: 20px;
     /* padding-bottom: 10px; */
     display: flex;
     flex-direction: row;
@@ -1096,7 +1096,7 @@ body .form {
 }
 
 #forum-newpost-button {
-    background-color: #FFC62C;
+    background-color: #ffc62c;
     color: #000;
     font-size: 12px;
     padding: 10px 15px;
@@ -1130,12 +1130,12 @@ body .form {
     align-items: center;
 }
 
-.forum-main input[type="file"] {
+.forum-main input[type='file'] {
     display: none;
 }
 
 .forum-newpost-upload {
-    background-color: #FFC62C;
+    background-color: #ffc62c;
     color: #000;
     font-size: 12px;
     padding: 10px 40px;
@@ -1158,7 +1158,7 @@ body .form {
 }
 
 #newpost-submit-button {
-    background-color: #FFC62C;
+    background-color: #ffc62c;
     color: #000;
     font-size: 12px;
     padding: 10px 40px;
@@ -1178,7 +1178,8 @@ body .form {
     flex-grow: 1;
 }
 
-.single-post-info, .double-post-info {
+.single-post-info,
+.double-post-info {
     text-overflow: ellipsis;
     align-self: center;
 }
@@ -1196,14 +1197,14 @@ body .form {
 .comment-box {
     display: flex;
     flex-direction: row;
-    background-color: #FFC62C;
-    color: #22252A;
+    background-color: #ffc62c;
+    color: #22252a;
     border-radius: 1em;
     margin-bottom: 3px;
 }
 
 .comment-box hr {
-    border: 1px solid #22252A;
+    border: 1px solid #22252a;
 }
 
 .comment-post-id {
@@ -1219,7 +1220,7 @@ body .form {
 .comment-post-username {
     font-weight: bold;
     font-size: 15px;
-    flex-grow: 1
+    flex-grow: 1;
 }
 
 .comment-body {
@@ -1275,9 +1276,9 @@ body .form {
 .comment-image-container img {
     max-width: 95%;
     height: auto;
-    border: 5px solid #22252A;
+    border: 5px solid #22252a;
     border-radius: 1em;
-    background-color: #22252A;
+    background-color: #22252a;
 }
 
 .comment-likes-box {
@@ -1289,11 +1290,11 @@ body .form {
     padding-top: 30px;
 }
 
-@keyframes forumToLeft{
-    from{
+@keyframes forumToLeft {
+    from {
         transform: translateX(1300px);
     }
-    to{
+    to {
         transform: translateX(0px);
     }
 }
@@ -1308,12 +1309,17 @@ body .form {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.7
+    ); /* Semi-transparent black background */
     z-index: 1; /* Ensure the modal appears on top of other content */
 }
-  
+
 .error-modal-content {
-    background-color: #F8B500;
+    background-color: #f8b500;
     border-radius: 8px;
     position: absolute;
     top: 50%; /* Center the modal vertically */
@@ -1326,7 +1332,7 @@ body .form {
 }
 
 #error-modal-text {
-    color:#22252A;
+    color: #22252a;
 }
 
 #error-modal-close {
@@ -1338,9 +1344,9 @@ body .form {
     cursor: pointer;
     margin-top: 10px;
 }
-  
+
 #error-modal-close:hover {
-    background-color: #22252A; /* Darker red color on hover */
+    background-color: #22252a; /* Darker red color on hover */
 }
 /* End of Chris' CSS additions*/
 

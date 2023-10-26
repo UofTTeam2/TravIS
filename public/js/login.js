@@ -45,9 +45,9 @@ const loginHandler = async (event) => {
 
         if (response.ok) {
             await document.location.replace('/');
-            const responseData = await response.json();
-            const responseMessage = responseData.message;
-            displayErrorModal(responseMessage);
+            // const responseData = await response.json();
+            // const responseMessage = responseData.message;
+            // displayErrorModal(responseMessage);
         } else {
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
@@ -73,9 +73,9 @@ const signupHandler = async (event) => {
 
         if (response.ok) {
             await document.location.replace('/');
-            const responseData = await response.json();
-            const responseMessage = responseData.message;
-            displayErrorModal(responseMessage);
+            // const responseData = await response.json();
+            // const responseMessage = responseData.message;
+            // displayErrorModal(responseMessage);
         } else {
             //adding an error message if the user's signup is unsuccessful
             const errorData = await response.json();

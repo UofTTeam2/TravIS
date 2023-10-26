@@ -44,7 +44,7 @@ for (let i = 1; i <= 99; i++) {
             loremIpsumStrings[
                 Math.floor(Math.random() * loremIpsumStrings.length)
             ],
-        user_id: generateRandomInt(1, 5),
+        user_id: generateRandomInt(1, 20),
         topic_id: generateRandomInt(1, 6),
     };
     postData.push(post);

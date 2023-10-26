@@ -35,7 +35,6 @@ const tripSectionData = [
     },
     {
         title: 'Day 1',
-        date: '2023-08-25',
         trip_id: 3,
     },
     {
