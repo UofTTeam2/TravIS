@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Boxicons used for the Footer -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <!-- Google Icons used for all the buttons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+    <!-- Google Fonts Poppins Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&family=Poppins&family=Raleway&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/normalize.css">
+   <title>TravIS</title>
+</head>
+
+<body>
+
+  {{> header}}
+  
+  {{{body}}}
+
+  {{> footer}}
+
+  <div id="errorModal" class="modal">
+    <div class="modal-content">
+        <div class = "login-modal-close-container">
+            <span class="close" id="closeModal">&times;</span>
+        </div>
+        <p id="modalErrorMessage"></p>
+        <p id="modalErrorDetails"></p>
+    </div>
+  </div>
+
+</body>
+
+</html>
