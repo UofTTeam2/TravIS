@@ -3,6 +3,8 @@
   <div class = "trip-title-container" data-id = "{{id}}">
     {{#if title}}
       <h1 class = "trip-title-header">{{title}}</h1>
+      {{else}}
+      <h1 class = "trip-title-header">Untitled Trip</h1>
     {{/if}}
 
     {{#if start_date}}

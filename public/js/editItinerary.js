@@ -145,8 +145,8 @@ window.onload = () => {
         }
 
         const tripTitle = $('.trip-title-input').val();
-        const tripStartDate = $('.trip-start-date-input').val();
-        const tripEndDate = $('.trip-end-date-input').val();
+        const tripStartDate = $('.trip-start-date').val();
+        const tripEndDate = $('.trip-end-date').val();
         const titleCardImage = determineImage();
 
         console.log('title image name: ' + titleCardImage);
@@ -351,7 +351,7 @@ window.onload = () => {
         const itineraryCategory = $(this).siblings('.item-category-title').text();
 
         //retrieves the ID of the section the user is attempting to add an itinerary item to
-        const section_id = $(this).parent().parent().siblings('.section-title-container').children().attr('data-id');
+        const section_id = $(this).parent().parent().parent().siblings('.section-title-container').children().attr('data-id');
 
         const newItemData = {
             category: itineraryCategory,
@@ -418,10 +418,8 @@ window.onload = () => {
             </div>
         </div>`;
 
-
-
         //adds new itinerary item to the current category
-        const itemCategory = $(this).parent();
+        const itemCategory = $(this).parent().parent();
         itemCategory.append(newItineraryItemHTML);
 
         //increase counter for number of items added by 1
@@ -484,37 +482,52 @@ window.onload = () => {
             
                 <div class = "trip-section-category">
 
-                    <h3 class = "item-category-title">Transportation</h3>
-                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+                    <div class = "category-title-add-button-container">    
 
+                        <h3 class = "item-category-title edit-title">Transportation</h3>
+                        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+                    
+                    </div>
                 </div>
 
                 <div class = "trip-section-category">
 
-                    <h3 class = "item-category-title">Accommodation</h3>
-                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+                    <div class = "category-title-add-button-container">
 
+                        <h3 class = "item-category-title edit-title">Accommodation</h3>
+                        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+
+                    </div>
                 </div>
 
                 <div class = "trip-section-category">
 
-                    <h3 class = "item-category-title">Food</h3>
-                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+                    <div class = "category-title-add-button-container">
+                    
+                        <h3 class = "item-category-title edit-title">Food</h3>
+                        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
+                    </div>
                 </div>
 
                 <div class = "trip-section-category">
 
-                    <h3 class = "item-category-title">Activities</h3>
-                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+                    <div class = "category-title-add-button-container">
+                    
+                        <h3 class = "item-category-title edit-title">Activities</h3>
+                        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
+                    </div>
                 </div>
 
                 <div class = "trip-section-category">
 
-                    <h3 class = "item-category-title">Misc</h3>
-                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+                    <div class = "category-title-add-button-container">
+                    
+                        <h3 class = "item-category-title edit-title">Misc</h3>
+                        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
+                    </div>
                 </div>
             </div>
         </div>`;

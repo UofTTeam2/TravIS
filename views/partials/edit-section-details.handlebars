@@ -14,8 +14,10 @@
         also renders an editable partial for each item related to transport that already exist -->
     <div class = "trip-section-category">
 
-      <h3 class = "item-category-title">Transportation</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Transportation</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
 
       {{#if transportItems}}
         {{#each transportItems as |transportItem|}}
@@ -38,8 +40,10 @@
         also renders an editable partial for each item related to accommodation that already exist -->
     <div class = "trip-section-category">
 
-      <h3 class = "item-category-title">Accommodation</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Accommodation</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
 
       {{#if accommodationItems}}
         {{#each accommodationItems as |accommodationItem|}}
@@ -62,8 +66,10 @@
         also renders an editable partial for each item related to food that already exist -->
     <div class = "trip-section-category">
 
-      <h3 class = "item-category-title">Food</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Food</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
 
       {{#if foodItems}}
         {{#each foodItems as |foodItem|}}
@@ -87,8 +93,10 @@
         for each item related to activities (et al.) that already exist -->
     <div class = "trip-section-category">
 
-      <h3 class = "item-category-title">Activities</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Activities</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
 
       {{#if activityItems}}
         {{#each activityItems as |activityItem|}}
@@ -111,8 +119,10 @@
         also renders an editable partial for each item related to transport that already exist -->
     <div class = "trip-section-category">
 
-      <h3 class = "item-category-title">Misc</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Misc</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
 
       {{#if miscItems}}
         {{#each miscItems as |miscItem|}}
