@@ -1,37 +1,3 @@
-<<<<<<< HEAD
-# TravIs
-
-
-## Credits
-
-### ETHAN'S LINKS
-
-https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
-
-https://www.w3schools.com/java/java_files_read.asp
-
-https://www.npmjs.com/package/multer
-
-gear image
-https://pixabay.com/vectors/gear-mechanics-settings-icon-1119298/
-
-writing image
-https://www.cleanpng.com/png-paper-computer-icons-pencil-drawing-business-write-1027246/
-
-save icon
-https://www.iconfinder.com/icons/2639912/save_icon
-
-modals
-https://www.w3schools.com/howto/howto_css_modals.asp
--HTML
--CSS
--JAVASCRIPT
-
-toggle switch
-https://www.w3schools.com/howto/howto_css_switch.asp
--CSS
--HTML
-=======
 # TravIS: Travel Itinerary Management Application
 [![latest packaged version(s)](https://repology.org/badge/latest-versions/r:bcrypt.svg)](https://repology.org/project/r:bcrypt/versions)
 
@@ -244,4 +210,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - If you have any questions or feedback regarding TravIs, please reach out to us at [TravISGmail](mailto:uoftp2.team2@gmail.com). We value your input and look forward to assisting you in your travel planning journey. Safe travels!
 - You can also visit our GitHub: [GitHub](https://github.com/UofTTeam2/TravIS)
->>>>>>> 4869f01258b2899fc278dd944851e873c4fdc2df
