@@ -21,6 +21,10 @@ window.onload = () => {
     const tripID = $('.trip-title-container').attr('data-id');
     console.log(tripID);
 
+    //variable to count how many itinerary items have been added to the page in this visit
+    //used to assign unique IDs to each item input such that they can be associated with a specific label element
+    let addedItemCount = 0;
+
     function openImageErrorModal(error) {
         imageUploadErrorMessage.text(error);
         imageUploadErrorModal.attr('style', 'display: block');
@@ -399,16 +403,16 @@ window.onload = () => {
             <h4>Notes:</h4>
             <textarea class = "item-notes"></textarea>
         
-            <h4>Choose an Image (up to 10 MB):</h4>
-            <input type = "file" accept = "image/*" class = "user-uploaded-image">
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "newFileInput${addedItemCount}" style = "display: none;">
+            <label for = "newFileInput${addedItemCount}" class = "custom-file-upload">Choose File</label>
         
             <div class = "edit-page-image-container">
         
                 <div class = "edit-page-image-block">
             
-                    <button class = "clear-preview-image-button">Clear Chosen Image</button>
-                    <h4>Preview:</h4>
-                    <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+                <h4>Preview:</h4>
+                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+                <button class = "clear-preview-image-button">Clear Chosen Image</button>
             
                 </div>
         

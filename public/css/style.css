@@ -438,14 +438,14 @@ body .form {
     margin: 10px;
 }
 
-#trip-sections-container {
-    width: 90%;
+.trip-sections-container {
+    width: 100%;
     margin-top: 20px;
     padding: 20px;
 }
 
 .itinerary-section-container {
-    width: 600px;
+    width: 100%;
     margin-bottom: 30px;
     padding: 20px;
     border-radius: 25px 100px 25px 25px;
@@ -1279,7 +1279,7 @@ input.trip-title-input {
     background-color: #f44336;
     color: #fff;
     font-size: 12px;
-    padding: 10px 45px;
+    padding: 10px 15px;
     border: 1px solid transparent;
     border-radius: 8px;
     font-weight: 600;
@@ -1304,6 +1304,12 @@ input.trip-title-input {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
     max-width: 400px;
     margin: 20px auto;
+}
+
+.edit-page-image-block > button {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .title-card-preview-image,

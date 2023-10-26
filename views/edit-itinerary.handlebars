@@ -43,7 +43,7 @@
 
   <div class = "trip-delete-container">
     <!-- render a partial for each section of the trip -->
-    <div class = "trip-sections-container">
+    <div id = "trip-sections-container">
       {{#each sections as |section|}}
         {{> edit-section-details}}
       {{/each}}
