@@ -21,10 +21,10 @@ require('dotenv').config();
 // =============================================================
 const routes = require('./controllers');
 const Session = require('./models/Session');
-//const helpers = require('./utils/helpers');
+const helpers = require('./utils/helpers');
 //initializes handlebars template engine
 const hbs = exphbs.create({
-    //helpers,
+    helpers,
     runtimeOptions: {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true,

@@ -50,7 +50,7 @@ button:hover {
 }
 
 .text-primary {
-    color: #000;
+    color: #afafaf;
 }
 
 .font-weight-bold {
@@ -64,7 +64,8 @@ button:hover {
     grid-template-areas:
         'sidebar header header header'
         'sidebar main main main';
-    height: 100vh;
+    min-height: 70vh;
+    height: 100%;
 }
 
 /* ---------- Header Dashboard ---------- */
@@ -72,7 +73,6 @@ button:hover {
 .header-dash {
     grid-area: header;
     height: 70px;
-    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -199,6 +199,7 @@ button:hover {
 
 .main-title > p {
     font-size: 20px;
+    color: #000;
 }
 
 .main-cards {
@@ -255,6 +256,7 @@ button:hover {
 .card-inner > p {
     font-size: 18px;
     padding: 2px 0px;
+    color: #000;
 }
 
 .card-inner > span {
@@ -455,12 +457,13 @@ body .form {
 .section-title-header {
     font-size: 2.4em;
     margin: 0;
+    margin-top: 10px;
     margin-bottom: 10px;
     display: inline-block;
     padding-left: 10px;
     padding-right: 20px;
     color: #fff;
-    font-weight: 600;
+    font-weight: 500;
     background-color: #505672;
     border-radius: 10px 30px 10px 10px;
 }
@@ -473,7 +476,7 @@ body .form {
     padding: 5px 7px 7px;
     border-radius: 10px 10px 30px 10px;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .item-category-title.edit-title {
@@ -481,10 +484,10 @@ body .form {
     background-color: #505672;
     color: #fff;
     display: inline-block;
-    padding: 5px 7px 7px;
+    padding: 5px 9px 7px;
     border-radius: 10px;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
     margin-right: 10px;
 }
 

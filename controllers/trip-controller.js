@@ -106,10 +106,11 @@ router.get('/view/:id', [loginAuth, userIdAuth], async (req, res) => {
             miscExpenses,
         ];
 
+        //sums the cost of all itinerary category expenses
         const totalExpenses = expenses.reduce((currentSum, currentValue) => currentSum + currentValue, 0);
 
-        const { id, title, start_date, end_date, image, public, sections } =
-            responseData;
+        //destructures response data
+        const { id, title, start_date, end_date, image, public, sections } = responseData;
 
         // Send the response
         res.render('view-itinerary', {
@@ -228,8 +229,10 @@ router.get('/public-view/:id', publicAuth, async (req, res) => {
             miscExpenses,
         ];
 
+        //sums the cost of all itinerary category expenses
         const totalExpenses = expenses.reduce((currentSum, currentValue) => currentSum + currentValue, 0);
 
+        //destructures response data
         const { id, title, start_date, end_date, image, public, sections } = responseData;
 
         // Send the response

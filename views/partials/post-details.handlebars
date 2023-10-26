@@ -1,0 +1,22 @@
+<div class="comment-box" style="animation: forumToLeft {{css_counter @index}}s">
+  <div class="comment-post-id">
+    <p class="comment-post-username">{{comment.user.username}}</p>
+    <p class="comment-post-count">{{comment.user.comments.length}} Post{{plural_check comment.user.comments.length}}</p>
+  </div>
+  <div class="comment-body">
+    <div class="comment-body-top-container">
+    <p class="comment-timestamp-header">
+      {{forum_format_date comment.timestamp}}
+    </p>
+    </div>
+    <hr>
+    <p class="comment-text">
+      {{comment.text}}
+    </p>
+    {{#if imagePath}}
+      <div class="comment-image-container">
+        <img src="{{imagePath}}" alt="Comment Image" class="comment-image">
+      </div>
+    {{/if}}
+  </div>
+</div>
