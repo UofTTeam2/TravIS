@@ -28,24 +28,25 @@
   <textarea class = "item-notes" value = "{{notes}}"></textarea>
 
   <h4>Choose an Image (up to 10 MB):</h4>
-  <input type = "file" accept = "image/*" class = "user-uploaded-image">
+  <input type="file" accept="image/*" class="user-uploaded-image" id="fileInput" style="display:none;">
+    <label for="fileInput" class="custom-file-upload">Choose File</label>
 
   <div class = "edit-page-image-container">
 
     <div class = "edit-page-image-block">
 
-      <button class = "clear-preview-image-button">Clear Chosen Image</button>
       <h4>Preview:</h4>
       <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+      <button class = "clear-preview-image-button">Clear Chosen Image</button>
 
     </div>
 
     {{#if image}}
       <div class = "edit-page-image-block">
 
-        <button class = "clear-current-image-button">Clear Current Image</button>
         <h4>Current Image:</h4>
         <img class = "item-image" src = "/images/multer-uploads/{{image}}">
+        <button class = "clear-current-image-button">Clear Current Image</button>
       
       </div>
     {{/if}}

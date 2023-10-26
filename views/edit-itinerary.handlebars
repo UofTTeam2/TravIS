@@ -1,56 +1,66 @@
-<form action = "/api/trips/image" method = "post" enctype = "multipart/form-data" class = "multer-submission-form">
+
+  <form action = "/api/trips/image" method = "post" enctype = "multipart/form-data" class = "multer-submission-form">
   
   <div class = "trip-title-container" data-id = "{{id}}">
-
-    <h1>Title:</h1>
+      <h1>Title:</h1>
     <input class = "trip-title-input" value = "{{title}}">
 
     <h2 class = "trip-date-header">Trip Start Date:</h2>
-    <input class = "trip-start-date-input datepicker" value = "{{start_date}}">
+    <input class = "trip-start-date datepicker" value = "{{start_date}}">
 
     <h2 class = "trip-date-header">Trip End Date:</h2>
-    <input class = "trip-end-date-input datepicker" value = "{{end_date}}">
+    <input class = "trip-end-date datepicker" value = "{{end_date}}">
+    
+    
+      <h4>Choose a Title Card Image (up to 10 MB):</h4>
 
-    <h2>Choose a Title Card Image (up to 10 MB):</h2>
-
-    <input type = "file" accept = "image/*" class = "user-uploaded-image">
+    <input type="file" accept="image/*" class="user-uploaded-image" id="fileInput" style="display:none;">
+    <label for="fileInput" class="custom-file-upload">Choose File</label>
 
     <div class = "edit-page-image-container">
 
       <div class = "edit-page-image-block">
 
-        <button class = "clear-preview-image-button">Clear Chosen Image</button>
         <h3>Preview:</h3>
         <img class = "title-card-preview-image" src = '/images/no-image-stock-photo.png'>
+        <button class = "clear-preview-image-button">Clear Chosen Image</button>
 
       </div>
 
       {{#if image}}
         <div class = "edit-page-image-block">
 
-          <button class = "clear-current-image-button">Clear Current Image</button>
           <h3>Current Title Card Image:</h3>
           <img class = "title-card-image" src = "/images/multer-uploads/{{image}}">
+          <button class = "clear-current-image-button">Clear Current Image</button>
         
         </div>
       {{/if}}
-
     </div>
+    <button class = "save-itinerary-button" type = "submit"><span class="material-symbols-outlined">
+save
+</span></button>
+    <!-- button to switch to save data -->
+  
   </div>
 
-  <!-- button to switch to save data -->
-  <button class = "save-itinerary-button" type = "submit"><img src = "/images/save-icon.png"></button>
+  
 
-  <div class = "trip-sections-container">
+  <div class = "trip-delete-container">
     <!-- render a partial for each section of the trip -->
     {{#each sections as |section|}}
       {{> edit-section-details}}
     {{/each}}
+
+    <div>
+    <button class = "create-new-section-button">Create New Section</button>
+  </div>
   </div>
 
-  <button class = "create-new-section-button">Create New Section</button>
+  
 
 </form>
+
 
 <div class = "confirmation-modal modal">
     
