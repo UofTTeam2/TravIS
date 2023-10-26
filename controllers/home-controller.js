@@ -4,6 +4,8 @@
 // Dependencies, Models, and Middleware
 // =============================================================
 const router = require('express').Router();
+const https = require('https');
+require('dotenv').config();
 const { Trip } = require('../models');
 const loginAuth = require('../utils/auth');
 const Amadeus = require('amadeus');
@@ -65,7 +67,7 @@ router.get('/signup', (req, res) => {
         res.redirect('/');
         return;
     }
-    res.render('login');
+    res.render('signup');
 });
 //==============================================================
 
@@ -87,6 +89,38 @@ router.get('/update', (req, res) => {
 //==============================================================
 router.get('/search', (req, res) => {
     res.render('search');
+});
+
+//used chat gpt to help move code to back end for security reasons
+router.get('/api/city', async (req, res) => {
+    const { city } = req.query;
+    try {
+        const apiKey = process.env.GEOCODE_API_KEY;
+        const apiUrl = `https://api.api-ninjas.com/v1/geocoding?city=${city}`;
+
+        https.get(apiUrl, { headers: { 'X-Api-Key': apiKey } }, (response) => {
+            let data = '';
+
+            response.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            response.on('end', () => {
+                try {
+                    const result = JSON.parse(data);
+                    const lat = result[0].latitude;
+                    const lon = result[0].longitude;
+                    res.status(200).json({ lat, lon });
+                } catch (error) {
+                    console.error('Error:', error.message);
+                    res.status(500).json({ error: 'Error parsing city data' });
+                }
+            });
+        });
+    } catch (error) {
+        console.error('Error:', error.message);
+        res.status(500).json({ error: 'Error fetching city data' });
+    }
 });
 
 router.get('/poi/:lat/:lon/:city', async (req, res) => {
@@ -125,7 +159,6 @@ router.get('/poi/:lat/:lon/:city', async (req, res) => {
 
     } catch (error) {
         console.error('Error:', error.message);
-        // res.status(500).redirect(`/poi/${lat}/${lon}`);
         res.status(500).json(error);
         console.error('Error: Our server is slow, please try again', error.message);
     }
