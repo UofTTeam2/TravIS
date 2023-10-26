@@ -1,0 +1,1 @@
+document.querySelector('.main-cards .add-card').addEventListener('click', () => window.location.pathname = '/trips/create-trip');
