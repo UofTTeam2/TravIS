@@ -92,15 +92,6 @@ Comment.belongsTo(User, {
 Comment.belongsTo(Post, {
     foreignKey: 'post_id',
 });
-Comment.belongsTo(Comment, {
-    as: 'parent_comment',
-    foreignKey: 'parent_comment_id',
-});
-Comment.hasMany(Comment, {
-    as: 'child_comments',
-    foreignKey: 'parent_comment_id',
-    onDelete: 'CASCADE',
-});
 //=====================================================
 
 // Export all models as one object

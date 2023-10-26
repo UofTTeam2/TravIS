@@ -1,36 +1,33 @@
 <!-- Navbar -->
 <div class='main'>
     <div class='navbar'>
-        <img
-            class='logo'
-            href='#'
-            src='images/TravIs-Logos/android-chrome-512x512.png'
-            alt='TravIs Logo'
-        />
+        <div class='logo-title'>
+            <img
+                class='logo'
+                href='#'
+                src='/images/TravIs-Logos/android-chrome-512x512.png'
+                alt='TravIs Logo'
+            />
+            <p class='site-title'>TravIS</p>
+        </div>
         <div class='nav-links'>
             <a href='/' class='item'>Home</a>
-            {{#unless isDashboard}}
-                <a href='/#about-us' class='item' id='scroll'>About Us</a>
-            {{/unless}}
+            <a href='/#about-us' class='item' id='scroll'>About Us</a>
             {{#if loggedIn}}
                 <a href='/trips' class='item'>Dashboard</a>
             {{/if}}
         </div>
 
         <div class='nav-buttons' id='navMenu'>
-            {{#unless isDashboard}}
-                {{#if loggedIn}}
-                    <button class='nav-btn selected' id='logOut'>LOG OUT</button>
-
-                {{else}}
-                    <button
-                        class='nav-btn selected'
-                        id='loginBtn'
-                    >LOGIN</button>
-                    <button class='nav-btn' id='signupBtn'>SIGN UP</button>
-
-                {{/if}}
-            {{/unless}}
+            {{#if loggedIn}}
+                <button class='nav-btn selected' id='logOut'>LOG OUT</button>
+            {{else}}
+                <button
+                    class='nav-btn selected'
+                    id='loginBtn'
+                >LOGIN</button>
+                <button class='nav-btn selected' id='signupBtn'>SIGN UP</button>
+            {{/if}}
         </div>
 
         <button class='toggler'>

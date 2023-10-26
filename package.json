@@ -1,6 +1,6 @@
 {
     "name": "travis",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Trip Planning and Management Application",
     "main": "server.js",
     "scripts": {

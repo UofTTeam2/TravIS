@@ -1,5 +1,6 @@
 // Desc: This file will be used to seed the Post table in the database.
 // Author: Cristiano Barboza Godinho
+// A large part of the research for this file was done through the websites W3 Schools (<https://www.w3schools.com/>), MDN Web Docs (<https://developer.mozilla.org/en-US/docs/Web>) and ChatGPT (<https://chat.openai.com/>), and as such small sections of code were adapted from examples offered in those sites.
 // =============================================================
 
 // Import the Post model
@@ -43,7 +44,7 @@ for (let i = 1; i <= 99; i++) {
             loremIpsumStrings[
                 Math.floor(Math.random() * loremIpsumStrings.length)
             ],
-        user_id: generateRandomInt(1, 5),
+        user_id: generateRandomInt(1, 20),
         topic_id: generateRandomInt(1, 6),
     };
     postData.push(post);

@@ -1,1 +1,2 @@
+// if the user clicks on the 'create new trip' card on the dashboard, route to the 'create trip' page
 document.querySelector('.main-cards .add-card').addEventListener('click', () => window.location.pathname = '/trips/create-trip');

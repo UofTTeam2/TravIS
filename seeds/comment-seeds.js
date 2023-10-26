@@ -1,5 +1,6 @@
 // Desc: This file is Used to seed the comment table in the database. Also class methods for likes and dislikes
 // Author: Cristiano Barboza Godinho
+// A large part of the research for this file was done through the websites W3 Schools (<https://www.w3schools.com/>), MDN Web Docs (<https://developer.mozilla.org/en-US/docs/Web>) and ChatGPT (<https://chat.openai.com/>), and as such small sections of code were adapted from examples offered in those sites.
 // =============================================================
 
 // Importing the Comment model
@@ -52,21 +53,19 @@ const seedComment = async () => {
     const commentData = [];
 
     for (let i = 1; i <= 720; i++) {
+        const post_id = generateRandomInt(1, 99);
         const text =
             loremIpsumStrings[
                 Math.floor(Math.random() * loremIpsumStrings.length)
             ];
         const timestamp = generateRandomTimestamp();
-        const user_id = generateRandomInt(1, 5);
-        const post_id = generateRandomInt(1, 99);
-        const parent_comment_id = generateRandomInt(1, 720);
+        const user_id = generateRandomInt(1, 20);
 
         commentData.push({
+            post_id,
             text,
             timestamp,
             user_id,
-            post_id,
-            parent_comment_id,
         });
 
         // Add the post to the set of posts with comments
@@ -84,15 +83,13 @@ const seedComment = async () => {
                     Math.floor(Math.random() * loremIpsumStrings.length)
                 ];
             const timestamp = generateRandomTimestamp();
-            const user_id = generateRandomInt(1, 29);
-            const parent_comment_id = generateRandomInt(1, 720);
+            const user_id = generateRandomInt(1, 20);
 
             commentData.push({
+                post_id,
                 text,
                 timestamp,
                 user_id,
-                post_id,
-                parent_comment_id,
             });
         }
     }

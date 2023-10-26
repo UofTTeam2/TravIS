@@ -105,9 +105,6 @@ router.get('/view/:id', [loginAuth, userIdAuth], async (req, res) => {
             miscExpenses,
         ];
 
-        console.log(responseData);
-        console.log(expenses);
-
         const { id, title, start_date, end_date, image, public, sections } =
             responseData;
 
