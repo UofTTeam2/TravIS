@@ -64,16 +64,33 @@
             <li>
                 <strong>{{name}}</strong><br>
                 <p class="activityDescription">{{{description}}}</p><br>
-                Price: {{price.amount}} {{price.currencyCode}}<br>
-                Minimum Duration: {{minimumDuration}}<br>
+
+                {{#if price}}
+                    Price: {{price.amount}} {{price.currencyCode}}<br>
+                {{else}}
+                    Price: Not Available<br>
+                {{/if}}
+                {{#if minimumDuration}}
+                    Minimum Duration: {{minimumDuration}}<br>
+                {{else}}
+
+                {{/if}}
         
                 <h3>Pictures:</h3>
                 <div class="poipictures">
-                    {{#each pictures}}
-                    <img class="poipic" src="{{this}}" alt="Activity Image">
-                    {{/each}}
+                    {{#if pictures}}   
+                        {{#each pictures}}
+                            <img class="poipic" src="{{this}}" alt="Activity Image">
+                        {{/each}}
+                    {{else}}
+                        <p>No pictures available</p>
+                    {{/if}}
                 </div>
-                <a href="{{bookingLink}}" target="_blank">Click to Book Now</a>
+                {{#if bookingLink}}
+                    <a href="{{bookingLink}}" target="_blank">Click to Book Now</a>
+                {{else}}
+
+                {{/if}}
             </li>            
             {{/each}}
         </ul>

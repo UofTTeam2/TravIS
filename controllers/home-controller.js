@@ -50,13 +50,13 @@ router.get('/trips', loginAuth, async (req, res) => {
 // Start of Dashboard Demo
 router.get('/dashboard', async (req, res) => {
     try {
-      res.render('dashboard');
+        res.render('dashboard');
     } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
+        console.log(err);
+        res.status(500).json(err);
     }
-  });
-  // End of Dashboard Demo
+});
+// End of Dashboard Demo
 
 //Get route for the signup page
 // =============================================================
@@ -120,7 +120,7 @@ router.get('/poi/:lat/:lon/:city', async (req, res) => {
         const activityData = await activityResponse.result.data;
         const safetyData = await safetyResponse.result.data;
         const locationData = await locationResponse.result.data;
-        
+
         res.status(200).render('cityResults', {poiData, activityData, safetyData, locationData, city});
 
     } catch (error) {
