@@ -982,10 +982,14 @@ body .form {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+.modal-content p {
+    margin-bottom: 0px;
+}
+
 .close {
     position: absolute;
     top: -20px;
-    right: -10px;
+    right: -13px;
     font-size: 28px;
     font-weight: bold;
 }
