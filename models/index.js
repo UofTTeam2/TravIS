@@ -27,10 +27,10 @@ User.hasMany(Post, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
-/*User.hasMany(Comment, {
+User.hasMany(Comment, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
-});*/
+});
 //=====================================================
 
 // Trip associations
@@ -86,12 +86,12 @@ Post.hasMany(Comment, {
 
 // Comment associations
 //=====================================================
-/*Comment.belongsTo(User, {
+Comment.belongsTo(User, {
     foreignKey: 'user_id',
 });
 Comment.belongsTo(Post, {
     foreignKey: 'post_id',
-});*/
+});
 //=====================================================
 
 // Export all models as one object

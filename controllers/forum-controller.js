@@ -8,6 +8,7 @@
 const router = require('express').Router();
 const { Topic, Post, User, Comment } = require('../models');
 const loginAuth = require('../utils/auth');
+const fs = require('fs');
 // =============================================================
 
 // GET route for the forum homepage
@@ -24,9 +25,11 @@ router.get('/', async (req, res) => {
 
         const topics = topicData.map((topic) => topic.get({ plain: true }));
 
+        console.log(req.session.loggedIn);
+
         res.render('forum', {
             topics,
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -58,11 +61,13 @@ router.get('/topic/:id', loginAuth, async (req, res) => {
             order: [[Post, Comment, 'timestamp', 'DESC']],
         });
 
+        console.log(topicData);
+
         const topic = topicData.get({ plain: true });
         req.session.topic_id = topic.id;
         res.render('topic', {
             topic,
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -126,7 +131,7 @@ router.get('/post/:id', loginAuth, async (req, res) => {
         res.render('post', {
             post,
             commentsWithImages,
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         console.log(err);
@@ -140,7 +145,7 @@ router.get('/post/:id', loginAuth, async (req, res) => {
 router.get('/newpost', loginAuth, async (req, res) => {
     try {
         res.render('newpost', {
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         res.status(500).json(err);
