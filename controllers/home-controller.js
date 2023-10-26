@@ -6,18 +6,59 @@
 // const express = require('express');
 const router = require('express').Router();
 const https = require('https');
+require('dotenv').config();
 const { User, Trip, Location } = require('../models');
 const loginAuth = require('../utils/auth');
 const Amadeus = require('amadeus');
-
-
-require('dotenv').config();
-
 const amadeus = new Amadeus({
     clientId: process.env.AMADEUS_CLIENT_ID,
     clientSecret: process.env.AMADEUS_CLIENT_SECRET,
     hostname: 'production' //use this to switch to production server, switch keys in .env file
 });
+
+// Get route for the home page
+// =============================================================
+router.get('/', async (req, res) => {
+    try {
+        res.render('homepage', {
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+//==============================================================
+
+// Get route for the dashboard page
+// =============================================================
+router.get('/trips', loginAuth, async (req, res) => {
+    try {
+        const tripData = await Trip.findAll({
+            where: {
+                user_id: req.session.user_id,
+            },
+            order: [['end_date', 'DESC']],
+        });
+        const trips = tripData.map((trip) => trip.get({ plain: true }));
+        res.render('dashboard', {
+            trips,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// Start of Dashboard Demo
+router.get('/dashboard', async (req, res) => {
+    try {
+        res.render('dashboard');
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+// End of Dashboard Demo
 
 //Get route for the signup page
 // =============================================================
@@ -39,6 +80,12 @@ router.get('/login', (req, res) => {
     }
     res.render('login');
 });
+//==============================================================
+
+router.get('/update', (req, res) => {
+    res.render('update');
+});
+
 //==============================================================
 router.get('/search', (req, res) => {
     res.render('search');
@@ -109,15 +156,12 @@ router.get('/poi/:lat/:lon/:city', async (req, res) => {
         const locationData = await locationResponse.result.data;
 
         res.status(200).render('cityResults', {poiData, activityData, safetyData, locationData, city});
+
     } catch (error) {
         console.error('Error:', error.message);
         res.status(500).json({ error: 'Our server is on vacation mode, please try again' });
         console.error('Error: server error, try again', error.message);
     }
-});
-
-router.get('/', (req, res) => {
-    res.render('homepage');
 });
 
 module.exports = router;
