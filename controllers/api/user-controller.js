@@ -16,12 +16,11 @@ router.post('/', async (req, res) => {
         });
 
         req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.username = userData.username;
             req.session.loggedIn = true;
+            req.session.user_id = userData.id;
             res.status(200).json({
                 user: userData,
-                message: 'You are now logged in!',
+                message: 'Your account has been created!',
             });
         });
     } catch (err) {
@@ -55,10 +54,9 @@ router.post('/login', async (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.username = userData.username;
             req.session.loggedIn = true;
-            res.json({
+            req.session.user_id = userData.id;
+            res.status(200).json({
                 user: userData,
                 message: 'You are now logged in!',
             });
@@ -71,10 +69,10 @@ router.post('/login', async (req, res) => {
 
 // PUT route for updating a user
 // =============================================================
-router.put('/:id', async (req, res) => {
+router.put('/', async (req, res) => {
     try {
         const userData = await User.update(req.body, {
-            where: { id: req.params.id },
+            where: { id: req.session.user_id },
             individualHooks: true,
         });
 
@@ -83,13 +81,10 @@ router.put('/:id', async (req, res) => {
             return;
         }
 
+        //logs out the user after updating their credentials
         req.session.save(() => {
-            req.session.user_id = userData.id;
-            req.session.username = userData.username;
-            req.session.loggedIn = true;
-            res.json({
-                user: userData,
-                message: 'You are now logged in!',
+            req.session.destroy(() => {
+                res.status(204).end();
             });
         });
     } catch (err) {
@@ -100,20 +95,19 @@ router.put('/:id', async (req, res) => {
 
 // DELETE route for deleting a user
 // =============================================================
-router.delete('/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
     try {
         const userData = await User.destroy({
-            where: { id: req.params.id },
+            where: { id: req.session.user_id },
         });
 
         if (!userData) {
             res.status(404).json({ message: 'No user found with this id!' });
             return;
         }
-
-        res.status(200).json({
-            user: userData,
-            message: 'You are now logged in!',
+        //logout the user after deleting their account
+        req.session.destroy(() => {
+            res.status(204).end();
         });
     } catch (err) {
         res.status(500).json(err);

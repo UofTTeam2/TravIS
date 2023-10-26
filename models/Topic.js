@@ -1,4 +1,5 @@
-// Desc: Creating a model for the TripSection table in the database. Representing the trips related to a trip.
+// Desc: Creating a model for the Topic table in the database.
+// Author: Cristiano Barboza Godinho
 // =============================================================
 
 // Dependencies
@@ -7,14 +8,14 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 // =============================================================
 
-// Creating the TripSection model
+// Creating the Topic model
 // =============================================================
-class TripSection extends Model {}
+class Topic extends Model {}
 // =============================================================
 
-// Creating the TripSection table
+// Creating the Topic table
 // =============================================================
-TripSection.init(
+Topic.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -25,27 +26,28 @@ TripSection.init(
 
         title: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
 
-        trip_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'trip',
-                key: 'id',
-            },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
+        iconalt: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
     },
     {
         sequelize,
-        timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'tripsection',
+        modelName: 'topic',
     }
 );
 // =============================================================
 
-// Export the TripSection model
+// Exporting the Topic model
 // =============================================================
-module.exports = TripSection;
+module.exports = Topic;

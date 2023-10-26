@@ -1,4 +1,4 @@
-console.log("Login script loaded!");
+console.log('Login script loaded!');
 // Initiated by: login.handlebars
 // Purpose: This file is used to handle the login and signup forms on the login.handlebars page. It is used to send the user's input to the server to be validated and then redirect the user to the homepage if the login/signup is successful. If the login/signup is unsuccessful, the user will be alerted with a message.
 //==============================================================
@@ -6,13 +6,23 @@ console.log("Login script loaded!");
 // Creating a function to handle the error message
 // if the user's login/signup is unsuccessful, using a modal
 // =========================================================
-const displayErrorModal = (errorMessage) => {
+displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
+    const modalDetails = document.querySelector('#modalErrorDetails');
     const closeModalButton = document.querySelector('#closeModal');
 
+    let errorDetails;
+
+    if (errorMessage === 'SequelizeValidationError') {
+        errorDetails = 'Note that your username must be alphanumeric & 3-30 characters long. Additionally, your password must be at least 8 characters long, and contain at least 1 letter & number. If you meet all of these requirements, your desired username or email may already be in use.';
+    } else {
+        errorDetails = '';
+    }
+
     modal.style.display = 'block';
-    modalContent.textContent = errorMessage;
+    modalContent.textContent = `Error: ${errorMessage}`;
+    modalDetails.textContent = errorDetails;
 
     closeModalButton.addEventListener('click', () => {
         modal.style.display = 'none';
@@ -46,7 +56,8 @@ const loginHandler = async (event) => {
         } else {
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.errors[0].message;
+            console.log(errorData);
+            const errorMessage = errorData.message;
             displayErrorModal(errorMessage);
         }
     }
@@ -71,9 +82,47 @@ const signupHandler = async (event) => {
         } else {
             //adding an error message if the user's signup is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.errors[0].message;
+            console.log(errorData);
+            const errorMessage = errorData.name;
             displayErrorModal(errorMessage);
         }
+    }
+};
+// =========================================================
+
+// Get request to get response from server to render login/signup page
+// =========================================================
+const getLogin = async () => {
+    try {
+        const response = await fetch('/login', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            document.location.replace('/login');
+        } else {
+            console.log(response.statusText);
+        }
+    } catch (err) {
+        console.error('An error occurred:', err);
+    }
+};
+
+const getSignup = async () => {
+    try {
+        const response = await fetch('/signup', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            document.location.replace('/signup');
+        } else {
+            console.log(response.statusText);
+        }
+    } catch (err) {
+        console.error('An error occurred:', err);
     }
 };
 // =========================================================
@@ -82,3 +131,5 @@ const signupHandler = async (event) => {
 // =========================================================
 document.querySelector('.loginForm').addEventListener('submit', loginHandler);
 document.querySelector('.signupForm').addEventListener('submit', signupHandler);
+document.querySelector('#loginBtn').addEventListener('click', getLogin);
+document.querySelector('#signupBtn').addEventListener('click', getSignup);

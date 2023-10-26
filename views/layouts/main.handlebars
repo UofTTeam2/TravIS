@@ -19,13 +19,23 @@
 </head>
 
 <body>
-        {{> header}}
-        
-        {{{body}}}
 
-        {{> footer}}
+  {{> header}}
+  
+  {{{body}}}
 
-    
+  {{> footer}}
+
+  <div id="errorModal" class="modal">
+    <div class="modal-content">
+        <div class = "login-modal-close-container">
+            <span class="close" id="closeModal">&times;</span>
+        </div>
+        <p id="modalErrorMessage">Error message goes here.</p>
+        <p id="modalErrorDetails">Error details go here.</p>
+    </div>
+  </div>
+
 </body>
 
 </html>

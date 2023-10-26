@@ -8,12 +8,12 @@
             alt='TravIs Logo'
         />
         <div class='nav-links'>
-            <a href='/homepage' class='item'>Home</a>
+            <a href='/' class='item'>Home</a>
             {{#unless isDashboard}}
-                <a href='#' class='item' id='scroll'>About Us</a>
+                <a href='/#about-us' class='item' id='scroll'>About Us</a>
             {{/unless}}
             {{#if loggedIn}}
-                <a href='/dashboard' class='item'>Dashboard</a>
+                <a href='/trips' class='item'>Dashboard</a>
             {{/if}}
         </div>
 
@@ -41,3 +41,4 @@
 
 <!-- End of Navbar -->
 <script src='/js/index.js'></script>
+<script src="/js/logout.js"></script>

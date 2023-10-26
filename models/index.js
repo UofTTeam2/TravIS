@@ -9,8 +9,9 @@ const User = require('./User');
 const Trip = require('./Trip');
 const TripSection = require('./TripSection');
 const ItineraryItem = require('./ItineraryItem');
-const Message = require('./Message');
 const Comment = require('./Comment');
+const Post = require('./Post');
+const Topic = require('./Topic');
 // ====================================================
 
 // Create associations
@@ -22,7 +23,7 @@ User.hasMany(Trip, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
-User.hasMany(Message, {
+User.hasMany(Post, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
 });
@@ -61,10 +62,25 @@ ItineraryItem.belongsTo(TripSection, {
 });
 //=====================================================
 
-// Message associations
+// Topic associations
 //=====================================================
-Message.belongsTo(User, {
+Topic.hasMany(Post, {
+    foreignKey: 'topic_id',
+    onDelete: 'CASCADE',
+});
+//=====================================================
+
+// Post associations
+//=====================================================
+Post.belongsTo(User, {
     foreignKey: 'user_id',
+});
+Post.belongsTo(Topic, {
+    foreignKey: 'topic_id',
+});
+Post.hasMany(Comment, {
+    foreignKey: 'post_id',
+    onDelete: 'CASCADE',
 });
 //=====================================================
 
@@ -72,6 +88,9 @@ Message.belongsTo(User, {
 //=====================================================
 Comment.belongsTo(User, {
     foreignKey: 'user_id',
+});
+Comment.belongsTo(Post, {
+    foreignKey: 'post_id',
 });
 Comment.belongsTo(Comment, {
     as: 'parent_comment',
@@ -91,6 +110,7 @@ module.exports = {
     Trip,
     TripSection,
     ItineraryItem,
-    Message,
+    Post,
+    Topic,
     Comment,
 };

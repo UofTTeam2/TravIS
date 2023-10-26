@@ -5,13 +5,24 @@
 // Creating a function to handle the error message
 // if the user's login/signup is unsuccessful, using a modal
 //==============================================================
-const displayErrorModal = (errorMessage) => {
+displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
+    const modalDetails = document.querySelector('#modalErrorDetails');
     const closeModalButton = document.querySelector('#closeModal');
 
+    let errorDetails;
+
+    //adds additional error details if the error was a sequelize validation error
+    if (errorMessage === 'SequelizeValidationError') {
+        errorDetails = 'Note that your username must be alphanumeric & 3-30 characters long. Additionally, your password must be at least 8 characters long, and contain at least 1 letter & number. If you meet all of these requirements, your desired username or email may already be in use.';
+    } else {
+        errorDetails = '';
+    }
+
     modal.style.display = 'block';
-    modalContent.textContent = errorMessage;
+    modalContent.textContent = `Error: ${errorMessage}`;
+    modalDetails.textContent = errorDetails;
 
     closeModalButton.addEventListener('click', () => {
         modal.style.display = 'none';
@@ -24,7 +35,8 @@ const displayErrorModal = (errorMessage) => {
     });
 };
 
-const logout = async () => {
+logout = async () => {
+    console.log('attempting to log out');
     const response = await fetch('/api/users/logout', {
         method: 'POST',
         headers: {
@@ -36,8 +48,7 @@ const logout = async () => {
         document.location.replace('/');
     } else {
         //if the logout is unsuccessful, display an error message
-        const errorData = await response.json();
-        const errorMessage = errorData.errors[0].message;
+        const errorMessage = 'Failed to log out';
         displayErrorModal(errorMessage);
     }
 };
@@ -45,4 +56,4 @@ const logout = async () => {
 
 // Adding an event listener to the logout button
 //==============================================================
-document.querySelector('#logout').addEventListener('click', logout);
+document.querySelector('#logOut').addEventListener('click', logout);

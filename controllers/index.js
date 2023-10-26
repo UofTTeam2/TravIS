@@ -7,22 +7,21 @@
 // =============================================================
 const router = require('express').Router();
 const apiController = require('./api');
-//const homeController = require('./home-controller');
-const homeRoutes = require('./homeRoutes');
-const loginRoutes = require('./loginRoutes');
-const dashboardRoutes = require('./dashboardRoutes');
-const updateRoutes = require('./updateRoutes');
-
+const homeController = require('./home-controller');
+const tripController = require('./trip-controller');
+const forumController = require('./forum-controller');
+const updateController = require ('./updateRoutes');
 //==============================================================
 
 // Routes
 // =============================================================
-//router.use('/', homeController);
-router.use('/', dashboardRoutes);
-router.use('/', homeRoutes);
-router.use('/', loginRoutes);
-router.use('/', updateRoutes);
+router.use('/', homeController);
+router.use('/trips', tripController);
 router.use('/api', apiController);
+router.use('/forum', forumController);
+router.use('/update', updateController);
 //==============================================================
 
+// Export
+// =============================================================
 module.exports = router;
