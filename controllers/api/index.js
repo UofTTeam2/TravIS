@@ -6,11 +6,16 @@
 const router = require('express').Router();
 const userRoutes = require('./user-controller');
 const tripsRoutes = require('./trips-controller');
+const forumRoutes = require('./forumApi-controller');
+//==============================================================
 
 // Routes:
 //==============================================================
 router.use('/users', userRoutes);
 router.use('/trips', tripsRoutes);
+router.use('/forum', forumRoutes);
 //==============================================================
 
+// Export:
+//==============================================================
 module.exports = router;

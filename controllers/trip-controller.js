@@ -8,11 +8,12 @@ const router = require('express').Router();
 const { Trip, TripSection, ItineraryItem } = require('../models');
 const loginAuth = require('../utils/auth');
 const publicAuth = require('../utils/publicAuth');
+const userIdAuth = require('../utils/userIdAuth');
 // =============================================================
 
 // Get one trip with all associated trip sections and itinerary items
 // =============================================================
-router.get('/view/:id', loginAuth, async (req, res) => {
+router.get('/view/:id', [loginAuth, userIdAuth], async (req, res) => {
     try {
         // Retrieve the trip with the specified ID and include its sections and items
         const trip = await Trip.findByPk(req.params.id, {

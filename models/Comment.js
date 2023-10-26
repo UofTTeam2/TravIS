@@ -120,23 +120,32 @@ Comment.init(
             autoIncrement: true,
         },
 
-        comment: {
+        text: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [4],
+                len: [1, 1000],
             },
         },
 
-        date_created: {
-            type: DataTypes.DATEONLY,
+        timestamp: {
+            type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,
+            allowNull: false,
         },
 
         user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
+                key: 'id',
+            },
+        },
+
+        post_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'post',
                 key: 'id',
             },
         },
