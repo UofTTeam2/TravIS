@@ -89,9 +89,10 @@ router.get('/search', (req, res) => {
     res.render('search');
 });
 
-router.get('/poi/:lat/:lon', async (req, res) => {
+router.get('/poi/:lat/:lon/:city', async (req, res) => {
     const lat = req.params.lat;
     const lon = req.params.lon;
+    const city = req.params.city;
 
     try {
         if (!lat || !lon) {
@@ -120,7 +121,7 @@ router.get('/poi/:lat/:lon', async (req, res) => {
         const safetyData = await safetyResponse.result.data;
         const locationData = await locationResponse.result.data;
         
-        res.status(200).render('cityResults', {poiData, activityData, safetyData, locationData});
+        res.status(200).render('cityResults', {poiData, activityData, safetyData, locationData, city});
 
     } catch (error) {
         console.error('Error:', error.message);

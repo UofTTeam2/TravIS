@@ -4,7 +4,7 @@
 
 <section class="recommendations">
   
-    <h1>Results for {{safetyData.0.name}}</h1>
+    <h1>Results for {{city}}</h1>
     
     <section id="searchsection">
         <div class="search">
@@ -19,7 +19,8 @@
     <div class="locationScore">
         <h2>Location Scores:</h2>
         <ul id="locationScoresList">
-            <p>What are the popular features of {{safetyData.0.name}}? Here you can find the popularity score of the surrounding area for different categories,
+            <p>What are the popular features of {{city}}?<br>
+             Here you can find the popularity score of the surrounding area for different categories,
                 based on a radius of 1.5 km. The categories include sights, restaurants, shopping, and nightlife. This list
                 helps you find what features are within a walking distance of your location and ones that may require a short drive or public
                 transportation.
@@ -39,8 +40,8 @@
 
     <div class="pointsofinterest">
         <h2>Points of Interest</h2>
-        <p>What are the best places to visit in {{safetyData.0.name}}?</p><br>
-        <p>Here you will find a list of top ranked attractions, as voted by travellers. The categories include sights, beach/park, 
+        <p>What are the best places to visit in {{city}}?<br>
+            Here you will find a list of top ranked attractions, as voted by travellers. The categories include sights, beach/park, 
             historical, nightlife, restaurant and shopping. Note that these may not be the most visited places, but are the highest
             rated among those visited. These can include local hang outs and tourist attractions.</p>
         <ul id="poiList">
@@ -54,7 +55,7 @@
 
     <div class="activities">
         <h2>Activities:</h2>
-        <p>What are the best tours and activities in {{safetyData.0.name}}?<br>
+        <p>What are the best tours and activities in {{city}}?<br>
             Here you will find information about top rated activities such as sightseeing
             tours, day trips, museum tickets, and more. If available, you can also find a link to book the activity.
         </p>
@@ -62,7 +63,7 @@
             {{#each activityData}}
             <li>
                 <strong>{{name}}</strong><br>
-                <p class="activityDescription">{{description}}</p><br>
+                <p class="activityDescription">{{{description}}}</p><br>
                 Price: {{price.amount}} {{price.currencyCode}}<br>
                 Minimum Duration: {{minimumDuration}}<br>
         
@@ -80,7 +81,7 @@
 
     <div class="safety">
         <h2>Safety Scores:</h2>
-        <p>How safe is {{safetyData.0.name}}, and surrounding districts? See the overall safety score, 0-100, for six categories:
+        <p>How safe is {{city}}, and surrounding districts? See the overall safety score, 0-100, for six categories:
             women's safety, health, physical threats, theft, political freedom and LGBTQ safety. The higher the score, the safer the area.
             It's important to be aware of the safety of your destination, especially if you are travelling alone or with children.
         </p>

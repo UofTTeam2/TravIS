@@ -40,7 +40,7 @@ const getCityData = async (event) => {
         const city = await fetchCityData(cityInput);
         console.log(city);
 
-        window.location.pathname = `/poi/${city.lat}/${city.lon}`;
+        window.location.pathname = `/poi/${city.lat}/${city.lon}/${cityInput}`;
 
     } catch (error) {
         console.error('Error:', error.message);
