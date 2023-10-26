@@ -7,10 +7,23 @@
 displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
+    const modalDetails = document.querySelector('#modalErrorDetails');
     const closeModalButton = document.querySelector('#closeModal');
 
+    let errorDetails;
+
+    //adds additional error details depending on the type of error
+    if (errorMessage === 'SequelizeValidationError') {
+        errorDetails = 'Note that your username must be alphanumeric & 3-30 characters long. Additionally, your password must be at least 8 characters long, and contain at least 1 letter & number.';
+    } else if (errorMessage === 'SequelizeUniqueConstraintError') {
+        errorDetails = 'Your chosen username and / or email is already in use.';
+    } else {
+        errorDetails = '';
+    }
+
     modal.style.display = 'block';
-    modalContent.textContent = errorMessage;
+    modalContent.textContent = `Error: ${errorMessage}`;
+    modalDetails.textContent = errorDetails;
 
     closeModalButton.addEventListener('click', () => {
         modal.style.display = 'none';
@@ -71,7 +84,7 @@ const updateUserHandler = async (event) => {
     } else {
         //adding an error message if the user's signup is unsuccessful
         const errorData = await response.json();
-        const errorMessage = errorData.message;
+        const errorMessage = errorData.name;
         displayErrorModal(errorMessage);
     }
 };
