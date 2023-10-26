@@ -26,9 +26,6 @@ router.get('/', async (req, res) => {
 router.get('/trips', loginAuth, async (req, res) => {
     try {
         const tripData = await Trip.findAll({
-            where: {
-                user_id: req.session.user_id,
-            },
             order: [['end_date', 'DESC']],
         });
         const trips = tripData.map((trip) => trip.get({ plain: true }));
