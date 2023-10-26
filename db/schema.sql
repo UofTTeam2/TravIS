@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS travis_db;
+CREATE DATABASE travis_db;

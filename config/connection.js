@@ -1,7 +1,15 @@
+// Purpose: Establishes connection to database
+// Notes: Uses Sequelize to connect to database
+//        Uses dotenv to access environment variables
+//==========================================================
+// Dependencies
+// =========================================================
 const Sequelize = require('sequelize');
 // Enable access to .env variables
 require('dotenv').config();
 
+// Create connection to database
+// =========================================================
 let sequelize;
 
 // Use JawsDB if deployed on Heroku
@@ -20,4 +28,5 @@ if (process.env.JAWSDB_URL) {
         }
     );
 }
+// =========================================================
 module.exports = sequelize;
