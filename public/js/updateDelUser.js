@@ -71,6 +71,8 @@ const updateUserHandler = async (event) => {
         headers: { 'Content-Type': 'application/json' },
     });
 
+    //if the user's data was successfully updated, they will subsequently be logged out
+    //thus, reroute them to the login page if the PUT request went through
     if (response.ok) {
         document.location.replace('/login');
     } else {

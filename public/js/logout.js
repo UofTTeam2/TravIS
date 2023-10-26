@@ -13,6 +13,7 @@ displayErrorModal = (errorMessage) => {
 
     let errorDetails;
 
+    //adds additional error details if the error was a sequelize validation error
     if (errorMessage === 'SequelizeValidationError') {
         errorDetails = 'Note that your username must be alphanumeric & 3-30 characters long. Additionally, your password must be at least 8 characters long, and contain at least 1 letter & number. If you meet all of these requirements, your desired username or email may already be in use.';
     } else {

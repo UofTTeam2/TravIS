@@ -81,6 +81,7 @@ router.put('/', async (req, res) => {
             return;
         }
 
+        //logs out the user after updating their credentials
         req.session.save(() => {
             req.session.destroy(() => {
                 res.status(204).end();
