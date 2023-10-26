@@ -14,16 +14,16 @@ window.onload = () => {
     let deleteSectionButtons = $('.delete-itinerary-section-button');
     let deleteItineraryItemButtons = $('.delete-itinerary-item-button');
     let addItineraryItemButtons = $('.add-itinerary-item-button');
-    let allFileInputs = $('.user-uploaded-image'); //gets a reference to all inputs used for uploading a file
+    let allFileInputs = $('.user-uploaded-image');
     let removeChosenImageButton = $('.clear-preview-image-button');
     let removeCurrentImageButton = $('.clear-current-image-button');
     const tripID = $('.trip-title-container').attr('data-id');
-    console.log(tripID);
 
     //variable to count how many itinerary items have been added to the page in this visit
     //used to assign unique IDs to each item input such that they can be associated with a specific label element
     let addedItemCount = 0;
 
+    //function to display an error modal if the user uploads an invalid file to an image input
     function openImageErrorModal(error) {
         imageUploadErrorMessage.text(error);
         imageUploadErrorModal.attr('style', 'display: block');
@@ -33,12 +33,14 @@ window.onload = () => {
     function renderPreviewImage() {
         const fileUpload = this.files[0]; //gets a reference to the file held by the input
 
+        //checks if file is smaller than 10 MB, displays an error and clears the file otherwise
         if (fileUpload.size > 10485760) {
             openImageErrorModal('File must be smaller than 10 MB');
             $(this).val('');
             return;
         }
 
+        //checks if file is an image, displays an error and clears the file otherwise
         if (!fileUpload.type.match('image.*')) {
             openImageErrorModal('File must be an image');
             $(this).val('');
@@ -70,35 +72,33 @@ window.onload = () => {
         }
     });
 
+    //function to save the itinerary's date to the database
     async function saveItineraryData() {
-        let allFileUploads = [];
-        let formData = new FormData();
+        let allFileUploads = []; //array to hold all files uploaded by user
+        let formData = new FormData(); //new FormData to be used to upload files via multer
 
-        console.log('saving itinerary data');
-        console.log(this);
-
+        //appends each uploaded file to the file array
         for (fileInput = 0; fileInput < allFileInputs.length; fileInput++) {
             allFileUploads.push(allFileInputs[fileInput].files[0]);
         }
 
+        //appends each file upload to the new form data
         allFileUploads.forEach(fileUpload => {
             formData.append('image-upload', fileUpload);
         });
 
-        let fileNames;
+        let fileNames; //variable to hold array of file names
 
+        //attempts to upload files to server via multer
         try {
             const response = await fetch('/api/trips/image', {
                 method: 'POST',
                 body: formData
             });
-            fileNames = await response.json();
+            fileNames = await response.json(); //recieves list of uploaded file names in response
         } catch (err) {
             console.log(err);
         }
-
-        console.log(allFileUploads);
-        console.log(fileNames);
 
         let currentFileInput = 0; //variable to track how many inputs & their file contents have been accounted for
         let currentFileUpload = 0; //variable to track how many uploaded files have been assigned to an object
@@ -137,20 +137,16 @@ window.onload = () => {
             }
 
             currentFileInput++; //increase the file input index by 1, to indicate that +1 more file inputs have been accounted for
-
-            console.log('current input #: ' + currentFileInput);
-            console.log('current file #: ' + currentFileUpload);
-
             return image; //return the appropriate image reference
         }
 
+        //defines constants for trip title data
         const tripTitle = $('.trip-title-input').val();
         const tripStartDate = $('.trip-start-date').val();
         const tripEndDate = $('.trip-end-date').val();
         const titleCardImage = determineImage();
 
-        console.log('title image name: ' + titleCardImage);
-
+        //constructs an object using trip title data
         const titleData = {
             id: tripID,
             title: tripTitle,
@@ -159,9 +155,10 @@ window.onload = () => {
             image: titleCardImage
         };
 
-        const sectionTitles = $('.section-title-input');
-        let sectionData = [];
+        const sectionTitles = $('.section-title-input'); //gets a reference to all section title inputs
+        let sectionData = []; //initalizes array to hold all section data
 
+        //constructs an object for each section of the trip, and adds them to the above array
         for (section = 0; section < sectionTitles.length; section++) {
             const currentSectionData = {
                 id: $(sectionTitles[section]).attr('data-id'),
@@ -170,9 +167,10 @@ window.onload = () => {
             sectionData.push(currentSectionData);
         }
 
-        const itineraryItems = $('.itinerary-item-container');
-        let itineraryData = [];
+        const itineraryItems = $('.itinerary-item-container'); //gets a reference to all itinerary items
+        let itineraryData = []; //initializes array to hold all itinerary item data
 
+        //constructs an object for each itinerary item of the trip, and adds them to the above array
         for (itineraryItem = 0; itineraryItem < itineraryItems.length; itineraryItem++) {
             const id = $(itineraryItems[itineraryItem]).attr('data-id');
             const title = $(itineraryItems[itineraryItem]).children('.item-title');
@@ -185,22 +183,16 @@ window.onload = () => {
             const notes = $(itineraryItems[itineraryItem]).children('.item-notes');
             const image = determineImage();
 
-            console.log(expenseInput);
+            const expenseValue = parseFloat(expenseInput); //attempts to convert the string retrieve the expense input to a float
 
-            const expenseValue = parseFloat(expenseInput);
+            let expense; //variable to hold expense of itinerary item
 
-            console.log(expenseValue);
-            let expense;
-
+            //if the string was not able to be parsed, set the expense to $0
             if (isNaN(expenseValue)) {
                 expense = 0;
-            } else {
+            } else { //otherwise, set the expense to the parsed float
                 expense = expenseValue;
             }
-
-            console.log(expense);
-
-            console.log('itinerary file #' + [itineraryItem] + ' name: ' + image);
 
             //construct a new itinerary item object based on the current itinerary item's data
             const currentItineraryItemData = {
@@ -219,15 +211,10 @@ window.onload = () => {
             itineraryData.push(currentItineraryItemData);
         }
 
-        console.log(titleData);
-        console.log(sectionData);
-        console.log(itineraryData);
-
+        //constructs fetch address to update the current trip using the trip's ID
         const fetchAddress = `/api/trips/edit/${tripID}`;
 
-        console.log(fetchAddress);
-
-        let redirectAddress;
+        let redirectAddress; //variable to hold address to redirect to
 
         //send the above title, section, & itinerary item data to the database for processing
         //receives an address to redirect to as a response
@@ -237,23 +224,24 @@ window.onload = () => {
                 body: JSON.stringify({titleData, sectionData, itineraryData}),
                 headers: {'Content-Type': 'application/json'},
             });
-            redirectAddress = await response.json();
+            redirectAddress = await response.json(); //receives redirect address from back end
         } catch (err) {
             console.log(err);
         }
 
-        console.log(redirectAddress);
-        //redirects page to the appropriate address
+        //redirects page to the appropriate address to view the updated itinerary page
         window.location.pathname = redirectAddress;
     }
 
+    //function to delete an itinerary item
     async function deleteItineraryItem(item) {
-        const itemID = $(item).parent().attr('data-id');
+        const itemID = $(item).parent().attr('data-id'); //retrieves the ID of the itinerary item to delete
 
         const itemData = {
             id: itemID
         };
 
+        //attempts to delete the itinerary item
         try {
             await fetch('/api/trips/delete-item', {
                 method: 'DELETE',
@@ -264,7 +252,7 @@ window.onload = () => {
             console.log(err);
         }
 
-        //removes parent itinerary item
+        //removes parent itinerary item from the page
         $(item).parent().remove();
 
         //hides deletion confirmation modal
@@ -273,26 +261,17 @@ window.onload = () => {
         //updates deleteItineraryItemButtons & allFileInputs references to account for the deleted itinerary item
         deleteItineraryItemButtons = $('.delete-itinerary-item-button');
         allFileInputs = $('.user-uploaded-image');
-
-        console.log(allFileInputs.length);
     }
 
+    //function to delete an itinerary section
     async function deleteTripSection(section) {
-        const sectionID = $(section).siblings('.section-title-container').children().attr('data-id');
-
-        console.log(section);
-        console.log($(section).siblings('.section-title-container'));
-        console.log($(section).siblings('.section-title-container').children());
-        console.log($(section).parent()[0]);
-
-        console.log(sectionID);
+        const sectionID = $(section).siblings('.section-title-container').children().attr('data-id'); //retrieves ID of section to delete
 
         const sectionData = {
             id: sectionID
         };
 
-        console.log(sectionData);
-
+        //attempts to delete section
         try {
             await fetch('/api/trips/delete-section', {
                 method: 'DELETE',
@@ -303,7 +282,7 @@ window.onload = () => {
             console.log(err);
         }
 
-        //removes parent section block
+        //removes parent section block from page
         $(section).parent().remove();
 
         //hides deletion confirmation modal
@@ -312,15 +291,14 @@ window.onload = () => {
         //updates deleteSectionButtons & addItineraryItemButtons references to account for the deleted section
         deleteSectionButtons = $('.delete-itinerary-section-button');
         addItineraryItemButtons = $('.add-itinerary-item-button');
-
-        console.log(addItineraryItemButtons.length);
-        console.log(deleteSectionButtons.length);
     }
 
+    //function to open the deletion confirmation modal for a section / itinerary item
     function openDeletionModal(objectType, object) {
         //removes any already-existing event listeners from modal's 'Yes' button
         confirmationYesButton.off();
 
+        //sets the type of deletion operation based on what type of delete button was clicked
         if (objectType === 'item') {
             confirmationYesButton.on('click', function() {
                 deleteItineraryItem(object);
@@ -331,21 +309,22 @@ window.onload = () => {
             });
         }
 
+        //displays the confirmation modal
         confirmationModal.attr('style', 'display: block');
-        console.log(objectType);
-        console.log(object);
-        console.log(sessionStorage);
     }
 
+    //function to remove the currently-chosen image for an object
     function removeChosenImage() {
-        $(this).siblings('img').attr('src', '/images/no-image-stock-photo.png');
-        $(this).parent().parent().siblings('.user-uploaded-image').val('');
+        $(this).siblings('img').attr('src', '/images/no-image-stock-photo.png'); //resets the preview image to the stock photo
+        $(this).parent().parent().siblings('.user-uploaded-image').val(''); //clears the appropriate input's file
     }
 
+    //function to remove the image element displaying an object's currently assigned image
     function removeCurrentImage() {
-        $(this).parent().remove();
+        $(this).parent().remove(); //removes the parent image element from the page
     }
 
+    //function to create a new itinerary item
     async function addItineraryItem() {
         //retrieves the name of the category the user is attempting to add an itinerary item to
         const itineraryCategory = $(this).siblings('.item-category-title').text();
@@ -358,21 +337,21 @@ window.onload = () => {
             trip_section_id: section_id
         };
 
-        console.log(newItemData);
+        let itemID; //variable to hold the new item's ID
 
-        let itemID;
-
+        //attempts to add the new item to the database
         try {
             const response = await fetch('/api/trips/create-item', {
                 method: 'POST',
                 body: JSON.stringify(newItemData),
                 headers: {'Content-Type': 'application/json'},
             });
-            itemID = await response.json();
+            itemID = await response.json(); //receives the new item's ID
         } catch (err) {
             console.log(err);
         }
 
+        //creates a new itinerary item, with the appropriate ID as a data-attribute
         const newItineraryItemHTML = `
         <div class = "itinerary-item-container" data-id = ${itemID}>
 
@@ -447,26 +426,27 @@ window.onload = () => {
         $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
     }
 
+    //function to add a new trip section
     async function addTripSection() {
-        console.log('trip ID: ' + tripID);
-
         const newSectionData = {
             trip_id: tripID
         };
 
-        let sectionID;
+        let sectionID; //variable to hold the new section's ID
 
+        //attempts to add new section to the database
         try {
             const response = await fetch('/api/trips/create-section', {
                 method: 'POST',
                 body: JSON.stringify(newSectionData),
                 headers: {'Content-Type': 'application/json'},
             });
-            sectionID = await response.json();
+            sectionID = await response.json(); //receives new section's ID
         } catch (err) {
             console.log(err);
         }
 
+        //constructs a new trip section using the appropriate section ID as a data-attribute
         const newSectionHTML = `
         <div class = "itinerary-section-container">
 
@@ -563,9 +543,12 @@ window.onload = () => {
     removeChosenImageButton.on('click', removeChosenImage);
     removeCurrentImageButton.on('click', removeCurrentImage);
 
+    //initiates confirmation before deleting an itinerary item
     deleteItineraryItemButtons.on('click', function() {
         openDeletionModal('item', this);
     });
+
+    //initiates confirmation before deleting an itinerary section
     deleteSectionButtons.on('click', function() {
         openDeletionModal('section', this);
     });

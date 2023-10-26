@@ -25,8 +25,6 @@ router.get('/', async (req, res) => {
 // Get route for the dashboard page
 // =============================================================
 router.get('/trips', loginAuth, async (req, res) => {
-    console.log('getting trips data');
-    console.log(req.session.user_id);
     try {
         const tripData = await Trip.findAll({
             where: {
@@ -35,7 +33,6 @@ router.get('/trips', loginAuth, async (req, res) => {
             order: [['end_date', 'DESC']],
         });
         const trips = tripData.map((trip) => trip.get({ plain: true }));
-        console.log(trips);
         res.render('dashboard', {
             trips,
             loggedIn: req.session.loggedIn,

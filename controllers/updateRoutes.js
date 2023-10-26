@@ -1,8 +1,7 @@
 const router = require('express').Router();
 
-// This route will render the homepage.handlebars
+// Displays the handlebars page for updating a user
 router.get('/', (req, res) => {
-    // You can pass additional data if required
     res.render('update', {loggedIn: req.session.loggedIn});
 });
 

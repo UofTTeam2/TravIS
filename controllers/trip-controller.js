@@ -108,9 +108,6 @@ router.get('/view/:id', [loginAuth, userIdAuth], async (req, res) => {
 
         const totalExpenses = expenses.reduce((currentSum, currentValue) => currentSum + currentValue, 0);
 
-        console.log(responseData);
-        console.log(expenses);
-
         const { id, title, start_date, end_date, image, public, sections } =
             responseData;
 
@@ -232,9 +229,6 @@ router.get('/public-view/:id', publicAuth, async (req, res) => {
         ];
 
         const totalExpenses = expenses.reduce((currentSum, currentValue) => currentSum + currentValue, 0);
-
-        console.log(responseData);
-        console.log(totalExpenses);
 
         const { id, title, start_date, end_date, image, public, sections } = responseData;
 
@@ -359,10 +353,6 @@ router.get('/edit/:id', [loginAuth, userIdAuth], async (req, res) => {
 // =============================================================
 router.get('/create-trip', loginAuth, async (req, res) => {
     try {
-        //WHEN YOU CONNECT THIS TO CARLOS'S PAGE, YOU'LL NEED TO USE
-        //THE USER_ID IN SESSION STORAGE FOR THE user_id FIELD OF THE
-        //NEWLY-CREATED TRIP
-
         // create a new trip with empty sections and items
         const trip = await Trip.create({
             title: '',
@@ -374,8 +364,6 @@ router.get('/create-trip', loginAuth, async (req, res) => {
 
         // retrive the id of the newly created trip
         const tripId = trip.id;
-
-        // retrive the user_id from the session for the user_id feild of the newly created trip
 
         // Initialize the data structure
         const responseData = {
@@ -390,6 +378,7 @@ router.get('/create-trip', loginAuth, async (req, res) => {
         //destructure response data
         const {id, title, start_date, end_date, image, sections} = responseData;
 
+        //render the edit-itinerary page
         res.render('edit-itinerary', {
             layout: 'main',
             id,
