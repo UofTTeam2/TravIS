@@ -1,0 +1,73 @@
+<div class="grid-container">
+{{> dashSide}}
+<main class="main-container">
+<div class="main-title">
+  <p class="font-weight-bold all-capitals extra-space">{{post.subject}}</p>
+</div>
+      <section class="forum-main">
+        <div id="error-modal" class="modal">
+          <div class="error-modal-content">
+            <p id="error-modal-text"></p>
+            <button id="error-modal-close">Close</button>
+          </div>
+        </div>
+        {{#each commentsWithImages}}
+          {{> post-details}}
+        {{/each}}
+        {{#if loggedIn}}
+        <p class="forum-end-message">Post a new comment:</p>
+        <form  id="newpost-form" action="/api/forum/comment" enctype="multipart/form-data" method="post">
+          <div class="form-group">
+            <textarea type="text" id="forum-newpost-textarea" class="form-control" placeholder="Your post text" rows="15" name="posttext"></textarea>
+            <div class="forum-new-post-button-box">
+              <div class="forum-upload-area">
+                <label for="form-upload-input" class="forum-newpost-upload">
+                  Upload Photo
+                </label>
+                <input type="file" id="form-upload-input" class="form-control-file" name="forum-user-image" />
+                <p id="file-upload-label"></p>
+              </div>
+              <button id="newpost-submit-button">Submit</button>
+            </div>
+          </div>
+        </form>
+        {{else}}
+          <p class="forum-end-message">Please log in to post a comment.</p>
+        {{/if}}
+        <script>
+          const bodyTextBox = document.getElementById('forum-newpost-textarea');
+          const fileInput = document.getElementById('form-upload-input');
+          let label = document.getElementById('file-upload-label');
+          const newpostForm = document.getElementById('newpost-form');
+          const errorModal = document.getElementById('error-modal');
+          let errorModalText = document.getElementById('error-modal-text');
+          const closeModalButton = document.getElementById('error-modal-close');
+
+          fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+              const file = this.files[0];
+              if (!file.type.startsWith('image/')) {
+                errorModal.style.display = 'block';
+                errorModalText.innerHTML = 'Warning: Only image files are allowed.';
+                this.value = '';
+              } else {
+                label.textContent = file.name;
+              }
+            }
+          });
+
+          newpostForm.addEventListener('submit', function (event) {
+            if (!bodyTextBox.value) {
+              event.preventDefault();
+              errorModalText.innerHTML = 'Warning: Please fill out all fields.';
+              errorModal.style.display = 'block';
+            }
+          });
+
+          closeModalButton.addEventListener('click', function () {
+            errorModal.style.display = 'none';
+          });
+        </script>
+      </section>
+    </main>
+  </div>
