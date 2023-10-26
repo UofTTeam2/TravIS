@@ -1,3 +1,4 @@
+console.log('Login script loaded!');
 // Initiated by: login.handlebars
 // Purpose: This file is used to handle the login and signup forms on the login.handlebars page. It is used to send the user's input to the server to be validated and then redirect the user to the homepage if the login/signup is successful. If the login/signup is unsuccessful, the user will be alerted with a message.
 //==============================================================
@@ -5,10 +6,12 @@
 // Creating a function to handle the error message
 // if the user's login/signup is unsuccessful, using a modal
 // =========================================================
-const displayErrorModal = (errorMessage) => {
+displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
     const closeModalButton = document.querySelector('#closeModal');
+
+    // let errorDetails;
 
     modal.style.display = 'block';
     modalContent.textContent = errorMessage;
@@ -41,16 +44,14 @@ const loginHandler = async (event) => {
         });
 
         if (response.ok) {
+            await document.location.replace('/');
             const responseData = await response.json();
-            const message = responseData.message.value;
-            displayErrorModal(message);
-            setTimeout(() => {
-                document.location.replace('/');
-            }, 3000);
+            const responseMessage = responseData.message;
+            displayErrorModal(responseMessage);
         } else {
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.message.value;
+            const errorMessage = errorData.errors[0].message;
             displayErrorModal(errorMessage);
         }
     }
@@ -71,16 +72,14 @@ const signupHandler = async (event) => {
         });
 
         if (response.ok) {
+            await document.location.replace('/');
             const responseData = await response.json();
-            const message = responseData.message.value;
-            displayErrorModal(message);
-            setTimeout(() => {
-                document.location.replace('/');
-            }, 3000);
+            const responseMessage = responseData.message;
+            displayErrorModal(responseMessage);
         } else {
             //adding an error message if the user's signup is unsuccessful
             const errorData = await response.json();
-            const errorMessage = errorData.message.value;
+            const errorMessage = errorData.errors[0].message;
             displayErrorModal(errorMessage);
         }
     }

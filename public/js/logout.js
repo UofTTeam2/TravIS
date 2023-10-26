@@ -36,7 +36,8 @@ const logout = async () => {
         document.location.replace('/');
     } else {
         //if the logout is unsuccessful, display an error message
-        const errorMessage = 'Failed to log out';
+        const errorData = await response.json();
+        const errorMessage = errorData.errors[0].message;
         displayErrorModal(errorMessage);
     }
 };
