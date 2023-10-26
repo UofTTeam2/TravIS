@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #22252A;
+    background-color: #22252a;
     margin: 0;
     padding: 0;
 }
@@ -26,7 +26,7 @@ body .container {
     line-height: 1px;
     cursor: pointer;
     font-size: 36px;
-  }
+}
 
 .container {
     background-color: #fff;
@@ -40,10 +40,11 @@ body .container {
     margin: 50px auto;
 }
 
-.trip-title-container {
+.trip-title-container, .trip-delete-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .trip-title-header {
@@ -94,7 +95,7 @@ button:hover {
     margin-right: 5px;
 }
 
-.trip-section-category{
+.trip-section-category {
     margin: 10px;
 }
 
@@ -105,26 +106,25 @@ button:hover {
 }
 
 .itinerary-section-container {
+    width: 600px;
     margin-bottom: 30px;
     padding: 20px;
-    border-radius: 25px 100px 25px 25px; 
-    background: linear-gradient(to right, #FFC62C, #FFAC2C);  
+    border-radius: 25px 100px 25px 25px;
+    background: linear-gradient(to right, #ffc62c, #ffac2c);
 }
 
 .section-title-container {
     padding: 10px;
     border-radius: 5px;
-    color: #fff;
+    color: #505672;
 }
 
 .section-title-header {
     font-size: 1.6em;
     margin: 0;
     display: inline-block;
-    background-color: #505672;
     padding-left: 10px;
     padding-right: 20px;
-    border-radius: 10px 30px 10px 10px;
 }
 
 .trip-categories-container {
@@ -133,15 +133,15 @@ button:hover {
 
 .item-category-title {
     font-size: 1.35em;
-    color: #fff;
+    color: #505672;
     display: inline-block;
-    background-color: #505672;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 10px 10px 30px 10px;
 }
 
-.itinerary-item-container {
+.itinerary-item-container,
+.trip-sections-container {
     background-color: #f9f9f9;
     padding: 20px 25px;
     border-radius: 5px;
@@ -154,26 +154,19 @@ button:hover {
     color: #2196f3;
 }
 
-.item-title {
-    text-decoration: none;
-    font-size: 1.2em;
-    display: block;
-    margin-bottom: 15px;
-}
-
 .item-detail {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
 
-.item-detail h4, 
+.item-detail h4,
 .item-detail p {
     margin: 0;
 }
 
 .item-detail h4 {
-    margin-right: 5px;  /* Espacio entre la etiqueta y el valor */
+    margin-right: 5px;
 }
 
 .item-image {
@@ -190,23 +183,19 @@ button:hover {
     flex: 1;
 }
 
-/* Estilo inicial para ocultar el contenido */
 .toggle-content {
     display: none;
     transition: max-height 0.3s ease-out;
     overflow: hidden;
 }
 
-/* Estilo para el botón de toggle */
 .toggle-button {
     cursor: pointer;
 }
 
-/* Cuando el usuario hace clic en el botón de toggle, mostramos el contenido */
 .toggle-content.active {
     display: block;
 }
-
 
 /* Login/Signup Error Modal ----> */
 .modal {
@@ -241,6 +230,321 @@ button:hover {
     color: red;
     cursor: pointer;
 }
+
+/*------- Edit ------- */
+
+h1,
+h2,
+h3,
+h4 {
+    color: #333;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+h2.trip-date-header {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+input,
+.user-uploaded-image {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #666;
+    margin: 10px 0;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+input.datepicker {
+    background-color: #fff;
+    background-image: url('path-to-calendar-icon.svg');
+    background-position: 95% center;
+    background-repeat: no-repeat;
+    padding-right: 40px;
+}
+
+input.trip-title-input {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    background-color: #ffc62c;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    background-color: #b7990d;
+    transform: scale(1.05);
+}
+
+.file-name {
+    margin-left: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+.img-edit {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.clear-preview-image-button,
+.clear-current-image-button {
+    background-color: #f44336;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.clear-preview-image-button:hover,
+.clear-current-image-button:hover {
+    background-color: #c32f25;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.edit-page-image-block {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.title-card-preview-image,
+.title-card-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.item-title,
+.item-link,
+.item-date-time,
+.item-expense {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    text-align: center;
+}
+
+.item-title .view-title {
+    color: red;
+}
+
+.item-notes {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    resize: vertical;
+    outline: none;
+}
+
+.item-notes:focus {
+    border-color: #007bff;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.25);
+}
+
+.create-new-section-button {
+    background-color: #0db710;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.create-new-section-button:hover {
+    background-color: #0ba50ee1;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.trip-title-container, .trip-delete-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+    width: 55%;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.itinerary-delete-container {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+/* Delete Section */
+.delete-itinerary-section-button,
+.delete-itinerary-item-button {
+    background-color: #f44336;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.delete-itinerary-section-button:hover,
+.delete-itinerary-item-button:hover {
+    background-color: #c32f25;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.section-title-container {
+    margin-top: 20px;
+}
+
+.section-title-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+/* Categories Container */
+.trip-categories-container {
+    margin-top: 30px;
+}
+
+.trip-section-category {
+    margin-bottom: 30px;
+}
+
+.item-category-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.add-itinerary-item-button,
+.save-itinerary-button {
+    background-color: #0db710;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 25px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.add-itinerary-item-button:hover,
+.save-itinerary-button:hover {
+    background-color: #0ba50ee1;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Itinerary Item */
+.itinerary-item-container {
+    margin-top: 20px;
+}
+
+.item-title,
+.item-link,
+.item-date-time,
+.item-expense,
+.item-notes {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Image Containers */
+.edit-page-image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.edit-page-image-block {
+    flex: 1 1 50%;
+    box-sizing: border-box;
+    width: 48%;
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.preview-image,
+.item-image {
+    width: 100%;
+    max-height: 200px;
+    display: block;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+/*------- Edit ------- */
+
 /* <---- Login/Signup Error Modal */
 /* Ethan's Itinerary Modal stuff ----> */
 
@@ -259,7 +563,9 @@ button:hover {
     text-align: center;
 }
 
-.itinerary-modal-content h3, p, label {
+.itinerary-modal-content h3,
+p,
+label {
     margin-bottom: 3px;
 }
 
@@ -287,24 +593,24 @@ button:hover {
     right: 0;
     bottom: 0;
     background-color: #aaa;
-    transition: .4s;
+    transition: 0.4s;
 }
 
 /* defines the appearance & transition settings of the "circle" within the slider container */
 .slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 26px;
     width: 26px;
     left: 4px;
     bottom: 4px;
     background-color: #505672;
-    transition: .4s;
+    transition: 0.4s;
 }
 
 /* sets the background colour of the "checkbox" input & "slider" span to make an itinerary public */
 .public-checkbox:checked + .slider {
-    background-color: #F8B500;
+    background-color: #f8b500;
 }
 
 /* moves the white circle within the slider box to the right when the toggle is clicked */
@@ -330,7 +636,7 @@ button:hover {
 /* Ethan's Bad Request Page Stuff ----> */
 
 .bad-request-container {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     width: 100%;
     height: 100%;
     position: fixed;
@@ -342,13 +648,13 @@ button:hover {
     margin-top: 15px;
     padding: 17px 20px;
     border-radius: 15px;
-    background-color: #F8B500;
+    background-color: #f8b500;
 }
 
 .bad-request-header {
     font-size: 3em;
     background-color: #505672;
-    color: #FFFFFF;
+    color: #ffffff;
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 15px;
