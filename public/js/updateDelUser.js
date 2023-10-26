@@ -28,9 +28,7 @@ displayErrorModal = (errorMessage) => {
 // =============================================================
 const delUserHandler = async (event) => {
     event.preventDefault();
-    // console.log('delete button clicked');
-    // console.log(event.target.id);
-    // console.log(event.target.id.split('-')[1]);
+
     const response = await fetch('/api/users/', {
         method: 'DELETE',
         headers: {
@@ -40,7 +38,7 @@ const delUserHandler = async (event) => {
     if (response.ok) {
         document.location.replace('/');
     } else {
-        //adding an error message if the user's signup is unsuccessful
+        //adding an error message if the user's deletion request is unsuccessful
         const errorData = await response.json();
         const errorMessage = errorData.message;
         displayErrorModal(errorMessage);
@@ -55,11 +53,6 @@ const updateUserHandler = async (event) => {
 
     const username = document.querySelector('#updateUsername').value.trim();
     const password = document.querySelector('#updatePassword').value.trim();
-
-    // console.log('update button clicked');
-    // console.log(event.target.id);
-    // console.log(event.target.id.split('-')[1]);
-    // console.log(username);
 
     if (!username || !password) {
         return;

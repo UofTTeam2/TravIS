@@ -1,4 +1,3 @@
-console.log('Login script loaded!');
 // Initiated by: login.handlebars
 // Purpose: This file is used to handle the login and signup forms on the login.handlebars page. It is used to send the user's input to the server to be validated and then redirect the user to the homepage if the login/signup is successful. If the login/signup is unsuccessful, the user will be alerted with a message.
 //==============================================================
@@ -59,7 +58,9 @@ const loginHandler = async (event) => {
         } else {
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
-            console.log(errorData);
+
+            //sets error message to the error data
+            //NOTE; for some reason, the name of the property is different from the other error message, so it has to be adjusted
             const errorMessage = errorData.message;
             displayErrorModal(errorMessage);
         }
@@ -85,7 +86,9 @@ const signupHandler = async (event) => {
         } else {
             //adding an error message if the user's signup is unsuccessful
             const errorData = await response.json();
-            console.log(errorData);
+
+            //sets error message to the error data
+            //NOTE; for some reason, the name of the property is different from the other error message, so it has to adjusted
             const errorMessage = errorData.name;
             displayErrorModal(errorMessage);
         }
