@@ -71,7 +71,7 @@ router.get('/login', (req, res) => {
 //Get route for bad request page
 //==============================================================
 router.get('/bad-request', (req, res) => {
-    res.render('bad-request');
+    res.status(400).render('bad-request');
 });
 //==============================================================
 
