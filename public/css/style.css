@@ -438,7 +438,7 @@ body .form {
     margin: 10px;
 }
 
-.trip-sections-container {
+#trip-sections-container {
     width: 90%;
     margin-top: 20px;
     padding: 20px;

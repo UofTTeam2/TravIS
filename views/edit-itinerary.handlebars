@@ -36,23 +36,21 @@
         </div>
       {{/if}}
     </div>
-    <button class = "save-itinerary-button" type = "submit"><span class="material-symbols-outlined">
-      save
-    </span></button>
-    <!-- button to switch to save data -->
+
+    <!-- button to save data & switch to view mode -->
+    <button class = "save-itinerary-button" type = "submit"><span class="material-symbols-outlined">save</span></button>
   </div>
 
   <div class = "trip-delete-container">
     <!-- render a partial for each section of the trip -->
-    {{#each sections as |section|}}
-      {{> edit-section-details}}
-    {{/each}}
-
-    <div>
-
-      <button class = "create-new-section-button">Create New Section</button>
-
+    <div class = "trip-sections-container">
+      {{#each sections as |section|}}
+        {{> edit-section-details}}
+      {{/each}}
     </div>
+
+    <button class = "create-new-section-button">Create New Section</button>
+
   </div>
 </form>
 

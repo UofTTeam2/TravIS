@@ -15,9 +15,7 @@
     <div class = "trip-section-category">
 
       <h3 class = "item-category-title">Transportation</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">
-add
-</span></button>
+      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
       {{#if transportItems}}
         {{#each transportItems as |transportItem|}}
@@ -29,26 +27,8 @@ add
             <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputTransport{{@index}}" style = "display:none;">
             <label for = "fileInputTransport{{@index}}" class = "custom-file-upload">Choose File</label>
 
-            <div class = "edit-page-image-container">
+            {{> edit-item-image-container}}
 
-              <div class = "edit-page-image-block">
-
-                <h4>Preview:</h4>
-                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
-                <button class = "clear-preview-image-button">Clear Chosen Image</button>
-
-              </div>
-
-              {{#if image}}
-                <div class = "edit-page-image-block">
-
-                  <h4>Current Image:</h4>
-                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
-                  <button class = "clear-current-image-button">Clear Current Image</button>
-                
-                </div>
-              {{/if}}
-            </div>
           </div>
         {{/each}}
       {{/if}}
@@ -59,9 +39,7 @@ add
     <div class = "trip-section-category">
 
       <h3 class = "item-category-title">Accommodation</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">
-add
-</span></button>
+      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
       {{#if accommodationItems}}
         {{#each accommodationItems as |accommodationItem|}}
@@ -73,26 +51,8 @@ add
             <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputAccommodation{{@index}}" style = "display:none;">
             <label for = "fileInputAccommodation{{@index}}" class = "custom-file-upload">Choose File</label>
 
-            <div class = "edit-page-image-container">
+            {{> edit-item-image-container}}
 
-              <div class = "edit-page-image-block">
-
-                <h4>Preview:</h4>
-                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
-                <button class = "clear-preview-image-button">Clear Chosen Image</button>
-
-              </div>
-
-              {{#if image}}
-                <div class = "edit-page-image-block">
-
-                  <h4>Current Image:</h4>
-                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
-                  <button class = "clear-current-image-button">Clear Current Image</button>
-                
-                </div>
-              {{/if}}
-            </div>
           </div>
         {{/each}}
       {{/if}}
@@ -103,9 +63,7 @@ add
     <div class = "trip-section-category">
 
       <h3 class = "item-category-title">Food</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">
-add
-</span></button>
+      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
       {{#if foodItems}}
         {{#each foodItems as |foodItem|}}
@@ -117,26 +75,8 @@ add
             <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputFood{{@index}}" style = "display:none;">
             <label for = "fileInputFood{{@index}}" class = "custom-file-upload">Choose File</label>
 
-            <div class = "edit-page-image-container">
-
-              <div class = "edit-page-image-block">
-
-                <h4>Preview:</h4>
-                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
-                <button class = "clear-preview-image-button">Clear Chosen Image</button>
-
-              </div>
-
-              {{#if image}}
-                <div class = "edit-page-image-block">
-
-                  <h4>Current Image:</h4>
-                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
-                  <button class = "clear-current-image-button">Clear Current Image</button>
-                
-                </div>
-              {{/if}}
-            </div>
+            {{> edit-item-image-container}}
+            
           </div>
         {{/each}}
       {{/if}}
@@ -148,9 +88,7 @@ add
     <div class = "trip-section-category">
 
       <h3 class = "item-category-title">Activities</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">
-add
-</span></button>
+      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
       {{#if activityItems}}
         {{#each activityItems as |activityItem|}}
@@ -162,26 +100,8 @@ add
             <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputActivities{{@index}}" style = "display:none;">
             <label for = "fileInputActivities{{@index}}" class = "custom-file-upload">Choose File</label>
 
-            <div class = "edit-page-image-container">
-
-              <div class = "edit-page-image-block">
-
-                <h4>Preview:</h4>
-                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
-                <button class = "clear-preview-image-button">Clear Chosen Image</button>
-
-              </div>
-
-              {{#if image}}
-                <div class = "edit-page-image-block">
-
-                  <h4>Current Image:</h4>
-                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
-                  <button class = "clear-current-image-button">Clear Current Image</button>
-                
-                </div>
-              {{/if}}
-            </div>
+            {{> edit-item-image-container}}
+            
           </div>
         {{/each}}
       {{/if}}
@@ -192,9 +112,7 @@ add
     <div class = "trip-section-category">
 
       <h3 class = "item-category-title">Misc</h3>
-      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">
-add
-</span></button>
+      <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
       {{#if miscItems}}
         {{#each miscItems as |miscItem|}}
@@ -206,26 +124,8 @@ add
             <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputMisc{{@index}}" style = "display:none;">
             <label for = "fileInputMisc{{@index}}" class = "custom-file-upload">Choose File</label>
 
-            <div class = "edit-page-image-container">
-
-              <div class = "edit-page-image-block">
-
-                <h4>Preview:</h4>
-                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
-                <button class = "clear-preview-image-button">Clear Chosen Image</button>
-
-              </div>
-
-              {{#if image}}
-                <div class = "edit-page-image-block">
-
-                  <h4>Current Image:</h4>
-                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
-                  <button class = "clear-current-image-button">Clear Current Image</button>
-                
-                </div>
-              {{/if}}
-            </div>
+            {{> edit-item-image-container}}
+            
           </div>
         {{/each}}
       {{/if}}

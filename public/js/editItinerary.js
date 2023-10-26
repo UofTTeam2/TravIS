@@ -11,6 +11,7 @@ window.onload = () => {
     const imageUploadErrorMessage = $('.upload-error-message');
     const closeImageErrorModalButton = $('.image-upload-error-close');
     const addTripSectionButton = $('.create-new-section-button');
+    const sectionsContainer = $('.trip-sections-container');
     let deleteSectionButtons = $('.delete-itinerary-section-button');
     let deleteItineraryItemButtons = $('.delete-itinerary-item-button');
     let addItineraryItemButtons = $('.add-itinerary-item-button');
@@ -475,43 +476,42 @@ window.onload = () => {
             
                 <div class = "trip-section-category">
 
-                    <h3 class = "item-category-title">Transport</h3>
-                    <button class = "add-itinerary-item-button">+</button>
+                    <h3 class = "item-category-title">Transportation</h3>
+                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
                 </div>
-                
+
                 <div class = "trip-section-category">
 
                     <h3 class = "item-category-title">Accommodation</h3>
-                    <button class = "add-itinerary-item-button">+</button>
+                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
                 </div>
 
                 <div class = "trip-section-category">
 
                     <h3 class = "item-category-title">Food</h3>
-                    <button class = "add-itinerary-item-button">+</button>
+                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
                 </div>
 
                 <div class = "trip-section-category">
 
                     <h3 class = "item-category-title">Activities</h3>
-                    <button class = "add-itinerary-item-button">+</button>
+                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
                 </div>
 
                 <div class = "trip-section-category">
 
                     <h3 class = "item-category-title">Misc</h3>
-                    <button class = "add-itinerary-item-button">+</button>
+                    <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
 
                 </div>
             </div>
         </div>`;
 
-        //adds new itinerary item to the current category
-        const sectionsContainer = $(this).siblings('.trip-sections-container');
+        //adds new section to the sections container
         sectionsContainer.append(newSectionHTML);
 
         //updates 'add itinerary items' & 'delete trip section' button references to include new section

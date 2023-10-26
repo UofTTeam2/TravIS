@@ -1,0 +1,20 @@
+<div class = "edit-page-image-container">
+
+  <div class = "edit-page-image-block">
+
+    <h4>Preview:</h4>
+    <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+    <button class = "clear-preview-image-button">Clear Chosen Image</button>
+
+  </div>
+
+  {{#if image}}
+    <div class = "edit-page-image-block">
+
+      <h4>Current Image:</h4>
+      <img class = "item-image" src = "/images/multer-uploads/{{image}}">
+      <button class = "clear-current-image-button">Clear Current Image</button>
+    
+    </div>
+  {{/if}}
+</div>
