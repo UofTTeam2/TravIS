@@ -165,7 +165,7 @@ button:hover {
     vertical-align: middle;
 }
 
-.sidebar-list-item > a {
+.sidebar-list > a {
     text-decoration: none;
     color: #ccc;
 }
@@ -1901,6 +1901,7 @@ textarea {
     flex-direction: column;
     flex-grow: 1;
     align-self: center;
+    color: #505672;
 }
 
 .all-capitals {
@@ -1916,6 +1917,10 @@ textarea {
     font-size: 20px;
     padding-bottom: 5px;
     text-overflow: ellipsis;
+}
+
+.topic-title.text-primary {
+    color: #505672;
 }
 
 .forum-post-count {
