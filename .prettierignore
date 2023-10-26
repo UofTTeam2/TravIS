@@ -1,9 +1,0 @@
-# ignore all .md
-*.md
-# Ignore all HTML files(example)
-**/*.html
-
-**/.git
-**/.svn
-**/.hg
-**/node_modules
