@@ -2,8 +2,11 @@
   
   <div class = "section-title-container">
 
-    <h2 class = "section-title-header" data-id = {{id}}>{{title}}</h2>
-
+    {{#if}}
+      <h2 class = "section-title-header" data-id = {{id}}>{{title}}</h2>
+      {{else}}
+        <h2 class = "trip-title-header">Untitled Section</h1>
+    {{/if}}
   </div>
 
   <!-- renders a category title & a partial for each item related to transport, if any exist -->

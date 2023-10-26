@@ -4,10 +4,17 @@
     <!-- if the title has a link attached, apply it to the header -->
     {{#if link}}
       <h4 class = "item-title"><a href = {{link}}>{{title}}</a></h4>
-    {{else}} <!-- otherwise, simply render the title header -->
-      <h4 class = "item-title">{{title}}</h4>
+      {{else}} <!-- otherwise, simply render the title header -->
+        <h4 class = "item-title">{{title}}</h4>
     {{/if}}
-  {{/if}}
+    {{else}}
+      {{#if link}}
+        <h4 class = "item-title"><a href = {{link}}>Unnamed Item</a></h4>
+        {{else}} <!-- otherwise, simply render the title header -->
+          <h4 class = "item-title">Unnamed Item</h4>
+      {{/if}}
+    {{/if}}
+  {{/if}}  
 
   <!-- if the item has a start date attached, render it to the page -->
   {{#if start_date}}
