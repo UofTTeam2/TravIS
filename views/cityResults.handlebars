@@ -1,5 +1,5 @@
 <div class="grid-container">
-{{> dashSide}}
+{{!-- {{> dashSide}} --}}
 <main class="main-container">
 
 <section class="recommendations">
@@ -18,24 +18,24 @@
 
     <div class="locationScore">
         <h2>Location Scores:</h2>
-        <ul id="locationScoresList">
+        <div id="locationScoresList">
             <p>What are the popular features of {{city}}?<br>
              Here you can find the popularity score of the surrounding area for different categories,
                 based on a radius of 1.5 km. The categories include sights, restaurants, shopping, and nightlife. This list
                 helps you find what features are within a walking distance of your location and ones that may require a short drive or public
                 transportation.
             </p>
-            <li>
-                Overall Sights: {{locationData.2.categoryScores.sight.overall}}<br>
-                Historical Sights: {{locationData.2.categoryScores.sight.historical}}<br>
-                Beach and/or Park: {{locationData.2.categoryScores.sight.beachAndPark}}<br>
-                Restaurants: {{locationData.2.categoryScores.restaurant.overall}}<br>
-                Vegetarian Options: {{locationData.2.categoryScores.restaurant.vegetarian}}<br> 
-                Shopping: {{locationData.2.categoryScores.shopping.overall}}<br> 
-                Luxury Shopping: {{locationData.2.categoryScores.shopping.luxury}}<br>
-                Nightlife: {{locationData.2.categoryScores.nightLife.overall}}
-            </li>
-        </ul>
+            <p>
+                <strong>Overall Sights:</strong> {{locationData.2.categoryScores.sight.overall}}<br>
+                <strong>Historical Sights:</strong> {{locationData.2.categoryScores.sight.historical}}<br>
+                <strong>Beach and/or Park:</strong> {{locationData.2.categoryScores.sight.beachAndPark}}<br>
+                <strong>Restaurants:</strong> {{locationData.2.categoryScores.restaurant.overall}}<br>
+                <strong>Vegetarian Options:</strong> {{locationData.2.categoryScores.restaurant.vegetarian}}<br> 
+                <strong>Shopping:</strong> {{locationData.2.categoryScores.shopping.overall}}<br> 
+                <strong>Luxury Shopping:</strong> {{locationData.2.categoryScores.shopping.luxury}}<br>
+                <strong>Nightlife:</strong> {{locationData.2.categoryScores.nightLife.overall}}
+            </p>
+        </div>
     </div>
 
     <div class="pointsofinterest">
@@ -80,14 +80,14 @@
                 <div class="poipictures">
                     {{#if pictures}}   
                         {{#each pictures}}
-                            <img class="poipic" src="{{this}}" alt="Activity Image">
+                            <img class="poipic" src="{{this}}" alt="Activity Image"><br>
                         {{/each}}
                     {{else}}
-                        <p>No pictures available</p>
+                        <p>No pictures available</p><br>
                     {{/if}}
                 </div>
                 {{#if bookingLink}}
-                    <a href="{{bookingLink}}" target="_blank">Click to Book Now</a>
+                    <a href="{{bookingLink}}" target="_blank">Click to Book Now</a><br>
                 {{else}}
 
                 {{/if}}
@@ -98,8 +98,8 @@
 
     <div class="safety">
         <h2>Safety Scores:</h2>
-        <p>How safe is {{city}}, and surrounding districts? See the overall safety score, 0-100, for six categories:
-            women's safety, health, physical threats, theft, political freedom and LGBTQ safety. The higher the score, the safer the area.
+        <p>How safe is {{city}}, and surrounding districts? See the overall danger score, 0-100, for six categories:
+            women's safety, health, physical threats, theft, political freedom and LGBTQ safety. The lower the score, the lower the risk.
             It's important to be aware of the safety of your destination, especially if you are travelling alone or with children.
         </p>
         <ul id="safetyList">
@@ -112,7 +112,7 @@
                 Physical Threats: {{safetyScores.physicalHarm}}<br>
                 Theft: {{safetyScores.theft}}<br>
                 Political Freedom: {{safetyScores.politicalFreedom}}<br>
-                LGBTQ Safety: {{safetyScores.lgbtq}}
+                LGBTQ Safety: {{safetyScores.lgbtq}}<br>
             </li>
             {{/each}}
         </ul>
