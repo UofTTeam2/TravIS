@@ -1,8 +1,8 @@
-
-  <form action = "/api/trips/image" method = "post" enctype = "multipart/form-data" class = "multer-submission-form">
+<form action = "/api/trips/image" method = "post" enctype = "multipart/form-data" class = "multer-submission-form">
   
   <div class = "trip-title-container" data-id = "{{id}}">
-      <h1>Title:</h1>
+
+    <h1>Title:</h1>
     <input class = "trip-title-input" value = "{{title}}">
 
     <h2 class = "trip-date-header">Trip Start Date:</h2>
@@ -11,11 +11,10 @@
     <h2 class = "trip-date-header">Trip End Date:</h2>
     <input class = "trip-end-date datepicker" value = "{{end_date}}">
     
-    
-      <h4>Choose a Title Card Image (up to 10 MB):</h4>
+    <h4>Choose a Title Card Image (up to 10 MB):</h4>
 
-    <input type="file" accept="image/*" class="user-uploaded-image" id="fileInput" style="display:none;">
-    <label for="fileInput" class="custom-file-upload">Choose File</label>
+    <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "titleFileInput" style = "display: none;">
+    <label for = "titleFileInput" class = "custom-file-upload">Choose File</label>
 
     <div class = "edit-page-image-container">
 
@@ -38,13 +37,10 @@
       {{/if}}
     </div>
     <button class = "save-itinerary-button" type = "submit"><span class="material-symbols-outlined">
-save
-</span></button>
+      save
+    </span></button>
     <!-- button to switch to save data -->
-  
   </div>
-
-  
 
   <div class = "trip-delete-container">
     <!-- render a partial for each section of the trip -->
@@ -53,14 +49,12 @@ save
     {{/each}}
 
     <div>
-    <button class = "create-new-section-button">Create New Section</button>
-  </div>
-  </div>
 
-  
+      <button class = "create-new-section-button">Create New Section</button>
 
+    </div>
+  </div>
 </form>
-
 
 <div class = "confirmation-modal modal">
     

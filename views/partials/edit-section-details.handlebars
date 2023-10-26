@@ -21,11 +21,39 @@ add
 
       {{#if transportItems}}
         {{#each transportItems as |transportItem|}}
-          {{> edit-item-details}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+            
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputTransport{{@index}}" style = "display:none;">
+            <label for = "fileInputTransport{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            <div class = "edit-page-image-container">
+
+              <div class = "edit-page-image-block">
+
+                <h4>Preview:</h4>
+                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+                <button class = "clear-preview-image-button">Clear Chosen Image</button>
+
+              </div>
+
+              {{#if image}}
+                <div class = "edit-page-image-block">
+
+                  <h4>Current Image:</h4>
+                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
+                  <button class = "clear-current-image-button">Clear Current Image</button>
+                
+                </div>
+              {{/if}}
+            </div>
+          </div>
         {{/each}}
       {{/if}}
-
     </div>
+
     <!-- renders a category title for & a button to add new items related to accomodation
         also renders an editable partial for each item related to accommodation that already exist -->
     <div class = "trip-section-category">
@@ -37,10 +65,37 @@ add
 
       {{#if accommodationItems}}
         {{#each accommodationItems as |accommodationItem|}}
-          {{> edit-item-details}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputAccommodation{{@index}}" style = "display:none;">
+            <label for = "fileInputAccommodation{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            <div class = "edit-page-image-container">
+
+              <div class = "edit-page-image-block">
+
+                <h4>Preview:</h4>
+                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+                <button class = "clear-preview-image-button">Clear Chosen Image</button>
+
+              </div>
+
+              {{#if image}}
+                <div class = "edit-page-image-block">
+
+                  <h4>Current Image:</h4>
+                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
+                  <button class = "clear-current-image-button">Clear Current Image</button>
+                
+                </div>
+              {{/if}}
+            </div>
+          </div>
         {{/each}}
       {{/if}}
-
     </div>
 
     <!-- renders a category title for & a button to add new items related to food
@@ -54,10 +109,37 @@ add
 
       {{#if foodItems}}
         {{#each foodItems as |foodItem|}}
-          {{> edit-item-details}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputFood{{@index}}" style = "display:none;">
+            <label for = "fileInputFood{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            <div class = "edit-page-image-container">
+
+              <div class = "edit-page-image-block">
+
+                <h4>Preview:</h4>
+                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+                <button class = "clear-preview-image-button">Clear Chosen Image</button>
+
+              </div>
+
+              {{#if image}}
+                <div class = "edit-page-image-block">
+
+                  <h4>Current Image:</h4>
+                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
+                  <button class = "clear-current-image-button">Clear Current Image</button>
+                
+                </div>
+              {{/if}}
+            </div>
+          </div>
         {{/each}}
       {{/if}}
-
     </div>
 
     <!-- renders a category title for & a button to add new items related to activities / things to do
@@ -72,10 +154,37 @@ add
 
       {{#if activityItems}}
         {{#each activityItems as |activityItem|}}
-          {{> edit-item-details}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputActivities{{@index}}" style = "display:none;">
+            <label for = "fileInputActivities{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            <div class = "edit-page-image-container">
+
+              <div class = "edit-page-image-block">
+
+                <h4>Preview:</h4>
+                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+                <button class = "clear-preview-image-button">Clear Chosen Image</button>
+
+              </div>
+
+              {{#if image}}
+                <div class = "edit-page-image-block">
+
+                  <h4>Current Image:</h4>
+                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
+                  <button class = "clear-current-image-button">Clear Current Image</button>
+                
+                </div>
+              {{/if}}
+            </div>
+          </div>
         {{/each}}
       {{/if}}
-
     </div>
 
     <!-- renders a category title for & a button to add new items miscellaneous items
@@ -89,10 +198,37 @@ add
 
       {{#if miscItems}}
         {{#each miscItems as |miscItem|}}
-          {{> edit-item-details}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputMisc{{@index}}" style = "display:none;">
+            <label for = "fileInputMisc{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            <div class = "edit-page-image-container">
+
+              <div class = "edit-page-image-block">
+
+                <h4>Preview:</h4>
+                <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
+                <button class = "clear-preview-image-button">Clear Chosen Image</button>
+
+              </div>
+
+              {{#if image}}
+                <div class = "edit-page-image-block">
+
+                  <h4>Current Image:</h4>
+                  <img class = "item-image" src = "/images/multer-uploads/{{image}}">
+                  <button class = "clear-current-image-button">Clear Current Image</button>
+                
+                </div>
+              {{/if}}
+            </div>
+          </div>
         {{/each}}
       {{/if}}
-
     </div>
   </div>
 </div>

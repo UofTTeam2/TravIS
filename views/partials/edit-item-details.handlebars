@@ -1,55 +1,26 @@
-<div class = "itinerary-item-container" data-id = {{id}}>
+<button class = "delete-itinerary-item-button">Delete Item</button>
 
-  <button class = "delete-itinerary-item-button">Delete Item</button>
+<!-- renders a series of empty input boxes for a trip item, setting any already-existing data as the default values -->
+<h4>Title:</h4>
+<input class = "item-title" value = "{{title}}">
 
-  <!-- renders a series of empty input boxes for a trip item, setting any already-existing data as the default values -->
-  <h4>Title:</h4>
-  <input class = "item-title" value = "{{title}}">
+<h4>Title Link:</h4>
+<input class = "item-link" value = "{{link}}">
 
-  <h4>Title Link:</h4>
-  <input class = "item-link" value = "{{link}}">
+<h4>Start Date:</h4>
+<input class = "item-date-time item-start-date datepicker" value = "{{start_date}}">
 
-  <h4>Start Date:</h4>
-  <input class = "item-date-time item-start-date datepicker" value = "{{start_date}}">
+<h4>Start Time:</h4>
+<input class = "item-date-time item-start-time timepicker" value = "{{start_time}}">
 
-  <h4>Start Time:</h4>
-  <input class = "item-date-time item-start-time timepicker" value = "{{start_time}}">
+<h4>End Date:</h4>
+<input class = "item-date-time item-end-date datepicker" value = "{{end_date}}">
 
-  <h4>End Date:</h4>
-  <input class = "item-date-time item-end-date datepicker" value = "{{end_date}}">
+<h4>End Time:</h4>
+<input class = "item-date-time item-end-time timepicker" value = "{{end_time}}">
 
-  <h4>End Time:</h4>
-  <input class = "item-date-time item-end-time timepicker" value = "{{end_time}}">
+<h4>Cost:</h4>
+<input type = "number" class = "item-expense" value = "{{expense}}">
 
-  <h4>Cost:</h4>
-  <input type = "number" class = "item-expense" value = "{{expense}}">
-
-  <h4>Notes:</h4>
-  <textarea class = "item-notes" value = "{{notes}}"></textarea>
-
-  <h4>Choose an Image (up to 10 MB):</h4>
-  <input type="file" accept="image/*" class="user-uploaded-image" id="fileInput" style="display:none;">
-    <label for="fileInput" class="custom-file-upload">Choose File</label>
-
-  <div class = "edit-page-image-container">
-
-    <div class = "edit-page-image-block">
-
-      <h4>Preview:</h4>
-      <img class = "preview-image" src = '/images/no-image-stock-photo.png'>
-      <button class = "clear-preview-image-button">Clear Chosen Image</button>
-
-    </div>
-
-    {{#if image}}
-      <div class = "edit-page-image-block">
-
-        <h4>Current Image:</h4>
-        <img class = "item-image" src = "/images/multer-uploads/{{image}}">
-        <button class = "clear-current-image-button">Clear Current Image</button>
-      
-      </div>
-    {{/if}}
-
-  </div>
-</div>
+<h4>Notes:</h4>
+<textarea class = "item-notes" value = "{{notes}}"></textarea>

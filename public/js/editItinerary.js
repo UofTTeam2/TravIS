@@ -112,13 +112,15 @@ window.onload = () => {
                 //gets a reference to the container housing the preview image for the current image input,
                 //and the image already assigned to the current object (if it exists)
                 const imageContainer = $(allFileInputs[currentFileInput]).siblings('.edit-page-image-container')[0];
+                console.log(imageContainer);
 
                 //checks if the above container has two children, i.e. an image is already assigned to the current
                 //object item, and an <img> element to display the current image exists
                 if ($(imageContainer).children().length === 2) {
                     //if such an image exists, keep the source file the same by setting it to the src of the already-assigned image
                     const imageContainerChildren = $(imageContainer).children()[1];
-                    existingImageSRC = $($(imageContainerChildren).children()[2]).attr('src');
+                    console.log(imageContainerChildren);
+                    existingImageSRC = $($(imageContainerChildren).children()[1]).attr('src');
 
                     //an already-existing image with have an 'src' like '/images/multer-uploads/image-upload-1697848850663-957708811'
                     //the below code splits it and takes the [3] index of the resulting array -> image-upload-1697848850663-957708811

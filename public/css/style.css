@@ -129,6 +129,10 @@ button:hover {
     transition: all 0.3s ease;
 }
 
+.sidebar-icon h3 {
+    color: #fff;
+}
+
 .sidebar-list {
     padding: 0;
     margin-top: 15px;
@@ -146,7 +150,7 @@ button:hover {
 }
 
 .sidebar-list-item:hover {
-    background-color: #e6e8ed;
+    background-color: #505672;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -416,6 +420,11 @@ body .form {
     gap: 10px;
 }
 
+.trip-btn button:hover {
+    background-color: #FFAC2C;
+    transition: 0.25s;
+}
+
 .total-expenses {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -486,7 +495,7 @@ body .form {
 }
 
 .container span {
-    font-size: 12px;
+    font-size: 18px;
 }
 
 .container a {
@@ -646,6 +655,11 @@ body .form {
     transform: translateX(200%);
 }
 
+.login-button:hover {
+    background-color: #FFAC2C;
+    transition: 0.25s;
+}
+
 .main .navbar {
     display: flex;
     align-items: center;
@@ -672,9 +686,15 @@ body .form {
     font-size: 12px;
 }
 
+.nav-btn:hover {
+    background-color: #505672;
+    transition: 0.25s;
+}
+
 .navbar .nav-btn.selected {
     border: 1px solid #ccc;
     border-radius: 8px;
+    margin-right: 5px;
 }
 
 .logo {
@@ -1237,7 +1257,7 @@ input.trip-title-input {
 }
 
 .custom-file-upload:hover {
-    background-color: #b7990d;
+    background-color: #ffac2c;
     transform: scale(1.05);
 }
 
@@ -1505,8 +1525,21 @@ input.trip-title-input {
     text-align: center;
 }
 
-.itinerary-modal-content h3, p, label {
-    margin-bottom: 3px;
+.itinerary-modal-content h3, label {
+    margin-bottom: 5px;
+}
+
+.itinerary-modal-content h3 {
+    color: #000;
+}
+
+/* adds tiny margin to */
+#edit-privileges-text {
+    margin-bottom: 5px;
+}
+
+#can-find-public-address-text {
+    margin-bottom: 5px;
 }
 
 /* sets the 'switch' label to be roughly rectangular, and for internal elements to be displayed side-by-side*/
