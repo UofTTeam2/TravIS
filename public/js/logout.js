@@ -34,7 +34,7 @@ displayErrorModal = (errorMessage) => {
     });
 };
 
-const logout = async () => {
+logout = async () => {
     console.log('attempting to log out');
     const response = await fetch('/api/users/logout', {
         method: 'POST',

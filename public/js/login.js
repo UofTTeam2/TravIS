@@ -1,4 +1,4 @@
-console.log("Login script loaded!");
+console.log('Login script loaded!');
 // Initiated by: login.handlebars
 // Purpose: This file is used to handle the login and signup forms on the login.handlebars page. It is used to send the user's input to the server to be validated and then redirect the user to the homepage if the login/signup is successful. If the login/signup is unsuccessful, the user will be alerted with a message.
 //==============================================================
