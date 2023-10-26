@@ -195,7 +195,30 @@ _Click on the Following link:_
 
 >We would like to extend our gratitude to the creators and contributors of the following resources, which have been instrumental in the development of TravIS:
 
-- 
+[W3](https://www.w3schools.com/howto/howto_css_modals.asp)
+[W3](https://www.w3schools.com/java/java_files_read.asp)
+[Express](https://github.com/expressjs/session#readme)
+[Express](https://github.com/expressjs/session#cookie)
+[Express](https://expressjs.com/en/guide/using-middleware.html)
+[Express](https://expressjs.com/en/4x/api.html#res.redirect)
+[Express](https://expressjs.com/en/4x/api.html#res.json)
+[Express](https://expressjs.com/en/4x/api.html#res.render)
+[Express](https://expressjs.com/en/4x/api.html#router.METHOD)
+[Sequelize](https://sequelize.org/docs/v6/core-concepts/model-basics/)
+[Sequelize](https://sequelize.org/docs/v6/core-concepts/model-querying-basics/)
+[Sequelize](https://sequelize.org/docs/v6/core-concepts/model-querying-finders/)
+[Sequelize](https://sequelize.org/docs/v6/core-concepts/assocs/)
+[Sequelize](https://sequelize.org/docs/v6/other-topics/hooks/)
+[W3](https://www.w3schools.com/js/js_array_iteration.asp)
+[MDN](https://developer.mozilla.org/en-US/docs/Web)
+[ChatGPT](https://chat.openai.com/)
+[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
+[CSS-Tricks](https://css-tricks.com/almanac/properties/t/transition/)
+[W3](https://www.w3schools.com/css/css3_animations.asp)
+[lambdatest](https://www.lambdatest.com/blog/css-animations-tutorial/)
+[handlebarsjs](https://handlebarsjs.com/guide)
+[npmjs](https://www.npmjs.com/package/amadeusnpm )
+[Amadeus](https://developers.amadeus.com/)
 
 ---
 
