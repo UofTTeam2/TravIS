@@ -477,7 +477,7 @@ body .form {
 .toggle {
     background-color: #ffc62c;
     height: 100%;
-    background: linear-gradient(to right, #ffc62c, #b7990d);
+    background: linear-gradient(to right, #ffc62c, #FFAC2C);
     color: #fff;
     position: relative;
     left: -100%;
@@ -963,7 +963,7 @@ body .form {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -973,16 +973,19 @@ body .form {
 }
 
 .modal-content {
+    text-align: center;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .close {
-    float: right;
+    position: absolute;
+    top: -20px;
+    right: -10px;
     font-size: 28px;
     font-weight: bold;
 }
@@ -991,6 +994,10 @@ body .form {
 .close:focus {
     color: red;
     cursor: pointer;
+}
+
+.login-modal-close-container {
+    position: relative;
 }
 /* <---- Login/Signup Error Modal */
 /* Ethan's Itinerary Modal stuff ----> */

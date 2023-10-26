@@ -9,10 +9,20 @@ console.log("Login script loaded!");
 displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
+    const modalDetails = document.querySelector('#modalErrorDetails');
     const closeModalButton = document.querySelector('#closeModal');
 
+    let errorDetails;
+
+    if (errorMessage === 'SequelizeValidationError') {
+        errorDetails = 'Note that your username must be alphanumeric & 3-30 characters long. Additionally, your password must be at least 8 characters long, and contain at least 1 letter & number. If you meet all of these requirements, your desired username or email may already be in use.';
+    } else {
+        errorDetails = '';
+    }
+
     modal.style.display = 'block';
-    modalContent.textContent = errorMessage;
+    modalContent.textContent = `Error: ${errorMessage}`;
+    modalDetails.textContent = errorDetails;
 
     closeModalButton.addEventListener('click', () => {
         modal.style.display = 'none';
@@ -47,7 +57,7 @@ const loginHandler = async (event) => {
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
             console.log(errorData);
-            const errorMessage = errorData.name;
+            const errorMessage = errorData.message;
             displayErrorModal(errorMessage);
         }
     }
@@ -72,6 +82,7 @@ const signupHandler = async (event) => {
         } else {
             //adding an error message if the user's signup is unsuccessful
             const errorData = await response.json();
+            console.log(errorData);
             const errorMessage = errorData.name;
             displayErrorModal(errorMessage);
         }
