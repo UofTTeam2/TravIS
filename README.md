@@ -47,6 +47,7 @@
     - [Database](#database)
     - [Security](#security)
   - [Features](#features)
+  - [Credits](#credits)
   - [Contributing](#contributing)
   - [Testing](#testing)
   - [License](#license)
@@ -153,6 +154,14 @@ _Click on the Following link:_
 - Engaging travel community and social features, including forum boards.
 - Expense tracking with a breakdown of costs by category.
 - Secure user authentication and data protection.
+
+---
+
+## Credits
+
+>We would like to extend our gratitude to the creators and contributors of the following resources, which have been instrumental in the development of TravIS:
+
+- 
 
 ---
 
