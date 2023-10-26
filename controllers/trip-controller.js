@@ -120,6 +120,7 @@ router.get('/view/:id', [loginAuth, userIdAuth], async (req, res) => {
             sections,
             expenses,
             loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id,
         });
     } catch (error) {
         console.error(error);
@@ -130,7 +131,7 @@ router.get('/view/:id', [loginAuth, userIdAuth], async (req, res) => {
 
 // Get edit page for a trip
 // =============================================================
-router.get('/edit/:id', loginAuth, async (req, res) => {
+router.get('/edit/:id', [loginAuth, userIdAuth], async (req, res) => {
     try {
         // Retrieve the trip with the specified ID and include its sections and items
         const trip = await Trip.findByPk(req.params.id, {
@@ -214,6 +215,7 @@ router.get('/edit/:id', loginAuth, async (req, res) => {
             image,
             sections,
             loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id,
         });
     } catch (error) {
         console.error(error);
@@ -264,6 +266,7 @@ router.get('/create-trip', loginAuth, async (req, res) => {
             image,
             sections,
             loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id,
         });
     } catch (error) {
         console.error(error);

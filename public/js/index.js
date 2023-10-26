@@ -15,9 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (scroll) {
         scroll.addEventListener('click', () => {
-            document
-                .querySelector('.about-us')
-                .scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.about-us').scrollIntoView({ behavior: 'smooth' });
         });
     }
 
@@ -31,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const signupBtn = document.getElementById('signupBtn');
     if (signupBtn) {
         signupBtn.addEventListener('click', () => {
-            window.location.href = 'login#signup';
+            window.location.href = 'login#signup';document.querySelector('.about-us').scrollIntoView({ behavior: 'smooth' });
         });
     }
 });

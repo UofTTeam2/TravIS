@@ -1,47 +1,37 @@
 <aside id="sidebar">
     <div class="sidebar-title">
         <div class="sidebar-icon">
-            <span class="material-symbols-outlined material-icons" id="dashClose">close</span>
+            <span class="material-symbols-outlined" id="dashClose">close</span>
             <h3>User</h3>
+            <a href="/update"><span class="material-symbols-outlined">
+manage_accounts
+</span></a>
         </div>
     </div>
 
     <ul class="sidebar-list">
-          <a href="/dashboard">
-            <li class="sidebar-list-item">
-                <span class="material-symbols-outlined material-icons">
+          <li class="sidebar-list-item">
+            <a href="/dashboard">
+              <span class="material-symbols-outlined">
                 airplane_ticket
                 </span> Trips
-            </li>
-          </a>
-          <a href="/search">
-            <li class="sidebar-list-item">
-                <span class="material-symbols-outlined material-icons">
-                location_city
-                </span> Explorer
-            </li>
-          </a>          
-          <a href="/forum">
-            <li class="sidebar-list-item">
-                <span class="material-symbols-outlined material-icons">
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="/post">
+              <span class="material-symbols-outlined">
+                sticky_note
+                </span> Posts
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="/forum">
+              <span class="material-symbols-outlined">
                 forum
                 </span> Forum
-            </li>
-          </a>
-          <a href="#" target="_blank">
-            <li class="sidebar-list-item">
-              <span class="material-symbols-outlined material-icons">
-                backpack
-                </span> Items
-            </li>
-          </a>
-          <div class="sidebar-spacer"></div>
-          <a href="#" target="_blank">
-            <li class="sidebar-list-item">
-              <span class="material-symbols-outlined material-icons">
-                logout
-                </span> Log Out
-            </li>
-          </a>
+            </a>
+          </li>
         </ul>
 </aside>
+
+<script src="/js/dashboard.js"></script>

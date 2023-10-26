@@ -42,7 +42,6 @@ User.init(
             unique: true,
             validate: {
                 isEmail: true,
-                isLowercase: true,
             },
         },
         password: {

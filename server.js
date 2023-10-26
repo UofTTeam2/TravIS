@@ -21,9 +21,15 @@ require('dotenv').config();
 // =============================================================
 const routes = require('./controllers');
 const Session = require('./models/Session');
-const helpers = require('./utils/helpers');
+//const helpers = require('./utils/helpers');
 //initializes handlebars template engine
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({
+    //helpers,
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+    },
+});
 // import dataParser middleware
 const dataParser = require('./utils/dataParser');
 //==============================================================
@@ -71,6 +77,6 @@ app.use(routes);
 
 // sync sequelize models to the database, then start running the server
 // =============================================================
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({force: false}).then(() => {
     app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
 });

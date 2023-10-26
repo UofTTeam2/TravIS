@@ -5,7 +5,7 @@
 // =============================================================
 const router = require('express').Router();
 const multer = require('multer');
-const { Trip, TripSection, ItineraryItem } = require('../models');
+const { Trip, TripSection, ItineraryItem } = require('../../models');
 const loginAuth = require('../../utils/auth');
 const userIdAuth = require('../../utils/userIdAuth');
 // =============================================================
