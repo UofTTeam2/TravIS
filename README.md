@@ -1,3 +1,37 @@
+<<<<<<< HEAD
+# TravIs
+
+
+## Credits
+
+### ETHAN'S LINKS
+
+https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+
+https://www.w3schools.com/java/java_files_read.asp
+
+https://www.npmjs.com/package/multer
+
+gear image
+https://pixabay.com/vectors/gear-mechanics-settings-icon-1119298/
+
+writing image
+https://www.cleanpng.com/png-paper-computer-icons-pencil-drawing-business-write-1027246/
+
+save icon
+https://www.iconfinder.com/icons/2639912/save_icon
+
+modals
+https://www.w3schools.com/howto/howto_css_modals.asp
+-HTML
+-CSS
+-JAVASCRIPT
+
+toggle switch
+https://www.w3schools.com/howto/howto_css_switch.asp
+-CSS
+-HTML
+=======
 # TravIS: Travel Itinerary Management Application
 [![latest packaged version(s)](https://repology.org/badge/latest-versions/r:bcrypt.svg)](https://repology.org/project/r:bcrypt/versions)
 
@@ -161,30 +195,7 @@ _Click on the Following link:_
 
 >We would like to extend our gratitude to the creators and contributors of the following resources, which have been instrumental in the development of TravIS:
 
-[W3](https://www.w3schools.com/howto/howto_css_modals.asp)
-[W3](https://www.w3schools.com/java/java_files_read.asp)
-[Express](https://github.com/expressjs/session#readme)
-[Express](https://github.com/expressjs/session#cookie)
-[Express](https://expressjs.com/en/guide/using-middleware.html)
-[Express](https://expressjs.com/en/4x/api.html#res.redirect)
-[Express](https://expressjs.com/en/4x/api.html#res.json)
-[Express](https://expressjs.com/en/4x/api.html#res.render)
-[Express](https://expressjs.com/en/4x/api.html#router.METHOD)
-[Sequelize](https://sequelize.org/docs/v6/core-concepts/model-basics/)
-[Sequelize](https://sequelize.org/docs/v6/core-concepts/model-querying-basics/)
-[Sequelize](https://sequelize.org/docs/v6/core-concepts/model-querying-finders/)
-[Sequelize](https://sequelize.org/docs/v6/core-concepts/assocs/)
-[Sequelize](https://sequelize.org/docs/v6/other-topics/hooks/)
-[W3](https://www.w3schools.com/js/js_array_iteration.asp)
-[MDN](https://developer.mozilla.org/en-US/docs/Web)
-[ChatGPT](https://chat.openai.com/)
-[MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
-[CSS-Tricks](https://css-tricks.com/almanac/properties/t/transition/)
-[W3](https://www.w3schools.com/css/css3_animations.asp)
-[lambdatest](https://www.lambdatest.com/blog/css-animations-tutorial/)
-[handlebarsjs](https://handlebarsjs.com/guide)
-[npmjs](https://www.npmjs.com/package/amadeusnpm )
-[Amadeus](https://developers.amadeus.com/)
+- 
 
 ---
 
@@ -210,3 +221,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - If you have any questions or feedback regarding TravIs, please reach out to us at [TravISGmail](mailto:uoftp2.team2@gmail.com). We value your input and look forward to assisting you in your travel planning journey. Safe travels!
 - You can also visit our GitHub: [GitHub](https://github.com/UofTTeam2/TravIS)
+>>>>>>> 4869f01258b2899fc278dd944851e873c4fdc2df
