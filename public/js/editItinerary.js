@@ -1,4 +1,3 @@
-
 //waits until window is finished loading before running main code
 window.onload = () => {
     //gets references to all elements necessary for application functionality
@@ -419,9 +418,14 @@ window.onload = () => {
             </div>
         </div>`;
 
+
+
         //adds new itinerary item to the current category
         const itemCategory = $(this).parent();
         itemCategory.append(newItineraryItemHTML);
+
+        //increase counter for number of items added by 1
+        addedItemCount += 1;
 
         //gets reference to the newly-added itinerary item
         const newItineraryItem = itemCategory.children().last();
