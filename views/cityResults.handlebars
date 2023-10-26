@@ -101,9 +101,9 @@
             women's safety, health, physical threats, theft, political freedom and LGBTQ safety. The lower the score, the lower the risk.
             It's important to be aware of the safety of your destination, especially if you are travelling alone or with children.
         </p>
-        <ul id="safetyList">
+        <div id="safetyList">
             {{#each safetyData}}
-            <li>
+            <div>
                 <strong>{{name}}</strong>,{{subType}}:<br>
                 Overall Safety Score: {{safetyScores.overall}}<br>
                 Safety for Women: {{safetyScores.women}}<br>
@@ -112,9 +112,9 @@
                 Theft: {{safetyScores.theft}}<br>
                 Political Freedom: {{safetyScores.politicalFreedom}}<br>
                 LGBTQ Safety: {{safetyScores.lgbtq}}<br>
-            </li>
+            </div>
             {{/each}}
-        </ul>
+        </div>
     </div>
 
 </section>
