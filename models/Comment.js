@@ -149,14 +149,6 @@ Comment.init(
                 key: 'id',
             },
         },
-
-        parent_comment_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'comment',
-                key: 'id',
-            },
-        },
     },
     {
         sequelize,
