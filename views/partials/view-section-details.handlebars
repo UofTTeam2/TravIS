@@ -1,0 +1,95 @@
+<div class = "itinerary-section-container">
+  
+  <div class = "section-title-container">
+
+    {{#if title}}
+      <h2 class = "section-title-header" data-id = {{id}}>{{title}}</h2>
+      {{else}}
+        <h2 class = "section-title-header">Untitled Section</h1>
+    {{/if}}
+  </div>
+
+  <!-- renders a category title & a partial for each item related to transport, if any exist -->
+  {{#if transportItems}}
+    <div class = "trip-section-category">
+
+      <h4 class = "item-category-title toggle-button">Transportation <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      <div class="toggle-content">
+        {{#each transportItems as |transportItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
+
+    </div>
+  {{/if}}
+
+  <!-- renders a category title & a partial for each item related to accommodation, if any exist -->
+  {{#if accommodationItems}}
+    <div class = "trip-section-category">
+      
+      <h4 class = "item-category-title toggle-button">Accommodation <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      <div class="toggle-content">
+        {{#each accommodationItems as |accommodationItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
+
+    </div>
+  {{/if}}
+
+
+  <!-- renders a category title & a partial for each item related to food, if any exist -->
+  {{#if foodItems}}
+    <div class = "trip-section-category">
+
+      <h4 class = "item-category-title toggle-button">Food <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      <div class="toggle-content">
+        {{#each foodItems as |foodItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
+
+    </div>
+  {{/if}}
+
+  <!-- renders a category title & a partial for each item relating to activities / things to do
+      (entertainment, shopping, historical sites to visit, etc.) if any exist -->
+  {{#if activityItems}}
+    <div class = "trip-section-category">
+
+      <h4 class = "item-category-title toggle-button">Activities <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      <div class="toggle-content">
+        {{#each activityItems as |activityItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
+
+    </div>
+  {{/if}}
+
+  <!-- renders a category title & a partial for any remaining miscellaneous items, if any exist -->
+  {{#if miscItems}}
+    <div class = "trip-section-category">
+
+      <h4 class = "item-category-title toggle-button">Misc <span class="material-symbols-outlined">
+                  expand_more
+                  </span></h4>
+      <div class="toggle-content">
+        {{#each miscItems as |miscItem|}}
+          {{> view-item-details}}
+        {{/each}}
+      </div>
+
+    </div>
+  {{/if}}
+
+</div>
+

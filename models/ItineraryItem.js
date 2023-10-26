@@ -45,35 +45,28 @@ ItineraryItem.init(
         },
 
         start_date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: DataTypes.NOW,
         },
 
         start_time: {
-            type: DataTypes.TIME,
+            type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: DataTypes.NOW,
         },
 
         end_date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: DataTypes.NOW,
         },
 
         end_time: {
-            type: DataTypes.TIME,
+            type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: DataTypes.NOW,
         },
 
         expense: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: true,
-            validate: {
-                isDecimal: true,
-            },
         },
 
         notes: {

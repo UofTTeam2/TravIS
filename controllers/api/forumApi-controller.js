@@ -9,6 +9,8 @@ const router = require('express').Router();
 const multer = require('multer');
 const { Post, Comment } = require('../../models');
 const loginAuth = require('../../utils/auth');
+const path = require('path');
+const fs = require('fs');
 // =============================================================
 
 // // Setting up folder to receive and format uploads via multer
@@ -66,11 +68,11 @@ router.post(
                         return res.status(500).json(err);
                     }
                     res.status(200);
-                    res.redirect(`/api/forum/post/${dbPost.id}`);
+                    res.redirect(`/forum/post/${dbPost.id}`);
                 });
             } else {
                 res.status(200);
-                res.redirect(`/api/forum/post/${dbPost.id}`);
+                res.redirect(`/forum/post/${dbPost.id}`);
             }
         } catch (err) {
             console.log(err);
@@ -104,11 +106,11 @@ router.post(
                         return res.status(500).json(err);
                     }
                     res.status(200);
-                    res.redirect(`/api/forum/post/${req.session.post_id}`);
+                    res.redirect(`/forum/post/${req.session.post_id}`);
                 });
             } else {
                 res.status(200);
-                res.redirect(`/api/forum/post/${req.session.post_id}`);
+                res.redirect(`/forum/post/${req.session.post_id}`);
             }
         } catch (err) {
             console.log(err);

@@ -33,14 +33,14 @@ router.get('/', async (req, res) => {
 // Get route for the dashboard page
 // =============================================================
 router.get('/trips', loginAuth, async (req, res) => {
-    console.log('getting trips data');
-    console.log(req.session.user_id);
     try {
         const tripData = await Trip.findAll({
+            where: {
+                user_id: req.session.user_id,
+            },
             order: [['end_date', 'DESC']],
         });
         const trips = tripData.map((trip) => trip.get({ plain: true }));
-        console.log(trips);
         res.render('dashboard', {
             trips,
             loggedIn: req.session.loggedIn,
@@ -77,14 +77,14 @@ router.get('/login', (req, res) => {
 //Get route for bad request page
 //==============================================================
 router.get('/bad-request', (req, res) => {
-    res.render('bad-request');
+    res.status(400).render('bad-request');
 });
 //==============================================================
 
 // Get route to render the update page
 //==============================================================
 router.get('/update', (req, res) => {
-    res.render('update');
+    res.render('update', {loggedIn: req.session.loggedIn});
 });
 //==============================================================
 

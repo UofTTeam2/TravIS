@@ -1,0 +1,144 @@
+<div class = "itinerary-section-container">
+
+  <button class = "delete-itinerary-section-button">Delete Section</button>
+
+  <!-- renders an input for the title of each section -->
+  <div class = "section-title-container">
+
+    <input class = "section-title-input" data-id = {{id}} value = "{{title}}">
+
+  </div>
+
+  <div class = "trip-categories-container">
+    <!-- renders a category title for & a button to add new items related to transport
+        also renders an editable partial for each item related to transport that already exist -->
+    <div class = "trip-section-category">
+
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Transportation</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
+
+      {{#if transportItems}}
+        {{#each transportItems as |transportItem|}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+            
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputTransport{{@../index}}{{@index}}" style = "display: none;">
+            <label for = "fileInputTransport{{@../index}}{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            {{> edit-item-image-container}}
+
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+
+    <!-- renders a category title for & a button to add new items related to accomodation
+        also renders an editable partial for each item related to accommodation that already exist -->
+    <div class = "trip-section-category">
+
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Accommodation</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
+
+      {{#if accommodationItems}}
+        {{#each accommodationItems as |accommodationItem|}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputAccommodation{{@../index}}{{@index}}" style = "display: none;">
+            <label for = "fileInputAccommodation{{@../index}}{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            {{> edit-item-image-container}}
+
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+
+    <!-- renders a category title for & a button to add new items related to food
+        also renders an editable partial for each item related to food that already exist -->
+    <div class = "trip-section-category">
+
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Food</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
+
+      {{#if foodItems}}
+        {{#each foodItems as |foodItem|}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputFood{{@../index}}{{@index}}" style = "display: none;">
+            <label for = "fileInputFood{{@../index}}{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            {{> edit-item-image-container}}
+            
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+
+    <!-- renders a category title for & a button to add new items related to activities / things to do
+        (entertainment, shopping, historical sites to visit, etc.), and also renders an editable partial
+        for each item related to activities (et al.) that already exist -->
+    <div class = "trip-section-category">
+
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Activities</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
+
+      {{#if activityItems}}
+        {{#each activityItems as |activityItem|}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputActivities{{@../index}}{{@index}}" style = "display: none;">
+            <label for = "fileInputActivities{{@../index}}{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            {{> edit-item-image-container}}
+            
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+
+    <!-- renders a category title for & a button to add new items miscellaneous items
+        also renders an editable partial for each item related to transport that already exist -->
+    <div class = "trip-section-category">
+
+      <div class = "category-title-add-button-container">
+        <h3 class = "item-category-title edit-title">Misc</h3>
+        <button class = "add-itinerary-item-button"><span class="material-symbols-outlined">add</span></button>
+      </div>
+
+      {{#if miscItems}}
+        {{#each miscItems as |miscItem|}}
+          <div class = "itinerary-item-container" data-id = {{id}}>
+
+            {{> edit-item-details}}
+
+            <h4>Choose an Image (up to 10 MB):</h4>
+            <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "fileInputMisc{{@../index}}{{@index}}" style = "display: none;">
+            <label for = "fileInputMisc{{@../index}}{{@index}}" class = "custom-file-upload">Choose File</label>
+
+            {{> edit-item-image-container}}
+            
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+  </div>
+</div>

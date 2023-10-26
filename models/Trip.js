@@ -30,15 +30,13 @@ Trip.init(
         },
 
         start_date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: DataTypes.NOW,
         },
 
         end_date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.STRING,
             allowNull: true,
-            defaultValue: DataTypes.NOW,
         },
 
         image: {

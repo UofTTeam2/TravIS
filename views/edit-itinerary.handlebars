@@ -1,0 +1,78 @@
+<form action = "/api/trips/image" method = "post" enctype = "multipart/form-data" class = "multer-submission-form">
+  
+  <div class = "trip-title-container" data-id = "{{id}}">
+
+    <h1>Title:</h1>
+    <input class = "trip-title-input" value = "{{title}}">
+
+    <h2 class = "trip-date-header">Trip Start Date:</h2>
+    <input class = "trip-start-date datepicker" value = "{{start_date}}">
+
+    <h2 class = "trip-date-header">Trip End Date:</h2>
+    <input class = "trip-end-date datepicker" value = "{{end_date}}">
+    
+    <h4>Choose a Title Card Image (up to 10 MB):</h4>
+
+    <input type = "file" accept = "image/*" class = "user-uploaded-image" id = "titleFileInput" style = "display: none;">
+    <label for = "titleFileInput" class = "custom-file-upload">Choose File</label>
+
+    <div class = "edit-page-image-container">
+
+      <div class = "edit-page-image-block">
+
+        <h3>Preview:</h3>
+        <img class = "title-card-preview-image" src = '/images/no-image-stock-photo.png'>
+        <button class = "clear-preview-image-button">Clear Chosen Image</button>
+
+      </div>
+
+      {{#if image}}
+        <div class = "edit-page-image-block">
+
+          <h3>Current Title Card Image:</h3>
+          <img class = "title-card-image" src = "/images/multer-uploads/{{image}}">
+          <button class = "clear-current-image-button">Clear Current Image</button>
+        
+        </div>
+      {{/if}}
+    </div>
+
+    <!-- button to save data & switch to view mode -->
+    <button class = "save-itinerary-button" type = "submit"><span class="material-symbols-outlined">save</span></button>
+  </div>
+
+  <div class = "trip-delete-container">
+    <!-- render a partial for each section of the trip -->
+    <div class = "trip-sections-container">
+      {{#each sections as |section|}}
+        {{> edit-section-details}}
+      {{/each}}
+    </div>
+
+    <button class = "create-new-section-button">Create New Section</button>
+
+  </div>
+</form>
+
+<div class = "confirmation-modal modal">
+    
+    <div class = "modal-content itinerary-modal-content">
+
+      <p>Are you sure you want to delete this?</p>
+      <button class = "confirmation-yes-button">Yes</button>
+      <button class = "confirmation-no-button">No</button>
+
+    </div>
+</div>
+
+<div class = "image-upload-error-modal modal">
+    
+    <div class = "modal-content itinerary-modal-content">
+
+      <span class = "close image-upload-error-close">&times;</span>
+      <p class = "upload-error-message"></p>
+
+    </div>
+</div>
+
+<script src = "/js/editItinerary.js"></script>

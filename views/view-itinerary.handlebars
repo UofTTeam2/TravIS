@@ -1,0 +1,81 @@
+<div class="container">
+  <!-- placeholder for trip title -->
+  <div class = "trip-title-container" data-id = "{{id}}">
+    {{#if title}}
+      <h1 class = "trip-title-header">{{title}}</h1>
+      {{else}}
+      <h1 class = "trip-title-header">Untitled Trip</h1>
+    {{/if}}
+
+    {{#if start_date}}
+      {{#if end_date}}
+        <h2 class = "trip-date-header">{{start_date}} -> {{end_date}}</h2>
+        {{else}}
+          <h2 class = "trip-date-header">Start: {{start_date}}</h2>
+      {{/if}}
+      {{else}}
+        {{#if end_date}}
+          <h2 class = "trip-date-header">End: {{end_date}}</h2>
+        {{/if}}
+    {{/if}}
+  </div>
+  <div class="trip-btn">
+    <!-- button to switch to edit mode -->
+    <button class = "open-menu-button"><span class="material-symbols-outlined"> settings </span></button>
+    <!-- button to switch to edit mode -->
+    <button class = "edit-itinerary-button"><span class="material-symbols-outlined"> edit </span></button>
+  </div>
+  <h2 class = "total-expenses">Total Expenses: ${{{totalExpenses}}}</h2>
+  <div style = "width: 500px"><canvas id = "expense-summary"></canvas></div>
+
+  <!-- render a partial for each section of the trip -->
+  <div class="trip-sections-container">
+    {{#each sections as |section|}}
+      {{> view-section-details}}
+    {{/each}}
+  </div>
+</div>
+
+<div class = "settings-modal modal">
+    
+    <div class = "modal-content itinerary-modal-content">
+
+      <span class = "close itinerary-settings-close">&times;</span>
+      <h3>Make this itinerary publicly visible?</h3>
+      <p id = "edit-privileges-text">Only you will have edit privileges</p>
+
+      <label class = "switch">
+
+        <input class = "public-checkbox" type = "checkbox" {{#if public}}checked{{/if}}>
+        <span class = "slider round"></span>
+
+      </label>
+
+      <div class = "public-address-container">
+
+        <p id = "can-find-public-address-text">Your public itinerary can be found at the following address:</p>
+        <a class = "public-address"></a>
+
+      </div>
+
+    </div>
+</div>
+
+<script src = "/js/viewItinerary.js"></script>
+<script src = "/js/view-section.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('expense-summary');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['Transport', 'Accommodation', 'Food', 'Activities', 'Misc'],
+      datasets: [{
+        label: 'Combined Cost ($)',
+        data: [{{expenses}}],
+        borderWidth: 1
+      }]
+    },
+  });
+</script>

@@ -1,0 +1,26 @@
+<button class = "delete-itinerary-item-button">Delete Item</button>
+
+<!-- renders a series of empty input boxes for a trip item, setting any already-existing data as the default values -->
+<h4>Title:</h4>
+<input class = "item-title" value = "{{title}}">
+
+<h4>Title Link:</h4>
+<input class = "item-link" value = "{{link}}">
+
+<h4>Start Date:</h4>
+<input class = "item-date-time item-start-date datepicker" value = "{{start_date}}">
+
+<h4>Start Time:</h4>
+<input class = "item-date-time item-start-time timepicker" value = "{{start_time}}">
+
+<h4>End Date:</h4>
+<input class = "item-date-time item-end-date datepicker" value = "{{end_date}}">
+
+<h4>End Time:</h4>
+<input class = "item-date-time item-end-time timepicker" value = "{{end_time}}">
+
+<h4>Cost:</h4>
+<input type = "number" class = "item-expense" value = "{{expense}}">
+
+<h4>Notes:</h4>
+<textarea class = "item-notes" value = "{{notes}}"></textarea>

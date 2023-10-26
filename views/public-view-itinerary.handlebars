@@ -1,0 +1,49 @@
+<div class="container">
+  <!-- placeholder for trip title -->
+  <div class = "trip-title-container" data-id = "{{id}}">
+    {{#if title}}
+      <h1 class = "trip-title-header">{{title}}</h1>
+      {{else}}
+      <h1 class = "trip-title-header">Untitled Trip</h1>
+    {{/if}}
+
+    {{#if start_date}}
+      {{#if end_date}}
+        <h2 class = "trip-date-header">{{start_date}} -> {{end_date}}</h2>
+        {{else}}
+          <h2 class = "trip-date-header">Start: {{start_date}}</h2>
+      {{/if}}
+      {{else}}
+        {{#if end_date}}
+          <h2 class = "trip-date-header">End: {{end_date}}</h2>
+        {{/if}}
+    {{/if}}
+  </div>
+  <h2 class = "total-expenses">Total Expenses: ${{{totalExpenses}}}</h2>
+  <div style = "width: 450px"><canvas id = "expense-summary"></canvas></div>
+
+  <!-- render a partial for each section of the trip -->
+  <div class="trip-sections-container">
+    {{#each sections as |section|}}
+      {{> view-section-details}}
+    {{/each}}
+  </div>
+</div>
+
+<script src = "/js/view-section.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('expense-summary');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['Transport', 'Accommodation', 'Food', 'Activities', 'Misc'],
+      datasets: [{
+        label: 'Combined Cost ($)',
+        data: [{{expenses}}],
+        borderWidth: 1
+      }]
+    },
+  });
+</script>

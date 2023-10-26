@@ -10,7 +10,7 @@ displayErrorModal = (errorMessage) => {
     const modalContent = document.querySelector('#modalErrorMessage');
     const modalDetails = document.querySelector('#modalErrorDetails');
     const closeModalButton = document.querySelector('#closeModal');
-  
+
     let errorDetails;
 
     //adds additional error details depending on the type of error
