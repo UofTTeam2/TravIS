@@ -6,10 +6,12 @@ console.log("Login script loaded!");
 // Creating a function to handle the error message
 // if the user's login/signup is unsuccessful, using a modal
 // =========================================================
-const displayErrorModal = (errorMessage) => {
+displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
     const closeModalButton = document.querySelector('#closeModal');
+
+    let errorDetails;
 
     modal.style.display = 'block';
     modalContent.textContent = errorMessage;

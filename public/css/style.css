@@ -264,7 +264,7 @@ body .form {
     height: 100vh;
   }
 
-.update-card{
+.update-card {
     position: relative;
     z-index: 3;
     width: 100%;
@@ -275,13 +275,13 @@ body .form {
     text-align: center;
 }
 
-.update-card h2{
+.update-card h2 {
     font-size: 36px;
     font-weight: 600;
     margin: 0 0 12px;
 }
 
-.update-card h3{
+.update-card h3 {
     color: rgba(0, 0, 0, 0.38);
     margin: 0 0 30px;
     font-weight: 500;
@@ -828,6 +828,163 @@ body .form {
     font-size: 12px;
     line-height: 36px;
     color: #afafaf;
+}
+
+/* <---- poi.handlebars */
+
+.search {
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
+
+.explorer-card {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    margin: 0 20px;
+    padding: 70px 30px 44px;
+    border-radius: 30px;
+    background: #F8B500;
+    text-align: center;
+}
+
+.explorer-card h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+
+.explorer-card h3 {
+    color: rgba(0, 0, 0, 0.38);
+    margin: 0 0 30px;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Progress Bar demo */
+.progress-bar {
+    width: 100%;
+    background-color: #ccc;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+.progress-fill {
+    width: 0; /* Initial width is 0 */
+    height: 100%;
+    background-color: #FFC62C; /* Change this to your desired fill color */
+    animation: fillAnimation 5s ease-in-out forwards; /* Adjust the duration (5s) as needed */
+}
+  
+@keyframes fillAnimation {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%; /* Adjust the width to represent your value */
+    }
+}
+/* End of progress Bar demo */
+
+.poipic {
+    max-width: 160px;
+}
+
+#searchsection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.explorer-text {
+    color: #22252A;
+}
+
+.explorer-paragraph {
+    padding-top: 20px;
+}
+
+.explorer-form{
+    width: 100%;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+}
+
+.explorer-form input, .explorer-form button{
+    width: 50%;
+    height: 50px;
+    margin: 5px auto;
+}
+
+.explorer-form input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+#explorer-submit-button {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #22252A;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#cityresult-submit-button {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #F8B500;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 15px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#cityInput {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.cityresults-form input {
+    height: 35px;
+    margin: 5px auto;
+    background-color: #eee;
+    border: none;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.recommendations h1 {
+    text-align: center;
+}
+
+.recommendations h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    text-align: center;
 }
 
 /* Start of Chris' CSS additions */
