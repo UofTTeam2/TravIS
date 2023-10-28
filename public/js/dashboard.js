@@ -4,11 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var sidebarOpen = false;
     var sidebar = document.getElementById('sidebar');
 
-    document.querySelector('.menu-icon').addEventListener('click', openSidebar);
-    document
-        .getElementById('dashClose')
-        .addEventListener('click', closeSidebar);
-
     function openSidebar() {
         if (!sidebarOpen) {
             sidebar.classList.add('sidebar-responsive');
@@ -22,4 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
             sidebarOpen = false;
         }
     }
+
+    document.querySelector('.menu-icon').addEventListener('click', openSidebar);
+    document
+        .getElementById('dashClose')
+        .addEventListener('click', closeSidebar);
 });
