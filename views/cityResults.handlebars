@@ -1,126 +1,194 @@
-<div class="grid-container">
 {{> dashSide}}
-<main class="main-container">
+<main class='results-main'>
 
-<section class="recommendations">
+    <section class='recommendations'>
 
-    <h1>Results for {{city}}</h1>
-    
-    <section id="searchsection">
-        <div class="search">
-            <form id="searchForm" class="cityresults-form">
-                <label for="cityInput">Search for a different city: </label>
-                <input type="text" id="cityInput" name="city">
-                <button id="cityresult-submit-button" type="submit">Search</button>
-            </form>
+        <h1 class="result-title">Results for {{city}}</h1>
+
+        <section id='searchsection'>
+            <div class='search'>
+                <form id='searchForm' class='cityresults-form'>
+                    <label for='cityInput' class="city-label">Search for a different city: </label>
+                    <input type='text' id='cityInput' name='city' class="city-input" />
+                    <button
+                        id='cityresult-submit-button'
+                        type='submit'
+                    >Search</button>
+                </form>
+            </div>
+        </section>
+
+        <div class='locationScore'>
+            <h2>Location Scores:</h2>
+            <div id='locationScoresList'>
+                <h3>What are the popular features of {{city}}?</h3>
+                <p>Here you can find the popularity score of the surrounding
+                    area for different categories, based on a radius of 1.5 km.
+                    The categories include sights, restaurants, shopping, and
+                    nightlife. This list helps you find what features are within
+                    a close proximity to your location.
+                </p>
+                <div class='locationScore'>
+                    <h2>Location Scores:</h2>
+                    <div id='categoryScores'>
+                        <div class='score-item'>
+                            <h4>Overall Sights:</h4>
+                            <span
+                            >{{locationData.2.categoryScores.sight.overall}}</span>
+                        </div>
+                        <div class='score-item'>
+                            <h4>Historical Sights:</h4>
+                            <span
+                            >{{locationData.2.categoryScores.sight.historical}}</span>
+                        </div>
+                        <div class='score-item'>
+                            <h4>Beach and/or Park:</h4>
+                            <span
+                            >{{locationData.2.categoryScores.sight.beachAndPark}}</span>
+                        </div>
+                        <div class='score-item'>
+                            <h4>Restaurants:</h4>
+                            <span
+                            >{{locationData.2.categoryScores.restaurant.overall}}</span>
+                        </div>
+                        <div class='score-item'>
+                            <h4>Vegetarian Options:</h4>
+                            <span
+                            >{{locationData.2.categoryScores.restaurant.vegetarian}}</span>
+                        </div>
+                        <div class='score-item'>
+                            <h4>Shopping:</h4>
+                            <span
+                            >{{locationData.2.categoryScores.shopping.overall}}</span>
+                        </div>
+                        <div class='score-item'>
+                            <h4>Luxury Shopping:</h4>
+                            <span
+                            >{{locationData.2.categoryScores.shopping.luxury}}</span>
+                        </div>
+                        <div class='score-item'>
+                            <h4>Nightlife:</h4>
+                            <span
+                            >{{locationData.2.categoryScores.nightLife.overall}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+        <div class='pointsofinterest'>
+            <h2>Points of Interest:</h2>
+            <h3>What are the best places to visit in {{city}}?</h3>
+            <p>
+                Here you will find a list of top ranked attractions, as voted by
+                travellers. The categories include sights, beach/park,
+                historical, nightlife, restaurant and shopping. Note that these
+                may not be the most visited places, but are the highest rated
+                among those visited. These can include local hang outs and
+                tourist attractions.</p>
+            <div class='pointsofinterest'>
+                <div id='poiList'>
+                    {{#each poiData}}
+                        <div class='poi-item'>
+                            Name:
+                            <strong>{{name}}</strong><br />
+                            Type:
+                            {{category}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <div class='activities'>
+            <h2>Activities:</h2>
+
+            <h3>What are the best tours and activities in
+                {{city}}?</h3>
+            <p>
+                Here you will find information about top rated activities such
+                as sightseeing tours, day trips, museum tickets, and more. If
+                available, you can also find a link to book the activity.
+            </p>
+            <p class='scroll-indicator'>Scroll to see more</p>
+            <ul id='activitiesList'>
+                {{#each activityData}}
+                    <li>
+                        <strong>{{name}}</strong><br />
+                        <p class='activityDescription'>{{{description}}}</p><br
+                        />
+
+                        {{#if price}}
+                            Price:
+                            {{price.amount}}
+                            {{price.currencyCode}}<br />
+                        {{else}}
+                            Price: Not Available<br />
+                        {{/if}}
+                        {{#if minimumDuration}}
+                            Minimum Duration:
+                            {{minimumDuration}}<br />
+                        {{else}}
+
+                        {{/if}}
+
+                        <h3>Pictures:</h3>
+                        <div class='poipictures'>
+                            {{#if pictures}}
+                                {{#each pictures}}
+                                    <img
+                                        class='poipic'
+                                        src='{{this}}'
+                                        alt='Activity Image'
+                                    /><br />
+                                {{/each}}
+                            {{else}}
+                                <p>No pictures available</p><br />
+                            {{/if}}
+                        </div>
+                        {{#if bookingLink}}
+                            <a href='{{bookingLink}}' target='_blank'>Click to
+                                Book Now</a><br />
+                        {{else}}
+
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class='safety'>
+            <h2>Safety Scores:</h2>
+            <h3>How safe is
+                {{city}}, and surrounding districts?</h3>
+            <p>See the overall danger score, 0-100, for six categories: women's
+                safety, health, physical threats, theft, political freedom and
+                LGBTQ safety. The lower the score, the lower the risk. It's
+                important to be aware of the safety of your destination,
+                especially if you are travelling alone or with children.
+            </p>
+            <div id='safetyList'>
+                {{#each safetyData}}
+                    <div>
+                        <h4>{{name}}</h4>
+                        {{subType}}:
+                        <p>Overall Safety Score: {{safetyScores.overall}}</p>
+                        <p>Safety for Women: {{safetyScores.women}}</p>
+                        <p>Health and Medical: {{safetyScores.medical}}</p>
+                        <p>Physical Threats: {{safetyScores.physicalHarm}}</p>
+                        <p>Theft: {{safetyScores.theft}}</p>
+                        <p>Political Freedom:
+                            {{safetyScores.politicalFreedom}}</p>
+                        <p>LGBTQ Safety: {{safetyScores.lgbtq}}</p>
+                    </div>
+                {{/each}}
+            </div>
+
+        </div>
+
     </section>
 
-    <div class="locationScore">
-        <h2>Location Scores:</h2>
-        <ul id="locationScoresList">
-            <p>What are the popular features of {{city}}?<br>
-            Here you can find the popularity score of the surrounding area for different categories,
-                based on a radius of 1.5 km. The categories include sights, restaurants, shopping, and nightlife. This list
-                helps you find what features are within a walking distance of your location and ones that may require a short drive or public
-                transportation.
-            </p>
-            <li>
-                Overall Sights: {{locationData.2.categoryScores.sight.overall}}<br>
-                Historical Sights: {{locationData.2.categoryScores.sight.historical}}<br>
-                Beach and/or Park: {{locationData.2.categoryScores.sight.beachAndPark}}<br>
-                Restaurants: {{locationData.2.categoryScores.restaurant.overall}}<br>
-                Vegetarian Options: {{locationData.2.categoryScores.restaurant.vegetarian}}<br> 
-                Shopping: {{locationData.2.categoryScores.shopping.overall}}<br> 
-                Luxury Shopping: {{locationData.2.categoryScores.shopping.luxury}}<br>
-                Nightlife: {{locationData.2.categoryScores.nightLife.overall}}
-            </li>
-        </ul>
-    </div>
-
-    <div class="pointsofinterest">
-        <h2>Points of Interest</h2>
-        <p>What are the best places to visit in {{city}}?<br>
-            Here you will find a list of top ranked attractions, as voted by travellers. The categories include sights, beach/park, 
-            historical, nightlife, restaurant and shopping. Note that these may not be the most visited places, but are the highest
-            rated among those visited. These can include local hang outs and tourist attractions.</p>
-        <ul id="poiList">
-            {{#each poiData}}
-            <li>
-                Name: <strong>{{name}}</strong> - Type: {{category}}
-            </li>
-            {{/each}}
-        </ul>
-    </div>
-
-    <div class="activities">
-        <h2>Activities:</h2>
-        <p>What are the best tours and activities in {{city}}?<br>
-            Here you will find information about top rated activities such as sightseeing
-            tours, day trips, museum tickets, and more. If available, you can also find a link to book the activity.
-        </p>
-        <ul id="activitiesList">
-            {{#each activityData}}
-            <li>
-                <strong>{{name}}</strong><br>
-                <p class="activityDescription">{{{description}}}</p><br>
-
-                {{#if price}}
-                    Price: {{price.amount}} {{price.currencyCode}}<br>
-                {{else}}
-                    Price: Not Available<br>
-                {{/if}}
-                {{#if minimumDuration}}
-                    Minimum Duration: {{minimumDuration}}<br>
-                {{else}}
-
-                {{/if}}
-        
-                <h3>Pictures:</h3>
-                <div class="poipictures">
-                    {{#if pictures}}   
-                        {{#each pictures}}
-                            <img class="poipic" src="{{this}}" alt="Activity Image">
-                        {{/each}}
-                    {{else}}
-                        <p>No pictures available</p>
-                    {{/if}}
-                </div>
-                {{#if bookingLink}}
-                    <a href="{{bookingLink}}" target="_blank">Click to Book Now</a>
-                {{else}}
-
-                {{/if}}
-            </li>            
-            {{/each}}
-        </ul>
-    </div>
-
-    <div class="safety">
-        <h2>Safety Scores:</h2>
-        <p>How safe is {{city}}, and surrounding districts? See the overall safety score, 0-100, for six categories:
-            women's safety, health, physical threats, theft, political freedom and LGBTQ safety. The higher the score, the safer the area.
-            It's important to be aware of the safety of your destination, especially if you are travelling alone or with children.
-        </p>
-        <ul id="safetyList">
-            {{#each safetyData}}
-            <li>
-                <strong>{{name}}</strong>,{{subType}}:<br>
-                Overall Safety Score: {{safetyScores.overall}}<br>
-                Safety for Women: {{safetyScores.women}}<br>
-                Health and Medical: {{safetyScores.medical}}<br>
-                Physical Threats: {{safetyScores.physicalHarm}}<br>
-                Theft: {{safetyScores.theft}}<br>
-                Political Freedom: {{safetyScores.politicalFreedom}}<br>
-                LGBTQ Safety: {{safetyScores.lgbtq}}
-            </li>
-            {{/each}}
-        </ul>
-    </div>
-
-</section>
-
 </main>
-</div>
 
-<script src="/js/citySearch.js"></script>
+<script src='/js/citySearch.js'></script>
