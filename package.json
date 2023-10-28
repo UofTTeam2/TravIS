@@ -29,7 +29,8 @@
     "devDependencies": {
         "eslint": "^8.51.0",
         "eslint-config-prettier": "^9.0.0",
-        "prettier": "^3.0.3"
+        "prettier": "^3.0.3",
+        "sequelize-cli": "^6.6.1"
     },
     "dependencies": {
         "amadeus": "^9.0.0",
