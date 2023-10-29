@@ -1692,6 +1692,9 @@ input.trip-title-input {
     padding-bottom: 20px;
     border-radius: 10px;
 }
+#yellow {
+    background: #F8B500;
+}
 
 .explorer-card {
     position: relative;
@@ -1700,7 +1703,7 @@ input.trip-title-input {
     margin: 0 20px;
     padding: 70px 30px 44px;
     border-radius: 30px;
-    background: #f8b500;
+    background: #F8B500;
     text-align: center;
 }
 
