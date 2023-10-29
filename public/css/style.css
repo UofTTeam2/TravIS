@@ -288,7 +288,6 @@ body .form {
 /*------------ Update Cards ------------*/
 
 .update {
-    background-color: #22252a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -303,7 +302,7 @@ body .form {
     margin: 0 20px;
     padding: 70px 30px 44px;
     border-radius: 30px;
-    background: #fff;
+    background: #FFAC2C;
     text-align: center;
 }
 
@@ -746,6 +745,10 @@ body .form {
 .logo {
     width: 55px;
     height: 55px;
+}
+
+.site-title {
+    color: #fff;
 }
 
 .navbar .logo {
@@ -1685,8 +1688,7 @@ input.trip-title-input {
     border-radius: 15px;
 }
 
-/* <---- Ethan's Bad Request Page Stuff */
-/* poi.handlebars ----> */
+/* ---------- Explorer ---------- */
 
 .search {
     padding-bottom: 20px;
@@ -1844,8 +1846,223 @@ input.trip-title-input {
     text-align: center;
 }
 
-/* <---- poi.handlebars */
-/* Start of Chris' CSS additions ---->*/
+.results-main {
+    color: #fff;
+    padding: 20px;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.recommendations {
+    background-color: #2C2F35;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.recommendations h1 {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.recommendations h2 h3 {
+    color: #fff;
+}
+
+#categoryScores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.score-item {
+    background-color: #2C2F35;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+}
+
+.score-item h4 {
+    display: block;
+    margin-bottom: 5px;
+    color: #FFC62C;
+}
+
+.score-item span {
+    display: block;
+}
+
+.result-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 36px;
+    color: #fff;
+}
+
+#searchsection {
+    margin-bottom: 10px;
+}
+
+.city-label {
+    margin-right: 10px;
+}
+
+.city-input {
+    margin-right: 10px;
+}
+
+/* Form Styling */
+.cityresults-form {
+    display: flex;
+    align-items: center;
+}
+
+.cityresults-form input {
+    margin-right: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.cityresults-form button {
+    background-color: #FFC62C;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Location Scores, Points of Interest, Activities, and Safety Sections Styling */
+.locationScore, .pointsofinterest, .activities, .safety {
+    background-color: #2C2F35;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.locationScore h2, h3 {
+    color: #fff;
+}
+
+.pointsofinterest h2, h3 {
+    color: #fff;
+}
+
+.activities h2, h3 {
+    color: #fff;
+}
+
+.safety h2, h3 {
+    color: #fff;
+}
+
+.pointsofinterest {
+    margin-bottom: 20px;
+}
+
+#poiList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.poi-item {
+    background-color: #2C2F35;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+}
+
+.poi-item strong {
+    color: #FFC62C;
+}
+
+.activities {
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.activities::-webkit-scrollbar {
+    width: 12px;
+}
+
+.activities::-webkit-scrollbar-thumb {
+    background-color: #FFC62C;
+    border-radius: 6px;
+    min-height: 50px;
+}
+
+.activities:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1));
+}
+
+.scroll-indicator {
+    font-size: 12px;
+    color: #FFC62C;
+}
+
+/* List Styling */
+#poiList, #activitiesList, #safetyList {
+    list-style-type: none;
+}
+
+#poiList li, #activitiesList li, #safetyList div {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #3A3E46;
+    border-radius: 5px;
+}
+
+/* Image Styling */
+.poipic {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+/* Link Styling */
+a {
+    color: #FFC62C;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#safetyList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#safetyList div {
+    background-color: #2C2F35;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+}
+
+#safetyList div h4 {
+    display: block;
+    margin-bottom: 10px;
+    color: #FFC62C;
+}
+
+#safetyList div p {
+    margin: 5px 0;
+}
+
+/* ---------- Forum ---------- */
 
 .forum-main {
     display: flex;
@@ -1875,6 +2092,11 @@ textarea {
     padding-top: 30px;
     padding-bottom: 30px;
     font-size: 35px;
+}
+
+.newpost-title {
+    color: #afafaf;
+    text-align: center;
 }
 
 .forum-card {
@@ -1939,6 +2161,11 @@ textarea {
     display: flex;
     flex-direction: row;
     /* margin: 5px; */
+    color: #22252a;
+}
+
+.forum-post a {
+    color: #22252a;
 }
 
 .forum-labels {
@@ -1947,6 +2174,7 @@ textarea {
     display: flex;
     flex-direction: row;
     margin: 5px;
+    color: #22252a;
 }
 
 .forum-label {
@@ -2020,6 +2248,12 @@ textarea {
 #file-upload-label {
     padding-left: 25px;
     align-self: center;
+}
+
+
+.newpost-container {
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 #newpost-submit-button {
@@ -2163,5 +2397,3 @@ textarea {
         transform: translateX(0px);
     }
 }
-
-/* End of Chris' CSS additions*/

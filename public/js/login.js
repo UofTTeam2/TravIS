@@ -19,12 +19,16 @@ displayErrorModal = (errorMessage) => {
     } else if (errorMessage === 'SequelizeUniqueConstraintError') {
         errorDetails = 'Your chosen username and / or email is already in use.';
     } else {
-        errorDetails = '';
+        errorDetails = errorMessage;
     }
 
     modal.style.display = 'block';
+    modalContent.textContent = `Error: ${errorDetails}`;
+
+    /*
     modalContent.textContent = `Error: ${errorMessage}`;
     modalDetails.textContent = errorDetails;
+    */
 
     closeModalButton.addEventListener('click', () => {
         modal.style.display = 'none';
@@ -56,13 +60,20 @@ const loginHandler = async (event) => {
         if (response.ok) {
             document.location.replace('/');
         } else {
+
             //adding an error message if the user's login is unsuccessful
             const errorData = await response.json();
+
+            console.log("errordata:", errorData);
 
             //sets error message to the error data
             //NOTE; for some reason, the name of the property is different from the other error message, so it has to be adjusted
             const errorMessage = errorData.message;
+
+            console.log("errormessage:", errorMessage);
+
             displayErrorModal(errorMessage);
+
         }
     }
 };
