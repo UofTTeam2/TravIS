@@ -1730,8 +1730,8 @@ input.trip-title-input {
 .explorer-card {
     position: relative;
     z-index: 3;
-    width: 65%;
-    margin: 0 20px;
+    width: 55%;
+    margin-right: 25%;
     padding: 70px 30px 44px;
     border-radius: 30px;
     background: #F8B500;
@@ -1797,6 +1797,11 @@ input.trip-title-input {
 
 #searchsection {
     margin-bottom: 10px;
+}
+
+.ex-search {
+    display: flex;
+    justify-content: center;
 }
 
 .explorer-text {
