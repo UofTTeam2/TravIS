@@ -1686,21 +1686,55 @@ input.trip-title-input {
 }
 
 /* <---- Ethan's Bad Request Page Stuff */
-/* poi.handlebars ----> */
+/* search.handlebars/cityresults ----> */
 
 .search {
     padding-bottom: 20px;
     border-radius: 10px;
 }
 
+.main-container-ex {
+    grid-area: main;
+    overflow-y: auto;
+    /* padding: 20px 20px; */
+}
+
+.grid-container-ex {
+    background-color: #22252a;
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+        'sidebar header header header'
+        'sidebar main main main';
+    min-height: 70vh;
+    height: 100%;
+}
+
+.grid-container-results {
+    background-color: #22252a;
+    display: grid;
+    /* grid-template-columns: 260px 1fr 1fr 1fr; */
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+        'sidebar header header header'
+        'sidebar main main main';
+    min-height: 70vh;
+    height: 100%;
+}
+
+.yellow {
+    color: #F8B500;
+}
+
 .explorer-card {
     position: relative;
     z-index: 3;
-    width: 100%;
+    width: 65%;
     margin: 0 20px;
     padding: 70px 30px 44px;
     border-radius: 30px;
-    background: #f8b500;
+    background: #F8B500;
     text-align: center;
 }
 
@@ -1744,13 +1778,12 @@ input.trip-title-input {
 /* End of progress Bar demo */
 
 .poipic {
-    max-width: 160px;
+    max-width: 80%;
+    border-radius: 10px;
 }
 
 #searchsection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin-bottom: 10px;
 }
 
 .explorer-text {
@@ -1822,29 +1855,193 @@ input.trip-title-input {
 }
 
 .cityresults-form input {
-    height: 35px;
-    margin: 5px auto;
-    background-color: #eee;
+    margin-right: 10px;
+    padding: 10px;
     border: none;
-    margin-left: 15px;
-    margin-right: 15px;
-    font-size: 13px;
-    border-radius: 8px;
-    outline: none;
+    border-radius: 5px;
 }
 
-.recommendations h1 {
+.cityresults-form button {
+    background-color: #ffc62c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.results-main {
+    font-weight: 200;
+    color: #fff;
+    padding: 20px;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.recommendations {
+    background-color: #2c2f35;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#categoryScores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.score-item {
+    background-color: #2c2f35;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+}
+
+.score-item h4 {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffc62c;
+}
+
+.score-item span {
+    display: block;
+}
+
+.result-title {
     text-align: center;
-}
-
-.recommendations h2 {
+    margin-bottom: 30px;
     font-size: 36px;
-    font-weight: 600;
-    margin: 0 0 12px;
-    text-align: center;
+    color: #F8B500;;
 }
 
-/* <---- poi.handlebars */
+.city-label {
+    margin-right: 10px;
+}
+
+.city-input {
+    margin-right: 10px;
+}
+
+/* Location Scores, Points of Interest, Activities, and Safety Sections Styling */
+
+.locationScore,
+.pointsofinterest,
+.activities,
+.safety {
+    background-color: #2c2f35;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;    
+}
+
+.pointsofinterest {
+    margin-bottom: 20px;
+}
+
+#poiList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.poi-item {
+    background-color: #2c2f35;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+}
+
+.poi-item strong {
+    color: #ffc62c;
+}
+
+.activities {
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.activities::-webkit-scrollbar {
+    width: 12px;
+}
+
+.activities::-webkit-scrollbar-thumb {
+    background-color: #ffc62c;
+    border-radius: 6px;
+    min-height: 50px;
+}
+
+.activities:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));
+}
+
+.scroll-indicator {
+    font-size: 12px;
+    color: #ffc62c;
+}
+
+/* List Styling */
+
+#poiList,
+#activitiesList,
+#safetyList {
+    list-style-type: none;
+}
+
+#poiList li,
+#activitiesList li,
+#safetyList div {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #3a3e46;
+    border-radius: 5px;
+}
+
+/* Link Styling */
+
+a {
+    color: #ffc62c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#safetyList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#safetyList div {
+    background-color: #2c2f35;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+}
+
+#safetyList div h4 {
+    display: block;
+    margin-bottom: 10px;
+    color: #ffc62c;
+}
+
+#safetyList div p {
+    margin: 5px 0;
+}
+
+/*-------- End of cityResult ----------*/
+
 /* Start of Chris' CSS additions ---->*/
 
 .forum-main {

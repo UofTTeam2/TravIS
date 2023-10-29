@@ -12,7 +12,7 @@ const Amadeus = require('amadeus');
 const amadeus = new Amadeus({
     clientId: process.env.AMADEUS_CLIENT_ID,
     clientSecret: process.env.AMADEUS_CLIENT_SECRET,
-    hostname: 'production', //use this to switch to production server, switch keys in .env file
+    hostname: 'production' //use this to switch to production server, switch keys in .env file
 });
 //==============================================================
 
