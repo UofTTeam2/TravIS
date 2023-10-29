@@ -189,6 +189,7 @@ button:hover {
 .main-container {
     grid-area: main;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 20px 20px;
 }
 
@@ -2118,6 +2119,7 @@ textarea {
 
 .forum-card {
     margin-top: 20px;
+    overflow-x: hidden;
 }
 
 .forum-text-secondary {
