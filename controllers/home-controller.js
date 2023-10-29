@@ -90,8 +90,8 @@ router.get('/update', (req, res) => {
 
 // Get route to render the search page
 //==============================================================
-router.get('/search', (req, res) => {
-    res.render('search');
+router.get('/search', loginAuth, (req, res) => {
+    res.render('search', {loggedIn: req.session.loggedIn});
 });
 //==============================================================
 
@@ -132,7 +132,7 @@ router.get('/api/city', async (req, res) => {
 
 // Get route to receive data from Amadeus API
 //==============================================================
-router.get('/poi/:lat/:lon/:city', async (req, res) => {
+router.get('/poi/:lat/:lon/:city', loginAuth, async (req, res) => {
     const lat = req.params.lat;
     const lon = req.params.lon;
     const city = req.params.city;
@@ -172,6 +172,7 @@ router.get('/poi/:lat/:lon/:city', async (req, res) => {
             safetyData,
             locationData,
             city,
+            loggedIn: req.session.loggedIn,
         });
     } catch (error) {
         console.error('Error:', error.message);
@@ -182,7 +183,7 @@ router.get('/poi/:lat/:lon/:city', async (req, res) => {
         );
     }
 });
-//==============================================================
+// =============================================================
 
 // Export the router
 // =============================================================

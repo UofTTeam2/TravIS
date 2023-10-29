@@ -25,19 +25,6 @@ const upload = multer({
         }
     },
 });
-// =============================================================
-// Second Optin for multer
-// const storage = multer.diskStorage({
-//     destination: './public/images/userdata/',
-//     filename: function (req, file, cb) {
-//         const fileSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-//         const fileName = file.fieldname + '-' + fileSuffix;
-//         file.originalname = fileName;
-//         cb(null, fileName);
-//     },
-// });
-// const uploadFolder = multer({ storage: storage });
-// =============================================================
 
 // POST route for a new topic
 // =============================================================
