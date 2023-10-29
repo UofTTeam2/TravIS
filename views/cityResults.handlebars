@@ -21,9 +21,9 @@
                 </section>
 
                 <div class='locationScore'>
-                    <h2>Location Scores:</h2>
+                    <h2 class = "recommendations-header">Location Scores:</h2>
                     <div id='locationScoresList'>
-                        <h3>What are the popular features of {{city}}?</h3>
+                        <h3 class = "search-section-subtitle">What are the popular features of {{city}}?</h3>
                         <p>Here you can find the popularity score of the surrounding
                             area for different categories, based on a radius of 1.5 km.
                             The categories include sights, restaurants, shopping, and
@@ -79,8 +79,8 @@
                 </div>
 
                 <div class='pointsofinterest'>
-                    <h2>Points of Interest:</h2>
-                    <h3>What are the best places to visit in {{city}}?</h3>
+                    <h2 class = "recommendations-header">Points of Interest:</h2>
+                    <h3 class = "search-section-subtitle">What are the best places to visit in {{city}}?</h3>
                     <p>
                         Here you will find a list of top ranked attractions, as voted by
                         travellers. The categories include sights, beach/park,
@@ -103,9 +103,9 @@
                 </div>
 
                 <div class='activities'>
-                    <h2>Activities:</h2>
+                    <h2 class = "recommendations-header">Activities:</h2>
 
-                    <h3>What are the best tours and activities in
+                    <h3 class = "search-section-subtitle">What are the best tours and activities in
                         {{city}}?</h3>
                     <p>
                         Here you will find information about top rated activities such
@@ -116,25 +116,30 @@
                     <ul id='activitiesList'>
                         {{#each activityData}}
                             <li>
-                                <strong>{{name}}</strong><br />
-                                <p class='activityDescription'>{{{description}}}</p><br
-                                />
+                                <strong>{{name}}</strong>
 
-                                {{#if price}}
-                                    Price:
+                                <p><br/></p>
+
+                                <p class='activityDescription'>{{{description}}}</p>
+
+                               {{#if price}}
+                                    <br />
+                                    <p>Price:
                                     {{price.amount}}
-                                    {{price.currencyCode}}<br />
+                                    {{price.currencyCode}}</p>
                                 {{else}}
-                                    Price: Not Available<br />
-                                {{/if}}
+                                    <br />
+                                    <p>Price: Not Available</p>
+                                {{/if}}</p>
                                 {{#if minimumDuration}}
-                                    Minimum Duration:
-                                    {{minimumDuration}}<br />
+                                    <p>Minimum Duration:
+                                    {{minimumDuration}}</p>
+                                    <br />
                                 {{else}}
-
+                                    <br />
                                 {{/if}}
 
-                                <h3>Pictures:</h3>
+                                <h3 class = "search-section-subtitle activities-pictures-header">Pictures:</h3>
                                 <div class='poipictures'>
                                     {{#if pictures}}
                                         {{#each pictures}}
@@ -149,7 +154,7 @@
                                     {{/if}}
                                 </div>
                                 {{#if bookingLink}}
-                                    <a href='{{bookingLink}}' target='_blank'>Click to
+                                    <a class = "bookinglink" href='{{bookingLink}}' target='_blank'>Click to
                                         Book Now</a><br />
                                 {{else}}
 
@@ -160,14 +165,14 @@
                 </div>
 
                 <div class='safety'>
-                    <h2>Safety Scores:</h2>
-                    <h3>How safe is
+                    <h2 class = "recommendations-header">Safety Scores:</h2>
+                    <h3 class = "search-section-subtitle">How safe is
                         {{city}}, and surrounding districts?</h3>
                     <p>See the overall danger score, 0-100, for six categories: women's
                         safety, health, physical threats, theft, political freedom and
                         LGBTQ safety. The lower the score, the lower the risk. It's
                         important to be aware of the safety of your destination,
-                        especially if you are travelling alone or with children.
+                        especially if you are travelling alone or with children. The lower the score, the lower the risk of threat to safety
                     </p>
                     <div id='safetyList'>
                         {{#each safetyData}}
