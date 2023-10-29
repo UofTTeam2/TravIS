@@ -57,7 +57,7 @@
 
 ## Installation
 
-### Option one: Using Node.js
+### Option 1: Using Node.js
 _To get started with TravIs on your local machine, follow these steps:_
 
 1. Clone the repository to your local machine.
@@ -68,7 +68,7 @@ _To get started with TravIs on your local machine, follow these steps:_
 6. Start the application.
 7. Access the application in your web browser at `http://localhost:3001`.
 
-### Option2:
+### Option 2: Live Heroku Site
 _Click on the following link:_
 
 [Link to deployed application on Heroku](https://travis231017-9762a24c277b.herokuapp.com/)
