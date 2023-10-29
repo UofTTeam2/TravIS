@@ -7,7 +7,6 @@
 displayErrorModal = (errorMessage) => {
     const modal = document.querySelector('#errorModal');
     const modalContent = document.querySelector('#modalErrorMessage');
-    const modalDetails = document.querySelector('#modalErrorDetails');
     const closeModalButton = document.querySelector('#closeModal');
 
     let errorDetails;
@@ -18,12 +17,11 @@ displayErrorModal = (errorMessage) => {
     } else if (errorMessage === 'SequelizeUniqueConstraintError') {
         errorDetails = 'Your chosen username and / or email is already in use.';
     } else {
-        errorDetails = '';
+        errorDetails = errorMessage;
     }
 
     modal.style.display = 'block';
-    modalContent.textContent = `Error: ${errorMessage}`;
-    modalDetails.textContent = errorDetails;
+    modalContent.textContent = `Error: ${errorDetails}`;
 
     closeModalButton.addEventListener('click', () => {
         modal.style.display = 'none';
