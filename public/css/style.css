@@ -1776,10 +1776,23 @@ input.trip-title-input {
     }
 }
 /* End of progress Bar demo */
+.poipictures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
 .poipic {
-    max-width: 80%;
+    max-width: 325px;
     border-radius: 10px;
+}
+
+.link {
+    padding: 2px;
+    border-radius: 5px;
+    background-color: #ffc62c;
+    color: #2c2f35;
+    text-decoration: none;
 }
 
 #searchsection {

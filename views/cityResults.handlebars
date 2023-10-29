@@ -137,11 +137,13 @@
                         <div class='poipictures'>
                             {{#if pictures}}
                                 {{#each pictures}}
+                                <div>
                                     <img
                                         class='poipic'
                                         src='{{this}}'
                                         alt='Activity Image'
                                     /><br />
+                                </div>
                                 {{/each}}
                                 <br />
                             {{else}}
@@ -150,8 +152,9 @@
                             <br />
                         </div>
                         {{#if bookingLink}}
-                            <a href='{{bookingLink}}' target='_blank'>Click to
-                                Book Now</a><br />
+                        <br />
+                            <a href='{{bookingLink}}' target='_blank' class="link"><strong>Click to
+                                Book Now</strong></a><br />
                         {{else}}
 
                         {{/if}}
