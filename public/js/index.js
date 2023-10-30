@@ -1,20 +1,12 @@
 console.log('aquí el index');
 document.addEventListener('DOMContentLoaded', function () {
     // Lógica para el menú de navegación
-    const toggler = document.querySelector('.toggler');
-    const navMenu = document.querySelector('#navMenu');
-    const scroll = document.getElementById('scroll');
+    const scroll = document.getElementsByClassName('scroll');
 
-    if (toggler && navMenu) {
-        console.log('Toggler and navMenu exist.');
-        toggler.addEventListener('click', function () {
-            console.log('Toggler clicked.');
-            navMenu.classList.toggle('active');
-        });
-    }
+    console.log(scroll);
 
     if (scroll) {
-        scroll.addEventListener('click', () => {
+        $(scroll).on('click', () => {
             document.querySelector('.about-us').scrollIntoView({ behavior: 'smooth' });
         });
     }
@@ -29,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const signupBtn = document.getElementById('signupBtn');
     if (signupBtn) {
         signupBtn.addEventListener('click', () => {
-            window.location.href = 'login#signup';document.querySelector('.about-us').scrollIntoView({ behavior: 'smooth' });
+            window.location.href = 'login#signup';
         });
     }
 });

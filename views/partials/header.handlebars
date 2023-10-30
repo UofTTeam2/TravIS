@@ -10,9 +10,10 @@
             />
             <p class='site-title'>TravIS</p>
         </div>
+        
         <div class='nav-links'>
             <a href='/' class='item'>Home</a>
-            <a href='/#about-us' class='item' id='scroll'>About Us</a>
+            <a href='/#about-us' class='item' class='scroll'>About Us</a>
             {{#if loggedIn}}
                 <a href='/trips' class='item'>Dashboard</a>
             {{/if}}
@@ -34,8 +35,17 @@
             <i class='bx bx-menu'></i>
         </button>
     </div>
+
+    <div class='alt-nav-links'>
+        <a href='/' class='item'>Home</a>
+        <a href='/#about-us' class='item' class='scroll'>About Us</a>
+        {{#if loggedIn}}
+            <a href='/trips' class='item'>Dashboard</a>
+        {{/if}}
+    </div>
 </div>
 
 <!-- End of Navbar -->
 <script src='/js/index.js'></script>
+<script src='/js/toggler-navmenu.js'></script>
 <script src="/js/logout.js"></script>
