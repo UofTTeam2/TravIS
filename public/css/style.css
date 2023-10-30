@@ -1715,6 +1715,10 @@ input.trip-title-input {
     background-color: #F8B500;
 }
 
+.bad-request-content > a {
+    color: #505672;
+}
+
 .bad-request-header {
     font-size: 3em;
     background-color: #505672;

@@ -80,20 +80,3 @@ app.use(routes);
 sequelize.sync({force: false}).then(() => {
     app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
 });
-
-/* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS BELOW, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
-
-const {id, title, start_date, end_date, image, public, sections} = require('./seeds/sampleItineraryDataGET.js');
-
-const expenses = [1200, 500, 200, 1000, 200];
-
-app.get('/test', async (req, res) => {
-    try {
-        res.render('bad-request', {id, title, start_date, end_date, image, public, expenses, sections});
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
-
-/* ETHAN'S TEMPORARY CODE FOR TESTING HANDLEBARS ABOVE, COMMENT IT OUT IF IT'S CAUSING PROBLEMS */
