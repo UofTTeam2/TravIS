@@ -711,7 +711,7 @@ body .form {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 0px 0px;
+    padding: 20px 0px;
 }
 
 .navbar .toggler {
@@ -1045,6 +1045,10 @@ div.footer-links > div.link {
         gap: 10%;
         justify-content: center;
         padding: 20px 0px;
+    }
+
+    .main .navbar {
+        padding: 20px 0px 0px;
     }
 
     .navbar .nav-buttons {
